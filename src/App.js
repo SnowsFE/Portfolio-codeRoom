@@ -1,7 +1,6 @@
 import React from 'react';
-import MainContainer from './main.js';
+import MainContainer from './pages/MainPage/MainPage.jsx';
 import "./App.css";
-import "./main.js"
 
 function App() {
   return <div className="App">
