@@ -77,7 +77,6 @@ const JoinPage = () => {
       password: password,
     });
     navigate("/login");
-    console.log("login");
   };
 
   return (
