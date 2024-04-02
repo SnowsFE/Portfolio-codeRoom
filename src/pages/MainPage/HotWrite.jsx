@@ -13,23 +13,23 @@ const Hot = (props) => {
             <HotWrite className="HotWrite">
                 <strong>{props.container}🔥 이번주 코드룸 인기글</strong>
             </HotWrite>
-            <HotBox1 className="HotBox1">
-                    <HotBox1_1 className="HotBox1_1">
+            <HotBox1 className="HotBox1" onClick={handleClick}>
+                <HotBox1_1 className="HotBox1_1">
                     <HotBox1_2 className="HotBox1_2">
-                    🎥 프로젝트
+                        🎥 프로젝트
                     </HotBox1_2>
                     <HotBox1_3 className="HotBox1_3">
-                    🚨 마감 n일전
+                        🚨 마감 n일전
                     </HotBox1_3>
                     <HotSubEnd className="HotSubWrite">
-                    <strong>마감일 | 2024.04.20</strong>
+                        <strong>마감일 | 2024.04.20</strong>
                     </HotSubEnd>
                     <HotSubMain className="HotSubMain">
-                    <strong>코딩룸 신규 오픈!!</strong>
+                        <strong>코딩룸 신규 오픈!!</strong>
                     </HotSubMain>
-                    <HotView onClick={handleClick} style={{ cursor: 'pointer' }}>
-                    <p>👀 조회수 {views}회</p>
-                        </HotView>
+                    <HotView>
+                        <p>👀 조회수 {views}회</p>
+                    </HotView>
                 </HotBox1_1>
             </HotBox1>
             <HotBox2 className="HotBox2"></HotBox2>
@@ -66,6 +66,7 @@ const HotBox = styled.div`
     margin-bottom: 5px; /* 각 박스들 간격을 5px로 설정 */
     border: 1px solid #8f8f8f;
     border-radius: 20px;
+    cursor : pointer;
 `;
 
 const HotBox1_1 = styled.div`
