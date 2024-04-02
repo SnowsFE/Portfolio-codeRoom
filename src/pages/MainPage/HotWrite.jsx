@@ -44,7 +44,7 @@ const HotOutLine = styled.div`
     height: 350px;
     position : relative;
     margin: 0 auto; /* 수평 중앙 정렬을 위해 margin을 auto로 설정 */
-    display: flex; /* Flexbox를 사용하여 요소들을 정렬합니다. */
+    display: flex;
     justify-content: center;
     align-items: center; /* 수직 중앙 정렬 */
     gap: 25px; /* 박스들 사이의 간격을 5px로 설정 */
