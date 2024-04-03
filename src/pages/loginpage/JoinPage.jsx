@@ -41,12 +41,19 @@ const JoinPage = () => {
     setErrorMessage("");
   };
 
-  // 중복 확인 (서버와 통신)
+  // username 중복 확인 (서버와 통신)
   const validCheckHandler = async (e) => {
-    const response = await axios.post("/join/isDuplicated", {
-      username,
-    });
-    console.log(username);
+    try {
+      const response = await axios.post("/join/isDuplicated", {
+        username,
+      });
+      console.log(response.data);
+      setIsUsernameChecked(true);
+    } catch (e) {
+      if (e.response && e.response.status === 401) {
+        setErrorMessage("중복된 아이디 입니다");
+      }
+    }
   };
 
   // 회원 가입 (서버와 통신)
@@ -57,17 +64,12 @@ const JoinPage = () => {
       return;
     }
 
-    if (username.length < 8) {
-      setErrorMessage("아이디는 8자리 이상이어야 합니다.");
-      return;
-    }
-
-    if (password.length < 8) {
+    if (!isPasswordValid) {
       setErrorMessage("비밀번호는 8자리 이상이어야 합니다.");
       return;
     }
 
-    if (password !== confirmPassword) {
+    if (!isConfirmPasswordValid) {
       setErrorMessage("비밀번호가 일치하지 않습니다.");
       return;
     }

@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 const LoginLogo = () => {
   const navigator = useNavigate();
-
   return (
     <div>
       <Img src={CodeRoom} alt="" onClick={() => navigator("/")} />
@@ -14,7 +13,14 @@ const LoginLogo = () => {
 };
 
 const BelowImg = () => {
-  return <StyledBelowImg src={CodeRoomBanner} alt="" className="footerImg" />;
+  const navigator = useNavigate();
+  return (
+    <StyledBelowImg
+      src={CodeRoomBanner}
+      alt=""
+      onClick={() => navigator("/")}
+    />
+  );
 };
 
 const Img = styled.img`
@@ -27,6 +33,7 @@ const Img = styled.img`
 const StyledBelowImg = styled.img`
   margin-top: 40px;
   width: 800px;
+  cursor: pointer;
 `;
 
 export { LoginLogo, BelowImg };

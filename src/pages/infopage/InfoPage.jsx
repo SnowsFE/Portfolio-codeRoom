@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import InfoBox from "../../components/ui/InfoBox";
+import CodeRoomBanner from "../../img/CodeRoomBanner.png";
+import { useNavigate } from "react-router-dom";
 
 const InfoPage = () => {
+  const navigator = useNavigate();
+
   return (
     <div>
       <HeaderInfo>
@@ -20,7 +24,7 @@ const InfoPage = () => {
         </p>
       </BodyInfo>
       <InfoBox></InfoBox>
-      <BackgroundImg2>
+      <BackgroundImg2 onClick={() => navigator("/")}>
         <h1>코딩룸은 당신의 꿈을 응원합니다</h1>
       </BackgroundImg2>
     </div>
@@ -40,11 +44,12 @@ const BackgroundImg1 = styled.section`
 // 두 번째 배경 이미지
 const BackgroundImg2 = styled.section`
   height: 680px;
-  background-image: url("https://images.unsplash.com/photo-1536602012356-86c345795580?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-image: url(${CodeRoomBanner});
   background-repeat: no-repeat;
   background-size: 100% 100%;
   filter: grayscale(100%);
   opacity: 0.7;
+  cursor: pointer;
   h1 {
     line-height: 680px;
     color: #fff;
