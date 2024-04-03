@@ -12,27 +12,21 @@ const nav = (props) => {
       </Left>
       
       <Right1>
-        <strong>
         <a href="#">
-          <span>{props.container} 소개글</span>
+          <span>{props.container} 모집</span>
         </a>
-        </strong>
       </Right1>
 
       <Right2>
-        <strong>
         <a href="#">
           <span>{props.container} 글쓰기</span>
         </a>
-        </strong>
       </Right2>
 
       <Right3>
-        <strong>
         <a href="#">
           <span>{props.container} 로그인</span>
         </a>
-        </strong>
       </Right3>
     </NavStyle>
   );
@@ -47,8 +41,8 @@ const NavStyle = styled.div`
   position: relative;
   justify-content: space-between; /* 양 끝으로 정렬합니다. */
   align-items: center; /* 세로 방향으로 중앙 정렬합니다. */
-  margin-top : 8px;
-  margin-bottom : 8px;
+  margin-top : 15px;
+  margin-bottom : 15px;
 `;
 
 // 로고를 왼쪽에 정렬하기 위한 컨테이너
@@ -67,9 +61,10 @@ const Right1 = styled.div`
     text-decoration: none;
     display: block; /* 인라인 요소를 블록 요소로 변환합니다. */
     position : absolute;
-    right : 150px;
+    right : 155px;
     bottom : 16px;
     font-size : 18px;
+    font-weight : 800;
   }
 `;
 
@@ -82,6 +77,7 @@ const Right2 = styled.div`
     right : 75px;
     bottom : 16px;
     font-size : 18px;
+    font-weight : 800;
   }
 `;
 
@@ -94,6 +90,7 @@ const Right3 = styled.div`
     right : 0px;
     bottom : 16px;
     font-size : 18px;
+    font-weight : 800;
   }
 `;
 
