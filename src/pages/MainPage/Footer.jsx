@@ -8,7 +8,12 @@ const Footer = () => {
     <FooterStyle>
       <img src={CodeRoomBanner} alt="CodeRoom Logo" />
       <p>© 2024 CodeRoom. All rights reserved.</p>
-      <h1>이용약관 개인정보처리방침 서비스소개 광고상품 소개</h1>
+      <LinkContainer>
+        <span>이용약관</span>
+        <span>개인정보처리방침</span>
+        <span>서비스소개</span>
+        <span>광고상품 소개</span>
+      </LinkContainer>
     </FooterStyle>
   );
 };
@@ -16,27 +21,36 @@ const Footer = () => {
 const FooterStyle = styled.footer`
   width: ${MainStyle.width};
   height: 175px;
-  background-color: #f1f1f1;
-  padding: 10px;
+  background-color: #f5f5f5;
+  padding: 0px;
 
   img {
     margin-top: 2.7%;
-    margin-right: 50%;
+    margin-right: 40%;
     max-width: 100px;
     height: auto;
   }
 
   p {
-    margin-right: 50%;
+    margin-right: 40%;
     color: #333;
     margin-top: 10px;
     font-weight: 600;
   }
+`;
 
-  h1 {
-    font-size: 14px;
-    margin-top: -60px;
-    margin-left: 25%;
+const LinkContainer = styled.div`
+  font-size: 14px;
+  margin-top: -67px;
+  margin-left: 33%;
+
+  span {
+    margin-right: 5%; // 각 항목 사이의 간격을 5%로 설정
+    font-weight: 700;
+
+    &:last-child {
+      margin-right: 0; // 마지막 항목은 오른쪽 여백이 없도록 설정
+    }
   }
 `;
 

@@ -136,12 +136,41 @@ const NewBoards = (props) => {
     );
   };
 
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value); // 검색어 업데이트
+  };
+
+  const handleClearSearch = () => {
+    setSearchValue(""); // 검색어 비우기
+  };
+
+  const [searchValue, setSearchValue] = useState(""); // 검색어 상태
+  const ClearButton = styled.button`
+    margin-left: 48%;
+    margin-top: -6.7%;
+    position: absolute;
+    border-radius: 10px;
+    border-color: rgb(91, 231, 100);
+  `;
+
   return (
     <div>
       <NewOutLine className="NewOut">
         <NewWrite className="NewWrite">
           <strong>{props.container}🍞 최근에 올라왔어요</strong>
         </NewWrite>
+        <NewSearch className="NewSearch">
+          <NewSearchBox className="NewSearchBox">
+            <input
+              placeholder="🔍   제목, 글 내용을 검색해보세요."
+              value={searchValue} // 검색어 입력값으로 설정
+              onChange={handleSearchChange} // 검색어 입력시 이벤트 핸들러
+            />
+            {searchValue && ( // 검색어가 있을 때만 X 아이콘 표시
+              <ClearButton onClick={handleClearSearch}>✖️</ClearButton>
+            )}
+          </NewSearchBox>
+        </NewSearch>
         {currentProjects.map((_, index) => renderNewBox(index))}
       </NewOutLine>
       {/* 페이지 이동 함수 */}
@@ -185,12 +214,40 @@ const PaginationControls = ({ currentPage, totalPageCount, paginate }) => {
   );
 };
 
+const NewSearch = styled.div`
+  display: flex;
+  width: 300px;
+  height: 34px;
+  padding: 0 20px;
+  align-items: center;
+  grid-gap: 10px;
+  gap: 10px;
+  border-radius: 36px;
+  background: #f5f5f5;
+  position: absolute;
+  left: 72.5%;
+  margin-bottom: 13.5%;
+`;
+
+const NewSearchBox = styled.div`
+  input {
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 0;
+    font-weight: 700;
+    font-size: 16px;
+    width: 150%;
+    position: relative;
+  }
+`;
+
 const Pagination = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
-  margin-bottom: 100px;
+  margin-top: 50px;
+  margin-bottom: 80px;
 `;
 
 const PaginationItem = styled.div`
