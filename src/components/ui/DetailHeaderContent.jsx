@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import BackArrow from "../../img/BackArrow.png";
+import viewImg from "../../img/view.png";
 import { svgFiles, fileNames } from "../../constants/fileNames";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -11,6 +12,7 @@ const DetailTitle = () => {
   const [title, setTitle] = useState(""); //제목
   const [writer, setWriter] = useState("빌게이츠"); //작성자
   const [writeDt, setWriteDt] = useState("2024.04.03"); //작성 일자
+  const [view, setView] = useState(23); //조회수
 
   return (
     <StudyContentContainer>
@@ -25,6 +27,10 @@ const DetailTitle = () => {
         <div className="username">{writer}</div>
         <div className="user-info-partition">|</div>
         <div className="date">{writeDt}</div>
+        <div className="view-area">
+          <img src={viewImg} alt="" />
+          <span>{view}</span>
+        </div>
       </UserInfo>
       <hr
         style={{
@@ -46,8 +52,8 @@ const DetailSubContent = () => {
   const [plan, setPlan] = useState(""); //시작예정
   const [contact, setContact] = useState(""); //연락방법
   const [duration, setDuration] = useState(null); //예상 기간
-  const [recruitField, setRecruitField] = useState(null); //모집 분야
-  const [language, setLanguage] = useState(null); //사용 언어 ex) spring
+  const [recruitField, setRecruitField] = useState([]); //모집 분야
+  const [language, setLanguage] = useState([]); //사용 언어 ex) spring
 
   return (
     <SubContentContainer>
@@ -107,7 +113,7 @@ export { DetailTitle, DetailSubContent };
 const SubContentContainer = styled.section`
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 100%;
   margin: 30px auto;
 
@@ -130,6 +136,7 @@ const SubContentContainer = styled.section`
   .sub-content {
     font-weight: 700;
   }
+
   .sub-field {
     color: rgb(74, 94, 117);
     background-color: rgb(242, 244, 248);
@@ -147,7 +154,7 @@ const SubContentContainer = styled.section`
 // title css
 const StudyContentContainer = styled.div`
   /* height: 530px; */
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 65%;
   margin: 80px auto;
   display: flex;
@@ -168,8 +175,10 @@ const StudyContentContainer = styled.div`
 const UserInfo = styled.div`
   margin: 25px 0 25px 0;
   display: flex;
+  position: relative;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
   .username {
     font-weight: 700;
     font-size: 24px;
@@ -186,6 +195,27 @@ const UserInfo = styled.div`
     color: rgb(113, 113, 113);
     font-size: 24px;
     margin-right: 15px;
+  }
+
+  .view-area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    right: 30px;
+
+    img {
+      width: 25px;
+      height: 20px;
+      background-color: #fff;
+      opacity: 0.3;
+      margin-right: 5px;
+    }
+
+    span {
+      color: rgb(153, 153, 153);
+      font-weight: 600;
+    }
   }
 `;
 

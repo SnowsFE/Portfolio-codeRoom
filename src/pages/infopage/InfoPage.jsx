@@ -67,7 +67,7 @@ const HeaderInfo = styled.section`
   padding-left: 100px;
 
   h4 {
-    color: rgb(244, 81, 30);
+    color: rgb(91, 231, 100);
     margin-bottom: 25px;
     font-weight: 700;
     font-size: 24px;
@@ -88,7 +88,7 @@ const BodyInfo = styled.section`
   padding-left: 30px;
 
   h4 {
-    color: rgb(244, 81, 30);
+    color: rgb(91, 231, 100);
     margin-bottom: 25px;
     font-weight: 700;
     font-size: 24px;
