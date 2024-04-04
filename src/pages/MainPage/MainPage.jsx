@@ -1,8 +1,9 @@
 import React from 'react';
-import Const from '../../const/MainStyle.jsx';
+import Const from '../../constants/MainStyle.jsx';
 import Nav from "../../components/ui/Nav.jsx";
 import Banner from "./Banner.jsx";
-import Hot from './HotWrite.jsx';
+import HotBoards from './HotBoards.jsx';
+import NewBoards from './NewBoards.jsx';
 
 const MainContainer = () => {
     return (
@@ -10,7 +11,8 @@ const MainContainer = () => {
              <Const container=""/>
              <Nav container="" />
              <Banner container=""/>
-             <Hot container=""/>
+             <HotBoards container=""/>
+             <NewBoards container=""/>
         </Const>
     );
 }

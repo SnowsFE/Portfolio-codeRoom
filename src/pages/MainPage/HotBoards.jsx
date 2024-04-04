@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
 
-const Hot = (props) => {
+const HotBoards = (props) => {
     const [views, setViews] = useState([0, 0, 0, 0]);
     const [projects, setProjects] = useState([
-        { projectStatus: "🎥 프로젝트", deadlineStatus: "🚨 마감 n일전" },
-        { projectStatus: "🎥 프로젝트", deadlineStatus: "🚨 마감 n일전" },
-        { projectStatus: "🎥 프로젝트", deadlineStatus: "🚨 마감 n일전" },
-        { projectStatus: "🎥 프로젝트", deadlineStatus: "🚨 마감 n일전" }
+        { projectStatus: "🎥 프로젝트 1", deadlineStatus: "🚨 마감 3일전", subEndText: "마감일 | 2024.04.20", subMainText: "코딩룸 신규 오픈!!" },
+        { projectStatus: "🎥 프로젝트 2", deadlineStatus: "🚨 마감 2일전", subEndText: "마감일 | 2024.04.21", subMainText: "프로젝트 진행중" },
+        { projectStatus: "🎥 프로젝트 3", deadlineStatus: "🚨 마감 1일전", subEndText: "마감일 | 2024.04.22", subMainText: "프로젝트 완료" },
+        { projectStatus: "🎥 프로젝트 4", deadlineStatus: "🚨 마감 0일전", subEndText: "마감일 | 2024.04.23", subMainText: "프로젝트 완료" }
     ]);
 
     const handleClick = (index) => {
@@ -24,10 +24,10 @@ const Hot = (props) => {
                     <ProjectStatus>{project.projectStatus}</ProjectStatus>
                     <DeadlineStatus>{project.deadlineStatus}</DeadlineStatus>
                     <HotSubEnd>
-                        <strong>마감일 | 2024.04.20</strong>
+                        <strong>{project.subEndText}</strong>
                     </HotSubEnd>
                     <HotSubMain>
-                        <strong>코딩룸 신규 오픈!!</strong>
+                        <strong>{project.subMainText}</strong>
                     </HotSubMain>
                     <HotView>
                         <p>👀 조회수 {views[index]}회</p>
@@ -136,4 +136,4 @@ const HotView = styled.div`
     overflow: hidden;
 `;
 
-export default Hot;
+export default HotBoards;
