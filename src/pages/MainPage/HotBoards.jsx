@@ -4,10 +4,10 @@ import styled from "styled-components";
 const HotBoards = (props) => {
     const [views, setViews] = useState([0, 0, 0, 0]);
     const [projects, setProjects] = useState([
-        { projectStatus: "🎥 프로젝트 1", deadlineStatus: "🚨 마감 3일전", subEndText: "마감일 | 2024.04.20", subMainText: "코딩룸 신규 오픈!!" },
-        { projectStatus: "🎥 프로젝트 2", deadlineStatus: "🚨 마감 2일전", subEndText: "마감일 | 2024.04.21", subMainText: "프로젝트 진행중" },
-        { projectStatus: "🎥 프로젝트 3", deadlineStatus: "🚨 마감 1일전", subEndText: "마감일 | 2024.04.22", subMainText: "프로젝트 완료" },
-        { projectStatus: "🎥 프로젝트 4", deadlineStatus: "🚨 마감 0일전", subEndText: "마감일 | 2024.04.23", subMainText: "프로젝트 완료" }
+        { projectStatus: "🎥 프로젝트", deadlineStatus: "🚨 마감 1일전", subEndText: "마감일 | 2024.04.05", subMainText: "[FrontEnd, BackEnd] 웹페이지 개발자 구인합니다!" },
+        { projectStatus: "✏️ 스터디", deadlineStatus: "🚨 마감 7일전", subEndText: "마감일 | 2024.04.11", subMainText: "이번 주 종로 KG ITBANK에서 함께 공부하실 학우분 구합니다!" },
+        { projectStatus: "🎥 프로젝트", deadlineStatus: "🚨 마감 14일전", subEndText: "마감일 | 2024.04.18", subMainText: "완료된 프로젝트 배포 도와주실 분 구합니다!! [사례금 100만원!!]" },
+        { projectStatus: "✏️ 스터디", deadlineStatus: "🚨 마감 21일전", subEndText: "마감일 | 2024.04.25", subMainText: "코딩룸 웹사이트가 신규 오픈했대요!! 같이 개발 공부하실 분 구합니다!!" }
     ]);
 
     const handleClick = (index) => {
@@ -29,10 +29,10 @@ const HotBoards = (props) => {
                     <HotSubMain>
                         <strong>{project.subMainText}</strong>
                     </HotSubMain>
+                </HotBoxContent>
                     <HotView>
                         <p>👀 조회수 {views[index]}회</p>
                     </HotView>
-                </HotBoxContent>
             </HotBox>
         );
     };
@@ -123,17 +123,25 @@ const HotSubEnd = styled.div`
 `;
 
 const HotSubMain = styled.div`
-    max-width: 242px;
-    font-size: 18px;
+    width: 242px; /* 너비 고정 */
+    height: 52px; /* 높이를 텍스트 두 줄이 들어갈 정도로 조절 */
+    font-size: 18px; /* 폰트 크기 */
+    line-height: 1.4; /* 줄 간격 조절 */
     text-align: left;
     margin-top: 3.5%;
+    overflow: hidden; /* 넘치는 내용 숨김 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 두 줄로 제한 */
+    -webkit-box-orient: vertical;
+    letter-spacing: -1px;
 `;
+
 
 const HotView = styled.div`
     font-size: 15px;
-    margin-left: 53%;
-    margin-top: 10%;
-    overflow: hidden;
+    margin-left: 45%;
+    margin-top : -50px;
+    font-weight : 500;
 `;
 
 export default HotBoards;

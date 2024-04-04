@@ -4,10 +4,10 @@ import styled from "styled-components";
 const NewBoards = (props) => {
     const [views, setViews] = useState([0, 0, 0, 0]);
     const [projects, setProjects] = useState([
-        { projectStatus: "🎥 프로젝트", NewStatus: "🍞 따끈따끈 새 글" },
-        { projectStatus: "🎥 프로젝트", NewStatus: "🍞 따끈따끈 새 글" },
-        { projectStatus: "🎥 프로젝트", NewStatus: "🍞 따끈따끈 새 글" },
-        { projectStatus: "🎥 프로젝트", NewStatus: "🍞 따끈따끈 새 글" }
+        { projectStatus: "🎥 프로젝트", NewStatus: "🍞 따끈따끈 새 글", subEndText: "마감일 | 2024.04.26", subMainText: "[FrontEnd, BackEnd] 웹페이지 개발자 구인합니다!" },
+        { projectStatus: "✏️ 스터디", NewStatus: "🍞 따끈따끈 새 글", subEndText: "마감일 | 2024.04.26", subMainText: "이번 주 종로 KG ITBANK에서 함께 공부하실 학우분 구합니다!" },
+        { projectStatus: "🎥 프로젝트", NewStatus: "🍞 따끈따끈 새 글", subEndText: "마감일 | 2024.04.26", subMainText: "완료된 프로젝트 배포 도와주실 분 구합니다!! [사례금 100만원!!]" },
+        { projectStatus: "✏️ 스터디", NewStatus: "🍞 따끈따끈 새 글", subEndText: "마감일 | 2024.04.26", subMainText: "코딩룸 웹사이트가 신규 오픈했대요!! 같이 개발 공부하실 분 구합니다!!" }
     ]);
 
     const handleClick = (index) => {
@@ -24,15 +24,15 @@ const NewBoards = (props) => {
                     <ProjectStatus>{project.projectStatus}</ProjectStatus>
                     <NewStatus>{project.NewStatus}</NewStatus>
                     <NewSubEnd>
-                        <strong>마감일 | 2024.04.20</strong>
+                        <strong>{project.subEndText}</strong>
                     </NewSubEnd>
                     <NewSubMain>
-                        <strong>코딩룸 신규 오픈!!</strong>
+                        <strong>{project.subMainText}</strong>
                     </NewSubMain>
+                </NewBoxContent>
                     <NewView>
                         <p>👀 조회수 {views[index]}회</p>
                     </NewView>
-                </NewBoxContent>
             </NewBox>
         );
     };
@@ -40,7 +40,7 @@ const NewBoards = (props) => {
     return (
         <NewOutLine className="NewOut">
             <NewWrite className="NewWrite">
-                <strong>{props.container}🍞 최근에 올라왔어요 </strong>
+                <strong>{props.container}🍞 최근에 올라왔어요</strong>
             </NewWrite>
             {projects.map((_, index) => renderNewBox(index))}
         </NewOutLine>
@@ -61,10 +61,11 @@ const NewOutLine = styled.div`
 const NewWrite = styled.div`
     font-size: 26px;
     position: absolute;
-    left: 12.1%;
+    left: 12%;
     margin-bottom: 13.5%;
     transform: translateX(-50%);
 `;
+
 const NewBox = styled.div`
     width: 294px;
     height: 199px;
@@ -122,17 +123,25 @@ const NewSubEnd = styled.div`
 `;
 
 const NewSubMain = styled.div`
-    max-width: 242px;
-    font-size: 18px;
+    width: 242px; /* 너비 고정 */
+    height: 52px; /* 높이를 텍스트 두 줄이 들어갈 정도로 조절 */
+    font-size: 18px; /* 폰트 크기 */
+    line-height: 1.4; /* 줄 간격 조절 */
     text-align: left;
     margin-top: 3.5%;
+    overflow: hidden; /* 넘치는 내용 숨김 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 두 줄로 제한 */
+    -webkit-box-orient: vertical;
+    letter-spacing: -1px;
 `;
+
 
 const NewView = styled.div`
     font-size: 15px;
-    margin-left: 53%;
-    margin-top: 10%;
-    overflow: hidden;
+    margin-left: 45%;
+    margin-top : -50px;
+    font-weight : 500;
 `;
 
 export default NewBoards;
