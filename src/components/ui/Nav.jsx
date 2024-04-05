@@ -34,7 +34,7 @@ const nav = (props) => {
 };
 
 const NavStyle = styled.div`
-  width: 66.7%;
+  width: 67.7%;
   height: 6.3%;
   margin: 0 auto; /* 가운데 정렬 */
   display: flex; /* Flexbox를 사용합니다. */

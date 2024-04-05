@@ -11,7 +11,7 @@ const Banner = () => {
 };
 
 const BanStyle = styled.div`
-  width: 67.7%;
+  width: 1300px;
   height: 335px;
   margin: 0 auto; /* 가운데 정렬 */
   display: flex;

@@ -81,8 +81,30 @@ const NewBoards = (props) => {
     },
   ]);
 
+  //   useEffect(() => {
+  //     // 백엔드에서 게시글 목록을 불러오기
+  //     fetch('https://your-backend-api.com/projects')
+  //       .then((response) => response.json())
+  //       .then((data) => setProjects(data))
+  //       .catch((error) => console.error("Fetching projects failed", error));
+  //   }, []); // 빈 의존성 배열을 넣어 컴포넌트가 마운트될 때만 요청합니다.
+
+  //   // UI 렌더링 로직
+  //   return (
+  //     <div>
+  //       {projects.map((project, index) => (
+  //         <div key={index}>
+  //           <h2>{project.projectStatus} {project.NewStatus}</h2>
+  //           <p>{project.subEndText}</p>
+  //           <p>{project.subMainText}</p>
+  //         </div>
+  //       ))}
+  //     </div>
+  //   );
+  // };
+
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
-  const projectsPerPage = 4; // 페이지당 보여줄 프로젝트 수
+  const projectsPerPage = 12; // 페이지당 보여줄 프로젝트 수
 
   // 페이지 변경 함수
   const paginate = (pageNumber) => {
@@ -147,7 +169,7 @@ const NewBoards = (props) => {
   const [searchValue, setSearchValue] = useState(""); // 검색어 상태
   const ClearButton = styled.button`
     margin-left: 48%;
-    margin-top: -6.7%;
+    margin-top: -6.9%;
     position: absolute;
     border-radius: 10px;
     border-color: rgb(91, 231, 100);
@@ -225,8 +247,8 @@ const NewSearch = styled.div`
   border-radius: 36px;
   background: #f5f5f5;
   position: absolute;
-  left: 72.5%;
-  margin-bottom: 13.5%;
+  left: 72.8%;
+  margin-bottom: 58.3%;
 `;
 
 const NewSearchBox = styled.div`
@@ -246,8 +268,8 @@ const Pagination = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
-  margin-bottom: 80px;
+  margin-top: 15px;
+  margin-bottom: 60px;
 `;
 
 const PaginationItem = styled.div`
@@ -261,8 +283,7 @@ const PaginationItem = styled.div`
   font-weight: bold;
 
   &:hover {
-    background: #daff94; /* 호버 시 배경색 변경 */
-    transform: scale(1.1); /* 호버 시 크기 증가 효과 */
+    background: rgb(91, 231, 100); /* 호버 시 배경색 변경 */
   }
 `;
 
@@ -277,17 +298,23 @@ const PaginationArrow = styled.div`
   display: ${({ hide }) => (hide ? "none" : "block")};
 
   &:hover {
-    background: #daff94; /* 호버 시 배경색 변경 */
+    background: rgb(91, 231, 100); /* 호버 시 배경색 변경 */
     transform: scale(1.1); /* 호버 시 크기 증가 효과 */
   }
 `;
 
 const NewOutLine = styled.div`
   width: 1300px;
-  height: 350px;
+  height: 700px;
   position: relative;
   margin: 0 auto;
-  display: flex;
+  display: grid; /* 그리드 디스플레이 사용 */
+  grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개의 열 */
+  grid-auto-rows: minmax(
+    100px,
+    200px
+  ); /* 최소 높이는 200px, 최대 높이는 250px, 내용에 따라 자동 조정 */
+
   justify-content: center;
   align-items: center;
   gap: 25px;
@@ -296,8 +323,8 @@ const NewOutLine = styled.div`
 const NewWrite = styled.div`
   font-size: 26px;
   position: absolute;
-  left: 12%;
-  margin-bottom: 13.5%;
+  left: 10.1%;
+  margin-bottom: 58.5%;
   transform: translateX(-50%);
 `;
 

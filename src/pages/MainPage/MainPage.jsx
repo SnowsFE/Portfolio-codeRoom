@@ -5,6 +5,7 @@ import Banner from "./Banner.jsx";
 import HotBoards from "./HotBoards.jsx";
 import NewBoards from "./NewBoards.jsx";
 import Footer from "./Footer.jsx";
+import Skill from "./Skill.jsx";
 
 const MainContainer = () => {
   return (
@@ -15,6 +16,7 @@ const MainContainer = () => {
       <HotBoards container="" />
       <NewBoards container="" />
       <Footer container="" />
+      <Skill container="" />
     </Const>
   );
 };

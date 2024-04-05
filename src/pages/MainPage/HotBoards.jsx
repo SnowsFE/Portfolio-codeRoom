@@ -75,20 +75,23 @@ const HotBoards = (props) => {
 
 const HotOutLine = styled.div`
   width: 1300px;
-  height: 350px;
+  height: 380px;
   position: relative;
   margin: 0 auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개의 열 */
   justify-content: center;
   align-items: center;
   gap: 25px;
+  margin-bottom: 2%;
+  margin-top: 1%;
 `;
 
 const HotWrite = styled.div`
   font-size: 26px;
   position: absolute;
-  left: 12.8%;
-  margin-bottom: 13.5%;
+  left: 11%;
+  margin-bottom: 20%;
   transform: translateX(-50%);
 `;
 
