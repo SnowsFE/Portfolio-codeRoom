@@ -3,6 +3,8 @@ import InfoPage from "./pages/infopage/InfoPage";
 import LoginPage from "./pages/loginpage/LoginPage";
 import JoinPage from "./pages/loginpage/JoinPage";
 import DetailPage from "./pages/detailpage/DetailPage";
+import WritePage from "./pages/writepage/WritePage";
+
 import "./App.css";
 
 function App() {
@@ -13,6 +15,7 @@ function App() {
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/join" element={<JoinPage />}></Route>
         <Route path="/detail/:id" element={<DetailPage />}></Route>
+        <Route path="/boards" element={<WritePage />}></Route>
       </Routes>
     </div>
   );

@@ -11,6 +11,7 @@ const JoinPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  // console.log('commit-test')
 
   // 중복 여부 및 비밀번호 상태
   // 3가지 상태에 대해서 모두 true 이여야지만 서버에 post 요청
