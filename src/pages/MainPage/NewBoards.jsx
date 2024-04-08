@@ -278,46 +278,6 @@ const NewSearchBox = styled.div`
   }
 `;
 
-const Pagination = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 60%;
-  margin-bottom: 60px;
-`;
-
-const PaginationItem = styled.div`
-  cursor: pointer;
-  padding: 5px 10px;
-  margin: 0 5px;
-  border-radius: 5px;
-  border: 1px solid black;
-  background: white;
-  color: black;
-  font-weight: bold;
-
-  &:hover {
-    background: rgb(91, 231, 100); /* 호버 시 배경색 변경 */
-  }
-`;
-
-const PaginationArrow = styled.div`
-  cursor: pointer;
-  padding: 5px;
-  margin: 0 5px;
-  border-radius: 5px;
-  background: white;
-  color: black;
-  font-weight: bold;
-  display: ${({ hide }) => (hide ? "none" : "block")};
-
-  &:hover {
-    background: rgb(91, 231, 100); /* 호버 시 배경색 변경 */
-    transform: scale(1.1); /* 호버 시 크기 증가 효과 */
-  }
-`;
-
 const NewOutLine = styled.div`
   width: 1300px;
   height: 700px;
@@ -410,6 +370,50 @@ const NewView = styled.div`
   margin-left: 45%;
   margin-top: -50px;
   font-weight: 500;
+`;
+
+const Pagination = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 63%;
+  margin-bottom: 61px;
+  margin-left: 43.5%;
+  z-index: 2;
+`;
+
+const PaginationItem = styled.div`
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  background: white;
+  color: black;
+  font-weight: bold;
+
+  &:hover {
+    background: rgb(91, 231, 100); /* 호버 시 배경색 변경 */
+  }
+`;
+
+const PaginationArrow = styled.div`
+  cursor: pointer;
+  padding: 5px;
+  margin: 0 5px;
+  border-radius: 5px;
+  background: white;
+  color: black;
+  font-weight: bold;
+  display: ${({ hide }) =>
+    hide ? "none" : "block"}; /* hide prop 값에 따라 화살표 숨김 여부 설정 */
+  z-index: 1;
+
+  &:hover {
+    background: rgb(91, 231, 100); /* 호버 시 배경색 변경 */
+    transform: scale(1.1); /* 호버 시 크기 증가 효과 */
+  }
 `;
 
 export default NewBoards;

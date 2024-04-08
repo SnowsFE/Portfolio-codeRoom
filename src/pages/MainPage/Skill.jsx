@@ -141,6 +141,7 @@ const Container = styled.div`
   height: 10%;
   margin-bottom: 20.6%;
   margin-left: 69.6%;
+  z-index: 3;
 `;
 
 const JobButtonContainer = styled.div``;

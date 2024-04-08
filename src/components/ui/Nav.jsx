@@ -13,13 +13,13 @@ const nav = (props) => {
       </Left>
 
       <Right1>
-        <a href="#">
+        <a href="/boards">
           <span>{props.container} 글쓰기</span>
         </a>
       </Right1>
 
       <Right2>
-        <a href="#">
+        <a href="/users/login">
           <span>{props.container} 로그인</span>
         </a>
       </Right2>
