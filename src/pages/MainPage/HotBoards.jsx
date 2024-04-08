@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Skill from "./Skill.jsx";
 
 const HotBoards = (props) => {
   const [views, setViews] = useState([0, 0, 0, 0]);
@@ -65,6 +66,7 @@ const HotBoards = (props) => {
 
   return (
     <HotOutLine className="HotOut">
+      <Skill />
       <HotWrite className="HotWrite">
         <strong>{props.container}🔥 이번주 코드룸 인기글</strong>
       </HotWrite>

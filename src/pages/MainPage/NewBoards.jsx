@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const NewBoards = (props) => {
-  const [views, setViews] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const [views, setViews] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const [projects, setProjects] = useState([
     {
       projectStatus: "🎥 프로젝트",
@@ -78,6 +78,12 @@ const NewBoards = (props) => {
       subEndText: "마감일 | 2024.04.26",
       subMainText:
         "품질 보증(QA) 테스터를 모집합니다. 테스트 자동화 경험 우대!",
+    },
+    {
+      projectStatus: "🍱 점심 메뉴",
+      NewStatus: "🍖 배고파",
+      subEndText: "마감일 | 2024.04.31",
+      subMainText: "종로 3가 최고의 맛집 리스트를 소개합니다!!",
     },
   ]);
 
@@ -194,21 +200,21 @@ const NewBoards = (props) => {
           </NewSearchBox>
         </NewSearch>
         {currentProjects.map((_, index) => renderNewBox(index))}
+        {/* 페이지 이동 함수 */}
+        <Pagination>
+          <PaginationArrow onClick={() => paginate(currentPage - 1)}>
+            &lt;&lt;
+          </PaginationArrow>
+          <PaginationControls
+            currentPage={currentPage}
+            totalPageCount={Math.ceil(projects.length / projectsPerPage)}
+            paginate={paginate}
+          />
+          <PaginationArrow onClick={() => paginate(currentPage + 1)}>
+            &gt;&gt;
+          </PaginationArrow>
+        </Pagination>
       </NewOutLine>
-      {/* 페이지 이동 함수 */}
-      <Pagination>
-        <PaginationArrow onClick={() => paginate(currentPage - 1)}>
-          &lt;&lt;
-        </PaginationArrow>
-        <PaginationControls
-          currentPage={currentPage}
-          totalPageCount={Math.ceil(projects.length / projectsPerPage)}
-          paginate={paginate}
-        />
-        <PaginationArrow onClick={() => paginate(currentPage + 1)}>
-          &gt;&gt;
-        </PaginationArrow>
-      </Pagination>
     </div>
   );
 };
@@ -235,6 +241,14 @@ const PaginationControls = ({ currentPage, totalPageCount, paginate }) => {
     </>
   );
 };
+
+const NewWrite = styled.div`
+  font-size: 26px;
+  position: absolute;
+  left: 10.1%;
+  margin-bottom: 58.5%;
+  transform: translateX(-50%);
+`;
 
 const NewSearch = styled.div`
   display: flex;
@@ -265,10 +279,11 @@ const NewSearchBox = styled.div`
 `;
 
 const Pagination = styled.div`
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 60%;
   margin-bottom: 60px;
 `;
 
@@ -318,14 +333,6 @@ const NewOutLine = styled.div`
   justify-content: center;
   align-items: center;
   gap: 25px;
-`;
-
-const NewWrite = styled.div`
-  font-size: 26px;
-  position: absolute;
-  left: 10.1%;
-  margin-bottom: 58.5%;
-  transform: translateX(-50%);
 `;
 
 const NewBox = styled.div`

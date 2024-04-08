@@ -14,28 +14,22 @@ const nav = (props) => {
 
       <Right1>
         <a href="#">
-          <span>{props.container} 모집</span>
+          <span>{props.container} 글쓰기</span>
         </a>
       </Right1>
 
       <Right2>
         <a href="#">
-          <span>{props.container} 글쓰기</span>
-        </a>
-      </Right2>
-
-      <Right3>
-        <a href="#">
           <span>{props.container} 로그인</span>
         </a>
-      </Right3>
+      </Right2>
     </NavStyle>
   );
 };
 
 const NavStyle = styled.div`
-  width: 67.7%;
-  height: 6.3%;
+  width: 1200px;
+  height: 55px;
   margin: 0 auto; /* 가운데 정렬 */
   display: flex; /* Flexbox를 사용합니다. */
   flex-direction: row;
@@ -54,21 +48,7 @@ const Left = styled.div`
   }
 `;
 
-// 소개글과 기타 옵션을 오른쪽에 정렬하기 위한 컨테이너
 const Right1 = styled.div`
-  a {
-    color: black;
-    text-decoration: none;
-    display: block; /* 인라인 요소를 블록 요소로 변환합니다. */
-    position: absolute;
-    right: 155px;
-    bottom: 16px;
-    font-size: 18px;
-    font-weight: 800;
-  }
-`;
-
-const Right2 = styled.div`
   a {
     color: black;
     text-decoration: none;
@@ -81,7 +61,7 @@ const Right2 = styled.div`
   }
 `;
 
-const Right3 = styled.div`
+const Right2 = styled.div`
   a {
     color: black;
     text-decoration: none;

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import CodeRoomBanner from "../../img/CodeRoom.png";
-import MainStyle from "../../constants/MainStyle.jsx";
 
 const Footer = () => {
   return (
@@ -19,10 +18,11 @@ const Footer = () => {
 };
 
 const FooterStyle = styled.footer`
-  width: ${MainStyle.width};
+  min-width: 100%;
   height: 175px;
   background-color: #f5f5f5;
-  padding: 0px;
+  position: absolute;
+  margin-top: 5%;
 
   img {
     margin-top: 2.7%;

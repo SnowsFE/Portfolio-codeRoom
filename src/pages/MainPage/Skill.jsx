@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import MainStyle from "../../constants/MainStyle.jsx";
 
 // 각 아이콘 이미지 파일 import
 import awsIcon from "../../img/icon/aws.svg";
@@ -137,13 +136,11 @@ const Skill = () => {
 };
 
 const Container = styled.div`
-  width: 2400px;
-  height: 380px;
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  margin-top: -71.9%;
-  margin-left: 63.8%;
+  position: absolute;
+  width: 30%;
+  height: 10%;
+  margin-bottom: 20.6%;
+  margin-left: 69.6%;
 `;
 
 const JobButtonContainer = styled.div``;
