@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import CodeRoom from "../../img/CodeRoom.png";
+import BrightMode from "../../pages/MainPage/BrightMode";
 
 const nav = (props) => {
   return (
@@ -11,6 +12,10 @@ const nav = (props) => {
           {props.container}
         </a>
       </Left>
+
+      <Right>
+        <BrightMode />
+      </Right>
 
       <Right1>
         <a href="/boards">
@@ -46,6 +51,14 @@ const Left = styled.div`
     width: 110px;
     height: 50px;
   }
+`;
+
+const Right = styled.div`
+  border: 1px solid greenyellow;
+  border-radius: 15px;
+  position: absolute;
+  right: 150px;
+  bottom: 10px;
 `;
 
 const Right1 = styled.div`

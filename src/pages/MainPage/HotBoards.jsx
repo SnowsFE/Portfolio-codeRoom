@@ -106,7 +106,7 @@ const HotWrite = styled.div`
 // HotBox 컴포넌트 스타일: 핫 박스 컨테이너 스타일 설정
 const HotBox = styled.div`
   width: 294px; /* 너비 */
-  height: 199px; /* 높이 */
+  height: 200px; /* 높이 */
   margin-top: 9%; /* 상단 여백 */
   margin-bottom: 5px; /* 하단 여백 */
   border: 1px solid #8f8f8f; /* 테두리 스타일과 색상 설정 */
@@ -116,13 +116,13 @@ const HotBox = styled.div`
 
 // HotBoxContent 컴포넌트 스타일: 핫 박스 내용 영역 스타일 설정
 const HotBoxContent = styled.div`
-  width: 82%; /* 너비 */
-  height: 150px; /* 높이 */
+  width: 83%; /* 너비 */
+  height: 160px; /* 높이 */
   display: inline-block; /* 인라인 블록 요소로 표시 */
   padding: 20px 25px; /* 안쪽 여백 설정 */
   border-radius: 20px; /* 테두리 반경 설정 */
   background-color: #ffffff; /* 배경색 설정 */
-  margin-top: 3px; /* 상단 여백 */
+  margin-top: 0px; /* 상단 여백 */
 `;
 
 // ProjectStatus 컴포넌트 스타일: 프로젝트 상태 표시 스타일 설정

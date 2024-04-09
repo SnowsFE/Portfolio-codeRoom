@@ -297,7 +297,7 @@ const NewOutLine = styled.div`
 
 const NewBox = styled.div`
   width: 294px;
-  height: 199px;
+  height: 200px;
   margin-top: 9%;
   margin-bottom: 5px;
   border: 1px solid #8f8f8f;
@@ -306,13 +306,13 @@ const NewBox = styled.div`
 `;
 
 const NewBoxContent = styled.div`
-  width: 82%;
-  height: 150px;
+  width: 83%;
+  height: 160px;
   display: inline-block;
   padding: 20px 25px;
   border-radius: 20px;
   background-color: #ffffff;
-  margin-top: 3px;
+  margin-top: 0px;
 `;
 
 const ProjectStatus = styled.div`

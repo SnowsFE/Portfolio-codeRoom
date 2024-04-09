@@ -6,7 +6,6 @@ import CodeRoomBanner from "../../img/CodeRoom.png";
 const Footer = () => {
   return (
     <FooterStyle>
-      {/* Footer 내용 */}
       <Footers>
         {/* CodeRoom 로고 이미지 */}
         <img src={CodeRoomBanner} alt="CodeRoom Logo" />
@@ -31,7 +30,7 @@ const FooterStyle = styled.div`
   justify-content: center; /* 가로 방향으로 중앙 정렬 */
   align-items: center; /* 세로 방향으로 중앙 정렬 */
   margin: 0 auto; /* 가운데 정렬 */
-  min-height: 30vh; /* 최소 높이를 화면의 30%로 설정 */
+  min-height: 40vh; /* 최소 높이를 화면의 30%로 설정 */
   position: relative; /* 상대 위치 지정 */
 `;
 
@@ -41,7 +40,7 @@ const Footers = styled.footer`
   height: 180px; /* 높이 설정 */
   background-color: #f5f5f5; /* 배경색 설정 */
   position: absolute; /* 절대 위치 지정 */
-  bottom: 0px; /* 하단에 고정 */
+  bottom: 0;
   margin: 0 auto; /* 가운데 정렬 */
 
   img {
