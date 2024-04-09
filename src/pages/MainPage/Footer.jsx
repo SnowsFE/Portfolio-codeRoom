@@ -13,10 +13,9 @@ const Footer = () => {
         <p>© 2024 CodeRoom. All rights reserved.</p>
         {/* 링크 컨테이너 */}
         <LinkContainer>
+          <span>코드룸 소개</span>
           <span>이용약관</span>
-          <span>개인정보처리방침</span>
-          <span>서비스소개</span>
-          <span>광고상품 소개</span>
+          <span>개인정보처리 방침</span>
         </LinkContainer>
       </Footers>
     </FooterStyle>
@@ -37,7 +36,7 @@ const FooterStyle = styled.div`
 // Footer 내용 스타일 정의
 const Footers = styled.footer`
   width: 100%; /* 전체 너비를 차지하도록 설정 */
-  height: 180px; /* 높이 설정 */
+  height: 170px; /* 높이 설정 */
   background-color: #f5f5f5; /* 배경색 설정 */
   position: absolute; /* 절대 위치 지정 */
   bottom: 0;
@@ -63,7 +62,7 @@ const Footers = styled.footer`
 // 링크 컨테이너 스타일 정의
 const LinkContainer = styled.div`
   width: 500px; /* 박스 넓이 설정 */
-  font-size: 14px; /* 글자 크기 설정 */
+  font-size: 12px; /* 글자 크기 설정 */
   margin-top: 4.5%; /* 상단 여백 */
   margin-left: 55%; /* 왼쪽 여백 */
   position: absolute; /* 절대 위치 지정 */

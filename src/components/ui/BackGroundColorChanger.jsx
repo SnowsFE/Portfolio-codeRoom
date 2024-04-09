@@ -21,7 +21,7 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 24px;
   position: absolute;
-  top: 5px; // 버튼을 색상 선택기 바로 아래로 이동
+  top: 11px; // 버튼을 색상 선택기 바로 아래로 이동
   right: 20px;
   color: white;
   padding: 5px 10px;
@@ -43,7 +43,7 @@ const Button = styled.button`
 const HiddenColorPicker = styled.input`
   opacity: 0;
   position: absolute;
-  top: 5px; // 원래 버튼 위치에 색상 선택기를 배치
+  top: 50px; // 원래 버튼 위치에 색상 선택기를 배치
   right: 20px;
   width: 1px;
   height: 1px;
@@ -59,7 +59,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const BrightMode = () => {
+const BackGroundColorChanger = () => {
   const [backgroundColor, setBackgroundColor] = useState("#ffffff");
   const [buttonEmoji, setButtonEmoji] = useState("🎨"); // 버튼 이모지 상태 관리
   const colorPickerRef = useRef(null);
@@ -86,4 +86,4 @@ const BrightMode = () => {
   );
 };
 
-export default BrightMode;
+export default BackGroundColorChanger;

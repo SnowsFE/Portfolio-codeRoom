@@ -5,14 +5,12 @@ import Banner from "./Banner.jsx";
 import HotBoards from "./HotBoards.jsx";
 import NewBoards from "./NewBoards.jsx";
 import Footer from "./Footer";
-import UpScroll from "./UpScroll.jsx";
-import BrightMode from "./BrightMode.jsx";
+import UpScroll from "../../components/ui/UpScroll.jsx";
 
 const MainPage = () => {
   return (
     <Const className="MainPage">
       <Const />
-      <BrightMode />
       <Nav />
       <Banner />
       <HotBoards />
