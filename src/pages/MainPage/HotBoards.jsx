@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Skill from "./Skill.jsx";
+import BrightMode from "./BrightMode.jsx";
 
 const HotBoards = (props) => {
   // 조회수와 프로젝트 상태를 관리하는 상태 변수 설정
