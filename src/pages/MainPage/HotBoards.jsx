@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Skill from "./Skill.jsx";
-import BrightMode from "./BrightMode.jsx";
 
 const HotBoards = (props) => {
   // 조회수와 프로젝트 상태를 관리하는 상태 변수 설정
@@ -34,6 +33,8 @@ const HotBoards = (props) => {
         "코딩룸 웹사이트가 신규 오픈했대요!! 같이 개발 공부하실 분 구합니다!!",
     },
   ]);
+
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   // 클릭 이벤트 핸들러 정의
   const handleClick = (index) => {
@@ -124,6 +125,7 @@ const HotBoxContent = styled.div`
   border-radius: 20px; /* 테두리 반경 설정 */
   background-color: #ffffff; /* 배경색 설정 */
   margin-top: 0px; /* 상단 여백 */
+  background-color: #ffffff;
 `;
 
 // ProjectStatus 컴포넌트 스타일: 프로젝트 상태 표시 스타일 설정

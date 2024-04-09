@@ -28,7 +28,7 @@ const nav = (props) => {
 };
 
 const NavStyle = styled.div`
-  width: 1200px;
+  width: 1700px;
   height: 55px;
   margin: 0 auto; /* 가운데 정렬 */
   display: flex; /* Flexbox를 사용합니다. */
