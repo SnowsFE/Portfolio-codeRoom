@@ -173,12 +173,13 @@ const NewBoards = (props) => {
   };
 
   const [searchValue, setSearchValue] = useState(""); // 검색어 상태
+  // ClearButton 스타일드 컴포넌트: 입력값 지우기 버튼 스타일
   const ClearButton = styled.button`
-    margin-left: 48%;
-    margin-top: -6.9%;
-    position: absolute;
-    border-radius: 10px;
-    border-color: rgb(91, 231, 100);
+    margin-left: 48%; /* 왼쪽 여백 */
+    margin-top: -6.9%; /* 상단 여백 */
+    position: absolute; /* 위치 설정 */
+    border-radius: 10px; /* 테두리 반경 설정 */
+    border-color: rgb(91, 231, 100); /* 테두리 색상 설정 */
   `;
 
   return (
@@ -242,173 +243,186 @@ const PaginationControls = ({ currentPage, totalPageCount, paginate }) => {
   );
 };
 
+// NewWrite 스타일드 컴포넌트: 새 글 영역 스타일
 const NewWrite = styled.div`
-  font-size: 26px;
-  position: absolute;
-  left: 10.1%;
-  margin-bottom: 58.5%;
-  transform: translateX(-50%);
+  font-size: 26px; /* 글꼴 크기 */
+  position: absolute; /* 위치 설정 */
+  left: 10.1%; /* 왼쪽 여백 */
+  margin-bottom: 58.5%; /* 하단 여백 */
+  transform: translateX(-50%); /* 가로 방향으로 -50% 이동하여 가운데 정렬 */
 `;
 
+// NewSearch 스타일드 컴포넌트: 검색창 영역 스타일
 const NewSearch = styled.div`
-  display: flex;
-  width: 300px;
-  height: 34px;
-  padding: 0 20px;
-  align-items: center;
-  grid-gap: 10px;
-  gap: 10px;
-  border-radius: 36px;
-  background: #f5f5f5;
-  position: absolute;
-  left: 72.8%;
-  margin-bottom: 58.3%;
+  display: flex; /* 플렉스박스 디스플레이 사용 */
+  width: 300px; /* 너비 설정 */
+  height: 34px; /* 높이 설정 */
+  padding: 0 20px; /* 내부 여백 설정 */
+  align-items: center; /* 수직 가운데 정렬 */
+  grid-gap: 10px; /* 그리드 갭 */
+  gap: 10px; /* 갭 */
+  border-radius: 36px; /* 테두리 반경 */
+  background: #f5f5f5; /* 배경색 */
+  position: absolute; /* 위치 설정 */
+  left: 72.8%; /* 왼쪽 여백 */
+  margin-bottom: 58.3%; /* 하단 여백 */
 `;
 
+// NewSearchBox 스타일드 컴포넌트: 검색 입력창 스타일
 const NewSearchBox = styled.div`
   input {
-    border: none;
-    background: transparent;
-    outline: none;
-    padding: 0;
-    font-weight: 700;
-    font-size: 16px;
-    width: 150%;
-    position: relative;
+    border: none; /* 테두리 없음 */
+    background: transparent; /* 배경 투명 */
+    outline: none; /* 아웃라인 없음 */
+    padding: 0; /* 내부 여백 없음 */
+    font-weight: 700; /* 글꼴 두껍게 */
+    font-size: 16px; /* 글꼴 크기 */
+    width: 150%; /* 너비 설정 */
+    position: relative; /* 상대 위치 */
   }
 `;
 
+// NewOutLine 스타일드 컴포넌트: 전체 보드 영역 스타일
 const NewOutLine = styled.div`
-  width: 1300px;
-  height: 700px;
-  position: relative;
-  margin: 0 auto;
+  width: 1300px; /* 너비 설정 */
+  height: 700px; /* 높이 설정 */
+  position: relative; /* 위치 설정 */
+  margin: 0 auto; /* 좌우 가운데 정렬 */
   display: grid; /* 그리드 디스플레이 사용 */
-  grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개의 열 */
+  grid-template-columns: repeat(4, 1fr); /* 네 개의 열로 반복 */
   grid-auto-rows: minmax(
     100px,
     200px
-  ); /* 최소 높이는 200px, 최대 높이는 250px, 내용에 따라 자동 조정 */
-
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
+  ); /* 최소 높이는 100px, 최대 높이는 200px로 설정 */
+  justify-content: center; /* 가로 가운데 정렬 */
+  align-items: center; /* 세로 가운데 정렬 */
+  gap: 25px; /* 갭 설정 */
 `;
 
+// NewBox 스타일드 컴포넌트: 개별 프로젝트 상자 스타일
 const NewBox = styled.div`
-  width: 294px;
-  height: 200px;
-  margin-top: 9%;
-  margin-bottom: 5px;
-  border: 1px solid #8f8f8f;
-  border-radius: 20px;
-  cursor: pointer;
+  width: 294px; /* 너비 설정 */
+  height: 200px; /* 높이 설정 */
+  margin-top: 9%; /* 상단 여백 */
+  margin-bottom: 5px; /* 하단 여백 */
+  border: 1px solid #8f8f8f; /* 테두리 설정 */
+  border-radius: 20px; /* 테두리 반경 설정 */
+  cursor: pointer; /* 포인터 커서 */
 `;
 
+// NewBoxContent 스타일드 컴포넌트: 개별 프로젝트 내용 영역 스타일
 const NewBoxContent = styled.div`
-  width: 83%;
-  height: 160px;
-  display: inline-block;
-  padding: 20px 25px;
-  border-radius: 19px;
-  background-color: #ffffff;
-  margin-top: 0px;
+  width: 83%; /* 너비 설정 */
+  height: 160px; /* 높이 설정 */
+  display: inline-block; /* 인라인 블록 디스플레이 */
+  padding: 20px 25px; /* 내부 여백 설정 */
+  border-radius: 19px; /* 테두리 반경 설정 */
+  background-color: #ffffff; /* 배경색 설정 */
+  margin-top: 0px; /* 상단 여백 */
 `;
 
+// ProjectStatus 스타일드 컴포넌트: 프로젝트 상태 스타일
 const ProjectStatus = styled.div`
-  display: flex;
-  width: 35%;
-  height: 20px;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid gray;
-  border-radius: 20px;
-  font-size: 12px;
+  display: flex; /* 플렉스박스 디스플레이 사용 */
+  width: 35%; /* 너비 설정 */
+  height: 20px; /* 높이 설정 */
+  justify-content: center; /* 가로 가운데 정렬 */
+  align-items: center; /* 세로 가운데 정렬 */
+  border: 1px solid gray; /* 테두리 설정 */
+  border-radius: 20px; /* 테두리 반경 설정 */
+  font-size: 12px; /* 글꼴 크기 */
 `;
 
+// NewStatus 스타일드 컴포넌트: 새 글 상태 스타일
 const NewStatus = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 35%;
-  height: 16px;
-  padding: 2px 8px;
-  border-radius: 20px;
-  border: 1px solid #ffd900;
-  color: #fdb900;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: -0.56px;
-  border-radius: 20px;
-  margin-left: 57%;
-  margin-top: -22px;
+  display: flex; /* 플렉스박스 디스플레이 사용 */
+  justify-content: center; /* 가로 가운데 정렬 */
+  align-items: center; /* 세로 가운데 정렬 */
+  width: 35%; /* 너비 설정 */
+  height: 16px; /* 높이 설정 */
+  padding: 2px 8px; /* 내부 여백 설정 */
+  border-radius: 20px; /* 테두리 반경 설정 */
+  border: 1px solid #ffd900; /* 테두리 설정 */
+  color: #fdb900; /* 글자 색상 설정 */
+  font-size: 11px; /* 글꼴 크기 */
+  font-weight: 700; /* 글꼴 두껍게 */
+  letter-spacing: -0.56px; /* 글자 간격 설정 */
+  border-radius: 20px; /* 테두리 반경 설정 */
+  margin-left: 57%; /* 왼쪽 여백 */
+  margin-top: -22px; /* 상단 여백 */
 `;
 
+// NewSubEnd 스타일드 컴포넌트: 하단 부분 마감일 스타일
 const NewSubEnd = styled.div`
-  font-size: 14px;
-  text-align: left;
-  margin-top: 10%;
-  color: #ff0000;
+  font-size: 14px; /* 글꼴 크기 */
+  text-align: left; /* 왼쪽 정렬 */
+  margin-top: 10%; /* 상단 여백 */
+  color: #ff0000; /* 글자 색상 설정 */
 `;
 
+// NewSubMain 스타일드 컴포넌트: 메인 부분 스타일
 const NewSubMain = styled.div`
   width: 242px; /* 너비 고정 */
-  height: 52px; /* 높이를 텍스트 두 줄이 들어갈 정도로 조절 */
-  font-size: 18px; /* 폰트 크기 */
-  line-height: 1.4; /* 줄 간격 조절 */
-  text-align: left;
-  margin-top: 3.5%;
+  height: 52px; /* 높이 설정 */
+  font-size: 18px; /* 글꼴 크기 */
+  line-height: 1.4; /* 줄 간격 설정 */
+  text-align: left; /* 왼쪽 정렬 */
+  margin-top: 3.5%; /* 상단 여백 */
   overflow: hidden; /* 넘치는 내용 숨김 */
-  display: -webkit-box;
+  display: -webkit-box; /* 웹킷 박스 디스플레이 사용 */
   -webkit-line-clamp: 2; /* 두 줄로 제한 */
-  -webkit-box-orient: vertical;
-  letter-spacing: -1px;
+  -webkit-box-orient: vertical; /* 세로 방향으로 박스 정렬 */
+  letter-spacing: -1px; /* 글자 간격 설정 */
 `;
 
+// NewView 스타일드 컴포넌트: 보기 영역 스타일
 const NewView = styled.div`
-  font-size: 15px;
-  margin-left: 45%;
-  margin-top: -50px;
-  font-weight: 500;
+  font-size: 15px; /* 글꼴 크기 */
+  margin-left: 45%; /* 왼쪽 여백 */
+  margin-top: -50px; /* 상단 여백 */
+  font-weight: 500; /* 글꼴 두껍게 */
 `;
 
+// Pagination 스타일드 컴포넌트: 페이지네이션 스타일
 const Pagination = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 63%;
-  margin-bottom: 61px;
-  margin-left: 43.5%;
-  z-index: 2;
+  position: absolute; /* 위치 설정 */
+  display: flex; /* 플렉스박스 디스플레이 사용 */
+  justify-content: center; /* 가로 가운데 정렬 */
+  align-items: center; /* 세로 가운데 정렬 */
+  margin-top: 63%; /* 상단 여백 */
+  margin-bottom: 61px; /* 하단 여백 */
+  margin-left: 43.5%; /* 왼쪽 여백 */
+  z-index: 2; /* 층 위치 설정 */
 `;
 
+// PaginationItem 스타일드 컴포넌트: 페이지네이션 아이템 스타일
 const PaginationItem = styled.div`
-  cursor: pointer;
-  padding: 5px 10px;
-  margin: 0 5px;
-  border-radius: 5px;
-  border: 1px solid black;
-  background: white;
-  color: black;
-  font-weight: bold;
+  cursor: pointer; /* 포인터 커서 */
+  padding: 5px 10px; /* 내부 여백 설정 */
+  margin: 0 5px; /* 여백 설정 */
+  border-radius: 5px; /* 테두리 반경 설정 */
+  border: 1px solid black; /* 테두리 설정 */
+  background: white; /* 배경색 설정 */
+  color: black; /* 글자 색상 설정 */
+  font-weight: bold; /* 글꼴 두껍게 */
 
   &:hover {
     background: rgb(91, 231, 100); /* 호버 시 배경색 변경 */
   }
 `;
 
+// PaginationArrow 스타일드 컴포넌트: 페이지네이션 화살표 스타일
 const PaginationArrow = styled.div`
-  cursor: pointer;
-  padding: 5px;
-  margin: 0 5px;
-  border-radius: 5px;
-  background: white;
-  color: black;
-  font-weight: bold;
+  cursor: pointer; /* 포인터 커서 */
+  padding: 5px; /* 내부 여백 설정 */
+  margin: 0 5px; /* 여백 설정 */
+  border-radius: 5px; /* 테두리 반경 설정 */
+  background: white; /* 배경색 설정 */
+  color: black; /* 글자 색상 설정 */
+  font-weight: bold; /* 글꼴 두껍게 */
   display: ${({ hide }) =>
     hide ? "none" : "block"}; /* hide prop 값에 따라 화살표 숨김 여부 설정 */
-  z-index: 1;
+  z-index: 1; /* 층 위치 설정 */
 
   &:hover {
     background: rgb(91, 231, 100); /* 호버 시 배경색 변경 */

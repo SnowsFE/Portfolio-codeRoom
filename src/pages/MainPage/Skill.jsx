@@ -135,64 +135,72 @@ const Skill = () => {
   );
 };
 
+// Container 스타일드 컴포넌트: 위치 및 크기 설정
 const Container = styled.div`
-  position: absolute;
-  width: 30%;
-  height: 10%;
-  margin-bottom: 20.6%;
-  margin-left: 69.6%;
-  z-index: 3;
+  position: absolute; /* 위치 설정 */
+  width: 30%; /* 너비 설정 */
+  height: 10%; /* 높이 설정 */
+  margin-bottom: 20.6%; /* 하단 여백 */
+  margin-left: 69.6%; /* 왼쪽 여백 */
+  z-index: 3; /* z-index 설정 */
 `;
 
+// JobButtonContainer 스타일드 컴포넌트
 const JobButtonContainer = styled.div``;
 
+// JobButton 스타일드 컴포넌트: 작업 버튼 스타일
 const JobButton = styled.button`
-  margin: 5px;
-  padding: 10px;
-  background-color: #ffffff;
-  box-shadow: 0px 2px 4px rgb(152, 255, 138); /* 초록색 그림자 */
-  border: none; /* border 제거 */
-  border-radius: 4px;
-  cursor: pointer;
+  margin: 5px; /* 마진 설정 */
+  padding: 10px; /* 안쪽 여백 설정 */
+  background-color: #ffffff; /* 배경색 설정 */
+  box-shadow: 0px 2px 4px rgb(152, 255, 138); /* 그림자 설정 */
+  border: none; /* 테두리 제거 */
+  border-radius: 4px; /* 테두리 반경 설정 */
+  cursor: pointer; /* 커서 설정 */
+
   &:hover {
-    background-color: #e7e7e7;
+    background-color: #e7e7e7; /* 호버시 배경색 변경 */
   }
 `;
 
+// ModalOverlay 스타일드 컴포넌트: 모달 오버레이 스타일
 const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: fixed; /* 위치 설정 */
+  top: 0; /* 위쪽 여백 설정 */
+  left: 0; /* 왼쪽 여백 설정 */
+  width: 100%; /* 너비 설정 */
+  height: 100%; /* 높이 설정 */
+  background-color: rgba(0, 0, 0, 0.5); /* 배경색 설정 */
+  display: flex; /* 플렉스 디스플레이 설정 */
+  align-items: center; /* 수직 정렬 설정 */
+  justify-content: center; /* 수평 정렬 설정 */
 `;
 
+// ModalContent 스타일드 컴포넌트: 모달 내용 스타일
 const ModalContent = styled.div`
-  background-color: white;
-  padding: 20px 40px;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  background-color: white; /* 배경색 설정 */
+  padding: 20px 40px; /* 안쪽 여백 설정 */
+  border-radius: 8px; /* 테두리 반경 설정 */
+  display: flex; /* 플렉스 디스플레이 설정 */
+  flex-direction: column; /* 컬럼 방향 설정 */
+  align-items: center; /* 수직 정렬 설정 */
+  justify-content: space-between; /* 요소 사이의 공간 분배 설정 */
 
   button {
-    margin-top: 10px;
+    margin-top: 10px; /* 버튼 상단 여백 설정 */
   }
 `;
 
+// SkillItem 스타일드 컴포넌트: 스킬 항목 스타일
 const SkillItem = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
+  display: flex; /* 플렉스 디스플레이 설정 */
+  align-items: center; /* 수직 정렬 설정 */
+  margin: 10px 0; /* 마진 설정 */
+
   img {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
+    width: 24px; /* 너비 설정 */
+    height: 24px; /* 높이 설정 */
+    margin-right: 10px; /* 오른쪽 마진 설정 */
   }
 `;
 
