@@ -6,7 +6,6 @@ import CodeRoomBanner from "../../img/CodeRoomBanner.png";
 const Banner = () => {
   return (
     <BanStyle className="banner">
-      {/* 이미지 엘리먼트 */}
       <img src={CodeRoomBanner}></img>
     </BanStyle>
   );

@@ -122,7 +122,7 @@ const HotBoxContent = styled.div`
   height: 160px; /* 높이 */
   display: inline-block; /* 인라인 블록 요소로 표시 */
   padding: 20px 25px; /* 안쪽 여백 설정 */
-  border-radius: 20px; /* 테두리 반경 설정 */
+  border-radius: 19px; /* 테두리 반경 설정 */
   background-color: #ffffff; /* 배경색 설정 */
   margin-top: 0px; /* 상단 여백 */
   background-color: #ffffff;

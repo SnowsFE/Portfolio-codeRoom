@@ -310,7 +310,7 @@ const NewBoxContent = styled.div`
   height: 160px;
   display: inline-block;
   padding: 20px 25px;
-  border-radius: 20px;
+  border-radius: 19px;
   background-color: #ffffff;
   margin-top: 0px;
 `;
