@@ -5,6 +5,7 @@ import JoinPage from "./pages/loginpage/JoinPage";
 import DetailPage from "./pages/detailpage/DetailPage";
 import WritePage from "./pages/writepage/WritePage";
 
+import React from "react";
 import "./App.css";
 
 function App() {
