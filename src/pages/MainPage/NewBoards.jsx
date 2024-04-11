@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const NewBoards = (props) => {
   const [views, setViews] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
@@ -9,12 +12,14 @@ const NewBoards = (props) => {
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
       subMainText: "[FrontEnd, BackEnd] 웹페이지 개발자 구인합니다!",
+      views: 0,
     },
     {
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
       subMainText: "이번 주 종로 KG ITBANK에서 함께 공부하실 학우분 구합니다!",
+      views: 0,
     },
     {
       projectStatus: "🎥 프로젝트",
@@ -22,6 +27,7 @@ const NewBoards = (props) => {
       subEndText: "마감일 | 2024.04.26",
       subMainText:
         "완료된 프로젝트 배포 도와주실 분 구합니다!! [사례금 100만원!!]",
+      views: 0,
     },
     {
       projectStatus: "✏️ 스터디",
@@ -29,42 +35,49 @@ const NewBoards = (props) => {
       subEndText: "마감일 | 2024.04.26",
       subMainText:
         "코딩룸 웹사이트가 신규 오픈했대요!! 같이 개발 공부하실 분 구합니다!!",
+      views: 0,
     },
     {
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
       subMainText: "[iOS, Android] 앱 개발자를 모집합니다!",
+      views: 0,
     },
     {
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
       subMainText: "인턴 개발자를 찾습니다. 기초 지식 필수!",
+      views: 0,
     },
     {
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
       subMainText: "[UI/UX] 디자이너를 구합니다. 창의력과 열정 필수!",
+      views: 0,
     },
     {
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
       subMainText: "문서 작성자를 모집합니다. 글쓰기 능력 중요!",
+      views: 0,
     },
     {
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
       subMainText: "[FullStack] 웹 개발자를 찾습니다. 경력 우대!",
+      views: 0,
     },
     {
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
       subMainText: "[Unity, Unreal] 게임 개발자를 모집합니다!",
+      views: 0,
     },
     {
       projectStatus: "🎥 프로젝트",
@@ -78,36 +91,16 @@ const NewBoards = (props) => {
       subEndText: "마감일 | 2024.04.26",
       subMainText:
         "품질 보증(QA) 테스터를 모집합니다. 테스트 자동화 경험 우대!",
+      views: 0,
     },
     {
       projectStatus: "🍱 점심 메뉴",
       NewStatus: "🍖 배고파",
       subEndText: "마감일 | 2024.04.31",
       subMainText: "종로 3가 최고의 맛집 리스트를 소개합니다!!",
+      views: 0,
     },
   ]);
-
-  //   useEffect(() => {
-  //     // 백엔드에서 게시글 목록을 불러오기
-  //     fetch('https://your-backend-api.com/projects')
-  //       .then((response) => response.json())
-  //       .then((data) => setProjects(data))
-  //       .catch((error) => console.error("Fetching projects failed", error));
-  //   }, []); // 빈 의존성 배열을 넣어 컴포넌트가 마운트될 때만 요청합니다.
-
-  //   // UI 렌더링 로직
-  //   return (
-  //     <div>
-  //       {projects.map((project, index) => (
-  //         <div key={index}>
-  //           <h2>{project.projectStatus} {project.NewStatus}</h2>
-  //           <p>{project.subEndText}</p>
-  //           <p>{project.subMainText}</p>
-  //         </div>
-  //       ))}
-  //     </div>
-  //   );
-  // };
 
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
   const projectsPerPage = 12; // 페이지당 보여줄 프로젝트 수
@@ -234,6 +227,7 @@ const PaginationControls = ({ currentPage, totalPageCount, paginate }) => {
       {Array.from({ length: endPageNumber - startPageNumber + 1 }, (_, i) => (
         <PaginationItem
           key={startPageNumber + i}
+          isActive={startPageNumber + i === currentPage} // 현재 페이지 여부에 따라 isActive prop 설정
           onClick={() => paginate(startPageNumber + i)}
         >
           {startPageNumber + i}
@@ -405,9 +399,11 @@ const PaginationItem = styled.div`
   background: white; /* 배경색 설정 */
   color: black; /* 글자 색상 설정 */
   font-weight: bold; /* 글꼴 두껍게 */
+  background: ${({ isActive }) =>
+    isActive ? "#e7e7e7" : "white"}; /* 현재 페이지 여부에 따라 배경색 변경 */
 
   &:hover {
-    background: rgb(91, 231, 100); /* 호버 시 배경색 변경 */
+    background: #e7e7e7; /* 호버 시 배경색 변경 */
   }
 `;
 
@@ -425,8 +421,7 @@ const PaginationArrow = styled.div`
   z-index: 1; /* 층 위치 설정 */
 
   &:hover {
-    background: rgb(91, 231, 100); /* 호버 시 배경색 변경 */
-    transform: scale(1.1); /* 호버 시 크기 증가 효과 */
+    background: #e7e7e7; /* 호버 시 배경색 변경 */
   }
 `;
 

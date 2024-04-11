@@ -1,46 +1,81 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import styled from "styled-components";
 import Skill from "./Skill.jsx";
+import { useNavigate } from "react-router-dom";
 
 const HotBoards = (props) => {
   // 조회수와 프로젝트 상태를 관리하는 상태 변수 설정
   const [views, setViews] = useState([0, 0, 0, 0]);
   const [projects, setProjects] = useState([
     {
+      id: 1,
       projectStatus: "🎥 프로젝트",
       deadlineStatus: "🚨 마감 1일전",
       subEndText: "마감일 | 2024.04.05",
       subMainText: "[FrontEnd, BackEnd] 웹페이지 개발자 구인합니다!",
+      views: 0,
     },
     {
+      id: 2,
       projectStatus: "✏️ 스터디",
       deadlineStatus: "🚨 마감 7일전",
       subEndText: "마감일 | 2024.04.11",
       subMainText: "이번 주 종로 KG ITBANK에서 함께 공부하실 학우분 구합니다!",
+      views: 0,
     },
     {
+      id: 3,
       projectStatus: "🎥 프로젝트",
       deadlineStatus: "🚨 마감 14일전",
       subEndText: "마감일 | 2024.04.18",
       subMainText:
         "완료된 프로젝트 배포 도와주실 분 구합니다!! [사례금 100만원!!]",
+      views: 0,
     },
     {
+      id: 4,
       projectStatus: "✏️ 스터디",
       deadlineStatus: "🚨 마감 21일전",
       subEndText: "마감일 | 2024.04.25",
       subMainText:
         "코딩룸 웹사이트가 신규 오픈했대요!! 같이 개발 공부하실 분 구합니다!!",
+      views: 0,
     },
   ]);
 
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const navigate = useNavigate();
 
-  // 클릭 이벤트 핸들러 정의
-  const handleClick = (index) => {
+  // useEffect(() => {
+  //   const fetchProjects = async () => {
+  //     try {
+  //       const res = await axios.get("/"); // API 엔드포인트를 확인하세요.
+  //       setProjects(res.data); // 응답의 데이터 구조에 맞게 접근해야 합니다. res.data가 맞는지 확인하세요.
+  //     } catch (error) {
+  //       console.error("프로젝트를 불러오는데 실패했습니다.", error);
+  //     }
+  //   };
+
+  //   fetchProjects();
+  // }, []); // 빈 의존성 배열을 전달하여 컴포넌트 마운트 시 한 번만 호출되도록 합니다.
+
+  const handleClick = async (index) => {
     const newViews = [...views];
     newViews[index] += 1;
     setViews(newViews);
+
+    try {
+      await axios.post("/updateViews/", {
+        projectId: projects[index].id,
+        views: newViews[index],
+      });
+    } catch (error) {
+      console.error("조회수를 업데이트하는데 실패했습니다.", error);
+    }
+
+    navigate(`/board/${projects[index].id}`, {
+      state: { project: projects[index] },
+    });
   };
 
   // HotBox 렌더링 함수 정의
@@ -63,7 +98,7 @@ const HotBoards = (props) => {
           </HotSubMain>
         </HotBoxContent>
         <HotView>
-          <p>👀 조회수 {views[index]}회</p>
+          <p>👀 조회수 {project.views}회</p>
         </HotView>
       </HotBox>
     );

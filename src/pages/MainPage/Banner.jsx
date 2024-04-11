@@ -1,26 +1,96 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import CodeRoomBanner from "../../img/CodeRoomBanner.png";
+import CodeRoomBanner from "../../img/Banner/CodeRoomBanner.png";
+import Ad1 from "../../img/Banner/Ad1.png";
+import Ad2 from "../../img/Banner/Ad2.png";
+import LeftArrow from "../../img/Banner/LeftArrow.png";
+import RightArrow from "../../img/Banner/RightArrow.png";
 
-// 배너 컴포넌트 정의
+const images = [CodeRoomBanner, Ad1, Ad2];
+
 const Banner = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
+  };
+
   return (
-    <BanStyle className="banner">
-      <img src={CodeRoomBanner}></img>
-    </BanStyle>
+    <SliderContainer>
+      <BanStyle>
+        <img src={images[currentIndex]} alt={`Banner ${currentIndex + 1}`} />
+      </BanStyle>
+      <PageNumber>
+        <Buttons>
+          <PrevButton onClick={prevSlide}>
+            <img src={LeftArrow} alt="Previous" /> {/* LeftArrow 이미지 사용 */}
+          </PrevButton>
+          <NextButton onClick={nextSlide}>
+            <img src={RightArrow} alt="Next" /> {/* RightArrow 이미지 사용 */}
+          </NextButton>
+        </Buttons>
+        {currentIndex + 1} / {images.length}
+      </PageNumber>
+    </SliderContainer>
   );
 };
 
-// 스타일드 컴포넌트를 사용하여 배너 스타일 정의
-const BanStyle = styled.div`
-  width: 1300px; /* 너비 설정 */
-  height: 335px; /* 높이 설정 */
-  margin: 0 auto; /* 가운데 정렬 */
-  display: flex; /* 플렉스 박스로 설정 */
-  justify-content: center; /* 가로 방향으로 중앙 정렬합니다. */
-  align-items: center; /* 세로 방향으로 중앙 정렬합니다. */
-  border-radius: 15px; /* 테두리 반경 설정 */
-  overflow: hidden; /* 내부 내용이 넘칠 경우 숨김 처리 */
+const SliderContainer = styled.div`
+  position: relative;
+  width: 1300px;
+  height: 336px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 15px;
 `;
 
-export default Banner; // 배너 컴포넌트 내보내기
+const BanStyle = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 1300px;
+    height: 336px;
+    object-fit: cover;
+  }
+`;
+
+const Buttons = styled.div`
+  position: absolute;
+  top: 52%;
+  margin-left: -31%;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  img {
+    width: 15px;
+  }
+`;
+
+const PrevButton = styled.div``;
+
+const NextButton = styled.div``;
+
+const PageNumber = styled.div`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #ffffff;
+  padding: 5px 40px;
+  border-radius: 20px;
+  color: #00d33f;
+`;
+
+export default Banner;
