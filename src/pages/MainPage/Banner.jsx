@@ -22,26 +22,26 @@ const Banner = () => {
   };
 
   return (
-    <SliderContainer>
-      <BanStyle>
+    <BannerSliderContainer>
+      <BannerStyle>
         <img src={images[currentIndex]} alt={`Banner ${currentIndex + 1}`} />
-      </BanStyle>
-      <PageNumber>
-        <Buttons>
+      </BannerStyle>
+      <BannerPageNumber>
+        <BannerButtons>
           <PrevButton onClick={prevSlide}>
             <img src={LeftArrow} alt="Previous" /> {/* LeftArrow 이미지 사용 */}
           </PrevButton>
           <NextButton onClick={nextSlide}>
             <img src={RightArrow} alt="Next" /> {/* RightArrow 이미지 사용 */}
           </NextButton>
-        </Buttons>
+        </BannerButtons>
         {currentIndex + 1} / {images.length}
-      </PageNumber>
-    </SliderContainer>
+      </BannerPageNumber>
+    </BannerSliderContainer>
   );
 };
 
-const SliderContainer = styled.div`
+const BannerSliderContainer = styled.div`
   position: relative;
   width: 1300px;
   height: 336px;
@@ -50,7 +50,7 @@ const SliderContainer = styled.div`
   border-radius: 15px;
 `;
 
-const BanStyle = styled.div`
+const BannerStyle = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -64,7 +64,7 @@ const BanStyle = styled.div`
   }
 `;
 
-const Buttons = styled.div`
+const BannerButtons = styled.div`
   position: absolute;
   top: 52%;
   margin-left: -31%;
@@ -83,7 +83,7 @@ const PrevButton = styled.div``;
 
 const NextButton = styled.div``;
 
-const PageNumber = styled.div`
+const BannerPageNumber = styled.div`
   position: absolute;
   bottom: 10px;
   right: 10px;

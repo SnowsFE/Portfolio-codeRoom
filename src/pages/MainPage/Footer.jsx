@@ -7,17 +7,17 @@ const Footer = () => {
   return (
     // FooterStyle 컴포넌트로 스타일 적용
     <FooterStyle>
-      <Content>
-        <LogoContainer>
+      <FooterContent>
+        <FooterLogoContainer>
           <img src={CodeRoomBanner} alt="CodeRoom Logo" />
-        </LogoContainer>
-        <Text>© 2024 CodeRoom. All rights reserved.</Text>
-        <LinkContainer>
+        </FooterLogoContainer>
+        <FooterText>© 2024 CodeRoom. All rights reserved.</FooterText>
+        <FooterLinkContainer>
           <span>코드룸 소개</span>
           <span>이용약관</span>
           <span>개인정보처리 방침</span>
-        </LinkContainer>
-      </Content>
+        </FooterLinkContainer>
+      </FooterContent>
     </FooterStyle>
   );
 };
@@ -36,7 +36,7 @@ const FooterStyle = styled.div`
 `;
 
 // 컨텐츠 영역의 스타일 정의
-const Content = styled.footer`
+const FooterContent = styled.footer`
   display: flex; /* 플렉스 컨테이너 */
   align-items: center; /* 수직 정렬 */
   justify-content: space-around; /* 간격을 동일하게 분산 */
@@ -46,7 +46,7 @@ const Content = styled.footer`
 `;
 
 // 로고 컨테이너의 스타일 정의
-const LogoContainer = styled.div`
+const FooterLogoContainer = styled.div`
   flex: 1; /* 비율 1:1로 설정 */
   img {
     max-width: 100px; /* 최대 너비 100px */
@@ -55,7 +55,7 @@ const LogoContainer = styled.div`
 `;
 
 // 텍스트 스타일 정의
-const Text = styled.p`
+const FooterText = styled.p`
   color: #333; /* 글자색 설정 */
   font-weight: 600; /* 폰트 굵기 설정 */
   flex: 2; /* 비율 2:1로 설정 */
@@ -63,7 +63,7 @@ const Text = styled.p`
 `;
 
 // 링크 컨테이너 스타일 정의
-const LinkContainer = styled.div`
+const FooterLinkContainer = styled.div`
   display: flex; /* 플렉스 컨테이너 */
   flex: 3; /* 비율 3:1로 설정 */
   justify-content: center; /* 가운데 정렬 */

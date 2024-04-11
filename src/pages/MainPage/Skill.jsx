@@ -39,12 +39,12 @@ const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return (
-    <ModalOverlay onClick={onClose}>
-      <ModalContent onClick={(e) => e.stopPropagation()}>
+    <SkillModalOverlay onClick={onClose}>
+      <SkillModalContent onClick={(e) => e.stopPropagation()}>
         {children}
         <button onClick={onClose}>닫기</button>
-      </ModalContent>
-    </ModalOverlay>
+      </SkillModalContent>
+    </SkillModalOverlay>
   );
 };
 
@@ -109,15 +109,15 @@ const Skill = () => {
   };
 
   return (
-    <Container clasName="container">
+    <SkillContainer clasName="Skillcontainer">
       {/* 기술 스택 버튼 */}
-      <JobButtonContainer>
+      <SkillJobButtonSkillContainer>
         {Object.keys(jobToSkills).map((job) => (
-          <JobButton key={job} onClick={() => handleJobClick(job)}>
+          <SkillJobButton key={job} onClick={() => handleJobClick(job)}>
             {job}
-          </JobButton>
+          </SkillJobButton>
         ))}
-      </JobButtonContainer>
+      </SkillJobButtonSkillContainer>
       {/* 모달 */}
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
         <div>{selectedJob}</div>
@@ -131,12 +131,12 @@ const Skill = () => {
           ))}
         </div>
       </Modal>
-    </Container>
+    </SkillContainer>
   );
 };
 
-// Container 스타일드 컴포넌트: 위치 및 크기 설정
-const Container = styled.div`
+// SkillContainer 스타일드 컴포넌트: 위치 및 크기 설정
+const SkillContainer = styled.div`
   position: absolute; /* 위치 설정 */
   width: 30%; /* 너비 설정 */
   height: 10%; /* 높이 설정 */
@@ -145,11 +145,11 @@ const Container = styled.div`
   z-index: 3; /* z-index 설정 */
 `;
 
-// JobButtonContainer 스타일드 컴포넌트
-const JobButtonContainer = styled.div``;
+// SkillJobButtonSkillContainer 스타일드 컴포넌트
+const SkillJobButtonSkillContainer = styled.div``;
 
-// JobButton 스타일드 컴포넌트: 작업 버튼 스타일
-const JobButton = styled.button`
+// SkillJobButton 스타일드 컴포넌트: 작업 버튼 스타일
+const SkillJobButton = styled.button`
   margin: 5px; /* 마진 설정 */
   padding: 10px; /* 안쪽 여백 설정 */
   background-color: #ffffff; /* 배경색 설정 */
@@ -163,8 +163,8 @@ const JobButton = styled.button`
   }
 `;
 
-// ModalOverlay 스타일드 컴포넌트: 모달 오버레이 스타일
-const ModalOverlay = styled.div`
+// SkillModalOverlay 스타일드 컴포넌트: 모달 오버레이 스타일
+const SkillModalOverlay = styled.div`
   position: fixed; /* 위치 설정 */
   top: 0; /* 위쪽 여백 설정 */
   left: 0; /* 왼쪽 여백 설정 */
@@ -176,8 +176,8 @@ const ModalOverlay = styled.div`
   justify-content: center; /* 수평 정렬 설정 */
 `;
 
-// ModalContent 스타일드 컴포넌트: 모달 내용 스타일
-const ModalContent = styled.div`
+// SkillModalContent 스타일드 컴포넌트: 모달 내용 스타일
+const SkillModalContent = styled.div`
   background-color: white; /* 배경색 설정 */
   padding: 20px 40px; /* 안쪽 여백 설정 */
   border-radius: 8px; /* 테두리 반경 설정 */

@@ -7,6 +7,7 @@ const NewBoards = (props) => {
   const [views, setViews] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const [projects, setProjects] = useState([
     {
+      id: 1,
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -14,6 +15,7 @@ const NewBoards = (props) => {
       views: 0,
     },
     {
+      id: 2,
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -21,6 +23,7 @@ const NewBoards = (props) => {
       views: 0,
     },
     {
+      id: 3,
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -29,6 +32,7 @@ const NewBoards = (props) => {
       views: 0,
     },
     {
+      id: 4,
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -37,6 +41,7 @@ const NewBoards = (props) => {
       views: 0,
     },
     {
+      id: 5,
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -44,6 +49,7 @@ const NewBoards = (props) => {
       views: 0,
     },
     {
+      id: 6,
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -51,6 +57,7 @@ const NewBoards = (props) => {
       views: 0,
     },
     {
+      id: 7,
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -58,6 +65,7 @@ const NewBoards = (props) => {
       views: 0,
     },
     {
+      id: 8,
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -65,6 +73,7 @@ const NewBoards = (props) => {
       views: 0,
     },
     {
+      id: 9,
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -72,6 +81,7 @@ const NewBoards = (props) => {
       views: 0,
     },
     {
+      id: 10,
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -79,12 +89,14 @@ const NewBoards = (props) => {
       views: 0,
     },
     {
+      id: 11,
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
       subMainText: "[Python, R] 데이터 분석가를 찾습니다. 통계학 지식 필요!",
     },
     {
+      id: 12,
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -93,6 +105,7 @@ const NewBoards = (props) => {
       views: 0,
     },
     {
+      id: 13,
       projectStatus: "🍱 점심 메뉴",
       NewStatus: "🍖 배고파",
       subEndText: "마감일 | 2024.04.31",
@@ -123,11 +136,26 @@ const NewBoards = (props) => {
     indexOfLastProject
   );
 
+  const navigate = useNavigate();
+
   // 클릭 이벤트 핸들러 함수
-  const handleClick = (index) => {
+  const handleClick = async (index) => {
     const newViews = [...views];
     newViews[index] += 1;
     setViews(newViews);
+
+    try {
+      await axios.post("/updateViews/", {
+        projectId: projects[index].id,
+        views: newViews[index],
+      });
+    } catch (error) {
+      console.error("조회수를 업데이트하는데 실패했습니다.", error);
+    }
+
+    navigate(`/board/${projects[index].id}`, {
+      state: { project: projects[index] },
+    });
   };
 
   // 프로젝트를 렌더링하는 함수
@@ -150,7 +178,7 @@ const NewBoards = (props) => {
           </NewSubMain>
         </NewBoxContent>
         <NewView>
-          <p>👀 조회수 {views[index]}회</p>
+          <p>👀 조회수 {project.views}회</p>
         </NewView>
       </NewBox>
     );
