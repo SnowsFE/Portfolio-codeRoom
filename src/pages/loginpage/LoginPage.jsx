@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { LoginLogo, BelowImg } from "../../components/ui/LoginLogo";
+import { LoginLogo, LoginBelowImg } from "../../components/ui/LoginLogo";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -41,36 +41,36 @@ const LoginPage = () => {
   };
 
   return (
-    <ContentsCotainer>
+    <LoginContentsCotainer>
       <LoginForm>
         <LoginLogo></LoginLogo>
-        <Input
+        <LoginInput
           type="text"
           placeholder="username"
           onChange={(e) => {
             setUsername(e.target.value);
           }}
         />
-        <Input
+        <LoginInput
           type="text"
           placeholder="password"
           onChange={(e) => {
             setPassword(e.target.value);
           }}
         />
-        <ButtonContainer>
+        <LoginButtonContainer>
           <LoginButton onClick={(e) => handleLogin(e)}>로그인</LoginButton>
           <SignUpButton onClick={() => navigator("/users/join")}>
             회원가입
           </SignUpButton>
-        </ButtonContainer>
+        </LoginButtonContainer>
       </LoginForm>
-      <BelowImg></BelowImg>
-    </ContentsCotainer>
+      <LoginBelowImg></LoginBelowImg>
+    </LoginContentsCotainer>
   );
 };
 
-const ContentsCotainer = styled.div`
+const LoginContentsCotainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -98,20 +98,20 @@ const LoginForm = styled.form`
   background-color: white;
 `;
 
-const Input = styled.input`
+const LoginInput = styled.input`
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ddd;
 `;
 
-const ButtonContainer = styled.div`
+const LoginButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
 `;
 
-const Button = styled.button`
+const LoginButtonComp = styled.button`
   padding: 10px;
   border-radius: 5px;
   border: none;
@@ -121,7 +121,7 @@ const Button = styled.button`
   font-weight: 700;
 `;
 
-const LoginButton = styled(Button)`
+const LoginButton = styled(LoginButtonComp)`
   background-color: #007bff;
 
   &:hover {
@@ -129,7 +129,7 @@ const LoginButton = styled(Button)`
   }
 `;
 
-const SignUpButton = styled(Button)`
+const SignUpButton = styled(LoginButtonComp)`
   background-color: #28a745;
 
   &:hover {

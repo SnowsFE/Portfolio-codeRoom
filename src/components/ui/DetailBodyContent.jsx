@@ -7,16 +7,16 @@ const DetailContentBody = () => {
   );
 
   return (
-    <BodyContainer>
+    <DetailBodyContainer>
       <h1>프로젝트 소개</h1>
       <hr />
       <div className="body-area">{body}</div>
       <hr />
-    </BodyContainer>
+    </DetailBodyContainer>
   );
 };
 
-const BodyContainer = styled.section`
+const DetailBodyContainer = styled.section`
   margin: 0 auto;
   width: 65%;
 

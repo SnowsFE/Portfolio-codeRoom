@@ -4,33 +4,33 @@ const InfoBox = () => {
   return (
     <div class="container">
       <div class="row">
-        <ImgArea class="col-sm">
+        <InfoImgArea class="col-sm">
           <img
             src="https://images.unsplash.com/photo-1642952469120-eed4b65104be?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt=""
           />
           <p>매칭을 위한 효율적인 알고리즘</p>
-        </ImgArea>
-        <ImgArea class="col-sm">
+        </InfoImgArea>
+        <InfoImgArea class="col-sm">
           <img
             src="https://plus.unsplash.com/premium_photo-1689247409618-aadab030a18d?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt=""
           />
           <p>다양한 프로젝트</p>
-        </ImgArea>
-        <ImgArea class="col-sm">
+        </InfoImgArea>
+        <InfoImgArea class="col-sm">
           <img
             src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt=""
           />
           <p>원활한 소통</p>
-        </ImgArea>
+        </InfoImgArea>
       </div>
     </div>
   );
 };
 
-const ImgArea = styled.div`
+const InfoImgArea = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

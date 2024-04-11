@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { LoginLogo, BelowImg } from "../../components/ui/LoginLogo";
+import { LoginLogo, LoginBelowImg } from "../../components/ui/LoginLogo";
 
 const JoinPage = () => {
   const navigate = useNavigate();
@@ -90,11 +90,11 @@ const JoinPage = () => {
   };
 
   return (
-    <ContentsCotainer>
+    <JoinContentsCotainer>
       <LoginForm>
         <LoginLogo></LoginLogo>
         <InputContainer>
-          <Input
+          <JoinInput
             type="text"
             placeholder="Username"
             onChange={(e) => setUsername(e.target.value)}
@@ -103,7 +103,7 @@ const JoinPage = () => {
             중복확인
           </CheckButton>
         </InputContainer>
-        <Input
+        <JoinInput
           type="password"
           placeholder="Password"
           onChange={(e) => {
@@ -112,7 +112,7 @@ const JoinPage = () => {
           }}
         />
 
-        <Input
+        <JoinInput
           type="password"
           placeholder="Confirm Password"
           onChange={(e) => {
@@ -130,12 +130,12 @@ const JoinPage = () => {
           </LoginButton>
         </ButtonContainer>
       </LoginForm>
-      <BelowImg></BelowImg>
-    </ContentsCotainer>
+      <LoginBelowImg></LoginBelowImg>
+    </JoinContentsCotainer>
   );
 };
 
-const ContentsCotainer = styled.div`
+const JoinContentsCotainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -157,7 +157,7 @@ const LoginForm = styled.form`
   background-color: white;
 `;
 
-const Input = styled.input`
+const JoinInput = styled.input`
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
@@ -170,7 +170,7 @@ const ButtonContainer = styled.div`
   margin-top: 20px;
 `;
 
-const Button = styled.button`
+const JoinButton = styled.button`
   padding: 10px;
   border-radius: 5px;
   border: none;
@@ -180,7 +180,7 @@ const Button = styled.button`
   font-weight: 700;
 `;
 
-const LoginButton = styled(Button)`
+const LoginButton = styled(JoinButton)`
   background-color: #007bff;
   font-weight: 700;
 
@@ -189,7 +189,7 @@ const LoginButton = styled(Button)`
   }
 `;
 
-const SignUpButton = styled(Button)`
+const SignUpButton = styled(JoinButton)`
   background-color: #28a745;
   font-weight: 700;
 
@@ -204,7 +204,7 @@ const InputContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-const CheckButton = styled(Button)`
+const CheckButton = styled(JoinButton)`
   width: 30%;
   background-color: #6c757d;
 

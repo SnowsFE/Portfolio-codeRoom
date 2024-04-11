@@ -16,14 +16,14 @@ const DetailTitle = () => {
 
   return (
     <StudyContentContainer>
-      <BackArrowImgArea onClick={() => navigator(-1)}>
+      <DetailBackArrowImgArea onClick={() => navigator(-1)}>
         <img src={BackArrow} alt="" />
-      </BackArrowImgArea>
+      </DetailBackArrowImgArea>
       <h1 className="study-title">
         🌶️(필요 포지션 : 프론트엔드/디자인/기획) 사이드 프로젝트 팀
         빌딩중입니다. 🌶️
       </h1>
-      <UserInfo>
+      <DetailUserInfo>
         <div className="username">{writer}</div>
         <div className="user-info-partition">|</div>
         <div className="date">{writeDt}</div>
@@ -31,7 +31,7 @@ const DetailTitle = () => {
           <img src={viewImg} alt="" />
           <span>{view}</span>
         </div>
-      </UserInfo>
+      </DetailUserInfo>
       <hr
         style={{
           height: "2px",
@@ -56,7 +56,7 @@ const DetailSubContent = () => {
   const [language, setLanguage] = useState([]); //사용 언어 ex) spring
 
   return (
-    <SubContentContainer>
+    <DetailSubContentContainer>
       <ul>
         <li>
           <span className="sub-title">모집 구분</span>
@@ -102,7 +102,7 @@ const DetailSubContent = () => {
           </span>
         </li>
       </ul>
-    </SubContentContainer>
+    </DetailSubContentContainer>
   );
 };
 
@@ -110,7 +110,7 @@ export { DetailTitle, DetailSubContent };
 
 // subContent css
 
-const SubContentContainer = styled.section`
+const DetailSubContentContainer = styled.section`
   display: flex;
   flex-direction: row;
   /* border: 1px solid black; */
@@ -172,7 +172,7 @@ const StudyContentContainer = styled.div`
   }
 `;
 
-const UserInfo = styled.div`
+const DetailUserInfo = styled.div`
   margin: 25px 0 25px 0;
   display: flex;
   position: relative;
@@ -219,7 +219,7 @@ const UserInfo = styled.div`
   }
 `;
 
-const BackArrowImgArea = styled.div`
+const DetailBackArrowImgArea = styled.div`
   display: flex;
   align-items: flex-start;
   margin-bottom: 30px;

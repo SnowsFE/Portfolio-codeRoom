@@ -12,7 +12,7 @@ const LoginLogo = () => {
   );
 };
 
-const BelowImg = () => {
+const LoginBelowImg = () => {
   const navigator = useNavigate();
   return (
     <StyledBelowImg
@@ -36,4 +36,4 @@ const StyledBelowImg = styled.img`
   cursor: pointer;
 `;
 
-export { LoginLogo, BelowImg };
+export { LoginLogo, LoginBelowImg };
