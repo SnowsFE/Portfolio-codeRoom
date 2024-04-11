@@ -14,19 +14,18 @@ const Nav = (props) => {
         <Left>
           <a href="/">
             <img src={CodeRoom} alt="로고" />
-            {props.container}
           </a>
         </Left>
         {/* 글쓰기 링크 */}
         <Right1>
           <a href="/boards">
-            <span>{props.container} 글쓰기</span>
+            <span> 글쓰기</span>
           </a>
         </Right1>
         {/* 로그인 링크 */}
         <Right2>
           <a href="/users/login">
-            <span>{props.container} 로그인</span>
+            <span> 로그인</span>
           </a>
         </Right2>
         {/* 네비게이션 바와 컬러 변경 버튼 */}

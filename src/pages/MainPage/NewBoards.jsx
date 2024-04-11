@@ -178,7 +178,7 @@ const NewBoards = (props) => {
     <div>
       <NewOutLine className="NewOut">
         <NewWrite className="NewWrite">
-          <strong>{props.container}🍞 최근에 올라왔어요</strong>
+          <strong>🍞 최근에 올라왔어요</strong>
         </NewWrite>
         <NewSearch className="NewSearch">
           <NewSearchBox className="NewSearchBox">

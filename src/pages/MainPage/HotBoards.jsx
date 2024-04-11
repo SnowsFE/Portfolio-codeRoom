@@ -108,7 +108,7 @@ const HotBoards = (props) => {
     <HotOutLine className="HotOut">
       <Skill />
       <HotWrite className="HotWrite">
-        <strong>{props.container}🔥 이번주 코드룸 인기글</strong>
+        <strong>🔥 이번주 코드룸 인기글</strong>
       </HotWrite>
       {/* 프로젝트 목록 렌더링 */}
       {projects.map((_, index) => renderHotBox(index))}
