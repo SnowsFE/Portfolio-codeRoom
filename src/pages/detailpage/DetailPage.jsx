@@ -47,8 +47,22 @@ const DetailPage = () => {
 
   return (
     <div>
-      <DetailTitle></DetailTitle>
-      <DetailContentBody></DetailContentBody>
+      <DetailTitle
+        title={title}
+        writer={writer}
+        writeDt={writeDt}
+        view={view}
+      ></DetailTitle>
+      <DetailContentBody
+        recruitType={recruitType}
+        progressMethod={progressMethod}
+        recruitMember={recruitMember}
+        plan={plan}
+        contact={contact}
+        duration={duration}
+        recruitField={recruitField}
+        language={language}
+      ></DetailContentBody>
       <DetailComment></DetailComment>
     </div>
   );

@@ -52,6 +52,7 @@ const JoinPage = () => {
     } catch (e) {
       if (e.response && e.response.status === 401) {
         setErrorMessage("중복된 아이디 입니다");
+        setIsUsernameChecked(false);
       }
     }
   };
