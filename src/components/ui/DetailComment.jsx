@@ -8,13 +8,13 @@ const DetailComment = () => {
   return (
     <>
       <CommentContainer>
-        <StyledTextArea
+        <CommentStyledTextArea
           name="input-comment"
           id=""
           cols="30"
           rows="10"
           placeholder="  댓글을 입력하세요"
-        ></StyledTextArea>
+        ></CommentStyledTextArea>
         <button>댓글 등록</button>
       </CommentContainer>
 
@@ -67,7 +67,7 @@ const CommentContainer = styled.div`
   }
 `;
 
-const StyledTextArea = styled.textarea`
+const CommentStyledTextArea = styled.textarea`
   width: 55%;
   height: 130px;
   border-radius: 15px;

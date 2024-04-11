@@ -12,7 +12,7 @@ const LoginLogo = () => {
   );
 };
 
-const BelowImg = () => {
+const LoginBelowImg = () => {
   const navigator = useNavigate();
   return (
     <StyledBelowImg
@@ -32,8 +32,8 @@ const Img = styled.img`
 
 const StyledBelowImg = styled.img`
   margin-top: 40px;
-  width: 800px;
+  width: 65%;
   cursor: pointer;
 `;
 
-export { LoginLogo, BelowImg };
+export { LoginLogo, LoginBelowImg };

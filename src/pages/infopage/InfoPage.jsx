@@ -53,6 +53,7 @@ const BackgroundImg2 = styled.section`
   h1 {
     line-height: 680px;
     color: #fff;
+    font-size: 45px;
     font-weight: 700;
   }
 `;
