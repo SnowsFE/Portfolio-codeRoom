@@ -11,7 +11,6 @@ const JoinPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  // console.log('commit-test')
 
   // 중복 여부 및 비밀번호 상태
   // 3가지 상태에 대해서 모두 true 이여야지만 서버에 post 요청
@@ -74,12 +73,20 @@ const JoinPage = () => {
       setErrorMessage("비밀번호가 일치하지 않습니다.");
       return;
     }
-
-    const response = await axios.post("/join", {
-      username: username,
-      password: password,
-    });
-    navigate("/login");
+    try {
+      const response = await axios.post("/join", {
+        username: username,
+        password: password,
+      });
+      console.log("회원가입 데이터: " + response.data); //확인용
+      navigate("/users/login"); //회원가입 성공시 로그인 화면으로 이동
+    } catch (e) {
+      if (e.response.status === 401) {
+        alert("사용자 입력 오류");
+      } else if (e.response.status === 500) {
+        alert("서버측 오류 발생");
+      }
+    }
   };
 
   return (
@@ -118,7 +125,9 @@ const JoinPage = () => {
           <SignUpButton type="submit" onClick={(e) => handleSubmit(e)}>
             회원 가입
           </SignUpButton>
-          <LoginButton onClick={() => navigate("/login")}>로그인</LoginButton>
+          <LoginButton onClick={() => navigate("/users/login")}>
+            로그인
+          </LoginButton>
         </ButtonContainer>
       </LoginForm>
       <BelowImg></BelowImg>
@@ -139,7 +148,6 @@ const ContentsCotainer = styled.div`
 const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: center;
   width: 800px;
   height: 400px;
@@ -149,27 +157,11 @@ const LoginForm = styled.form`
   background-color: white;
 `;
 
-const Title = styled.h1`
-  margin-bottom: 40px;
-  font-size: 28px;
-  text-align: center;
-`;
-
 const Input = styled.input`
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ddd;
-`;
-
-const Label = styled.label`
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-`;
-
-const Checkbox = styled.input`
-  margin-right: 10px;
 `;
 
 const ButtonContainer = styled.div`

@@ -12,8 +12,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<InfoPage />}></Route>
-        <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/join" element={<JoinPage />}></Route>
+        <Route path="/users/login" element={<LoginPage />}></Route>
+        <Route path="/users/join" element={<JoinPage />}></Route>
         <Route path="/detail/:id" element={<DetailPage />}></Route>
         <Route path="/boards" element={<WritePage />}></Route>
       </Routes>

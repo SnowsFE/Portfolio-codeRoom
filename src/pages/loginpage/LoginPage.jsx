@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { LoginLogo, BelowImg } from "../../components/ui/LoginLogo";
-import CodeRoomBanner from "../../img/CodeRoomBanner.png";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -26,12 +25,12 @@ const LoginPage = () => {
         username,
         password,
       });
-      console.log(response.data);
+      console.log("로그인 데이터: " + response.data);
       //로그인 성공시
-      // sessionStorage.setItem('username', response.data.username);
+      sessionStorage.setItem("username", response.data.username);
       navigator("/");
     } catch (e) {
-      if (e.response && e.response.status === 401) {
+      if (e.response && e.response.status === 404) {
         alert("인증 실패! 아이디와 비밀번호를 다시 확인해주세요.");
       } else if (e.response && e.response.status === 500) {
         alert("서버 오류가 발생했습니다. 나중에 다시 시도해주세요.");
@@ -61,7 +60,7 @@ const LoginPage = () => {
         />
         <ButtonContainer>
           <LoginButton onClick={(e) => handleLogin(e)}>로그인</LoginButton>
-          <SignUpButton onClick={() => navigator("/join")}>
+          <SignUpButton onClick={() => navigator("/users/join")}>
             회원가입
           </SignUpButton>
         </ButtonContainer>
