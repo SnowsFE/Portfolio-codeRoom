@@ -6,12 +6,14 @@ import DetailPage from "./pages/detailpage/DetailPage";
 import WritePage from "./pages/writepage/WritePage";
 
 import React from "react";
+import MainPage from "./pages/MainPage/MainPage.jsx";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path="/" element={<MainPage />}></Route>
         <Route path="/info" element={<InfoPage />}></Route>
         <Route path="/users/login" element={<LoginPage />}></Route>
         <Route path="/users/join" element={<JoinPage />}></Route>
