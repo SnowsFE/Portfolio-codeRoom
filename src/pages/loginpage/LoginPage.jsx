@@ -75,7 +75,7 @@ const LoginContentsCotainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 70%;
   margin: 40px auto;
   padding: 40px;
 
@@ -90,7 +90,7 @@ const LoginForm = styled.form`
   flex-direction: column;
   /* align-items: center; */
   justify-content: center;
-  width: 800px; // 폼의 너비를 300px에서 500px로 증가s
+  width: 60%;
   height: 400px;
   padding: 30px; // 폼 안의 패딩을 20px에서 50px로 증가
   border-radius: 10px;

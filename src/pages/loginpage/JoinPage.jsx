@@ -140,7 +140,7 @@ const JoinContentsCotainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 70%;
   margin: 40px auto;
   padding: 40px;
 `;
@@ -149,7 +149,7 @@ const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 800px;
+  width: 60%;
   height: 400px;
   padding: 30px;
   border-radius: 10px;
