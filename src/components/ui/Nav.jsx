@@ -4,7 +4,7 @@ import CodeRoom from "../../img/CodeRoom.png";
 import BackGroundColorChanger from "./BackGroundColorChanger";
 
 // 네비게이션 컴포넌트 정의
-const Nav = (props) => {
+const Nav = () => {
   return (
     // 네비게이션 바를 감싸는 컨테이너 박스
     <NaviBox>

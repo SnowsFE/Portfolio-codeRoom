@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import CodeRoomBanner from "../../img/Banner/CodeRoomBanner.png";
 import Ad1 from "../../img/Banner/Ad1.png";
@@ -20,6 +20,16 @@ const Banner = () => {
       (prevIndex) => (prevIndex - 1 + images.length) % images.length
     );
   };
+
+  // useEffect를 사용해 컴포넌트가 마운트됐을 때 타이머 설정
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSlide(); // 5초마다 nextSlide 함수를 실행
+    }, 5000); // 5000 밀리초는 5초를 의미합니다.
+
+    // 컴포넌트가 언마운트 되거나 업데이트될 때 이전 타이머를 정리
+    return () => clearInterval(timer);
+  }, []); // 빈 배열을 전달해 컴포넌트가 마운트될 때 한 번만 실행되도록 합니다.
 
   return (
     <BannerSliderContainer>
