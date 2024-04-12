@@ -65,7 +65,7 @@ const BasicInfoContainer = styled.section`
   }
 `;
 
-// 본문 내용 관련 css
+// 본문 내용 관련 css-
 const BodyInfoContainer = styled.section`
   h6 {
     text-align: left;
