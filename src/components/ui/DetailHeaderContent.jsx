@@ -13,6 +13,7 @@ const DetailTitle = () => {
   const [writer, setWriter] = useState("빌게이츠"); //작성자
   const [writeDt, setWriteDt] = useState("2024.04.03"); //작성 일자
   const [view, setView] = useState(23); //조회수
+  // console.log("pull request-test");
 
   return (
     <StudyContentContainer>
