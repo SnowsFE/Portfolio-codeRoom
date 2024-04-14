@@ -7,7 +7,7 @@ const NewBoards = () => {
   const [views, setViews] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const [projects, setProjects] = useState([
     {
-      id: 1,
+      id: 5,
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -15,7 +15,7 @@ const NewBoards = () => {
       views: 0,
     },
     {
-      id: 2,
+      id: 6,
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -23,7 +23,7 @@ const NewBoards = () => {
       views: 0,
     },
     {
-      id: 3,
+      id: 7,
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -32,7 +32,7 @@ const NewBoards = () => {
       views: 0,
     },
     {
-      id: 4,
+      id: 8,
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -41,7 +41,7 @@ const NewBoards = () => {
       views: 0,
     },
     {
-      id: 5,
+      id: 9,
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -49,7 +49,7 @@ const NewBoards = () => {
       views: 0,
     },
     {
-      id: 6,
+      id: 10,
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -57,7 +57,7 @@ const NewBoards = () => {
       views: 0,
     },
     {
-      id: 7,
+      id: 11,
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -65,7 +65,7 @@ const NewBoards = () => {
       views: 0,
     },
     {
-      id: 8,
+      id: 12,
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -73,7 +73,7 @@ const NewBoards = () => {
       views: 0,
     },
     {
-      id: 9,
+      id: 13,
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -81,7 +81,7 @@ const NewBoards = () => {
       views: 0,
     },
     {
-      id: 10,
+      id: 14,
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -89,14 +89,14 @@ const NewBoards = () => {
       views: 0,
     },
     {
-      id: 11,
+      id: 15,
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
       subMainText: "[Python, R] 데이터 분석가를 찾습니다. 통계학 지식 필요!",
     },
     {
-      id: 12,
+      id: 16,
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
       subEndText: "마감일 | 2024.04.26",
@@ -105,7 +105,7 @@ const NewBoards = () => {
       views: 0,
     },
     {
-      id: 13,
+      id: 17,
       projectStatus: "🍱 점심 메뉴",
       NewStatus: "🍖 배고파",
       subEndText: "마감일 | 2024.04.31",

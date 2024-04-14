@@ -5,7 +5,6 @@ import {
   WriteBasicInfo3,
   WriteBasicInfo4,
 } from "../../components/ui/WriteBasicInfo";
-import CodeRoomIcon from "../../img/CodeRoomIcon.png";
 
 const WritePage = () => {
   return (
