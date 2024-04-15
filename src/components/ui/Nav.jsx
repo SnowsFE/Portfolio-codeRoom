@@ -39,9 +39,10 @@ const Nav = () => {
 // 네비게이션 바를 감싸는 컨테이너 스타일 정의
 const NaviBox = styled.div`
   width: 100%; /* 가로 폭 100% */
-  height: 65px; /* 높이 65px */
+  height: 105px; /* 높이 65px */
+  opacity: 100%;
   position: relative; /* 상대 위치 지정 */
-  background-color: white; /* 배경색 흰색 */
+  background-color: transparent; /* 배경색 흰색 */
 `;
 
 // 네비게이션 바 스타일 정의
