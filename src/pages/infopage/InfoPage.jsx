@@ -52,7 +52,7 @@ const BackgroundImg2 = styled.section`
   cursor: pointer;
   h1 {
     line-height: 680px;
-    color: #fff;
+    color: #ffffff;
     font-size: 45px;
     font-weight: 700;
   }

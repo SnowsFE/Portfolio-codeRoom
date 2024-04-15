@@ -8,27 +8,22 @@ const Nav = () => {
   return (
     // 네비게이션 바를 감싸는 컨테이너 박스
     <NaviBox>
-      {/* 네비게이션 바 스타일 */}
       <NavStyle className="Logo">
-        {/* 왼쪽 로고 및 링크 */}
         <Left>
           <a href="/">
             <img src={CodeRoom} alt="로고" />
           </a>
         </Left>
-        {/* 글쓰기 링크 */}
         <Right1>
           <a href="/boards">
             <span> 글쓰기</span>
           </a>
         </Right1>
-        {/* 로그인 링크 */}
         <Right2>
           <a href="/users/login">
             <span> 로그인</span>
           </a>
         </Right2>
-        {/* 네비게이션 바와 컬러 변경 버튼 */}
         <Separator />
         <BackGroundColorChanger />
       </NavStyle>
@@ -39,9 +34,10 @@ const Nav = () => {
 // 네비게이션 바를 감싸는 컨테이너 스타일 정의
 const NaviBox = styled.div`
   width: 100%; /* 가로 폭 100% */
-  height: 65px; /* 높이 65px */
+  height: 105px; /* 높이 65px */
+  opacity: 100%;
   position: relative; /* 상대 위치 지정 */
-  background-color: white; /* 배경색 흰색 */
+  background-color: transparent; /* 배경색 흰색 */
 `;
 
 // 네비게이션 바 스타일 정의

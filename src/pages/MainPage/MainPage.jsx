@@ -9,14 +9,16 @@ import UpScroll from "../../components/ui/UpScroll.jsx";
 
 const MainPage = () => {
   return (
-    <MainStyle className="MainPage">
+    <>
       <Nav />
-      <Banner />
-      <HotBoards />
-      <NewBoards />
-      <Footer />
-      <UpScroll />
-    </MainStyle>
+      <MainStyle className="MainPage">
+        <Banner />
+        <HotBoards />
+        <NewBoards />
+        <Footer />
+        <UpScroll />
+      </MainStyle>
+    </>
   );
 };
 
