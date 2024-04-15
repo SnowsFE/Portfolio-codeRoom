@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import styled, { keyframes, createGlobalStyle } from "styled-components";
 
-// 버튼 반짝임 애니메이션 정의
+// 버튼 반짝임 애니메이션
 const glow = keyframes`
   0% {
     background-position: 0% 50%;

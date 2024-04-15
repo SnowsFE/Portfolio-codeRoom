@@ -2,7 +2,7 @@ import styled from "styled-components";
 import CodeRoom from "../../img/CodeRoom.png";
 import CodeRoomBanner from "../../img/CodeRoomBanner.png";
 import { useNavigate } from "react-router-dom";
-
+//
 const LoginLogo = () => {
   const navigator = useNavigate();
   return (

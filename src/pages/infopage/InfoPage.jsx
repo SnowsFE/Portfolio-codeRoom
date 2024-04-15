@@ -30,7 +30,7 @@ const InfoPage = () => {
     </div>
   );
 };
-
+//
 export default InfoPage;
 
 // 첫 번째 배경 이미지

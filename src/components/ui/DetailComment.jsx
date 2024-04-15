@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import CodeRoomIcon from "../../img/CodeRoomIcon.png";
-
+//
 const DetailComment = () => {
   const [comments, setComments] = useState([]); //댓글 (댓글 작성자 + 댓글 작성 일자)
 

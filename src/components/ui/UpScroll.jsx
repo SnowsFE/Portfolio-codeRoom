@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import UpIcon from "../../img/UpScroll.png";
-
+//
 // 위쪽 스크롤 컴포넌트 정의
 const UpScroll = () => {
   // 페이지 맨 위로 스크롤하는 함수

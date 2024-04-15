@@ -3,7 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import Skill from "./Skill.jsx";
 import { useNavigate } from "react-router-dom";
-
+//
 const HotBoards = (props) => {
   // 조회수와 프로젝트 상태를 관리하는 상태 변수 설정
   const [views, setViews] = useState([0, 0, 0, 0]);

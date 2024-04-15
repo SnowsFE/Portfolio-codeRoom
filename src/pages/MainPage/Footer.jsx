@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import CodeRoomBanner from "../../img/CodeRoom.png";
 import { Link } from "react-router-dom";
-
+//
 const Footer = () => {
   return (
     // FooterStyle 컴포넌트로 스타일 적용
