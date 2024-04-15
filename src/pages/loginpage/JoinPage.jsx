@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { LoginLogo, LoginBelowImg } from "../../components/ui/LoginLogo";
+import Nav from "../../components/ui/Nav.jsx";
 
 const JoinPage = () => {
   const navigate = useNavigate();
@@ -90,48 +91,51 @@ const JoinPage = () => {
   };
 
   return (
-    <JoinContentsCotainer>
-      <LoginForm>
-        <LoginLogo></LoginLogo>
-        <InputContainer>
+    <>
+      <Nav />
+      <JoinContentsCotainer>
+        <LoginForm>
+          <LoginLogo></LoginLogo>
+          <InputContainer>
+            <JoinInput
+              type="text"
+              placeholder="Username"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <CheckButton onClick={() => validCheckHandler()}>
+              중복확인
+            </CheckButton>
+          </InputContainer>
           <JoinInput
-            type="text"
-            placeholder="Username"
-            onChange={(e) => setUsername(e.target.value)}
+            type="password"
+            placeholder="Password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+              passwordCheck(e);
+            }}
           />
-          <CheckButton onClick={() => validCheckHandler()}>
-            중복확인
-          </CheckButton>
-        </InputContainer>
-        <JoinInput
-          type="password"
-          placeholder="Password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-            passwordCheck(e);
-          }}
-        />
 
-        <JoinInput
-          type="password"
-          placeholder="Confirm Password"
-          onChange={(e) => {
-            setConfirmPassword(e.target.value);
-            confirmPasswordCheck(e);
-          }}
-        />
-        {errorMessage && <Message>{errorMessage}</Message>}
-        <ButtonContainer>
-          <SignUpButton type="submit" onClick={(e) => handleSubmit(e)}>
-            회원 가입
-          </SignUpButton>
-          <LoginButton onClick={() => navigate("/users/login")}>
-            로그인
-          </LoginButton>
-        </ButtonContainer>
-      </LoginForm>
-      <LoginBelowImg></LoginBelowImg>
-    </JoinContentsCotainer>
+          <JoinInput
+            type="password"
+            placeholder="Confirm Password"
+            onChange={(e) => {
+              setConfirmPassword(e.target.value);
+              confirmPasswordCheck(e);
+            }}
+          />
+          {errorMessage && <Message>{errorMessage}</Message>}
+          <ButtonContainer>
+            <SignUpButton type="submit" onClick={(e) => handleSubmit(e)}>
+              회원 가입
+            </SignUpButton>
+            <LoginButton onClick={() => navigate("/users/login")}>
+              로그인
+            </LoginButton>
+          </ButtonContainer>
+        </LoginForm>
+        <LoginBelowImg></LoginBelowImg>
+      </JoinContentsCotainer>
+    </>
   );
 };
 
@@ -150,7 +154,7 @@ const LoginForm = styled.form`
   flex-direction: column;
   justify-content: center;
   width: 60%;
-  height: 400px;
+  height: 350px;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);

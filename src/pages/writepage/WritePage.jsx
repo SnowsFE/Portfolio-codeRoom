@@ -5,42 +5,46 @@ import {
   WriteBasicInfo3,
   WriteBasicInfo4,
 } from "../../components/ui/WriteBasicInfo";
+import Nav from "../../components/ui/Nav.jsx";
 
 const WritePage = () => {
   return (
-    <BasicInfoContainer>
-      <h2> 프로젝트 기본 정보를 입력해주세요.</h2>
-      <hr />
-      <WriteBasicInfo1></WriteBasicInfo1>
-      <WriteBasicInfo2></WriteBasicInfo2>
-      <WriteBasicInfo3></WriteBasicInfo3>
-      <WriteBasicInfo4></WriteBasicInfo4>
-      <h2>프로젝트에 대해 소개해주세요</h2>
-      <hr />
-      <BodyInfoContainer>
-        <h6>제목</h6>
-        <input
-          type="text"
-          placeholder="제목을 입력해주세요!"
-          id="title-input"
-        />
-        <textarea
-          name=""
-          id=""
-          cols="30"
-          rows="20"
-          placeholder="프로젝트를 소개해주세요"
-        ></textarea>
-        <div className="button-area">
-          <button id="cancel-btn" className="body-btn">
-            취소
-          </button>
-          <button id="write-btn" className="body-btn">
-            글등록
-          </button>
-        </div>
-      </BodyInfoContainer>
-    </BasicInfoContainer>
+    <>
+      <Nav />
+      <BasicInfoContainer>
+        <h2>모집 정보</h2>
+        <hr />
+        <WriteBasicInfo1></WriteBasicInfo1>
+        <WriteBasicInfo2></WriteBasicInfo2>
+        <WriteBasicInfo3></WriteBasicInfo3>
+        <WriteBasicInfo4></WriteBasicInfo4>
+        <h2>글작성</h2>
+        <hr />
+        <BodyInfoContainer>
+          <h6>제목</h6>
+          <input
+            type="text"
+            placeholder="제목을 입력해주세요!"
+            id="title-input"
+          />
+          <textarea
+            name=""
+            id=""
+            cols="30"
+            rows="20"
+            placeholder="프로젝트를 소개해주세요"
+          ></textarea>
+          <div className="button-area">
+            <button id="cancel-btn" className="body-btn">
+              취소
+            </button>
+            <button id="write-btn" className="body-btn">
+              글등록
+            </button>
+          </div>
+        </BodyInfoContainer>
+      </BasicInfoContainer>
+    </>
   );
 };
 
@@ -48,6 +52,7 @@ const BasicInfoContainer = styled.section`
   position: relative;
   height: 640px;
   width: 53%;
+  min-width: 1000px;
   /* border: solid 1px black; */
   margin: 0 auto;
 
