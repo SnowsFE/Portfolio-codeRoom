@@ -32,6 +32,7 @@ const DetailTitle = () => {
           <span>{view}</span>
         </div>
       </DetailUserInfo>
+      <DetailSubContent></DetailSubContent>
       <hr
         style={{
           height: "2px",
@@ -39,7 +40,6 @@ const DetailTitle = () => {
           border: "none",
         }}
       />
-      <DetailSubContent></DetailSubContent>
     </StudyContentContainer>
   );
 };
@@ -91,6 +91,7 @@ const DetailSubContent = () => {
         </li>
         <li>
           <span className="sub-title">사용 언어</span>
+
           <span>
             <img src={svgFiles[23]} alt="" />
           </span>
