@@ -4,7 +4,7 @@ import Nav from "../../components/ui/Nav.jsx";
 import Banner from "./Banner.jsx";
 import HotBoards from "./HotBoards.jsx";
 import NewBoards from "./NewBoards.jsx";
-import Footer from "./Footer";
+import Footer from "./Footer.jsx";
 import UpScroll from "../../components/ui/UpScroll.jsx";
 
 const MainPage = () => {

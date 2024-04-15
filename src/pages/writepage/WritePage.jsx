@@ -7,6 +7,7 @@ import {
 } from "../../components/ui/WriteBasicInfo";
 import Nav from "../../components/ui/Nav.jsx";
 import { useNavigate } from "react-router-dom";
+import UpScroll from "../../components/ui/UpScroll.jsx";
 
 const WritePage = () => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const WritePage = () => {
   return (
     <>
       <Nav />
+      <UpScroll />
       <BasicInfoContainer>
         <h2>모집 정보</h2>
         <hr />
@@ -78,7 +80,7 @@ const BasicInfoContainer = styled.section`
   position: relative;
   height: 640px;
   width: 53%;
-  min-width: 1000px;
+  min-width: 1280px;
   margin: 0 auto;
 
   h2 {
