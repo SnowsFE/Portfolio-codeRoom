@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import CodeRoomBanner from "../../img/CodeRoom.png";
+import { Link } from "react-router-dom";
 
-// Footer 컴포넌트 정의
 const Footer = () => {
   return (
     // FooterStyle 컴포넌트로 스타일 적용
@@ -13,9 +13,15 @@ const Footer = () => {
         </FooterLogoContainer>
         <FooterText>© 2024 CodeRoom. All rights reserved.</FooterText>
         <FooterLinkContainer>
-          <span>코드룸 소개</span>
-          <span>이용약관</span>
-          <span>개인정보처리 방침</span>
+          <FooterLink to="/Info">
+            <span>코드룸 소개</span>
+          </FooterLink>
+          <FooterLink to="/terms">
+            <span>이용약관</span>
+          </FooterLink>
+          <FooterLink to="/privacy">
+            <span>개인정보처리 방침</span>
+          </FooterLink>
         </FooterLinkContainer>
       </FooterContent>
     </FooterStyle>
@@ -75,5 +81,9 @@ const FooterLinkContainer = styled.div`
   }
 `;
 
-// Footer 컴포넌트 내보내기
+const FooterLink = styled(Link)`
+  text-decoration: none; /* 링크 밑줄 제거 */
+  color: black; /* 글자색을 검은색으로 설정 */
+`;
+
 export default Footer;

@@ -266,7 +266,16 @@ const SelectArea = styled.div`
     border-radius: 5px;
     padding: 10px;
   }
-  .left-bar,
+  .left-bar {
+    width: 396px;
+    height: 53px;
+    padding: 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    background-color: #fff; /* 흰색 배경 추가 */
+  }
   .right-bar,
   #date {
     width: 396px; /* 넓이 설정 */
@@ -295,5 +304,6 @@ const SelectArea = styled.div`
     text-align: left;
     font-size: 14px;
     margin-top: 16px;
+    cursor: pointer;
   }
 `;
