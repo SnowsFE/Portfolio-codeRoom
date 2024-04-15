@@ -200,21 +200,53 @@ const WriteBasicInfo3 = () => {
 };
 
 const WriteBasicInfo4 = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const options = ["프론트엔드", "백엔드", "디자이너", "기획자", "기타"];
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleOptionClick = (option) => {
+    if (selectedOptions.includes(option)) {
+      const filteredOptions = selectedOptions.filter(
+        (selectedOption) => selectedOption !== option
+      );
+      setSelectedOptions(filteredOptions);
+    } else {
+      setSelectedOptions([...selectedOptions, option]);
+    }
+  };
+
   return (
     <SelectArea>
       <div className="basic-info-box">
         <span className="info-title">모집 포지션</span>
         <div className="select-box">
-          <StyledSelect name="positions" id="positions" className="select-bar">
-            <option value="" disabled selected>
-              프론트엔드, 백엔드...
-            </option>
-            <option value="frontend">프론트엔드</option>
-            <option value="backend">백엔드</option>
-            <option value="designer">디자이너</option>
-            <option value="planner">기획자</option>
-            <option value="etc">기타</option>
-          </StyledSelect>
+          <div className="left-bar" onClick={toggleDropdown}>
+            {selectedOptions.length > 0 ? (
+              <p>{selectedOptions.join(", ")}</p>
+            ) : (
+              <p>포지션을 선택하세요</p>
+            )}
+            {isOpen && (
+              <div className="custom-dropdown">
+                {options.map((option, index) => (
+                  <div
+                    key={index}
+                    className={`custom-option ${
+                      selectedOptions.includes(option) ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionClick(option)}
+                  >
+                    {option}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="basic-info-box">

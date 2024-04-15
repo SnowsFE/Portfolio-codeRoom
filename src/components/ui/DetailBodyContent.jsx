@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-//
+
 const DetailContentBody = () => {
   const [body, setBody] = useState(
     "본문 내용 임돠 조금만 더 길게 작성해보고 더 길게 작성해보겠습니다. 옆으로 짤리면 대참사이므로 제발 안 짤렸으면 좋겠다 ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ"

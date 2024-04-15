@@ -5,7 +5,7 @@ import Ad1 from "../../img/Banner/Ad1.png";
 import Ad2 from "../../img/Banner/Ad2.png";
 import LeftArrow from "../../img/Banner/LeftArrow.png";
 import RightArrow from "../../img/Banner/RightArrow.png";
-//
+
 const images = [CodeRoomBanner, Ad1, Ad2];
 
 const Banner = () => {

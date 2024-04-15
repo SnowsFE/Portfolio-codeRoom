@@ -5,7 +5,7 @@ import DetailComment from "../../components/ui/DetailComment";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-//
+
 const DetailPage = () => {
   let { id } = useParams(); //게시판 id 가져오기
 

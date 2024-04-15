@@ -7,5 +7,5 @@ const MainStyle = styled.div`
   margin: 0 auto; /* 가운데 정렬을 위한 자동 마진 설정 */
   position: relative; /* 상대 위치 설정 */
 `;
-//
+
 export default MainStyle; // 메인 페이지 스타일 컴포넌트 내보내기

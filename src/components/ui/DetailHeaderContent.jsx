@@ -4,7 +4,7 @@ import viewImg from "../../img/view.png";
 import { svgFiles, fileNames } from "../../constants/fileNames";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-//
+
 // 제목, 작성자, 작성 일자
 const DetailTitle = () => {
   const navigator = useNavigate();

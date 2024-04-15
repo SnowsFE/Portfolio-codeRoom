@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { LoginLogo, LoginBelowImg } from "../../components/ui/LoginLogo";
 import Nav from "../../components/ui/Nav.jsx";
-//
+
 const JoinPage = () => {
   const navigate = useNavigate();
 

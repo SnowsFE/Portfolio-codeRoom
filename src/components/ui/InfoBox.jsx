@@ -1,5 +1,5 @@
 import styled from "styled-components";
-//
+
 const InfoBox = () => {
   return (
     <InfoImgContainer>
