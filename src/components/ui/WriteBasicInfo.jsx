@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+//
 const WriteBasicInfo1 = () => {
   return (
     <SelectArea>
       <div className="basic-info-box">
         <span className="info-title">모집 구분</span>
         <div className="select-box">
-          <select
+          <StyledSelect
             name="recruitmentType"
             id="recruitmentType"
             className="select-bar"
@@ -17,13 +17,13 @@ const WriteBasicInfo1 = () => {
             </option>
             <option value="project">프로젝트</option>
             <option value="study">스터디</option>
-          </select>
+          </StyledSelect>
         </div>
       </div>
       <div className="basic-info-box">
         <span className="info-title">모집 인원</span>
         <div className="select-box">
-          <select
+          <StyledSelect
             name="recruitmentCount"
             id="recruitmentCount"
             className="select-bar"
@@ -41,7 +41,7 @@ const WriteBasicInfo1 = () => {
             <option value="8">8명</option>
             <option value="9">9명</option>
             <option value="10+">10명 이상</option>
-          </select>
+          </StyledSelect>
         </div>
       </div>
     </SelectArea>
@@ -54,19 +54,23 @@ const WriteBasicInfo2 = () => {
       <div className="basic-info-box">
         <span className="info-title">진행 방식</span>
         <div className="select-box">
-          <select name="processType" id="processType" className="select-bar">
+          <StyledSelect
+            name="processType"
+            id="processType"
+            className="select-bar"
+          >
             <option value="" disabled selected>
               온라인 / 오프라인
             </option>
             <option value="online">온라인</option>
             <option value="offline">오프라인</option>
-          </select>
+          </StyledSelect>
         </div>
       </div>
       <div className="basic-info-box">
         <span className="info-title">진행 기간</span>
         <div className="select-box">
-          <select
+          <StyledSelect
             name="processDuration"
             id="processDuration"
             className="select-bar"
@@ -81,7 +85,7 @@ const WriteBasicInfo2 = () => {
             <option value="4">4개월</option>
             <option value="5">5개월</option>
             <option value="6">6개월</option>
-          </select>
+          </StyledSelect>
         </div>
       </div>
     </SelectArea>
@@ -167,7 +171,9 @@ const WriteBasicInfo3 = () => {
                 {options.map((option, index) => (
                   <div
                     key={index}
-                    className="custom-option"
+                    className={`custom-option ${
+                      selectedOptions.includes(option) ? "selected" : ""
+                    }`}
                     onClick={() => handleOptionClick(option)}
                   >
                     {option}
@@ -199,7 +205,7 @@ const WriteBasicInfo4 = () => {
       <div className="basic-info-box">
         <span className="info-title">모집 포지션</span>
         <div className="select-box">
-          <select name="positions" id="positions" className="select-bar">
+          <StyledSelect name="positions" id="positions" className="select-bar">
             <option value="" disabled selected>
               프론트엔드, 백엔드...
             </option>
@@ -208,13 +214,13 @@ const WriteBasicInfo4 = () => {
             <option value="designer">디자이너</option>
             <option value="planner">기획자</option>
             <option value="etc">기타</option>
-          </select>
+          </StyledSelect>
         </div>
       </div>
       <div className="basic-info-box">
         <span className="info-title">연락 방법</span>
         <div className="select-box">
-          <select
+          <StyledSelect
             name="contactMethod"
             id="contactMethod"
             className="select-bar"
@@ -225,7 +231,7 @@ const WriteBasicInfo4 = () => {
             <option value="opentalk">오픈톡</option>
             <option value="email">이메일</option>
             <option value="googleform">구글 폼</option>
-          </select>
+          </StyledSelect>
         </div>
       </div>
     </SelectArea>
@@ -266,6 +272,7 @@ const SelectArea = styled.div`
     border-radius: 5px;
     padding: 10px;
   }
+
   .left-bar {
     width: 396px;
     height: 53px;
@@ -276,28 +283,31 @@ const SelectArea = styled.div`
     margin-bottom: 10px;
     background-color: #fff; /* 흰색 배경 추가 */
   }
+
   .right-bar,
   #date {
-    width: 396px; /* 넓이 설정 */
-    height: 53px; /* 높이 설정 */
-    padding: 0 15px; /* 내부 여백 */
-    border: 1px solid #ccc; /* 테두리 색상 */
-    border-radius: 5px; /* 테두리 둥글기 */
-    font-size: 13px; /* 글꼴 크기 */
-    margin-bottom: 10px; /* 박스 간 여백 */
+    width: 396px;
+    height: 53px;
+    padding: 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 13px;
+    margin-bottom: 10px;
   }
+
   .custom-dropdown {
     position: absolute;
-    top: 80%;
+    top: 95%;
     left: 0%;
-    width: 99.4%; /* 드롭다운 넓이 */
-    max-height: 200px; /* 최대 높이 설정 */
-    overflow-y: auto; /* 스크롤 가능하도록 */
+    width: 99.6%;
+    max-height: 200px;
+    overflow-y: auto;
     border: 1px solid #ccc;
     border-top: none;
     border-radius: 0 0 4px 4px;
     background-color: #fff;
     z-index: 1000;
+    cursor: pointer;
   }
 
   p {
@@ -305,5 +315,49 @@ const SelectArea = styled.div`
     font-size: 14px;
     margin-top: 16px;
     cursor: pointer;
+  }
+
+  .custom-option {
+    color: #000;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  .custom-option:hover:not(.selected) {
+    background-color: #d5ffd5;
+  }
+
+  .custom-option.selected {
+    background-color: #14cc14;
+    color: #fff;
+  }
+`;
+
+const StyledSelect = styled.select`
+  width: 100%;
+  height: 55px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  color: #000;
+  font-size: 13px;
+
+  &:hover {
+    background-color: #d5ffd5;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #14cc14;
+  }
+
+  option {
+    color: #000;
+    background-color: #fff;
+  }
+
+  option:checked {
+    background-color: #14cc14;
+    color: #fff;
   }
 `;

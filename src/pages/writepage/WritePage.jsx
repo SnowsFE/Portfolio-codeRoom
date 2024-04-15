@@ -7,6 +7,7 @@ import {
 } from "../../components/ui/WriteBasicInfo";
 import Nav from "../../components/ui/Nav.jsx";
 import { useNavigate } from "react-router-dom";
+import UpScroll from "../../components/ui/UpScroll.jsx";
 import CodeRoomIcon from "../../img/CodeRoomIcon.png";
 
 const WritePage = () => {
@@ -30,6 +31,7 @@ const WritePage = () => {
   return (
     <>
       <Nav />
+      <UpScroll />
       <BasicInfoContainer>
         <h2>모집 정보</h2>
         <hr />
@@ -112,6 +114,7 @@ const BasicInfoContainer = styled.section`
   position: relative;
   height: 640px;
   width: 53%;
+  min-width: 1280px;
   min-width: 1000px;
   /* border: solid 1px black; */
   margin: 0 auto;
