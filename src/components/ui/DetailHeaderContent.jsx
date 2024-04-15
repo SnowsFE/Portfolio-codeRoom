@@ -13,7 +13,6 @@ const DetailTitle = () => {
   const [writer, setWriter] = useState("빌게이츠"); //작성자
   const [writeDt, setWriteDt] = useState("2024.04.03"); //작성 일자
   const [view, setView] = useState(23); //조회수
-  // console.log("pull request-test");
 
   return (
     <StudyContentContainer>
@@ -33,6 +32,7 @@ const DetailTitle = () => {
           <span>{view}</span>
         </div>
       </DetailUserInfo>
+      <DetailSubContent></DetailSubContent>
       <hr
         style={{
           height: "2px",
@@ -40,7 +40,6 @@ const DetailTitle = () => {
           border: "none",
         }}
       />
-      <DetailSubContent></DetailSubContent>
     </StudyContentContainer>
   );
 };
@@ -92,6 +91,7 @@ const DetailSubContent = () => {
         </li>
         <li>
           <span className="sub-title">사용 언어</span>
+
           <span>
             <img src={svgFiles[23]} alt="" />
           </span>
