@@ -5,7 +5,6 @@ import JoinPage from "./pages/loginpage/JoinPage";
 import DetailPage from "./pages/detailpage/DetailPage";
 import WritePage from "./pages/writepage/WritePage.jsx";
 import TestConnection from "./pages/server-test-page/ServerTest.jsx";
-
 import React from "react";
 import "./App.css";
 import MainPage from "./pages/MainPage/MainPage.jsx";

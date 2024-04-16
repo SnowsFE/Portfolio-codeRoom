@@ -322,6 +322,7 @@ const SelectedOptionBox = styled.span`
   border-radius: 5px; /* 모서리 둥글게 */
   padding: 7px;
   align-items: center;
+  border: 1px solid #14cc14;
 
   span {
     margin-left: 3px;
