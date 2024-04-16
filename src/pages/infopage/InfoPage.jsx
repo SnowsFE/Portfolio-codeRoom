@@ -9,7 +9,7 @@ const InfoPage = () => {
   return (
     <div>
       <HeaderInfo>
-        <h4>Coding-room Project</h4>
+        <h4 onClick={() => navigator("/")}>Coding-room Project</h4>
         <h1>
           프로젝트 & 스터디 모집과 <br /> 트랜드 파악을 한번에
         </h1>
@@ -72,6 +72,7 @@ const HeaderInfo = styled.section`
     margin-bottom: 25px;
     font-weight: 700;
     font-size: 24px;
+    cursor: pointer;
   }
   h1 {
     font-weight: 700;
