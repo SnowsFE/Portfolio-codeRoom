@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import CodeRoom from "../../img/CodeRoom.png";
-import BackGroundColorChanger from "./BackGroundColorChanger";
+import BackGroundColorChanger from "./MyHomeNavigate";
 
 // 네비게이션 컴포넌트 정의
 const Nav = () => {

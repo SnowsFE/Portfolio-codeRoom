@@ -126,13 +126,10 @@ const BodyInfoContainer = styled.section`
     opacity: 0.5;
 
     &::placeholder {
+      /* placeholder 스타일링 */
       color: #aaa;
-      &::placeholder {
-        /* placeholder 스타일링 */
-        color: #aaa; /* 원하는 색상으로 설정 */
-        font-size: 18px;
-        font-style: italic;
-      }
+      font-size: 20px;
+      font-style: italic;
     }
   }
 

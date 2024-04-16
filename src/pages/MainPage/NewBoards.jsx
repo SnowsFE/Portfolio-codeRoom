@@ -8,9 +8,9 @@ import {
   STUDY_STATUS,
   NEW_STATUS,
   SUB_END_TEXT_PREFIX,
-} from "../../constants/BoardsConstants.jsx";
+} from "../../constants/NewBoardsConstants.jsx";
 
-const NewBoards = ({ subMainText, projectStatus, StudyStatus, subEndText }) => {
+const NewBoards = ({}) => {
   const [views, setViews] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const [projects, setProjects] = useState([
     {
@@ -18,7 +18,7 @@ const NewBoards = ({ subMainText, projectStatus, StudyStatus, subEndText }) => {
       projectStatus: "🎥 프로젝트",
       StudyStatusStatus: "✏️ 스터디",
       NewStatus: "",
-      subEndText: "2024.04.26",
+      subEndText: "2024.07.27",
       subMainText: "[FrontEnd, BackEnd] 웹페이지 개발자 구인합니다!",
       views: 0,
     },
@@ -204,12 +204,12 @@ const NewBoards = ({ subMainText, projectStatus, StudyStatus, subEndText }) => {
       >
         <NewBoxContent>
           {project.projectStatus && (
-            <ProjectStatus>{project.projectStatus}</ProjectStatus>
+            <ProjectStatus>{`${PROJECT_STATUS}`}</ProjectStatus>
           )}
           {project.StudyStatus && (
-            <ProjectStatus>{project.StudyStatus}</ProjectStatus>
+            <ProjectStatus>{`${STUDY_STATUS}`}</ProjectStatus>
           )}
-          <NewStatus>{project.NewStatus}</NewStatus>
+          <NewStatus>{`${NEW_STATUS}`}</NewStatus>
           <NewSubEnd>
             <strong>{`${SUB_END_TEXT_PREFIX} ${project.subEndText}`}</strong>
           </NewSubEnd>

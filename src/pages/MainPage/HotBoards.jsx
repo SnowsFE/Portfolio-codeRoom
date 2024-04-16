@@ -3,43 +3,51 @@ import axios from "axios";
 import styled from "styled-components";
 import Skill from "./Skill.jsx";
 import { useNavigate } from "react-router-dom";
+import {
+  PROJECT_STATUS,
+  STUDY_STATUS,
+  DEADLINE_STATUS,
+  SUB_END_TEXT_PREFIX,
+} from "../../constants/HotBoardsConstants.jsx";
 
-const HotBoards = (props) => {
+const HotBoards = ({}) => {
   // 조회수와 프로젝트 상태를 관리하는 상태 변수 설정
   const [views, setViews] = useState([0, 0, 0, 0]);
   const [projects, setProjects] = useState([
     {
       id: 1,
       projectStatus: "🎥 프로젝트",
-      deadlineStatus: "🚨 마감 1일전",
-      subEndText: "마감일 | 2024.04.05",
+      StudyStatusStatus: "✏️ 스터디",
+      deadlineStatus: "",
+      subEndText: "2024.7.30",
       subMainText: "[FrontEnd, BackEnd] 웹페이지 개발자 구인합니다!",
       views: 0,
     },
     {
       id: 2,
-      projectStatus: "✏️ 스터디",
-      deadlineStatus: "🚨 마감 7일전",
-      subEndText: "마감일 | 2024.04.11",
-      subMainText: "이번 주 종로 KG ITBANK에서 함께 공부하실 학우분 구합니다!",
+      projectStatus: "🎥 프로젝트",
+      StudyStatusStatus: "✏️ 스터디",
+      deadlineStatus: "",
+      subEndText: "2024.7.25",
+      subMainText: "[FrontEnd, BackEnd] 웹페이지 개발자 구인합니다!",
       views: 0,
     },
     {
       id: 3,
       projectStatus: "🎥 프로젝트",
-      deadlineStatus: "🚨 마감 14일전",
-      subEndText: "마감일 | 2024.04.18",
-      subMainText:
-        "완료된 프로젝트 배포 도와주실 분 구합니다!! [사례금 100만원!!]",
+      StudyStatusStatus: "✏️ 스터디",
+      deadlineStatus: "",
+      subEndText: "2024.7.25",
+      subMainText: "[FrontEnd, BackEnd] 웹페이지 개발자 구인합니다!",
       views: 0,
     },
     {
       id: 4,
-      projectStatus: "✏️ 스터디",
-      deadlineStatus: "🚨 마감 21일전",
-      subEndText: "마감일 | 2024.04.25",
-      subMainText:
-        "코딩룸 웹사이트가 신규 오픈했대요!! 같이 개발 공부하실 분 구합니다!!",
+      projectStatus: "🎥 프로젝트",
+      StudyStatusStatus: "✏️ 스터디",
+      deadlineStatus: "",
+      subEndText: "2024.7.25",
+      subMainText: "[FrontEnd, BackEnd] 웹페이지 개발자 구인합니다!",
       views: 0,
     },
   ]);
@@ -60,14 +68,14 @@ const HotBoards = (props) => {
   // }, []); // 빈 의존성 배열을 전달하여 컴포넌트 마운트 시 한 번만 호출되도록 합니다.
 
   const handleClick = async (index) => {
-    const newViews = [...views];
-    newViews[index] += 1;
-    setViews(newViews);
+    const HotViews = [...views];
+    HotViews[index] += 1;
+    setViews(HotViews);
 
     try {
       await axios.post("/updateViews/", {
         projectId: projects[index].id,
-        views: newViews[index],
+        views: HotViews[index],
       });
     } catch (error) {
       console.error("조회수를 업데이트하는데 실패했습니다.", error);
@@ -78,20 +86,28 @@ const HotBoards = (props) => {
     });
   };
 
-  // HotBox 렌더링 함수 정의
   const renderHotBox = (index) => {
     const project = projects[index];
+    // 마감일까지 남은 일수 계산
+    const today = new Date();
+    const endDate = new Date(project.subEndText);
+    const remainingDays = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
+
+    // DEADLINE_STATUS 상수를 사용하여 마감일 문자열을 생성
+    const deadlineStatusText = DEADLINE_STATUS.replace(
+      "{remainingDays}",
+      remainingDays
+    );
+
     return (
-      <HotBox
-        key={index}
-        className={`HotBox${index + 1}`}
-        onClick={() => handleClick(index)}
-      >
+      <HotBox key={index} onClick={() => handleClick(index)}>
         <HotBoxContent>
-          <ProjectStatus>{project.projectStatus}</ProjectStatus>
-          <DeadlineStatus>{project.deadlineStatus}</DeadlineStatus>
+          <ProjectStatus>
+            {project.projectStatus || project.StudyStatus}
+          </ProjectStatus>
+          <DeadlineStatus>{deadlineStatusText}</DeadlineStatus>
           <HotSubEnd>
-            <strong>{project.subEndText}</strong>
+            <strong>{`${SUB_END_TEXT_PREFIX} ${project.subEndText}`}</strong>
           </HotSubEnd>
           <HotSubMain>
             <strong>{project.subMainText}</strong>
@@ -180,7 +196,7 @@ const DeadlineStatus = styled.div`
   display: flex; /* 플렉스 박스 사용 */
   justify-content: center; /* 가로 중앙 정렬 */
   align-items: center; /* 세로 중앙 정렬 */
-  width: 28.37%; /* 너비 */
+  width: 30.4%; /* 너비 */
   height: 16px; /* 높이 */
   padding: 2px 8px; /* 안쪽 여백 설정 */
   border-radius: 20px; /* 테두리 반경 설정 */
