@@ -4,6 +4,7 @@ import LoginPage from "./pages/loginpage/LoginPage";
 import JoinPage from "./pages/loginpage/JoinPage";
 import DetailPage from "./pages/detailpage/DetailPage";
 import WritePage from "./pages/writepage/WritePage.jsx";
+import TestConnection from "./pages/server-test-page/ServerTest.jsx";
 
 import React from "react";
 import MainPage from "./pages/MainPage/MainPage.jsx";
@@ -19,6 +20,8 @@ function App() {
         <Route path="/users/join" element={<JoinPage />}></Route>
         <Route path="/detail/:id" element={<DetailPage />}></Route>
         <Route path="/boards" element={<WritePage />}></Route>
+        {/* 서버 연결 테스트 코드 */}
+        <Route path="/test" element={<TestConnection />}></Route>
       </Routes>
     </div>
   );
