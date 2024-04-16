@@ -19,7 +19,7 @@ const DetailComment = () => {
           id=""
           cols="30"
           rows="10"
-          placeholder="  댓글을 입력하세요"
+          placeholder="댓글을 입력하세요"
         ></CommentStyledTextArea>
         <button>댓글 등록</button>
       </CommentContainer>
@@ -45,7 +45,9 @@ const DetailComment = () => {
         </div>
         <li className="write-dt">작성일자 </li>
         <li className="comment">댓글 내용 </li>
-        <hr />
+        <div>
+          <Underline />
+        </div>
       </Comments>
       <Comments>
         <div className="writer-area">
@@ -54,7 +56,9 @@ const DetailComment = () => {
         </div>
         <li className="write-dt">작성일자 </li>
         <li className="comment">댓글 내용 </li>
-        <hr />
+        <div>
+          <Underline />
+        </div>
       </Comments>
       <Comments>
         <div className="writer-area">
@@ -63,7 +67,9 @@ const DetailComment = () => {
         </div>
         <li className="write-dt">작성일자 </li>
         <li className="comment">댓글 내용 </li>
-        <hr />
+        <div>
+          <Underline />
+        </div>
       </Comments>
     </>
   );
@@ -93,6 +99,7 @@ const CommentStyledTextArea = styled.textarea`
   border-radius: 15px;
   outline: none;
   border: 2px solid grey;
+  font-size: 20px; /*작성 댓글 크기*/
   opacity: 0.3;
   &::placeholder {
     /* placeholder 스타일링 */
@@ -126,16 +133,17 @@ const Comments = styled.ul`
     margin-bottom: 8px;
   }
 
-  hr {
-    height: 2px;
-    background-color: rgb(113, 113, 113);
-    border: none;
-  }
-
   .writer-area {
     display: flex;
     flex-direction: row;
   }
+`;
+
+const Underline = styled.hr`
+  height: 2px;
+  background-color: rgb(113, 113, 113);
+  border: none;
+  opacity: 0.2;
 `;
 
 export default DetailComment;
