@@ -143,10 +143,10 @@ const WriteBasicInfo3 = () => {
       );
       setSelectedOptions(filteredOptions);
     } else {
-      if (selectedOptions.length < 5) {
+      if (selectedOptions.length < 3) {
         setSelectedOptions([...selectedOptions, option]);
       } else {
-        alert("최대 5개까지만 선택할 수 있습니다.");
+        alert("최대 3개까지만 선택할 수 있습니다.");
       }
     }
   };
@@ -170,22 +170,21 @@ const WriteBasicInfo3 = () => {
             {selectedOptions.length > 0 ? (
               <p>
                 {selectedOptions.map((option, index) => (
-                  <span key={index} style={{ marginRight: "10px" }}>
-                    {/* 여기서 선택된 옵션을 표시합니다. */}
-                    {/* `⚙` 아이콘을 추가합니다. */}
+                  <SelectedOptionBox key={index}>
                     <code>{option}</code>
                     <span
                       onClick={() => handleRemoveOption(option)}
-                      style={{ cursor: "pointer", marginLeft: "5px" }}
+                      style={{ cursor: "pointer" }}
                     >
-                      ⚙
+                      ✖️
                     </span>
-                  </span>
+                  </SelectedOptionBox>
                 ))}
               </p>
             ) : (
               <p>프로젝트 사용기술</p>
             )}
+            <span className="dropdown-icon">🧶</span>{" "}
             {isOpen && (
               <div className="custom-dropdown">
                 {options.map((option, index) => (
@@ -240,6 +239,13 @@ const WriteBasicInfo4 = () => {
     }
   };
 
+  const handleRemoveOption = (option) => {
+    const filteredOptions = selectedOptions.filter(
+      (selectedOption) => selectedOption !== option
+    );
+    setSelectedOptions(filteredOptions);
+  };
+
   return (
     <SelectArea>
       <div className="basic-info-box">
@@ -247,12 +253,24 @@ const WriteBasicInfo4 = () => {
         <div className="select-box">
           <div className="left-bar" onClick={toggleDropdown}>
             {selectedOptions.length > 0 ? (
-              <p>{selectedOptions.join(", ")}</p>
+              <p>
+                {" "}
+                {selectedOptions.map((option, index) => (
+                  <SelectedOptionBox key={index}>
+                    <code>{option}</code>
+                    <span
+                      onClick={() => handleRemoveOption(option)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      ✖️
+                    </span>
+                  </SelectedOptionBox>
+                ))}
+              </p>
             ) : (
               <p>포지션을 선택하세요</p>
             )}
             <span className="dropdown-icon">🧶</span>{" "}
-            {/* 이 부분을 추가합니다 */}
             {isOpen && (
               <div className="custom-dropdown">
                 {options.map((option, index) => (
@@ -293,6 +311,18 @@ const WriteBasicInfo4 = () => {
 };
 
 export { WriteBasicInfo1, WriteBasicInfo2, WriteBasicInfo3, WriteBasicInfo4 };
+
+const SelectedOptionBox = styled.span`
+  background-color: #d5ffd5; /* 연한 초록색 배경 */
+  margin-right: 10px; /* 우측 마진 */
+  border-radius: 5px; /* 모서리 둥글게 */
+  padding: 7px;
+  align-items: center;
+
+  span {
+    margin-left: 3px;
+  }
+`;
 
 const SelectArea = styled.div`
   display: flex;
@@ -344,7 +374,7 @@ const SelectArea = styled.div`
     width: 396px;
     height: 53px;
     padding: 0 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
     border-radius: 5px;
     font-size: 13px;
     margin-bottom: 10px;
