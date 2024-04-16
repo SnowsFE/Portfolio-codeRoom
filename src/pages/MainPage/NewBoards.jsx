@@ -3,39 +3,47 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const NewBoards = () => {
+import {
+  PROJECT_STATUS,
+  STUDY_STATUS,
+  NEW_STATUS,
+  SUB_END_TEXT_PREFIX,
+} from "../../constants/BoardsConstants.jsx";
+
+const NewBoards = ({ subMainText, projectStatus, StudyStatus, subEndText }) => {
   const [views, setViews] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   const [projects, setProjects] = useState([
     {
       id: 5,
       projectStatus: "🎥 프로젝트",
-      NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "마감일 | 2024.04.26",
+      StudyStatusStatus: "✏️ 스터디",
+      NewStatus: "",
+      subEndText: "2024.04.26",
       subMainText: "[FrontEnd, BackEnd] 웹페이지 개발자 구인합니다!",
       views: 0,
     },
     {
       id: 6,
-      projectStatus: "✏️ 스터디",
-      NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "마감일 | 2024.04.26",
+      projectStatus: "🎥 프로젝트",
+      NewStatus: "",
+      subEndText: "2024.04.26",
       subMainText: "이번 주 종로 KG ITBANK에서 함께 공부하실 학우분 구합니다!",
       views: 0,
     },
     {
       id: 7,
       projectStatus: "🎥 프로젝트",
-      NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "마감일 | 2024.04.26",
+      NewStatus: "",
+      subEndText: "2024.04.26",
       subMainText:
         "완료된 프로젝트 배포 도와주실 분 구합니다!! [사례금 100만원!!]",
       views: 0,
     },
     {
       id: 8,
-      projectStatus: "✏️ 스터디",
-      NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "마감일 | 2024.04.26",
+      projectStatus: "🎥 프로젝트",
+      NewStatus: "",
+      subEndText: "2024.04.26",
       subMainText:
         "코딩룸 웹사이트가 신규 오픈했대요!! 같이 개발 공부하실 분 구합니다!!",
       views: 0,
@@ -44,7 +52,7 @@ const NewBoards = () => {
       id: 9,
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "마감일 | 2024.04.26",
+      subEndText: "2024.04.26",
       subMainText: "[iOS, Android] 앱 개발자를 모집합니다!",
       views: 0,
     },
@@ -52,7 +60,7 @@ const NewBoards = () => {
       id: 10,
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "마감일 | 2024.04.26",
+      subEndText: "2024.04.26",
       subMainText: "인턴 개발자를 찾습니다. 기초 지식 필수!",
       views: 0,
     },
@@ -60,7 +68,7 @@ const NewBoards = () => {
       id: 11,
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "마감일 | 2024.04.26",
+      subEndText: "2024.04.26",
       subMainText: "[UI/UX] 디자이너를 구합니다. 창의력과 열정 필수!",
       views: 0,
     },
@@ -68,7 +76,7 @@ const NewBoards = () => {
       id: 12,
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "마감일 | 2024.04.26",
+      subEndText: "2024.04.26",
       subMainText: "문서 작성자를 모집합니다. 글쓰기 능력 중요!",
       views: 0,
     },
@@ -76,7 +84,7 @@ const NewBoards = () => {
       id: 13,
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "마감일 | 2024.04.26",
+      subEndText: "2024.04.26",
       subMainText: "[FullStack] 웹 개발자를 찾습니다. 경력 우대!",
       views: 0,
     },
@@ -84,7 +92,7 @@ const NewBoards = () => {
       id: 14,
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "마감일 | 2024.04.26",
+      subEndText: "2024.04.26",
       subMainText: "[Unity, Unreal] 게임 개발자를 모집합니다!",
       views: 0,
     },
@@ -92,14 +100,14 @@ const NewBoards = () => {
       id: 15,
       projectStatus: "🎥 프로젝트",
       NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "마감일 | 2024.04.26",
+      subEndText: "2024.04.26",
       subMainText: "[Python, R] 데이터 분석가를 찾습니다. 통계학 지식 필요!",
     },
     {
       id: 16,
       projectStatus: "✏️ 스터디",
       NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "마감일 | 2024.04.26",
+      subEndText: "2024.04.26",
       subMainText:
         "품질 보증(QA) 테스터를 모집합니다. 테스트 자동화 경험 우대!",
       views: 0,
@@ -108,46 +116,10 @@ const NewBoards = () => {
       id: 17,
       projectStatus: "🍱 점심 메뉴",
       NewStatus: "🍖 배고파",
-      subEndText: "마감일 | 2024.04.31",
+      subEndText: "2024.04.31",
       subMainText: "종로 3가 최고의 맛집 리스트를 소개합니다!!",
       views: 0,
     },
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
   ]);
 
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
@@ -231,10 +203,15 @@ const NewBoards = () => {
         onClick={() => handleClick(index)}
       >
         <NewBoxContent>
-          <ProjectStatus>{project.projectStatus}</ProjectStatus>
+          {project.projectStatus && (
+            <ProjectStatus>{project.projectStatus}</ProjectStatus>
+          )}
+          {project.StudyStatus && (
+            <ProjectStatus>{project.StudyStatus}</ProjectStatus>
+          )}
           <NewStatus>{project.NewStatus}</NewStatus>
           <NewSubEnd>
-            <strong>{project.subEndText}</strong>
+            <strong>{`${SUB_END_TEXT_PREFIX} ${project.subEndText}`}</strong>
           </NewSubEnd>
           <NewSubMain>
             <strong>{project.subMainText}</strong>

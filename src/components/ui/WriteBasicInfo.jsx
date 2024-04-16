@@ -235,7 +235,11 @@ const WriteBasicInfo4 = () => {
       );
       setSelectedOptions(filteredOptions);
     } else {
-      setSelectedOptions([...selectedOptions, option]);
+      if (selectedOptions.length < 3) {
+        setSelectedOptions([...selectedOptions, option]);
+      } else {
+        alert("최대 3개까지만 선택할 수 있습니다.");
+      }
     }
   };
 
@@ -367,6 +371,9 @@ const SelectArea = styled.div`
     font-size: 13px;
     margin-bottom: 10px;
     background-color: #fff; /* 흰색 배경 추가 */
+    &:hover {
+      background-color: #d5ffd5;
+    }
   }
 
   .right-bar,
@@ -378,6 +385,13 @@ const SelectArea = styled.div`
     border-radius: 5px;
     font-size: 13px;
     margin-bottom: 10px;
+    &:hover {
+      background-color: #d5ffd5;
+    }
+    &:focus {
+      outline: none;
+      border-color: #14cc14;
+    }
   }
 
   .custom-dropdown {
@@ -387,7 +401,7 @@ const SelectArea = styled.div`
     width: 99.6%;
     max-height: 200px;
     overflow-y: auto;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
     border-top: none;
     border-radius: 0 0 4px 4px;
     background-color: #fff;

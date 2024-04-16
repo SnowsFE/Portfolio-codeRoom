@@ -16,7 +16,7 @@ const Footer = () => {
           <FooterLink to="/Info">
             <span>코드룸 소개</span>
           </FooterLink>
-          <FooterLink to="/terms">
+          <FooterLink to="/MyPage">
             <span>이용약관</span>
           </FooterLink>
           <FooterLink to="/privacy">

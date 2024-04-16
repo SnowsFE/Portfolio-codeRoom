@@ -7,8 +7,9 @@ import WritePage from "./pages/writepage/WritePage.jsx";
 import TestConnection from "./pages/server-test-page/ServerTest.jsx";
 
 import React from "react";
-import MainPage from "./pages/MainPage/MainPage.jsx";
 import "./App.css";
+import MainPage from "./pages/MainPage/MainPage.jsx";
+import MyPage from "./pages/MainPage/MyPage.jsx";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/users/join" element={<JoinPage />}></Route>
         <Route path="/detail/:id" element={<DetailPage />}></Route>
         <Route path="/boards" element={<WritePage />}></Route>
+        <Route path="/MyPage" element={<MyPage />} />
         {/* 서버 연결 테스트 코드 */}
         <Route path="/test" element={<TestConnection />}></Route>
       </Routes>
