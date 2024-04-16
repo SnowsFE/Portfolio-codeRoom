@@ -150,6 +150,12 @@ const WriteBasicInfo3 = () => {
       }
     }
   };
+  const handleRemoveOption = (option) => {
+    const filteredOptions = selectedOptions.filter(
+      (selectedOption) => selectedOption !== option
+    );
+    setSelectedOptions(filteredOptions);
+  };
 
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
@@ -162,7 +168,21 @@ const WriteBasicInfo3 = () => {
         <div className="select-box">
           <div className="left-bar" onClick={toggleDropdown}>
             {selectedOptions.length > 0 ? (
-              <p>{selectedOptions.join(", ")}</p>
+              <p>
+                {selectedOptions.map((option, index) => (
+                  <span key={index} style={{ marginRight: "10px" }}>
+                    {/* 여기서 선택된 옵션을 표시합니다. */}
+                    {/* `⚙` 아이콘을 추가합니다. */}
+                    <code>{option}</code>
+                    <span
+                      onClick={() => handleRemoveOption(option)}
+                      style={{ cursor: "pointer", marginLeft: "5px" }}
+                    >
+                      ⚙
+                    </span>
+                  </span>
+                ))}
+              </p>
             ) : (
               <p>프로젝트 사용기술</p>
             )}
@@ -231,6 +251,8 @@ const WriteBasicInfo4 = () => {
             ) : (
               <p>포지션을 선택하세요</p>
             )}
+            <span className="dropdown-icon">🧶</span>{" "}
+            {/* 이 부분을 추가합니다 */}
             {isOpen && (
               <div className="custom-dropdown">
                 {options.map((option, index) => (
@@ -287,6 +309,7 @@ const SelectArea = styled.div`
     display: block;
     margin-bottom: 20px;
     font-weight: bold;
+    text-align: left;
   }
 
   .select-box {
@@ -362,6 +385,13 @@ const SelectArea = styled.div`
   .custom-option.selected {
     background-color: #14cc14;
     color: #fff;
+  }
+
+  .dropdown-icon {
+    position: absolute;
+    margin-left: 43%;
+    margin-top: -8%;
+    cursor: pointer;
   }
 `;
 
