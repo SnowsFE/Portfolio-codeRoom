@@ -2,7 +2,7 @@ import React from "react";
 import styled, { keyframes, createGlobalStyle } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-// 버튼 반짝임 애니메이션
+// 버튼 반짝 애니메이션
 const glow = keyframes`
   0% {
     background-position: 0% 50%;
