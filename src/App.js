@@ -3,6 +3,7 @@ import InfoPage from "./pages/infopage/InfoPage";
 import LoginPage from "./pages/loginpage/LoginPage";
 import JoinPage from "./pages/loginpage/JoinPage";
 import DetailPage from "./pages/detailpage/DetailPage";
+import WritePage from "./pages/writepage/WritePage.jsx";
 
 import React from "react";
 import MainPage from "./pages/MainPage/MainPage.jsx";
@@ -17,6 +18,7 @@ function App() {
         <Route path="/users/login" element={<LoginPage />}></Route>
         <Route path="/users/join" element={<JoinPage />}></Route>
         <Route path="/detail/:id" element={<DetailPage />}></Route>
+        <Route path="/boards" element={<WritePage />}></Route>
       </Routes>
     </div>
   );
