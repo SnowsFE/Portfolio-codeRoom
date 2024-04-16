@@ -49,7 +49,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 // 배경색 변경 컴포넌트
-const BackGroundColorChanger = () => {
+const MyHomeNavigate = () => {
   const navigate = useNavigate(); // useNavigate 훅 사용
 
   // 버튼 클릭 시 "/MyPage"로 이동하는 함수
@@ -65,4 +65,4 @@ const BackGroundColorChanger = () => {
   );
 };
 
-export default BackGroundColorChanger;
+export default MyHomeNavigate;

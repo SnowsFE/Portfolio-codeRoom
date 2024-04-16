@@ -153,7 +153,7 @@ const SkillJobButton = styled.button`
   margin: 5px; /* 마진 설정 */
   padding: 10px; /* 안쪽 여백 설정 */
   background-color: #ffffff; /* 배경색 설정 */
-  box-shadow: 0px 2px 4px rgb(152, 255, 138); /* 그림자 설정 */
+  box-shadow: 0px 2px 4px #14cc14; /* 그림자 설정 */
   border: none; /* 테두리 제거 */
   border-radius: 4px; /* 테두리 반경 설정 */
   cursor: pointer; /* 커서 설정 */
