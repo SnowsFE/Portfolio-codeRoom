@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
-//
+
 const WriteBasicInfo1 = () => {
   return (
     <SelectArea>
@@ -143,12 +143,18 @@ const WriteBasicInfo3 = () => {
       );
       setSelectedOptions(filteredOptions);
     } else {
-      if (selectedOptions.length < 5) {
+      if (selectedOptions.length < 3) {
         setSelectedOptions([...selectedOptions, option]);
       } else {
-        alert("최대 5개까지만 선택할 수 있습니다.");
+        alert("최대 3개까지만 선택할 수 있습니다.");
       }
     }
+  };
+  const handleRemoveOption = (option) => {
+    const filteredOptions = selectedOptions.filter(
+      (selectedOption) => selectedOption !== option
+    );
+    setSelectedOptions(filteredOptions);
   };
 
   const handleDateChange = (event) => {
@@ -162,10 +168,23 @@ const WriteBasicInfo3 = () => {
         <div className="select-box">
           <div className="left-bar" onClick={toggleDropdown}>
             {selectedOptions.length > 0 ? (
-              <p>{selectedOptions.join(", ")}</p>
+              <p>
+                {selectedOptions.map((option, index) => (
+                  <SelectedOptionBox key={index}>
+                    <code>{option}</code>
+                    <span
+                      onClick={() => handleRemoveOption(option)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      ✖️
+                    </span>
+                  </SelectedOptionBox>
+                ))}
+              </p>
             ) : (
               <p>프로젝트 사용기술</p>
             )}
+            <span className="dropdown-icon">🧶</span>{" "}
             {isOpen && (
               <div className="custom-dropdown">
                 {options.map((option, index) => (
@@ -200,21 +219,74 @@ const WriteBasicInfo3 = () => {
 };
 
 const WriteBasicInfo4 = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const options = ["프론트엔드", "백엔드", "디자이너", "기획자", "기타"];
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleOptionClick = (option) => {
+    if (selectedOptions.includes(option)) {
+      const filteredOptions = selectedOptions.filter(
+        (selectedOption) => selectedOption !== option
+      );
+      setSelectedOptions(filteredOptions);
+    } else {
+      setSelectedOptions([...selectedOptions, option]);
+    }
+  };
+
+  const handleRemoveOption = (option) => {
+    const filteredOptions = selectedOptions.filter(
+      (selectedOption) => selectedOption !== option
+    );
+    setSelectedOptions(filteredOptions);
+  };
+
   return (
     <SelectArea>
       <div className="basic-info-box">
         <span className="info-title">모집 포지션</span>
         <div className="select-box">
-          <StyledSelect name="positions" id="positions" className="select-bar">
-            <option value="" disabled selected>
-              프론트엔드, 백엔드...
-            </option>
-            <option value="frontend">프론트엔드</option>
-            <option value="backend">백엔드</option>
-            <option value="designer">디자이너</option>
-            <option value="planner">기획자</option>
-            <option value="etc">기타</option>
-          </StyledSelect>
+          <div className="left-bar" onClick={toggleDropdown}>
+            {selectedOptions.length > 0 ? (
+              <p>
+                {" "}
+                {selectedOptions.map((option, index) => (
+                  <SelectedOptionBox key={index}>
+                    <code>{option}</code>
+                    <span
+                      onClick={() => handleRemoveOption(option)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      ✖️
+                    </span>
+                  </SelectedOptionBox>
+                ))}
+              </p>
+            ) : (
+              <p>포지션을 선택하세요</p>
+            )}
+            <span className="dropdown-icon">🧶</span>{" "}
+            {isOpen && (
+              <div className="custom-dropdown">
+                {options.map((option, index) => (
+                  <div
+                    key={index}
+                    className={`custom-option ${
+                      selectedOptions.includes(option) ? "selected" : ""
+                    }`}
+                    onClick={() => handleOptionClick(option)}
+                  >
+                    {option}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="basic-info-box">
@@ -240,6 +312,18 @@ const WriteBasicInfo4 = () => {
 
 export { WriteBasicInfo1, WriteBasicInfo2, WriteBasicInfo3, WriteBasicInfo4 };
 
+const SelectedOptionBox = styled.span`
+  background-color: #d5ffd5; /* 연한 초록색 배경 */
+  margin-right: 10px; /* 우측 마진 */
+  border-radius: 5px; /* 모서리 둥글게 */
+  padding: 7px;
+  align-items: center;
+
+  span {
+    margin-left: 3px;
+  }
+`;
+
 const SelectArea = styled.div`
   display: flex;
   justify-content: center;
@@ -255,6 +339,7 @@ const SelectArea = styled.div`
     display: block;
     margin-bottom: 20px;
     font-weight: bold;
+    text-align: left;
   }
 
   .select-box {
@@ -289,7 +374,7 @@ const SelectArea = styled.div`
     width: 396px;
     height: 53px;
     padding: 0 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
     border-radius: 5px;
     font-size: 13px;
     margin-bottom: 10px;
@@ -330,6 +415,13 @@ const SelectArea = styled.div`
   .custom-option.selected {
     background-color: #14cc14;
     color: #fff;
+  }
+
+  .dropdown-icon {
+    position: absolute;
+    margin-left: 43%;
+    margin-top: -8%;
+    cursor: pointer;
   }
 `;
 
