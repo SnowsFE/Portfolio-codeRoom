@@ -1,7 +1,11 @@
 import { useParams } from "react-router";
-import { DetailTitle } from "../../components/ui/DetailHeaderContent";
+import {
+  DetailTitle,
+  DetailSubContent,
+} from "../../components/ui/DetailHeaderContent";
 import DetailContentBody from "../../components/ui/DetailBodyContent";
 import DetailComment from "../../components/ui/DetailComment";
+import { svgFiles, fileNames } from "../../constants/fileNames";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
@@ -23,6 +27,11 @@ const DetailPage = () => {
   const [recruitField, setRecruitField] = useState([]); //모집 분야
   const [language, setLanguage] = useState([]); //사용 언어 ex) spring
 
+  const langIndex = [];
+
+  //sample data
+  let sampleLanguages = ["spring", "react"];
+
   // todo 서버에서 detail 데이터를 받아오기
   useEffect(() => {
     const getBoardData = async () => {
@@ -40,15 +49,40 @@ const DetailPage = () => {
         setContact(res.data);
         setDuration(res.data);
         setRecruitField(res.data);
-        setLanguage(res.data);
+        await setLanguage(res.data);
+        findFileNames();
       } catch (error) {}
     };
   }, []);
 
+  // 서버로 부터 받은 langes 들에 대한 이미지 경로를 찾아주는 함수
+  const findFileNames = () => {
+    sampleLanguages.forEach((lang) => {
+      langIndex.push(fileNames.indexOf(lang));
+    });
+    console.log("lang index: " + langIndex);
+    console.log("lang 확인: " + svgFiles[langIndex[0]]);
+  };
+
   return (
     <div>
-      <DetailTitle></DetailTitle>
-      <DetailContentBody></DetailContentBody>
+      <DetailTitle
+        title={title}
+        writer={writer}
+        writeDt={writeDt}
+        view={view}
+        langIndex={langIndex}
+      ></DetailTitle>
+      <DetailContentBody
+        recruitType={recruitType}
+        progressMethod={progressMethod}
+        recruitMember={recruitMember}
+        plan={plan}
+        contact={contact}
+        duration={duration}
+        recruitField={recruitField}
+        language={language}
+      ></DetailContentBody>
       <DetailComment></DetailComment>
     </div>
   );
