@@ -1,9 +1,25 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 import CodeRoomIcon from "../../img/CodeRoomIcon.png";
 
 const DetailComment = () => {
   const [comments, setComments] = useState([]); //댓글 (댓글 작성자 + 댓글 작성 일자)
+  const [comment, setComment] = useState(""); //사용자가 작성하는 댓글
+  const navigator = useNavigate();
+
+  // 댓글 작성 (서버와 통신)
+  const commentHandler = async (e) => {
+    try {
+      const res = await axios.post("/comment", {
+        comment,
+      });
+      // 댓글 작성 성공시 해당 게시판으로 리다이랙트
+      // 서버로부터 게시판 아이디 받으면 좋을 것 같음
+      navigator("/boards/0");
+    } catch (error) {}
+  };
 
   let sampleComments = [
     { writer: "1번", writeDt: "2024.01.01", comment: "댓글 1번" },
@@ -20,11 +36,15 @@ const DetailComment = () => {
           cols="30"
           rows="10"
           placeholder="댓글을 입력하세요"
+          onChange={(e) => {
+            setComment(e.target.value);
+          }}
         ></CommentStyledTextArea>
-        <button>댓글 등록</button>
+        <button onClick={() => commentHandler()}>댓글 등록</button>
       </CommentContainer>
 
-      {/* {sampleComments.map((comment, index) => {
+      {/* 댓글 보여주기 */}
+      {sampleComments.map((comment, index) => {
         return (
           <Comments>
             <div className="writer-area">
@@ -33,47 +53,17 @@ const DetailComment = () => {
             </div>
             <li className="write-dt">{comment.writeDt} </li>
             <li className="comment">{comment.comment} </li>
-            <hr />
+            <div>
+              <Underline />
+            </div>
           </Comments>
         );
-      })} */}
-
-      <Comments>
-        <div className="writer-area">
-          <img src={CodeRoomIcon} alt="" />
-          <li className="writer">작성자</li>
-        </div>
-        <li className="write-dt">작성일자 </li>
-        <li className="comment">댓글 내용 </li>
-        <div>
-          <Underline />
-        </div>
-      </Comments>
-      <Comments>
-        <div className="writer-area">
-          <img src={CodeRoomIcon} alt="" />
-          <li className="writer">작성자</li>
-        </div>
-        <li className="write-dt">작성일자 </li>
-        <li className="comment">댓글 내용 </li>
-        <div>
-          <Underline />
-        </div>
-      </Comments>
-      <Comments>
-        <div className="writer-area">
-          <img src={CodeRoomIcon} alt="" />
-          <li className="writer">작성자</li>
-        </div>
-        <li className="write-dt">작성일자 </li>
-        <li className="comment">댓글 내용 </li>
-        <div>
-          <Underline />
-        </div>
-      </Comments>
+      })}
     </>
   );
 };
+
+export default DetailComment;
 
 const CommentContainer = styled.div`
   display: flex;
@@ -81,7 +71,6 @@ const CommentContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 80px;
-  /* border: 1px solid black; */
   button {
     width: 100px;
     height: 50px;
@@ -145,5 +134,3 @@ const Underline = styled.hr`
   border: none;
   opacity: 0.2;
 `;
-
-export default DetailComment;

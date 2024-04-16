@@ -114,6 +114,7 @@ const BodyInfoContainer = styled.section`
     outline: none;
     border: 2px solid grey;
     font-style: italic;
+    font-size: 15px;
     opacity: 0.5;
   }
 
@@ -123,6 +124,7 @@ const BodyInfoContainer = styled.section`
     border-radius: 15px;
     outline: none;
     border: 2px solid grey;
+    font-size: 20px;
     opacity: 0.5;
 
     &::placeholder {
