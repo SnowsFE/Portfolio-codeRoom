@@ -14,6 +14,18 @@ const DetailTitle = () => {
   const [writeDt, setWriteDt] = useState("2024.04.03"); //작성 일자
   const [view, setView] = useState(23); //조회수
 
+  let sampleLanguages = ["spring", "react", "java"];
+  const langIndex = [];
+  // 서버로 부터 받은 langes 들에 대한 이미지 경로를 찾아주는 함수
+  const findFileNames = () => {
+    sampleLanguages.forEach((lang) => {
+      langIndex.push(fileNames.indexOf(lang));
+    });
+    console.log("lang index: " + langIndex);
+    console.log("lang 확인: " + svgFiles[langIndex[0]]);
+  };
+  findFileNames();
+
   return (
     <StudyContentContainer>
       <DetailBackArrowImgArea onClick={() => navigator(-1)}>
@@ -32,7 +44,7 @@ const DetailTitle = () => {
           <span>{view}</span>
         </div>
       </DetailUserInfo>
-      <DetailSubContent></DetailSubContent>
+      <DetailSubContent langIndex={langIndex}></DetailSubContent>
       <hr
         style={{
           height: "2px",
@@ -45,7 +57,7 @@ const DetailTitle = () => {
 };
 
 // 모집 구분, 진행 방식, 모집 인원 ...
-const DetailSubContent = () => {
+const DetailSubContent = ({ langIndex }) => {
   const [recruitType, setRecruitType] = useState(""); //모집구분
   const [progressMethod, setProgressMethod] = useState(""); //진행방식
   const [recruitMember, setRecruitMember] = useState(null); //모집인원
@@ -92,7 +104,17 @@ const DetailSubContent = () => {
         <li>
           <span className="sub-title">사용 언어</span>
 
-          <span>
+          {/* 배열에 따른 반복문 처리 Todo*/}
+          {langIndex.map((index) => {
+            console.log("반복문 확인: " + index);
+            return (
+              <span>
+                <img src={svgFiles[index]} alt="" />
+              </span>
+            );
+          })}
+
+          {/* <span>
             <img src={svgFiles[23]} alt="" />
           </span>
           <span>
@@ -100,7 +122,7 @@ const DetailSubContent = () => {
           </span>
           <span>
             <img src={svgFiles[25]} alt="" />
-          </span>
+          </span> */}
         </li>
       </ul>
     </DetailSubContentContainer>

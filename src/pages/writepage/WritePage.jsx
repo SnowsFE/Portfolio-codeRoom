@@ -6,7 +6,7 @@ import {
   WriteBasicInfo3,
   WriteBasicInfo4,
 } from "../../components/ui/WriteBasicInfo";
-import Nav from "../../components/ui/Nav.jsx";
+import LoginNav from "../../components/ui/LoginNav.jsx";
 import { useNavigate } from "react-router-dom";
 import UpScroll from "../../components/ui/UpScroll.jsx";
 import CodeRoomIcon from "../../img/CodeRoomIcon.png";
@@ -31,7 +31,7 @@ const WritePage = () => {
 
   return (
     <>
-      <Nav />
+      <LoginNav />
       <UpScroll />
       <BasicInfoContainer>
         <h2>모집 정보</h2>

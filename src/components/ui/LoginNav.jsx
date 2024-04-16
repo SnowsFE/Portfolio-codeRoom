@@ -1,10 +1,24 @@
 import React from "react";
+import axios from "axios";
 import styled from "styled-components";
 import CodeRoom from "../../img/CodeRoom.png";
 import BackGroundColorChanger from "./BackGroundColorChanger";
 
 // 네비게이션 컴포넌트 정의
-const Nav = () => {
+const LoginNav = () => {
+  // 로그아웃 (서버와 통신)
+  const logoutHandler = async (e) => {
+    try {
+      const res = await axios.post("/users/logout", {});
+      // 로그아웃 성공하면 세션스토리지 데이터 삭제 Todo
+      // sessionStorage.removeItem("username");
+    } catch (error) {
+      if (e.res.data.status === 500) {
+        alert("서버측 오류 발생");
+      }
+    }
+  };
+
   return (
     // 네비게이션 바를 감싸는 컨테이너 박스
     <NaviBox>
@@ -19,10 +33,9 @@ const Nav = () => {
             <span> 글쓰기</span>
           </a>
         </Right1>
+        {/*axios 요청을 위해 a 태그 대신 span 태그 사용 */}
         <Right2>
-          <a href="/users/login">
-            <span>로그인</span>
-          </a>
+          <span onClick={() => logoutHandler()}>로그아웃</span>
         </Right2>
         <Separator />
         <BackGroundColorChanger />
@@ -72,7 +85,7 @@ const Right1 = styled.div`
     text-decoration: none; /* 밑줄 없애기 */
     display: block; /* 블록 레벨 요소로 설정 */
     position: absolute; /* 절대 위치 설정 */
-    right: 175px; /* 오른쪽 여백 175px */
+    right: 185px; /* 오른쪽 여백 185px */
     bottom: 20px; /* 아래쪽 여백 20px */
     font-size: 18px; /* 폰트 크기 18px */
     font-weight: 800; /* 폰트 두껍게 설정 */
@@ -81,7 +94,7 @@ const Right1 = styled.div`
 
 // 오른쪽에 위치한 링크 스타일
 const Right2 = styled.div`
-  a {
+  span {
     color: black; /* 글자색 검정색 */
     text-decoration: none; /* 밑줄 없애기 */
     display: block; /* 블록 레벨 요소로 설정 */
@@ -91,6 +104,7 @@ const Right2 = styled.div`
     bottom: 20px; /* 아래쪽 여백 20px */
     font-size: 18px; /* 폰트 크기 18px */
     font-weight: 800; /* 폰트 두껍게 설정 */
+    cursor: pointer;
   }
 `;
 
@@ -103,4 +117,4 @@ const Separator = styled.div`
   top: 64px; /* 상단 여백 64px */
 `;
 
-export default Nav; // 네비게이션 컴포넌트 내보내기
+export default LoginNav; // 로그인 네비게이션 컴포넌트 내보내기
