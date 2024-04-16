@@ -1,6 +1,5 @@
 import React from "react";
 import styled, { keyframes, createGlobalStyle } from "styled-components";
-// useHistory 대신 useNavigate import
 import { useNavigate } from "react-router-dom";
 
 // 버튼 반짝임 애니메이션
