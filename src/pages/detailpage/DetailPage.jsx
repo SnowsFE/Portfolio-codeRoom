@@ -26,11 +26,7 @@ const DetailPage = () => {
   const [duration, setDuration] = useState(""); //예상 기간
   const [recruitField, setRecruitField] = useState([]); //모집 분야
   const [language, setLanguage] = useState([]); //사용 언어 ex) spring
-
-  const langIndex = [];
-
-  //sample data
-  let sampleLanguages = ["spring", "react"];
+  const [comments, setComments] = useState([]); //댓글
 
   // todo 서버에서 detail 데이터를 받아오기
   useEffect(() => {
@@ -50,19 +46,9 @@ const DetailPage = () => {
         setDuration(res.data);
         setRecruitField(res.data);
         await setLanguage(res.data);
-        findFileNames();
       } catch (error) {}
     };
   }, []);
-
-  // 서버로 부터 받은 langes 들에 대한 이미지 경로를 찾아주는 함수
-  const findFileNames = () => {
-    sampleLanguages.forEach((lang) => {
-      langIndex.push(fileNames.indexOf(lang));
-    });
-    console.log("lang index: " + langIndex);
-    console.log("lang 확인: " + svgFiles[langIndex[0]]);
-  };
 
   return (
     <div>
@@ -71,7 +57,7 @@ const DetailPage = () => {
         writer={writer}
         writeDt={writeDt}
         view={view}
-        langIndex={langIndex}
+        language={language}
       ></DetailTitle>
       <DetailContentBody
         recruitType={recruitType}

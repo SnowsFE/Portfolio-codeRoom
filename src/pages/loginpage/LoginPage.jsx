@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { LoginLogo, LoginBelowImg } from "../../components/ui/LoginLogo";
+import Nav from "../../components/ui/Nav.jsx";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -41,32 +42,35 @@ const LoginPage = () => {
   };
 
   return (
-    <LoginContentsCotainer>
-      <LoginForm>
-        <LoginLogo></LoginLogo>
-        <LoginInput
-          type="text"
-          placeholder="username"
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-        />
-        <LoginInput
-          type="text"
-          placeholder="password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <LoginButtonContainer>
-          <LoginButton onClick={(e) => handleLogin(e)}>로그인</LoginButton>
-          <SignUpButton onClick={() => navigator("/users/join")}>
-            회원가입
-          </SignUpButton>
-        </LoginButtonContainer>
-      </LoginForm>
-      <LoginBelowImg></LoginBelowImg>
-    </LoginContentsCotainer>
+    <>
+      <Nav />
+      <LoginContentsCotainer>
+        <LoginForm>
+          <LoginLogo></LoginLogo>
+          <LoginInput
+            type="text"
+            placeholder="username"
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
+          <LoginInput
+            type="text"
+            placeholder="password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+          <LoginButtonContainer>
+            <LoginButton onClick={(e) => handleLogin(e)}>로그인</LoginButton>
+            <SignUpButton onClick={() => navigator("/users/join")}>
+              회원가입
+            </SignUpButton>
+          </LoginButtonContainer>
+        </LoginForm>
+        <LoginBelowImg></LoginBelowImg>
+      </LoginContentsCotainer>
+    </>
   );
 };
 
@@ -88,10 +92,9 @@ const LoginContentsCotainer = styled.div`
 const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: center;
   width: 60%;
-  height: 400px;
+  height: 350px;
   padding: 30px; // 폼 안의 패딩을 20px에서 50px로 증가
   border-radius: 10px;
   box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);

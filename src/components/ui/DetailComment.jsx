@@ -5,6 +5,12 @@ import CodeRoomIcon from "../../img/CodeRoomIcon.png";
 const DetailComment = () => {
   const [comments, setComments] = useState([]); //댓글 (댓글 작성자 + 댓글 작성 일자)
 
+  let sampleComments = [
+    { writer: "1번", writeDt: "2024.01.01", comment: "댓글 1번" },
+    { writer: "2번", writeDt: "2024.01.01", comment: "댓글 2번" },
+    { writer: "3번", writeDt: "2024.01.01", comment: "댓글 3번" },
+  ];
+
   return (
     <>
       <CommentContainer>
@@ -17,6 +23,21 @@ const DetailComment = () => {
         ></CommentStyledTextArea>
         <button>댓글 등록</button>
       </CommentContainer>
+
+      {/* {sampleComments.map((comment, index) => {
+        return (
+          <Comments>
+            <div className="writer-area">
+              <img src={CodeRoomIcon} alt="" />
+              <li className="writer">{comment.writer}</li>
+            </div>
+            <li className="write-dt">{comment.writeDt} </li>
+            <li className="comment">{comment.comment} </li>
+            <hr />
+          </Comments>
+        );
+      })} */}
+
       <Comments>
         <div className="writer-area">
           <img src={CodeRoomIcon} alt="" />
