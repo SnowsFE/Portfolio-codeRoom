@@ -4,6 +4,7 @@ import CodeRoomIcon from "../../img/CodeRoomIcon.png";
 
 const DetailComment = () => {
   const [comments, setComments] = useState([]); //댓글 (댓글 작성자 + 댓글 작성 일자)
+  const [comment, setComment] = useState(""); //사용자가 작성하는 댓글
 
   let sampleComments = [
     { writer: "1번", writeDt: "2024.01.01", comment: "댓글 1번" },
@@ -20,11 +21,12 @@ const DetailComment = () => {
           cols="30"
           rows="10"
           placeholder="댓글을 입력하세요"
+          onChange={(e) => setComment(e)}
         ></CommentStyledTextArea>
         <button>댓글 등록</button>
       </CommentContainer>
 
-      {/* {sampleComments.map((comment, index) => {
+      {sampleComments.map((comment, index) => {
         return (
           <Comments>
             <div className="writer-area">
@@ -33,12 +35,14 @@ const DetailComment = () => {
             </div>
             <li className="write-dt">{comment.writeDt} </li>
             <li className="comment">{comment.comment} </li>
-            <hr />
+            <div>
+              <Underline />
+            </div>
           </Comments>
         );
-      })} */}
+      })}
 
-      <Comments>
+      {/* <Comments>
         <div className="writer-area">
           <img src={CodeRoomIcon} alt="" />
           <li className="writer">작성자</li>
@@ -70,7 +74,7 @@ const DetailComment = () => {
         <div>
           <Underline />
         </div>
-      </Comments>
+      </Comments> */}
     </>
   );
 };
@@ -81,7 +85,6 @@ const CommentContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 80px;
-  /* border: 1px solid black; */
   button {
     width: 100px;
     height: 50px;
