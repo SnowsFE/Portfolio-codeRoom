@@ -63,7 +63,7 @@ const GlobalStyle = createGlobalStyle`
 // 배경색 변경 컴포넌트
 const BackGroundColorChanger = () => {
   const [backgroundColor, setBackgroundColor] = useState("#ffffff"); // 배경색 상태 관리
-  const [buttonEmoji, setButtonEmoji] = useState("🎨"); // 버튼 이모지 상태 관리
+  const [buttonEmoji, setButtonEmoji] = useState("🏡"); // 버튼 이모지 상태 관리
   const colorPickerRef = useRef(null); // 색상 선택기에 대한 참조 생성
 
   // 색상 선택기 열기 함수
