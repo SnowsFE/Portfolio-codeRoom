@@ -54,26 +54,31 @@ const HotBoards = ({}) => {
 
   const navigate = useNavigate();
 
+  // -------------------------------------------- axios 통신
+  // 프로젝트 데이터를 서버에서 가져오는 역할
   // useEffect(() => {
   //   const fetchProjects = async () => {
   //     try {
-  //       const res = await axios.get("/"); // API 엔드포인트를 확인하세요.
-  //       setProjects(res.data); // 응답의 데이터 구조에 맞게 접근해야 합니다. res.data가 맞는지 확인하세요.
+  //       const res = await axios.get("/boards");
+  //       setProjects(res.data.projects);
   //     } catch (error) {
   //       console.error("프로젝트를 불러오는데 실패했습니다.", error);
   //     }
   //   };
 
   //   fetchProjects();
-  // }, []); // 빈 의존성 배열을 전달하여 컴포넌트 마운트 시 한 번만 호출되도록 합니다.
+  // }, []);
+  // -------------------------------------------- axios 통신
 
+  // -------------------------------------------- axios 통신
+  // 클라이언트 측에서 프로젝트 조회수 업데이트를 위한 axios POST 요청
   const handleClick = async (index) => {
     const HotViews = [...views];
     HotViews[index] += 1;
     setViews(HotViews);
 
     try {
-      await axios.post("/updateViews/", {
+      await axios.post("/boardViews/", {
         projectId: projects[index].id,
         views: HotViews[index],
       });
@@ -85,6 +90,7 @@ const HotBoards = ({}) => {
       state: { project: projects[index] },
     });
   };
+  // -------------------------------------------- axios 통신
 
   const renderHotBox = (index) => {
     const project = projects[index];

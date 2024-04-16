@@ -145,6 +145,23 @@ const NewBoards = ({}) => {
   );
 
   const navigate = useNavigate();
+  // -------------------------------------------- axios 통신
+  // 프로젝트 데이터를 서버에서 가져오는 역할
+  // useEffect(() => {
+  //   // 컴포넌트가 마운트될 때 한 번만 데이터를 가져옴
+  //   fetchData();
+  // }, []);
+
+  // // 서버에서 프로젝트 데이터를 가져오는 함수
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axios.get("/projects");
+  //     setProjects(response.data); // 받아온 데이터로 상태 업데이트
+  //   } catch (error) {
+  //     console.error("프로젝트 데이터를 가져오는 데 실패했습니다.", error);
+  //   }
+  // };
+  // -------------------------------------------- axios 통신
 
   // 클릭 이벤트 핸들러 함수
   const handleClick = async (index) => {
@@ -152,6 +169,8 @@ const NewBoards = ({}) => {
     newViews[index] += 1;
     setViews(newViews);
 
+    // -------------------------------------------- axios 통신
+    // 프로젝트의 조회수를 업데이트하고, 그 후 해당 프로젝트의 상세 페이지로 이동
     try {
       await axios.post("/updateViews/", {
         projectId: projects[index].id,
@@ -166,6 +185,7 @@ const NewBoards = ({}) => {
     });
   };
 
+  // -------------------------------------------- axios 통신
   const renderNewBox = (index) => {
     // projects 배열이 비어있는 경우, 모든 페이지에서 메시지를 표시합니다.
     if (projects.length === 1 && projects[0].isEmpty) {
@@ -246,6 +266,8 @@ const NewBoards = ({}) => {
     }
   };
 
+  // -------------------------------------------- axios 통신
+  // 사용자의 검색어에 따라 서버에서 프로젝트 데이터를 가져와서 화면에 표시하는 역할
   const AddProjects = async () => {
     try {
       const response = await axios.get(
@@ -259,10 +281,10 @@ const NewBoards = ({}) => {
       }
     } catch (error) {
       console.error("검색된 프로젝트가 없습니다!", error);
-      // 오류 발생시에도 비슷한 방식으로 처리할 수 있습니다.
       setProjects([{ isEmpty: true }]);
     }
   };
+  // -------------------------------------------- axios 통신
 
   return (
     <div>
