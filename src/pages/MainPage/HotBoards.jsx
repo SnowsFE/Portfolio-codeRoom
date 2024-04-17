@@ -15,7 +15,7 @@ const HotBoards = ({}) => {
   const [views, setViews] = useState([0, 0, 0, 0]);
   const [projects, setProjects] = useState([
     {
-      id: 1,
+      id: 0,
       projectStatus: "🎥 프로젝트",
       StudyStatusStatus: "✏️ 스터디",
       deadlineStatus: "",
@@ -78,7 +78,7 @@ const HotBoards = ({}) => {
     setViews(HotViews);
 
     try {
-      await axios.post("/boardViews/", {
+      await axios.post("/boardVsiews/", {
         projectId: projects[index].id,
         views: HotViews[index],
       });
@@ -86,7 +86,7 @@ const HotBoards = ({}) => {
       console.error("조회수를 업데이트하는데 실패했습니다.", error);
     }
 
-    navigate(`/board/${projects[index].id}`, {
+    navigate(`/boards/${projects[index].id}`, {
       state: { project: projects[index] },
     });
   };
