@@ -83,7 +83,7 @@ const DetailSubContent = ({ langIndex }) => {
           <span className="sub-content">인원 미정</span>
         </li>
         <li>
-          <span className="sub-title">시작 예정</span>
+          <span className="sub-title">모집 마감일</span>
           <span className="sub-content">2024.04.07</span>
         </li>
         <li>
@@ -91,7 +91,7 @@ const DetailSubContent = ({ langIndex }) => {
           <span className="sub-field">오픈톡</span>
         </li>
         <li>
-          <span className="sub-title">예상 기간</span>
+          <span className="sub-title">진행 기간</span>
           <span className="sub-content">2개월</span>
         </li>
         <li>

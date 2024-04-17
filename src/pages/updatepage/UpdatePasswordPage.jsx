@@ -17,7 +17,7 @@ const UpdatePasswordPage = () => {
 
     // 서버와 로그인 통신
     try {
-      const response = await axios.post("/users/userId/", {
+      const response = await axios.put("/users", {
         currentPassword,
         configPassword,
       });
