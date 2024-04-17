@@ -9,6 +9,7 @@ import {
 import LoginNav from "../../components/ui/LoginNav.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import UpScroll from "../../components/ui/UpScroll.jsx";
+import axios from "axios";
 
 const UpdatePage = () => {
   const navigate = useNavigate();

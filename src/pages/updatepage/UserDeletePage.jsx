@@ -21,6 +21,7 @@ const UserDeletePage = () => {
       });
       console.log("회원 삭제 데이터: " + response.data);
       // 세션 스토리지 데이터 삭제
+      sessionStorage.clear();
       navigator("/");
     } catch (e) {
       if (e.response && e.response.status === 404) {
