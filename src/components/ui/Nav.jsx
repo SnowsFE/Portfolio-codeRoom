@@ -15,7 +15,7 @@ const Nav = () => {
           </a>
         </Left>
         <Right1>
-          <a href="/boards">
+          <a href="/boards/write">
             <span> 글쓰기</span>
           </a>
         </Right1>

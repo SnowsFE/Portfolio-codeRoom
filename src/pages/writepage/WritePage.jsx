@@ -9,7 +9,6 @@ import {
 import LoginNav from "../../components/ui/LoginNav.jsx";
 import { useNavigate } from "react-router-dom";
 import UpScroll from "../../components/ui/UpScroll.jsx";
-import CodeRoomIcon from "../../img/CodeRoomIcon.png";
 
 const WritePage = () => {
   const navigate = useNavigate();
