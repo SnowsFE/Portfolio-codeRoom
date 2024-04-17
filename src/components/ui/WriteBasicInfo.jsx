@@ -1,7 +1,26 @@
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const WriteBasicInfo1 = () => {
+  // -------------------------------------------- axios 통신
+  const [recruitment, setRecruitment] = useState([]);
+
+  useEffect(() => {
+    const fetchRecruitment = async () => {
+      try {
+        // 백엔드에서 모집 인원 옵션 데이터를 가져오는 요청을 보냅니다.
+        const response = await axios.get("/recruitment");
+        setRecruitment(response.data);
+      } catch (error) {
+        console.error("Error fetching recruitment count options:", error);
+      }
+    };
+
+    fetchRecruitment();
+  }, []);
+  // -------------------------------------------- axios 통신
+
   return (
     <SelectArea>
       <div className="basic-info-box">
@@ -49,6 +68,34 @@ const WriteBasicInfo1 = () => {
 };
 
 const WriteBasicInfo2 = () => {
+  // -------------------------------------------- axios 통신
+  const [Progress, setProgress] = useState([]);
+  const [Duration, setDuration] = useState([]);
+
+  useEffect(() => {
+    const fetchProgress = async () => {
+      try {
+        const response = await axios.get("/progress");
+        setProgress(response.data);
+      } catch (error) {
+        console.error("진행 방식을 다시 선택해주세요", error);
+      }
+    };
+
+    const fetchDuration = async () => {
+      try {
+        const response = await axios.get("/Duration");
+        setDuration(response.data);
+      } catch (error) {
+        console.error("진행 기간을 다시 선택해주세요", error);
+      }
+    };
+
+    fetchProgress();
+    fetchDuration();
+  }, []);
+  // -------------------------------------------- axios 통신
+
   return (
     <SelectArea>
       <div className="basic-info-box">
@@ -96,6 +143,34 @@ const WriteBasicInfo3 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
+
+  // -------------------------------------------- axios 통신
+  const [techStackOptions, setTechStackOptions] = useState([]);
+  const [deadline, setDeadline] = useState("");
+
+  useEffect(() => {
+    const fetchTechStackOptions = async () => {
+      try {
+        const response = await axios.get("/techStackOptions");
+        setTechStackOptions(response.data);
+      } catch (error) {
+        console.error("Error fetching tech stack options:", error);
+      }
+    };
+
+    const fetchDeadline = async () => {
+      try {
+        const response = await axios.get("/deadline");
+        setDeadline(response.data.deadline);
+      } catch (error) {
+        console.error("Error fetching deadline:", error);
+      }
+    };
+
+    fetchTechStackOptions();
+    fetchDeadline();
+  }, []);
+  // -------------------------------------------- axios 통신
 
   const options = [
     "JavaScript",
@@ -221,6 +296,34 @@ const WriteBasicInfo3 = () => {
 const WriteBasicInfo4 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
+
+  // -------------------------------------------- axios 통신
+  const [positions, setPositions] = useState([]);
+  const [contactMethods, setContactMethods] = useState([]);
+
+  useEffect(() => {
+    const fetchPositions = async () => {
+      try {
+        const response = await axios.get("/positions");
+        setPositions(response.data);
+      } catch (error) {
+        console.error("Error fetching positions:", error);
+      }
+    };
+
+    const fetchContactMethods = async () => {
+      try {
+        const response = await axios.get("/contactMethods");
+        setContactMethods(response.data);
+      } catch (error) {
+        console.error("Error fetching contact methods:", error);
+      }
+    };
+
+    fetchPositions();
+    fetchContactMethods();
+  }, []);
+  // -------------------------------------------- axios 통신
 
   const options = ["프론트엔드", "백엔드", "디자이너", "기획자", "기타"];
 
