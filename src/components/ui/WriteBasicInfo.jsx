@@ -4,19 +4,31 @@ import axios from "axios";
 
 const WriteBasicInfo1 = () => {
   // -------------------------------------------- axios 통신
+  const [recruit, setRecruit] = useState([]);
   const [recruitment, setRecruitment] = useState([]);
 
   useEffect(() => {
     const fetchRecruitment = async () => {
       try {
-        // 백엔드에서 모집 인원 옵션 데이터를 가져오는 요청을 보냅니다.
+        // 백엔드에서 모집 구분 옵션 데이터를 가져오는 요청을 보냅니다.
         const response = await axios.get("/recruitment");
         setRecruitment(response.data);
       } catch (error) {
-        console.error("Error fetching recruitment count options:", error);
+        console.error("모집 구분 옵션을 가져오는 중 오류 발생", error);
       }
     };
 
+    const fetchRecruit = async () => {
+      try {
+        // 백엔드에서 모집 인원 옵션 데이터를 가져오는 요청을 보냅니다.
+        const response = await axios.get("/recruit");
+        setRecruit(response.data);
+      } catch (error) {
+        console.error("모집 인원 옵션을 가져오는 중 오류 발생", error);
+      }
+    };
+
+    fetchRecruit();
     fetchRecruitment();
   }, []);
   // -------------------------------------------- axios 통신
@@ -78,7 +90,7 @@ const WriteBasicInfo2 = () => {
         const response = await axios.get("/progress");
         setProgress(response.data);
       } catch (error) {
-        console.error("진행 방식을 다시 선택해주세요", error);
+        console.error("진행 방식 옵션을 가져오는 중 오류 발생", error);
       }
     };
 
@@ -87,7 +99,7 @@ const WriteBasicInfo2 = () => {
         const response = await axios.get("/Duration");
         setDuration(response.data);
       } catch (error) {
-        console.error("진행 기간을 다시 선택해주세요", error);
+        console.error("진행 기간 옵션을 가져오는 중 오류 발생", error);
       }
     };
 
@@ -154,7 +166,7 @@ const WriteBasicInfo3 = () => {
         const response = await axios.get("/techStackOptions");
         setTechStackOptions(response.data);
       } catch (error) {
-        console.error("Error fetching tech stack options:", error);
+        console.error("기술 스택 옵션을 가져오는 중 오류 발생", error);
       }
     };
 
@@ -163,7 +175,7 @@ const WriteBasicInfo3 = () => {
         const response = await axios.get("/deadline");
         setDeadline(response.data.deadline);
       } catch (error) {
-        console.error("Error fetching deadline:", error);
+        console.error("마감일 옵션을 가져오는 중 오류 발생", error);
       }
     };
 
@@ -307,7 +319,7 @@ const WriteBasicInfo4 = () => {
         const response = await axios.get("/positions");
         setPositions(response.data);
       } catch (error) {
-        console.error("Error fetching positions:", error);
+        console.error("모집 포지션 옵션을 가져오는 중 오류 발생", error);
       }
     };
 
@@ -316,7 +328,7 @@ const WriteBasicInfo4 = () => {
         const response = await axios.get("/contactMethods");
         setContactMethods(response.data);
       } catch (error) {
-        console.error("Error fetching contact methods:", error);
+        console.error("연락 방법 옵션을 가져오는 중 오류 발생", error);
       }
     };
 
