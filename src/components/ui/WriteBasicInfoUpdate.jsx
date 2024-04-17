@@ -158,8 +158,12 @@ const WriteBasicInfo2 = () => {
 
 const WriteBasicInfo3 = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedOptions, setSelectedOptions] = useState([
+    "React",
+    "TypeScript",
+    "Node.js",
+  ]);
+  const [selectedDate, setSelectedDate] = useState("2024-04-20");
 
   const options = [
     "JavaScript",
@@ -284,7 +288,11 @@ const WriteBasicInfo3 = () => {
 
 const WriteBasicInfo4 = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState([
+    "프론트엔드",
+    "백엔드",
+  ]);
+  const [contactMethod, setContactMethod] = useState("오픈톡");
 
   const options = ["프론트엔드", "백엔드", "디자이너", "기획자", "기타"];
 
@@ -314,6 +322,10 @@ const WriteBasicInfo4 = () => {
     setSelectedOptions(filteredOptions);
   };
 
+  const handleContactMethodChange = (event) => {
+    setContactMethod(event.target.value);
+  };
+
   return (
     <SelectArea>
       <div className="basic-info-box">
@@ -322,7 +334,6 @@ const WriteBasicInfo4 = () => {
           <div className="left-bar" onClick={toggleDropdown}>
             {selectedOptions.length > 0 ? (
               <p>
-                {" "}
                 {selectedOptions.map((option, index) => (
                   <SelectedOptionBox key={index}>
                     <code>{option}</code>
@@ -338,23 +349,23 @@ const WriteBasicInfo4 = () => {
             ) : (
               <p>포지션을 선택하세요</p>
             )}
-            <span className="dropdown-icon">🧶</span>{" "}
-            {isOpen && (
-              <div className="custom-dropdown">
-                {options.map((option, index) => (
-                  <div
-                    key={index}
-                    className={`custom-option ${
-                      selectedOptions.includes(option) ? "selected" : ""
-                    }`}
-                    onClick={() => handleOptionClick(option)}
-                  >
-                    {option}
-                  </div>
-                ))}
-              </div>
-            )}
+            <span className="dropdown-icon">🧶</span>
           </div>
+          {isOpen && (
+            <div className="custom-dropdown">
+              {options.map((option, index) => (
+                <div
+                  key={index}
+                  className={`custom-option ${
+                    selectedOptions.includes(option) ? "selected" : ""
+                  }`}
+                  onClick={() => handleOptionClick(option)}
+                >
+                  {option}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <div className="basic-info-box">
@@ -364,8 +375,10 @@ const WriteBasicInfo4 = () => {
             name="contactMethod"
             id="contactMethod"
             className="select-bar"
+            value={contactMethod}
+            onChange={handleContactMethodChange}
           >
-            <option value="" disabled selected>
+            <option value="" disabled>
               카카오톡 오픈채팅..
             </option>
             <option value="opentalk">오픈톡</option>
