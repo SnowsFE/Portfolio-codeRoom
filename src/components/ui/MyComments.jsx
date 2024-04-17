@@ -24,7 +24,7 @@ const MyComments = () => {
   //제목 길이를 조정하는 함수
   const titleCheck = (boards) => {
     boards.forEach((board) => {
-      let sliceTitle = truncateString(board.title, 15);
+      let sliceTitle = truncateString(board.title, 20);
       console.log("길이 조정" + sliceTitle);
       board.title = sliceTitle;
     });
@@ -66,7 +66,9 @@ const MyComments = () => {
           {sampleComments.map((board, index) => {
             return (
               <tr>
-                <td>{board.title}</td>
+                <td>
+                  <a href={`/boards/${board.boardId}`}>{board.title}</a>
+                </td>
                 <td>{board.commentNum}</td>
                 <td>{board.writeDt}</td>
                 <td>
@@ -93,6 +95,11 @@ const MyComments = () => {
 };
 
 const MyBoardsContainer = styled.div`
+  a {
+    text-decoration: none; /* 기본 텍스트 밑줄 제거 */
+    color: inherit; /* 기본 링크 색상 상속 */
+  }
+
   table {
     width: 700px;
     text-align: center;

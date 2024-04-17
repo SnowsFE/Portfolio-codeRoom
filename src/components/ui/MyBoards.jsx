@@ -13,7 +13,7 @@ const MyBoards = () => {
       boardId: "0",
     },
     {
-      title: "제목 222222222222222222222222222222222222",
+      title: "제목 2",
       writerDt: "2024.01.01",
       views: "13",
       boardId: "1",
@@ -38,12 +38,12 @@ const MyBoards = () => {
   }
   titleCheck(sampleBoards);
 
-  // 조회 클릭시 해당 게시판으로 이동
+  // 수정 클릭시 해당 게시판으로 이동
   const inquery = (boardId) => {
-    navigator(`/boards?=${boardId}/update`);
+    navigator(`/boards/${boardId}/update`);
   };
 
-  // 삭제 클릭시 해당 게시판 삭제
+  // 삭제 클릭시 해당 게시판 삭제 (서버 통신)
   const deleteBoard = async (boardId) => {
     const res = await axios.delete(`/boards/${boardId}`);
     console.log("데이터 삭제: " + res.data);
@@ -57,8 +57,8 @@ const MyBoards = () => {
         <thead>
           <tr>
             <th>제목</th>
-            <th>작성일자</th>
             <th>조회수</th>
+            <th>작성일자</th>
             <th>관리</th>
           </tr>
         </thead>
@@ -69,8 +69,8 @@ const MyBoards = () => {
                 <td>
                   <a href={`/boards/${board.boardId}`}>{board.title}</a>
                 </td>
-                <td>{board.writerDt}</td>
                 <td>{board.views}</td>
+                <td>{board.writerDt}</td>
                 <td>
                   <button class="view" onClick={() => inquery(board.boardId)}>
                     수정

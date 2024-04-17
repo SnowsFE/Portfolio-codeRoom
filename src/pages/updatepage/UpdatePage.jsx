@@ -5,13 +5,14 @@ import {
   WriteBasicInfo2,
   WriteBasicInfo3,
   WriteBasicInfo4,
-} from "../../components/ui/WriteBasicInfo";
+} from "../../components/ui/WriteBasicInfoUpdate.jsx";
 import LoginNav from "../../components/ui/LoginNav.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import UpScroll from "../../components/ui/UpScroll.jsx";
 
 const UpdatePage = () => {
   const navigate = useNavigate();
+  let param = useParams(); //게시판 아이디는 param.id 로 접근
 
   return (
     <>
