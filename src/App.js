@@ -6,6 +6,8 @@ import DetailPage from "./pages/detailpage/DetailPage";
 import WritePage from "./pages/writepage/WritePage.jsx";
 import UpdatePage from "./pages/updatepage/UpdatePage.jsx";
 import TestConnection from "./pages/server-test-page/ServerTest.jsx";
+import UpdatePasswordPage from "./pages/updatepage/UpdatePasswordPage.jsx";
+import UserDeletePage from "./pages/updatepage/UserDeletePage.jsx";
 import React from "react";
 import "./App.css";
 import MainPage from "./pages/MainPage/MainPage.jsx";
@@ -19,6 +21,8 @@ function App() {
         <Route path="/info" element={<InfoPage />}></Route>
         <Route path="/users/login" element={<LoginPage />}></Route>
         <Route path="/users/join" element={<JoinPage />}></Route>
+        <Route path="/users/update" element={<UpdatePasswordPage />}></Route>
+        <Route path="/users/delete" element={<UserDeletePage />}></Route>
         <Route path="/boards/:id" element={<DetailPage />}></Route>
         <Route path="/boards/write" element={<WritePage />}></Route>
         {/* navigator(`/boards?boardId=${boardId}/update`); */}
