@@ -9,15 +9,44 @@ import {
 import LoginNav from "../../components/ui/LoginNav.jsx";
 import { useNavigate } from "react-router-dom";
 import UpScroll from "../../components/ui/UpScroll.jsx";
+import axios from "axios";
 
 const WritePage = () => {
+  // -------------------------------------------- axios 통신
   const navigate = useNavigate();
 
-  // 글 등록 완료 후 메인 페이지로 이동하는 함수
-  const handleWriteComplete = () => {
-    // 여기에 글 등록이 완료되었다는 알림 메시지를 띄우는 코드를 넣을 수도 있습니다.
-    alert("글이 성공적으로 등록되었습니다!");
-    navigate("/");
+  const handleWriteComplete = async () => {
+    const recruitment = document.getElementById("recruitment").value; // 모집 구분
+    const recruit = document.getElementById("recruit").value; // 모집 인원
+    const Progress = document.getElementById("Progress").value; // 진행 방식
+    const Duration = document.getElementById("Duration").value; // 진행 기간
+    const techStack = WriteBasicInfo3.selectedOptions; //  기술 스택
+    const deadline = WriteBasicInfo3.selectedDate; // 모집 마감일
+    const positions = WriteBasicInfo4.selectedOptions; // 모집 포지션
+    const contactMethod = document.getElementById("contactMethod").value; // 연락 방법
+
+    const postData = {
+      recruitment,
+      recruit,
+      Progress,
+      Duration,
+      techStack,
+      deadline,
+      positions,
+      contactMethod,
+    };
+
+    try {
+      // 데이터를 백엔드로 전송
+      const response = await axios.post("/write", postData);
+      // 성공적으로 등록되었을 때의 처리
+      alert("글이 성공적으로 등록되었습니다!");
+      navigate("/");
+    } catch (error) {
+      // 등록 실패 시의 처리
+      console.error("글 등록 중 오류 발생:", error);
+      alert("글 등록 중 오류가 발생했습니다. 다시 시도해주세요.");
+    }
   };
 
   // 취소 버튼 클릭 시 확인 메시지 띄우고 취소 여부에 따라 동작하는 함수
@@ -27,6 +56,7 @@ const WritePage = () => {
       navigate("/");
     }
   };
+  // -------------------------------------------- axios 통신
 
   return (
     <>
