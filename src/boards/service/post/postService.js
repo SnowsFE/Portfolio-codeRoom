@@ -1,14 +1,16 @@
 const postRep = require("../../repository/post/postRepository");
 
-
+// 메인페이지 데이터 조회 기능
 const postList = async () =>{
     const result = await postRep.postList();
     return result;
 };
+// 메인페이지 인기글 조회 기능
 const popularList = async () =>{
     const result = await postRep.popularList();
     return result;
 };
+// 상세 페이지 조회 기능
 const detailview = async (board_uid) =>{
     await postRep.views(board_uid);
     
@@ -33,6 +35,7 @@ const detailview = async (board_uid) =>{
     });
     return integratedData;
 };
+// 모집 포지션별 탭 조회 기능
 const recruitfieldSerch = async (recruitfield)=>{
     const result = await postRep.recruitfieldSerch(recruitfield);
     let integratedData = [];
@@ -44,6 +47,7 @@ const recruitfieldSerch = async (recruitfield)=>{
     }
     return integratedData;
 };
+// 검색 기능 로직
 const Search = async (searchWord)=>{
     const result = await postRep.Search(searchWord);
     return result;

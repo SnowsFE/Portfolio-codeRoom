@@ -60,9 +60,31 @@ const del = async (user_uid) => {
 
 // 마이페이지 기능 (사용자의 게시글과 댓글 정보 조회)
 const myPage = async (user_uid) => {
-    const posts = await memberRep.myPosts(user_uid);
-    const comments = await memberRep.myComments(user_uid);
-    return { posts, comments };
+    console.log("memser : ",user_uid);
+    let commentsInfo = [];
+    const result = await memberRep.userInfo(user_uid);
+    console.log("memser result : ",result[0].username);
+    const result2 = await memberRep.myPostsCount(user_uid);
+    console.log("memser result2 : ",result2[0].Count);
+    const result3 = await memberRep.myCommentsCount(user_uid);
+    console.log("memser result3 : ",result3[0].Count);
+    const postsIofo = await memberRep.myPosts(user_uid);
+    console.log("memser result4 : ",postsIofo);
+    const result5 = await memberRep.myComments(user_uid);
+    console.log("memser result5 : ",result5);
+    for(let i = 0 ; i < result5.length ; i++){
+        console.log("memser result5[i] : ",result5[i].board_uid);
+        const result6 = await memberRep.myCommentsAdd(result5[i].board_uid);
+        console.log("memser result6 : ",result6.result2[0].title);
+        console.log("memser result6 : ",result6.result[0].Count);
+        commentsInfo[i] = {"title": result6.result2[0].title, "Count": result6.result[0].Count, "createdate": result5[i].createdate};
+    }
+    console.log("memser result3 : ",commentsInfo);
+    const integratedData2 = {
+        "userInfo":[{"username": result[0].username, "joindate": result[0].joindate, "PostsCount": result2[0].Count, "commentsCount": result3[0].Count}],
+        postsIofo,commentsInfo
+    };
+    return integratedData2;
 };
 
 
