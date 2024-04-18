@@ -11,8 +11,6 @@ const register = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
-
-
 // 로그인 기능
 const login = async (req, res) => {
     try {
@@ -35,15 +33,19 @@ const checkDuplicate = async (req,res)=>{
     }
 };
 // 회원 정보 조회 기능
-const info = async (req, res) => {
+const info = async(req, res) => {
     try {
-        const user_uid = req.params.user_uid;
-        const user = await memberService.info(user_uid, req);
-        res.json(user);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+      // 세션에서 user_uid 추출
+      const user_uid = req.session.user_uid;
+      if (!user_uid) {
+        throw new Error('로그인이 필요합니다.');
+      }
+      const user = await memberService.info(user_uid);
+      res.json(user);
+    } catch(error) {
+      res.status(500).json({ message: error.message });
     }
-}
+  };
 // 비밀번호 변경 기능
 const pwdChange = async (req, res) => {
     try{
