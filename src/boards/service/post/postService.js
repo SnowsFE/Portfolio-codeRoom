@@ -9,7 +9,7 @@ const postList = async () =>{
             integratedData[i] ={
                 "recruitType1": "🎥 "+result[i].recruitType,
                 "recruitType2": null,
-                "NewStatus": "🍞 따끈따끈 새 글",
+                "Newbread": "🍞 따끈따끈 새 글",
                 "enddate": result[i].enddate,
                 "title": result[i].title,
                 "views": result[i].views,
@@ -19,7 +19,7 @@ const postList = async () =>{
             integratedData[i] ={
                 "recruitType1": null,
                 "recruitType2": "✏ "+result[i].recruitType,
-                "NewStatus": "🍞 따끈따끈 새 글",
+                "Newbread": "🍞 따끈따끈 새 글",
                 "enddate": result[i].enddate,
                 "title": result[i].title,
                 "views": result[i].views,
