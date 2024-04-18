@@ -8,9 +8,10 @@ import { BrowserRouter } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    {/* 두번씩 실행되는 것 땜에 주석 처리 */}
+    {/* <React.StrictMode> */}
+    <App />
+    {/* </React.StrictMode> */}
   </BrowserRouter>
 );
 

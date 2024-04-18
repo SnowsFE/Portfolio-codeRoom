@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import InfoPage from "./pages/infopage/InfoPage";
 import LoginPage from "./pages/loginpage/LoginPage";
 import JoinPage from "./pages/loginpage/JoinPage";
+// import TestJoinPage from "./pages/loginpage/TestJoinPage.jsx";
 import DetailPage from "./pages/detailpage/DetailPage";
 import WritePage from "./pages/writepage/WritePage.jsx";
 import UpdatePage from "./pages/updatepage/UpdatePage.jsx";

@@ -6,23 +6,30 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 // 제목, 작성자, 작성 일자
-const DetailTitle = () => {
+const DetailTitle = ({
+  title,
+  writer,
+  writeDt,
+  view,
+  language,
+  recruitType,
+  progressMethod,
+  recruitMember,
+  contact,
+  duration,
+  recruitField,
+  endDate,
+}) => {
   const navigator = useNavigate();
 
-  const [title, setTitle] = useState(""); //제목
-  const [writer, setWriter] = useState("빌게이츠"); //작성자
-  const [writeDt, setWriteDt] = useState("2024.04.03"); //작성 일자
-  const [view, setView] = useState(23); //조회수
-
-  let sampleLanguages = ["spring", "react", "java"];
   const langIndex = [];
   // 서버로 부터 받은 langes 들에 대한 이미지 경로를 찾아주는 함수
   const findFileNames = () => {
-    sampleLanguages.forEach((lang) => {
+    language.forEach((lang) => {
       langIndex.push(fileNames.indexOf(lang));
     });
-    console.log("lang index: " + langIndex);
-    console.log("lang 확인: " + svgFiles[langIndex[0]]);
+    // console.log("lang index: " + langIndex);
+    // console.log("lang 확인: " + svgFiles[langIndex[0]]);
   };
   findFileNames();
 
@@ -31,10 +38,7 @@ const DetailTitle = () => {
       <DetailBackArrowImgArea onClick={() => navigator(-1)}>
         <img src={BackArrow} alt="" />
       </DetailBackArrowImgArea>
-      <h1 className="study-title">
-        🌶️(필요 포지션 : 프론트엔드/디자인/기획) 사이드 프로젝트 팀
-        빌딩중입니다. 🌶️
-      </h1>
+      <h1 className="study-title">{title}</h1>
       <DetailUserInfo>
         <div className="username">{writer}</div>
         <div className="user-info-partition">|</div>
@@ -44,7 +48,16 @@ const DetailTitle = () => {
           <span>{view}</span>
         </div>
       </DetailUserInfo>
-      <DetailSubContent langIndex={langIndex}></DetailSubContent>
+      <DetailSubContent
+        langIndex={langIndex}
+        recruitType={recruitType}
+        progressMethod={progressMethod}
+        recruitMember={recruitMember}
+        contact={contact}
+        duration={duration}
+        recruitField={recruitField}
+        endDate={endDate}
+      ></DetailSubContent>
       <hr
         style={{
           height: "2px",
@@ -57,72 +70,70 @@ const DetailTitle = () => {
 };
 
 // 모집 구분, 진행 방식, 모집 인원 ...
-const DetailSubContent = ({ langIndex }) => {
-  const [recruitType, setRecruitType] = useState(""); //모집구분
-  const [progressMethod, setProgressMethod] = useState(""); //진행방식
-  const [recruitMember, setRecruitMember] = useState(null); //모집인원
-  const [plan, setPlan] = useState(""); //시작예정
-  const [contact, setContact] = useState(""); //연락방법
-  const [duration, setDuration] = useState(null); //예상 기간
-  const [recruitField, setRecruitField] = useState([]); //모집 분야
-  const [language, setLanguage] = useState([]); //사용 언어 ex) spring
+const DetailSubContent = ({
+  langIndex,
+  recruitType,
+  progressMethod,
+  recruitMember,
+  contact,
+  duration,
+  recruitField,
+  endDate,
+}) => {
+  // const [recruitType, setRecruitType] = useState(""); //모집구분
+  // const [progressMethod, setProgressMethod] = useState(""); //진행방식
+  // const [recruitMember, setRecruitMember] = useState(null); //모집인원
+  // const [plan, setPlan] = useState(""); //시작예정
+  // const [contact, setContact] = useState(""); //연락방법
+  // const [duration, setDuration] = useState(null); //예상 기간
+  // const [recruitField, setRecruitField] = useState([]); //모집 분야
+  // const [language, setLanguage] = useState([]); //사용 언어 ex) spring
 
   return (
     <DetailSubContentContainer>
       <ul>
         <li>
           <span className="sub-title">모집 구분</span>
-          <span className="sub-content">프로젝트</span>
+          <span className="sub-content">{recruitType}</span>
         </li>
         <li>
           <span className="sub-title">진행 방식</span>
-          <span className="sub-content">온라인</span>
+          <span className="sub-content">{progressMethod}</span>
         </li>
         <li>
           <span className="sub-title">모집 인원</span>
-          <span className="sub-content">인원 미정</span>
+          <span className="sub-content">{recruitMember}</span>
         </li>
         <li>
           <span className="sub-title">모집 마감일</span>
-          <span className="sub-content">2024.04.07</span>
+          <span className="sub-content">{endDate}</span>
         </li>
         <li>
           <span className="sub-title">연락 방법</span>
-          <span className="sub-field">오픈톡</span>
+          <span className="sub-field">{contact}</span>
         </li>
         <li>
           <span className="sub-title">진행 기간</span>
-          <span className="sub-content">2개월</span>
+          <span className="sub-content">{duration}</span>
         </li>
         <li>
           <span className="sub-title">모집 분야</span>
-          <span className="sub-field">디자이너</span>
-          <span className="sub-field">기획자</span>
-          <span className="sub-field">백엔드</span>
-          <span className="sub-field">프론트엔드</span>
+          {recruitField.map((field, index) => {
+            return <span className="sub-field">{field}</span>;
+          })}
         </li>
         <li>
           <span className="sub-title">사용 언어</span>
 
           {/* 배열에 따른 반복문 처리 Todo*/}
           {langIndex.map((index) => {
-            console.log("반복문 확인: " + index);
+            // console.log("반복문 확인: " + index);
             return (
               <span>
                 <img src={svgFiles[index]} alt="" />
               </span>
             );
           })}
-
-          {/* <span>
-            <img src={svgFiles[23]} alt="" />
-          </span>
-          <span>
-            <img src={svgFiles[20]} alt="" />
-          </span>
-          <span>
-            <img src={svgFiles[25]} alt="" />
-          </span> */}
         </li>
       </ul>
     </DetailSubContentContainer>
