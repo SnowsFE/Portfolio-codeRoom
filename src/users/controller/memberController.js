@@ -22,7 +22,7 @@ const login = async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 };
-
+// 중복 확인 기능
 const checkDuplicate = async (req,res)=>{
     try {
         const username = req.body.username;

@@ -62,8 +62,6 @@ const myComments = async (user_uid) => {
 
 };
 // 마이페이지 기능  - 사용자가 작성한 댓글 조회 추가 기능
-
-// 마이페이지 기능  - 사용자가 작성한 댓글 조회 추가 기능
 const myCommentsAdd = async (board_uid) => {
     const result = await query(`SELECT COUNT(*) AS Count
     FROM comment
