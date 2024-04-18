@@ -22,7 +22,16 @@ const login = async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 };
-
+const checkDuplicate = async (req,res)=>{
+    try {
+        const username = req.body.username;
+        console.log(username)
+        const result = await memberService.checkDuplicate(username);
+        res.status(201).json({message: result});
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 // 회원 정보 조회 기능
 const info = async (req, res) => {
     try {
@@ -70,13 +79,12 @@ const del = async (req, res) => {
 // 마이페이지 기능
 const myPage = async (req, res) => {
     try {
-        const user_uid = req.params.user_uid;
-        const data = await memberService.myPage(user_uid);
-        res.json(data);
+        const data = await memberService.myPage(req.params.user_uid);
+        res.status(200).json({data});
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
 
 
-module.exports = { register, login, info, modify, del, myPage };
+module.exports = { register, login, info, modify, del, myPage,checkDuplicate };

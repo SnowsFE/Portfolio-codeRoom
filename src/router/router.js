@@ -8,7 +8,7 @@ router.get("/users/:user_uid", memberCtrl.info);        // 회원정보 조회
 router.put("/users/:user_uid", memberCtrl.modify);      // 회원정보 수정
 router.delete("/users/:user_uid", memberCtrl.del);      // 회원 탈퇴
 router.get('/users/:user_uid/mypage', memberCtrl.myPage);// 마이페이지 접근
-
+router.post("/users/checkDuplicate",memberCtrl.checkDuplicate);
 router.post("/users/join", memberCtrl.register);
 router.post("/users/login", memberCtrl.login);
 

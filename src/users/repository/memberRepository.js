@@ -35,18 +35,46 @@ const del = async (user_uid) => {
     await query('DELETE FROM user WHERE user_uid = ?', [user_uid]);
     return true;
 };
-
-// 마이페이지 기능 1 - 사용자가 작성한 게시글 조회
+// 마이페이지 기능 - 사용자 username과 가입 일자 조회
+const userInfo = async (user_uid) => {
+    const result = await query(`select username,DATE_FORMAT(joindate,'%Y.%m.%d') AS joindate from user where user_uid = ?`,user_uid);
+    return result;
+};
+// 마이페이지 기능 - 사용자 작성 게시글 개수 조회
+const myPostsCount = async (user_uid) => {
+    const result = await query(`select count(*) as Count from board where user_uid = ?`,user_uid);
+    return result;
+};
+// 마이페이지 기능 - 사용자 작성 댓글 개수 조회
+const myCommentsCount = async (user_uid) => {
+    const result = await query(`select count(*) as Count from comment where user_uid = ?`,user_uid);
+    return result;
+};
+// 마이페이지 기능  - 사용자가 작성한 게시글 조회
 const myPosts = async (user_uid) => {
-    const posts = await query('SELECT * FROM board WHERE user_uid = ?', [user_uid]);
-    return posts;
+    const result = await query(`select title, views,DATE_FORMAT(createdate,'%Y.%m.%d') AS createdate from board where user_uid = ?`, user_uid);
+    return result;
 };
 
-// 마이페이지 기능 2 - 사용자가 작성한 댓글 조회
+// 마이페이지 기능  - 사용자가 작성한 댓글 조회
 const myComments = async (user_uid) => {
-    const comments = await query('SELECT * FROM comment WHERE user_uid = ?', [user_uid]);
-    return comments;
+    const result = await query(`SELECT board_uid, 
+    MAX(DATE_FORMAT(createdate,'%Y.%m.%d')) AS createdate
+    FROM comment WHERE user_uid = ? GROUP BY board_uid`, user_uid);
+    return result;
 };
-
-
-module.exports = {register, findUsername, info, modify, del, myPosts, myComments};
+// 마이페이지 기능  - 사용자가 작성한 댓글 조회 추가 기능
+const myCommentsAdd = async (board_uid) => {
+    const result = await query(`SELECT COUNT(*) AS Count
+    FROM comment
+    WHERE user_uid = (
+        SELECT user_uid
+        FROM board
+        WHERE board_uid = ?
+    ) AND board_uid = ?`,[board_uid,board_uid]);
+    console.log("rep result : ",result);
+    const result2 = await query(`select title from board where board_uid = ?`, board_uid);
+    console.log("rep result2 : ",result2);
+    return {result,result2};
+};
+module.exports = {register, findUsername, info, modify, del, userInfo, myPostsCount, myCommentsCount, myPosts, myComments, myCommentsAdd};
