@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import {
-  PROJECT_STATUS,
-  STUDY_STATUS,
-  NEW_STATUS,
-  SUB_END_TEXT_PREFIX,
+  // recruitType1,
+  // recruitType2,
+  Newbread,
+  SUB_END_TEXT,
 } from "../../constants/NewBoardsConstants.jsx";
 
 const NewBoards = ({}) => {
@@ -42,11 +42,11 @@ const NewBoards = ({}) => {
   // 프로젝트 데이터를 서버에서 가져오는 함수
   // GET 요청
   useEffect(() => {
-    console.log("GET 요청 전송");
     const fetchProjects = async () => {
       try {
+        console.log("GET 요청 전송");
         const res = await axios.get("/boards");
-        console.log("GET 요청 응답:", res.data);
+        console.log("GET 요청 응답:", res.data.projects);
         setProjects(res.data.projects);
       } catch (error) {
         console.error("프로젝트를 불러오는데 실패했습니다.", error);
@@ -124,18 +124,13 @@ const NewBoards = ({}) => {
         onClick={() => handleClick(index)}
       >
         <NewBoxContent>
-          {project.projectStatus && (
-            <ProjectStatus>{`${PROJECT_STATUS}`}</ProjectStatus>
-          )}
-          {project.StudyStatus && (
-            <ProjectStatus>{`${STUDY_STATUS}`}</ProjectStatus>
-          )}
-          <NewStatus>{`${NEW_STATUS}`}</NewStatus>
+          <ProjectStatus>{`${project.recruitType1} || ${project.recruitType2}`}</ProjectStatus>
+          <NewStatus>{`${project.Newbread}`}</NewStatus>
           <NewSubEnd>
-            <strong>{`${SUB_END_TEXT_PREFIX} ${project.subEndText}`}</strong>
+            <strong>{`${SUB_END_TEXT} ${project.enddate}`}</strong>
           </NewSubEnd>
           <NewSubMain>
-            <strong>{project.subMainText}</strong>
+            <strong>{project.title}</strong>
           </NewSubMain>
         </NewBoxContent>
         <NewView>
