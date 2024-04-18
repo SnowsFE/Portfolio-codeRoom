@@ -1,20 +1,20 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   WriteBasicInfo1,
   WriteBasicInfo2,
   WriteBasicInfo3,
   WriteBasicInfo4,
-} from "../../components/ui/WriteBasicInfo";
+} from "../../components/ui/WriteBasicInfoUpdate.jsx";
 import LoginNav from "../../components/ui/LoginNav.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import UpScroll from "../../components/ui/UpScroll.jsx";
 import axios from "axios";
 
 const WritePage = () => {
   const navigate = useNavigate();
-  // let param = useParams(); //게시판 아이디는 param.id 로 접근
+  let param = useParams(); //게시판 아이디는 param.id 로 접근
 
   const [recruitType, setRecruitType] = useState(""); // 모집 구분
   const [recruitMember, setRecruitMember] = useState(""); // 모집 인원
@@ -26,6 +26,16 @@ const WritePage = () => {
   const [contact, setContact] = useState(""); // 연락 방법
   const [title, setTitle] = useState(""); // 제목
   const [content, setContent] = useState(""); // 내용
+
+  // Todo update시 수정하고자 하는 게시판의 기존 데이터 가져오기 (서버 통신)
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const res = await axios.get(`/update/${param.id}`);
+  //     console.log("update data: " + res.data);
+  //     //Todo 받은 데이터로 useState 설정
+  //     setRecruitMember(res.data.recruitMember);
+  //   };
+  // }, []);
 
   const handleWriteComplete = async () => {
     const postData = {

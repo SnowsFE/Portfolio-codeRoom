@@ -1,11 +1,21 @@
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 
-const WriteBasicInfo1 = () => {
+const WriteBasicInfo1 = ({ onRecruitTypeChange, onRecruitMemberChange }) => {
   // WriteBasicInfo1 사용자가 어떠한 모집 구분 (프로젝트 / 스터디) , 모집 인원 (1, 2, 3 명...) 을 사전에 설정했는지 표시
   // 아래 변수는 각각 모집 구분, 모집 인원임
   let selectedRecruitmentType = "project";
   let selectedRecruitmentCount = "3";
+
+  const RecruitTypeChange = (value) => {
+    onRecruitTypeChange(value);
+    console.log("모집 구분 변경:", value); // 모집 구분이 변경될 때 로그 출력
+  };
+
+  const MemberChange = (value) => {
+    onRecruitMemberChange(value);
+    console.log("모집 인원 변경:", value); // 모집 인원이 변경될 때 로그 출력
+  };
 
   return (
     <SelectArea>
@@ -16,6 +26,7 @@ const WriteBasicInfo1 = () => {
             name="recruitmentType"
             id="recruitmentType"
             className="select-bar"
+            onChange={(e) => RecruitTypeChange(e.target.value)}
           >
             <option value="" disabled>
               프로젝트 / 스터디
@@ -42,6 +53,7 @@ const WriteBasicInfo1 = () => {
             name="recruitmentCount"
             id="recruitmentCount"
             className="select-bar"
+            onChange={(e) => MemberChange(e.target.value)}
           >
             <option value="" disabled>
               인원 미정 ~ 10명 이상

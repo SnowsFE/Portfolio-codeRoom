@@ -45,7 +45,7 @@ const JoinPage = () => {
   // username 중복 확인 (서버와 통신)
   const validCheckHandler = async (e) => {
     try {
-      const response = await axios.post("/join/isDuplicated", {
+      const response = await axios.post("/users/checkDuplicate", {
         username,
       });
       console.log(response.data);
