@@ -3,22 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const MyComments = () => {
+const MyComments = ({ sampleComments }) => {
   const [myBoards, setMyBoards] = useState([]);
-  const sampleComments = [
-    {
-      title: "제목 11111111111111111111111111111111111111",
-      commentNum: "12",
-      writeDt: "2024.01.01",
-      boardId: "0",
-    },
-    {
-      title: "제목 2222222222222222222222222222222222222",
-      commentNum: "13",
-      writeDt: "2024.01.01",
-      boardId: "1",
-    },
-  ];
   const navigator = useNavigate();
 
   //제목 길이를 조정하는 함수
@@ -50,46 +36,53 @@ const MyComments = () => {
     navigator("/MyPage");
   };
 
+  if (sampleComments.length !== 0) {
+    return (
+      <MyBoardsContainer>
+        <table>
+          <caption>내가 작성한 댓글</caption>
+          <thead>
+            <tr>
+              <th>게시판</th>
+              <th>작성 댓글수</th>
+              <th>작성일자</th>
+              <th>관리</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sampleComments.map((board, index) => {
+              return (
+                <tr>
+                  <td>
+                    <a href={`/boards/${board.boardId}`}>{board.title}</a>
+                  </td>
+                  <td>{board.commentNum}</td>
+                  <td>{board.writeDt}</td>
+                  <td>
+                    <button class="view" onClick={() => inquery(board.boardId)}>
+                      조회
+                    </button>
+                    <button
+                      class="delete"
+                      onClick={() => deleteBoard(board.boardId)}
+                    >
+                      삭제
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+          <tfoot>
+            <td colspan="5" class="tablefoot"></td>
+          </tfoot>
+        </table>
+      </MyBoardsContainer>
+    );
+  }
   return (
     <MyBoardsContainer>
-      <table>
-        <caption>내가 작성한 댓글</caption>
-        <thead>
-          <tr>
-            <th>게시판</th>
-            <th>작성 댓글수</th>
-            <th>작성일자</th>
-            <th>관리</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sampleComments.map((board, index) => {
-            return (
-              <tr>
-                <td>
-                  <a href={`/boards/${board.boardId}`}>{board.title}</a>
-                </td>
-                <td>{board.commentNum}</td>
-                <td>{board.writeDt}</td>
-                <td>
-                  <button class="view" onClick={() => inquery(board.boardId)}>
-                    조회
-                  </button>
-                  <button
-                    class="delete"
-                    onClick={() => deleteBoard(board.boardId)}
-                  >
-                    삭제
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-        <tfoot>
-          <td colspan="5" class="tablefoot"></td>
-        </tfoot>
-      </table>
+      <h4>작성한 댓글이 없습니다</h4>
     </MyBoardsContainer>
   );
 };

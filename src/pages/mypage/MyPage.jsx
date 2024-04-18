@@ -9,10 +9,7 @@ import { useEffect, useState } from "react";
 
 const MyPage = () => {
   const [myBoards, setMyBoards] = useState([]);
-  const sampleBoards = [
-    { title: "제목1", writer: "작성자1", views: "12", boardId: "0" },
-    { title: "제목2", writer: "작성자2", views: "13", boardId: "1" },
-  ];
+  const [myComments, setMyComments] = useState([]);
   const navigator = useNavigate();
 
   // 나의 게시판 가져오기 (서버와 통신)
@@ -25,11 +22,35 @@ const MyPage = () => {
     // getMyData();
   }, []);
 
+  // MyBoards 컴포넌트 전달 데이터 예시
+  const sampleBoards = [
+    {
+      title: "제목 111111111111111111111111111111111111111",
+      writerDt: "2024.01.01",
+      views: "12",
+      boardId: "0",
+    },
+  ];
+
+  // const sampleBoards = [];
+
+  // MyComments 컴포넌트 전달 데이터 예시
+  const sampleComments = [
+    {
+      title: "제목 11111111111111111111111111111111111111",
+      commentNum: "12",
+      writeDt: "2024.01.01",
+      boardId: "0",
+    },
+  ];
+  // const sampleComments = [];
+
   return (
     <>
       <LoginNav />
       <SummaryContainer>
         <div class="item">
+          {/* Todo */}
           <div class="number">jae-jang</div>
           <div>
             {/* "/users/:id/update" 멤버 아이디 동적인 수정 필요 */}
@@ -44,22 +65,25 @@ const MyPage = () => {
           </div>
         </div>
         <div class="item">
+          {/* Todo */}
           <div class="number">2024.01.01</div>
           <div>회원가입 일자</div>
         </div>
         <div class="item">
+          {/* Todo */}
           <div class="number">354</div>
           <div>작성한 게시판 수</div>
         </div>
         <div class="item">
+          {/* Todo */}
           <div class="number">354</div>
           <div>작성한 댓글 수</div>
         </div>
       </SummaryContainer>
       <SummaryUnderline />
       {/* Todo props로 데이터 전달 */}
-      <MyBoards></MyBoards>
-      <MyComments></MyComments>
+      <MyBoards sampleBoards={sampleBoards}></MyBoards>
+      <MyComments sampleComments={sampleComments}></MyComments>
       <Footer></Footer>
     </>
   );

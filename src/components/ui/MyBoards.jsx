@@ -3,22 +3,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const MyBoards = () => {
+const MyBoards = ({ sampleBoards }) => {
   const [myBoards, setMyBoards] = useState([]);
-  const sampleBoards = [
-    {
-      title: "제목 111111111111111111111111111111111111111",
-      writerDt: "2024.01.01",
-      views: "12",
-      boardId: "0",
-    },
-    {
-      title: "제목 2",
-      writerDt: "2024.01.01",
-      views: "13",
-      boardId: "1",
-    },
-  ];
+
   const navigator = useNavigate();
 
   //제목 길이를 조정하는 함수
@@ -50,46 +37,54 @@ const MyBoards = () => {
     navigator("/MyPage");
   };
 
+  if (sampleBoards.length !== 0) {
+    return (
+      <MyBoardsContainer>
+        <table>
+          <caption>내가 작성한 게시판</caption>
+          <thead>
+            <tr>
+              <th>제목</th>
+              <th>조회수</th>
+              <th>작성일자</th>
+              <th>관리</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sampleBoards.map((board, index) => {
+              return (
+                <tr>
+                  <td>
+                    <a href={`/boards/${board.boardId}`}>{board.title}</a>
+                  </td>
+                  <td>{board.views}</td>
+                  <td>{board.writerDt}</td>
+                  <td>
+                    <button class="view" onClick={() => inquery(board.boardId)}>
+                      수정
+                    </button>
+                    <button
+                      class="delete"
+                      onClick={() => deleteBoard(board.boardId)}
+                    >
+                      삭제
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+          <tfoot>
+            <td colspan="5" class="tablefoot"></td>
+          </tfoot>
+        </table>
+      </MyBoardsContainer>
+    );
+  }
+
   return (
     <MyBoardsContainer>
-      <table>
-        <caption>내가 작성한 게시판</caption>
-        <thead>
-          <tr>
-            <th>제목</th>
-            <th>조회수</th>
-            <th>작성일자</th>
-            <th>관리</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sampleBoards.map((board, index) => {
-            return (
-              <tr>
-                <td>
-                  <a href={`/boards/${board.boardId}`}>{board.title}</a>
-                </td>
-                <td>{board.views}</td>
-                <td>{board.writerDt}</td>
-                <td>
-                  <button class="view" onClick={() => inquery(board.boardId)}>
-                    수정
-                  </button>
-                  <button
-                    class="delete"
-                    onClick={() => deleteBoard(board.boardId)}
-                  >
-                    삭제
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-        <tfoot>
-          <td colspan="5" class="tablefoot"></td>
-        </tfoot>
-      </table>
+      <h4>작성한 게시판이 없습니다</h4>
     </MyBoardsContainer>
   );
 };

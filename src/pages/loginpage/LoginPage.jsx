@@ -22,7 +22,7 @@ const LoginPage = () => {
 
     // 서버와 로그인 통신
     try {
-      const response = await axios.post("/login", {
+      const response = await axios.post("/users/login", {
         username,
         password,
       });
