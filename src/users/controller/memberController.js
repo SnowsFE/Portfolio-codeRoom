@@ -18,7 +18,7 @@ const login = async (req, res) => {
     try {
         const { username, password } = req.body;
         const user = await memberService.login(username, password, req);
-        res.json({ message: '로그인 성공', user });
+        res.json({ message: '로그인 성공', username: user.username });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
