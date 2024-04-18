@@ -3,6 +3,7 @@ const memberService = require("../service/memberService");
 // 회원가입 기능
 const register = async (req, res) => {
     try {
+        console.log("")
         const { username, password } = req.body;
         const result = await memberService.register(username, password);
         res.json({ message: '회원 가입 완료' , result});
