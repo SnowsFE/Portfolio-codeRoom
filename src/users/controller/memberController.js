@@ -67,9 +67,8 @@ const del = async (req, res) => {
 // 마이페이지 기능
 const myPage = async (req, res) => {
     try {
-        const user_uid = req.params.user_uid;
-        const data = await memberService.myPage(user_uid);
-        res.json(data);
+        const data = await memberService.myPage(req.params.user_uid);
+        res.status(200).json({data});
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

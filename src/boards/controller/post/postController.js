@@ -1,6 +1,6 @@
 const postService = require("../../service/post/postService");
 const commentService = require("../../service/comment/commentService");
-
+// 메인페이지 컨트롤러
 const postList = async (req, res) => {
     
     try {
@@ -12,6 +12,7 @@ const postList = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+// 상세페이지 컨트롤러
 const detailview = async (req, res) => {
     
     try {
@@ -23,6 +24,7 @@ const detailview = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+// 모집 포지션별 탭 컨트롤러
 const recruitfieldSerch = async (req, res) =>{
     try {
         console.log("모집분야별 실행");
@@ -32,6 +34,7 @@ const recruitfieldSerch = async (req, res) =>{
         res.status(500).json({ message: error.message });
     }
 };
+// 검색 컨트롤러
 const Search = async (req, res)=>{ 
     try {
         console.log("검색기능 실행");

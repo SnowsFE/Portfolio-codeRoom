@@ -5,29 +5,33 @@ const dbConfig = require("../../../config/database/db_config"); // 데이터베�
 // dbConfig.query 메서드를 프로미스로 변환합니다.
 const query = util.promisify(dbConfig.query).bind(dbConfig);
 
-// 
+// 메인페이지 데이터 조회
 const postList = async ()=>{
     const rows = await query(`SELECT recruitType, DATE_FORMAT(enddate,'%Y.%m.%d') AS enddate
     , title, views, board_uid FROM board WHERE enddate > CURDATE() ORDER BY createdate DESC`);
     return rows;
 };
+// 메인페이지 인기글 조회
 const popularList = async ()=>{
     const rows = await query(`SELECT recruitType, DATE_FORMAT(enddate,'%Y.%m.%d') AS enddate
     , title, views, board_uid FROM board WHERE enddate > CURDATE() ORDER BY views desc limit 4`);
     return rows;
 };
+// 조회수 증가 로직
 const views = async (board_uid)=>{
     const rows = await query(`update board set views = views + 1 where board_uid = ?`,board_uid);
 };
+// 게시글 상세 조회
 const detailview = async (board_uid)=>{
     const rows = await query(`select title,content,user_uid,DATE_FORMAT(createdate,'%Y.%m.%d') AS createdate,
     views,recruittype,progress,recruitmember,
-    DATE_FORMAT(plan,'%Y.%m.%d') AS plan,contact,duration from board where board_uid = ?`,board_uid);
+    contact,duration from board where board_uid = ?`,board_uid);
     const rows2 = await query(`select recruitfield from category where board_uid = ?`,board_uid);
     const rows3 = await query(`select language from useLanguage where board_uid = ?`,board_uid);
     const rows4 = await query(`select username from user where user_uid = ?`,rows[0].user_uid);
     return {rows,rows2,rows3,rows4};
 };
+// 모집 포지션별 탭
 const recruitfieldSerch = async (recruitfield)=>{
     console.log("rep : ",recruitfield);
     const rows = await query(`SELECT recruitfield, board_uid 
@@ -35,12 +39,14 @@ const recruitfieldSerch = async (recruitfield)=>{
     WHERE recruitfield = ?`,recruitfield);
     return rows;
 };
+// 모집 포지션별 탭 게시글 uid 찾기 위한 로직
 const BoardUIDSerch = async (board_uid) =>{
     const rows = await query(`SELECT recruitType, DATE_FORMAT(enddate,'%Y.%m.%d') AS enddate, title, views, board_uid 
     FROM board WHERE enddate > CURDATE() AND board_uid = ?
     ORDER BY createdate DESC`,board_uid);
     return rows;
 };
+// 검색 기능
 const Search = async (searchWord)=>{
     const likePattern = `%${searchWord}%`;
         const rows = await query(`SELECT recruitType, DATE_FORMAT(enddate,'%Y.%m.%d') AS enddate, title, views, board_uid  
