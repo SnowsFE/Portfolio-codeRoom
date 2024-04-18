@@ -16,7 +16,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try {
         const { username, password } = req.body;
-        const user = await memberService.login(username, password);
+        const user = await memberService.login(username, password, req);
         res.json({ message: '로그인 성공', user });
     } catch (error) {
         res.status(400).json({ message: error.message });
@@ -27,10 +27,7 @@ const login = async (req, res) => {
 const info = async (req, res) => {
     try {
         const user_uid = req.params.user_uid;
-        const user = await memberService.info(user_uid);
-        if (!user) {
-            return res.status(404).json({ message: '사용자를 찾을 수 없습니다.' });
-        }
+        const user = await memberService.info(user_uid, req);
         res.json(user);
     } catch (error) {
         res.status(500).json({ message: error.message });
