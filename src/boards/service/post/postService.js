@@ -66,6 +66,7 @@ const detailview = async (board_uid) =>{
             title: row.title,
             content: row.content,
             createdate: row.createdate,
+            enddate: row.enddate,
             username: result.rows4[0].username,
             views: row.views,
             recruittype: row.recruittype,
