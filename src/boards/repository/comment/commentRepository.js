@@ -11,7 +11,7 @@ const detailview = async (board_uid)=>{
     user_uid from comment where board_uid = ?`,board_uid);
     return rows;
 };
-//
+// 댓글 상세 조회 시 유저네임 찾기 
 const usernameSerch = async (board_uid)=>{
     const rows = await query(`select username from user where user_uid = ?`,board_uid);
     

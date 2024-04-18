@@ -32,6 +32,7 @@ const login = async (username, password, req) => {
 
     return user; // 로그인 성공
 };
+// 중복 확인 기능
 const checkDuplicate = async (username) => {
     const user = await memberRep.findUsername(username);
     if (user) {throw new Error('이미 존재하는 아이디 입니다.');
