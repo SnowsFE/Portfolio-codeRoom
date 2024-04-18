@@ -1,5 +1,6 @@
 const commentRep = require("../../repository/comment/commentRepository");
 
+// 상세 페이지 조회 기능 - 댓글
 const detailview = async (board_uid) =>{
     const result = await commentRep.detailview(board_uid);
     let integratedData = [];
@@ -11,20 +12,18 @@ const detailview = async (board_uid) =>{
 }
 
 // 댓글 작성
-const write = async (boardUid, userUid, content) => {
-    const result = await commentRep.write(boardUid, userUid, content);
+const cmtwrite = async (boardUid, userUid, content) => {
+    const result = await commentRep.cmtwrite(boardUid, userUid, content);
     return result;
 }
-
 // 댓글 수정
-const modify = async (commentUid, content) => {
-    return await commentRep.modify(commentUid, content);
+const cmtmodify = async (commentUid, content) => {
+    return await commentRep.cmtmodify(commentUid, content);
 }
-
 // 댓글 삭제
-const del = async (commentUid, userUid) => {
-    return await commentRep.del(commentUid, userUid);
+const cmtdel = async (commentUid, userUid) => {
+    return await commentRep.cmtdel(commentUid, userUid);
 };
 
 module.exports = { detailview,
-    write, modify, del };
+    cmtwrite, cmtmodify, cmtdel };

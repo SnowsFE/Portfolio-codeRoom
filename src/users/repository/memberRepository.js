@@ -9,32 +9,29 @@ const register = async (username, password)=>{
     const rows = await query('INSERT INTO user (username, pwd) VALUES (?, ?)', [username, password]);
     return rows;
 }
-
 // 아이디로 정보 찾기
 const findUsername = async (username) => {
     const rows = await query('SELECT * FROM user WHERE username = ?', [username]);
     return rows[0];
 };
-
 // 회원 정보 조회 기능
 const info = async (user_uid) => {
     const rows = await query('SELECT * FROM user WHERE user_uid = ?', [user_uid]);
     return rows[0];
 };
-
-// 회원 정보 수정 기능
-const modify = async(user_uid, hashedPassword) =>{
+// 비밀번호 변경 기능
+const pwdChange = async(user_uid, hashedPassword) =>{
     await query('UPDATE user SET pwd = ? WHERE user_uid = ?', [hashedPassword, user_uid]);
 }
-
 // 회원 탈퇴 기능
-const del = async (user_uid) => {
+const userdel = async (user_uid) => {
     // board 정보 먼저 삭제
     await query('DELETE FROM board WHERE user_uid = ?', [user_uid]);
     // user 정보 삭제
     await query('DELETE FROM user WHERE user_uid = ?', [user_uid]);
     return true;
 };
+
 // 마이페이지 기능 - 사용자 username과 가입 일자 조회
 const userInfo = async (user_uid) => {
     const result = await query(`select username,DATE_FORMAT(joindate,'%Y.%m.%d') AS joindate from user where user_uid = ?`,user_uid);
@@ -62,7 +59,10 @@ const myComments = async (user_uid) => {
     MAX(DATE_FORMAT(createdate,'%Y.%m.%d')) AS createdate
     FROM comment WHERE user_uid = ? GROUP BY board_uid`, user_uid);
     return result;
+
 };
+// 마이페이지 기능  - 사용자가 작성한 댓글 조회 추가 기능
+
 // 마이페이지 기능  - 사용자가 작성한 댓글 조회 추가 기능
 const myCommentsAdd = async (board_uid) => {
     const result = await query(`SELECT COUNT(*) AS Count
@@ -77,4 +77,6 @@ const myCommentsAdd = async (board_uid) => {
     console.log("rep result2 : ",result2);
     return {result,result2};
 };
-module.exports = {register, findUsername, info, modify, del, userInfo, myPostsCount, myCommentsCount, myPosts, myComments, myCommentsAdd};
+
+module.exports = {register, findUsername, info, pwdChange, userdel, userInfo, myPostsCount, myCommentsCount, myPosts, myComments, myCommentsAdd};
+

@@ -1,8 +1,8 @@
 const postService = require("../../service/post/postService");
 const commentService = require("../../service/comment/commentService");
+
 // 메인페이지 컨트롤러
 const postList = async (req, res) => {
-    
     try {
         console.log("목록조회 실행");
         const popularResult = await postService.popularList();    
@@ -14,7 +14,6 @@ const postList = async (req, res) => {
 };
 // 상세페이지 컨트롤러
 const detailview = async (req, res) => {
-    
     try {
         console.log("상세조회 실행");
         const postresult = await postService.detailview(req.params.board_uid);
@@ -47,7 +46,7 @@ const Search = async (req, res)=>{
 
 
 // 게시글 작성
-const write = async (req, res) => {
+const postwrite = async (req, res) => {
     try {
         const postData = req.body;
         const languages = Array.isArray(req.body.languages) ? req.body.languages : []; // 클라이언트로부터 받은 언어 배열
@@ -59,15 +58,14 @@ const write = async (req, res) => {
                 return res.status(400).json({ message: `${field}공백입니다` });
             }
         }
-        const result = await postService.write(postData, languages, categories);
+        const result = await postService.postwrite(postData, languages, categories);
         res.status(201).json({ message: "게시글이 성공적으로 생성되었습니다.", postId: result.insertId });
     } catch (error) {
         res.status(500).json({ message: "서버 오류로 게시글 작성에 실패했습니다.", error: error.message });
     }
 }
-
 // 게시글 수정
-const modify = async (req, res) => {
+const postmodify = async (req, res) => {
     try {
         const boardUid = req.params.board_uid;
         const postData = req.body;
@@ -81,7 +79,7 @@ const modify = async (req, res) => {
                 return res.status(400).json({ message: `${field} 공백입니다` });
             }
         }
-        const result = await postService.modify(boardUid, postData, languages, categories);
+        const result = await postService.postmodify(boardUid, postData, languages, categories);
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: "게시글을 찾을 수 없습니다." });
         }
@@ -90,10 +88,8 @@ const modify = async (req, res) => {
         res.status(500).json({ message: "서버 오류로 게시글 수정에 실패했습니다.", error: error.message });
     }
 }
-
-
 // 게시글 삭제
-const del = async (req, res) => {
+const postdel = async (req, res) => {
     try {
         const boardUid = req.params.board_uid;
         const result = await postService.del(boardUid);
@@ -108,4 +104,4 @@ const del = async (req, res) => {
 
 
 module.exports = { postList,detailview,recruitfieldSerch,Search,
-    write, modify, del }
+    postwrite, postmodify, postdel }

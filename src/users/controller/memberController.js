@@ -16,12 +16,13 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try {
         const { username, password } = req.body;
-        const user = await memberService.login(username, password);
+        const user = await memberService.login(username, password, req);
         res.json({ message: '로그인 성공', user });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 };
+
 const checkDuplicate = async (req,res)=>{
     try {
         const username = req.body.username;
@@ -36,18 +37,14 @@ const checkDuplicate = async (req,res)=>{
 const info = async (req, res) => {
     try {
         const user_uid = req.params.user_uid;
-        const user = await memberService.info(user_uid);
-        if (!user) {
-            return res.status(404).json({ message: '사용자를 찾을 수 없습니다.' });
-        }
+        const user = await memberService.info(user_uid, req);
         res.json(user);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 }
-
-// 회원 정보 수정 기능
-const modify = async (req, res) => {
+// 비밀번호 변경 기능
+const pwdChange = async (req, res) => {
     try{
         const { currentPassword, newPassword, confirmPassword } = req.body;
         const user_uid = req.params.user_uid;
@@ -60,12 +57,11 @@ const modify = async (req, res) => {
         res.status(500).json({ message: error.message});
     }
 }
-
 // 회원 탈퇴 기능
-const del = async (req, res) => {
+const userdel = async (req, res) => {
     try{
         const user_uid = req.params.user_uid;
-        const result = await memberService.del(user_uid);
+        const result = await memberService.userdel(user_uid);
         if(result) {
             res.json({ message: '회원 탈퇴가 완료되었습니다.'});
         } else {
@@ -75,7 +71,6 @@ const del = async (req, res) => {
         res.status(500).json({ message: error.message});
     }
 }
-
 // 마이페이지 기능
 const myPage = async (req, res) => {
     try {
@@ -87,4 +82,6 @@ const myPage = async (req, res) => {
 };
 
 
-module.exports = { register, login, info, modify, del, myPage,checkDuplicate };
+
+module.exports = { register, login, info, pwdChange, userdel, myPage, checkDuplicate };
+
