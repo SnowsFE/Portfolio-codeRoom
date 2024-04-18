@@ -1,37 +1,16 @@
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
-const WriteBasicInfo1 = () => {
-  // -------------------------------------------- axios 통신
-  const [recruit, setRecruit] = useState([]);
-  const [recruitment, setRecruitment] = useState([]);
+const WriteBasicInfo1 = ({ onRecruitTypeChange, onRecruitMemberChange }) => {
+  const RecruitTypeChange = (value) => {
+    onRecruitTypeChange(value);
+    console.log("모집 구분 변경:", value); // 모집 구분이 변경될 때 로그 출력
+  };
 
-  useEffect(() => {
-    const fetchRecruitment = async () => {
-      try {
-        // 백엔드에서 모집 구분 옵션 데이터를 가져오는 요청을 보냅니다.
-        const response = await axios.get("/recruitment");
-        setRecruitment(response.data);
-      } catch (error) {
-        console.error("모집 구분 옵션을 가져오는 중 오류 발생", error);
-      }
-    };
-
-    const fetchRecruit = async () => {
-      try {
-        // 백엔드에서 모집 인원 옵션 데이터를 가져오는 요청을 보냅니다.
-        const response = await axios.get("/recruit");
-        setRecruit(response.data);
-      } catch (error) {
-        console.error("모집 인원 옵션을 가져오는 중 오류 발생", error);
-      }
-    };
-
-    fetchRecruit();
-    fetchRecruitment();
-  }, []);
-  // -------------------------------------------- axios 통신
+  const MemberChange = (value) => {
+    onRecruitMemberChange(value);
+    console.log("모집 인원 변경:", value); // 모집 인원이 변경될 때 로그 출력
+  };
 
   return (
     <SelectArea>
@@ -42,6 +21,7 @@ const WriteBasicInfo1 = () => {
             name="recruitmentType"
             id="recruitmentType"
             className="select-bar"
+            onChange={(e) => RecruitTypeChange(e.target.value)}
           >
             <option value="" disabled selected>
               프로젝트 / 스터디
@@ -58,6 +38,7 @@ const WriteBasicInfo1 = () => {
             name="recruitmentCount"
             id="recruitmentCount"
             className="select-bar"
+            onChange={(e) => MemberChange(e.target.value)}
           >
             <option value="" disabled selected>
               인원 미정 ~ 10명 이상
@@ -79,34 +60,16 @@ const WriteBasicInfo1 = () => {
   );
 };
 
-const WriteBasicInfo2 = () => {
-  // -------------------------------------------- axios 통신
-  const [Progress, setProgress] = useState([]);
-  const [Duration, setDuration] = useState([]);
+const WriteBasicInfo2 = ({ onProgressChange, onDurationChange }) => {
+  const ProgressChange = (value) => {
+    onProgressChange(value);
+    console.log("진행 방식 변경:", value); // 진행 방식이 변경될 때 로그 출력
+  };
 
-  useEffect(() => {
-    const fetchProgress = async () => {
-      try {
-        const response = await axios.get("/progress");
-        setProgress(response.data);
-      } catch (error) {
-        console.error("진행 방식 옵션을 가져오는 중 오류 발생", error);
-      }
-    };
-
-    const fetchDuration = async () => {
-      try {
-        const response = await axios.get("/Duration");
-        setDuration(response.data);
-      } catch (error) {
-        console.error("진행 기간 옵션을 가져오는 중 오류 발생", error);
-      }
-    };
-
-    fetchProgress();
-    fetchDuration();
-  }, []);
-  // -------------------------------------------- axios 통신
+  const DurationChange = (value) => {
+    onDurationChange(value);
+    console.log("진행 기간 변경:", value); // 진행 기간이 변경될 때 로그 출력
+  };
 
   return (
     <SelectArea>
@@ -117,6 +80,7 @@ const WriteBasicInfo2 = () => {
             name="processType"
             id="processType"
             className="select-bar"
+            onChange={(e) => ProgressChange(e.target.value)}
           >
             <option value="" disabled selected>
               온라인 / 오프라인
@@ -133,6 +97,7 @@ const WriteBasicInfo2 = () => {
             name="processDuration"
             id="processDuration"
             className="select-bar"
+            onChange={(e) => DurationChange(e.target.value)}
           >
             <option value="" disabled selected>
               기간 미정 ~ 6개월 이상
@@ -151,38 +116,14 @@ const WriteBasicInfo2 = () => {
   );
 };
 
-const WriteBasicInfo3 = () => {
+const WriteBasicInfo3 = ({ onCategoryChange, onEndDateChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
 
-  // -------------------------------------------- axios 통신
-  const [techStackOptions, setTechStackOptions] = useState([]);
-  const [deadline, setDeadline] = useState("");
-
   useEffect(() => {
-    const fetchTechStackOptions = async () => {
-      try {
-        const response = await axios.get("/techStackOptions");
-        setTechStackOptions(response.data);
-      } catch (error) {
-        console.error("기술 스택 옵션을 가져오는 중 오류 발생", error);
-      }
-    };
-
-    const fetchDeadline = async () => {
-      try {
-        const response = await axios.get("/deadline");
-        setDeadline(response.data.deadline);
-      } catch (error) {
-        console.error("마감일 옵션을 가져오는 중 오류 발생", error);
-      }
-    };
-
-    fetchTechStackOptions();
-    fetchDeadline();
-  }, []);
-  // -------------------------------------------- axios 통신
+    console.log("기술 스택 변경:", selectedOptions);
+  }, [selectedOptions]);
 
   const options = [
     "JavaScript",
@@ -237,6 +178,7 @@ const WriteBasicInfo3 = () => {
       }
     }
   };
+
   const handleRemoveOption = (option) => {
     const filteredOptions = selectedOptions.filter(
       (selectedOption) => selectedOption !== option
@@ -246,7 +188,13 @@ const WriteBasicInfo3 = () => {
 
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
+    onEndDateChange(event.target.value); // 변경된 날짜를 부모 컴포넌트로 전달
+    console.log("모집 마감일 변경:", event.target.value); // 모집 마감일 변경 시 로그 출력
   };
+
+  useEffect(() => {
+    onCategoryChange(selectedOptions); // 선택된 카테고리를 부모 컴포넌트로 전달
+  }, [selectedOptions]);
 
   return (
     <SelectArea>
@@ -305,37 +253,9 @@ const WriteBasicInfo3 = () => {
   );
 };
 
-const WriteBasicInfo4 = () => {
+const WriteBasicInfo4 = ({ onLanguagesChange, onContactChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
-
-  // -------------------------------------------- axios 통신
-  const [positions, setPositions] = useState([]);
-  const [contactMethods, setContactMethods] = useState([]);
-
-  useEffect(() => {
-    const fetchPositions = async () => {
-      try {
-        const response = await axios.get("/positions");
-        setPositions(response.data);
-      } catch (error) {
-        console.error("모집 포지션 옵션을 가져오는 중 오류 발생", error);
-      }
-    };
-
-    const fetchContactMethods = async () => {
-      try {
-        const response = await axios.get("/contactMethods");
-        setContactMethods(response.data);
-      } catch (error) {
-        console.error("연락 방법 옵션을 가져오는 중 오류 발생", error);
-      }
-    };
-
-    fetchPositions();
-    fetchContactMethods();
-  }, []);
-  // -------------------------------------------- axios 통신
 
   const options = ["프론트엔드", "백엔드", "디자이너", "기획자", "기타"];
 
@@ -364,6 +284,12 @@ const WriteBasicInfo4 = () => {
     );
     setSelectedOptions(filteredOptions);
   };
+
+  // 선택된 옵션이 변경될 때마다 onLanguagesChange 호출
+  useEffect(() => {
+    onLanguagesChange(selectedOptions);
+    console.log("모집 포지션 변경:", selectedOptions); // 모집 포지션 변경 시 로그 출력
+  }, [selectedOptions]);
 
   return (
     <SelectArea>
@@ -415,6 +341,10 @@ const WriteBasicInfo4 = () => {
             name="contactMethod"
             id="contactMethod"
             className="select-bar"
+            onChange={(e) => {
+              onContactChange(e.target.value);
+              console.log("연락 방법 변경:", e.target.value); // 연락 방법 변경 시 로그 출력
+            }} // 변경된 연락 방법을 부모 컴포넌트로 전달
           >
             <option value="" disabled selected>
               카카오톡 오픈채팅..
@@ -433,7 +363,6 @@ export { WriteBasicInfo1, WriteBasicInfo2, WriteBasicInfo3, WriteBasicInfo4 };
 
 const SelectedOptionBox = styled.span`
   background-color: #d5ffd5; /* 연한 초록색 배경 */
-  margin-right: 10px; /* 우측 마진 */
   border-radius: 5px; /* 모서리 둥글게 */
   padding: 7px;
   align-items: center;
@@ -449,9 +378,9 @@ const SelectArea = styled.div`
   justify-content: center;
   margin-bottom: 5%;
   margin-top: 5%;
+  gap: 5%;
 
   .basic-info-box {
-    margin-right: 20px;
     text-align: center;
   }
 

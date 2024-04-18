@@ -146,41 +146,50 @@ const NewBoards = ({}) => {
 
   const navigate = useNavigate();
   // -------------------------------------------- axios 통신
-  // 프로젝트 데이터를 서버에서 가져오는 역할
-  // useEffect(() => {
-  //   // 컴포넌트가 마운트될 때 한 번만 데이터를 가져옴
-  //   fetchData();
-  // }, []);
 
-  // // 서버에서 프로젝트 데이터를 가져오는 함수
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios.get("/projects");
-  //     setProjects(response.data); // 받아온 데이터로 상태 업데이트
-  //   } catch (error) {
-  //     console.error("프로젝트 데이터를 가져오는 데 실패했습니다.", error);
-  //   }
-  // };
-  // -------------------------------------------- axios 통신
+  // 프로젝트 데이터를 서버에서 가져오는 함수
+  // GET 요청
+  useEffect(() => {
+    console.log("GET 요청 전송");
+    const fetchProjects = async () => {
+      try {
+        const res = await axios.get("/boards");
+        console.log("GET 요청 응답:", res.data);
+        setProjects(res.data.projects);
+      } catch (error) {
+        console.error("프로젝트를 불러오는데 실패했습니다.", error);
+      }
+    };
 
-  // 클릭 이벤트 핸들러 함수
-  const handleClick = async (index) => {
-    const newViews = [...views];
-    newViews[index] += 1;
-    setViews(newViews);
+    fetchProjects();
+  }, []);
 
-    // -------------------------------------------- axios 통신
-    // 프로젝트의 조회수를 업데이트하고, 그 후 해당 프로젝트의 상세 페이지로 이동
+  // 조회수를 업데이트하는 함수
+  // POST 요청
+  const updateViews = async (index) => {
+    const updatedViews = [...views];
+    updatedViews[index] += 1;
+    setViews(updatedViews);
+
     try {
-      await axios.post("/updateViews/", {
+      console.log("POST 요청 전송:", {
         projectId: projects[index].id,
-        views: newViews[index],
+        views: updatedViews[index],
       });
+      await axios.post("/boards", {
+        projectId: projects[index].id,
+        views: updatedViews[index],
+      });
+      console.log("POST 요청 완료");
     } catch (error) {
       console.error("조회수를 업데이트하는데 실패했습니다.", error);
     }
+  };
 
-    navigate(`/board/${projects[index].id}`, {
+  // 프로젝트 클릭 이벤트 핸들러
+  const handleClick = async (index) => {
+    await updateViews(index); // 조회수 업데이트
+    navigate(`/boards/${projects[index].id}`, {
       state: { project: projects[index] },
     });
   };
@@ -244,10 +253,10 @@ const NewBoards = ({}) => {
     );
   };
 
-  const [searchValue, setSearchValue] = useState(""); // 검색어 상태
+  const [seachWord, setseachWord] = useState(""); // 검색어 상태
 
   const handleSearchChange = (e) => {
-    setSearchValue(e.target.value); // 검색어 업데이트
+    setseachWord(e.target.value); // 검색어 업데이트
   };
 
   const handleSearch = async () => {
@@ -255,7 +264,7 @@ const NewBoards = ({}) => {
   };
 
   const handleClearSearch = async () => {
-    setSearchValue(""); // 검색어 비우기
+    setseachWord(""); // 검색어 비우기
     console.log("검색어가 비워졌습니다."); // 확인을 위한 콘솔 로그
   };
 
@@ -271,7 +280,7 @@ const NewBoards = ({}) => {
   const AddProjects = async () => {
     try {
       const response = await axios.get(
-        searchValue ? `/search?query=${searchValue}` : null
+        seachWord ? `/boards/search/${seachWord}` : null
       );
       // 응답 데이터가 비어있는 경우 특별한 메시지를 포함하는 객체를 배열에 넣습니다.
       if (response.data.length === 0) {
@@ -296,11 +305,11 @@ const NewBoards = ({}) => {
           <NewSearchBox className="NewSearchBox">
             <input
               placeholder="🔍   제목, 글 내용을 검색해보세요."
-              value={searchValue} // 검색어 입력값으로 설정
+              value={seachWord} // 검색어 입력값으로 설정
               onChange={handleSearchChange} // 검색어 입력시 이벤트 핸들러
               onKeyPress={handleKeyPress} // 엔터 키 감지 이벤트 핸들러 추가
             />
-            {searchValue && ( // 검색어가 있을 때만 X 아이콘 표시
+            {seachWord && ( // 검색어가 있을 때만 X 아이콘 표시
               <ClearButton onClick={handleClearSearch}>✖️</ClearButton>
             )}
           </NewSearchBox>

@@ -55,37 +55,49 @@ const HotBoards = ({}) => {
   const navigate = useNavigate();
 
   // -------------------------------------------- axios 통신
-  // 프로젝트 데이터를 서버에서 가져오는 역할
-  // useEffect(() => {
-  //   const fetchProjects = async () => {
-  //     try {
-  //       const res = await axios.get("/boards");
-  //       setProjects(res.data.projects);
-  //     } catch (error) {
-  //       console.error("프로젝트를 불러오는데 실패했습니다.", error);
-  //     }
-  //   };
 
-  //   fetchProjects();
-  // }, []);
-  // -------------------------------------------- axios 통신
+  // 프로젝트 데이터를 서버에서 가져오는 함수
+  // GET 요청
+  useEffect(() => {
+    console.log("GET 요청 전송");
+    const fetchProjects = async () => {
+      try {
+        const res = await axios.get("/boards");
+        console.log("GET 요청 응답:", res.data);
+        setProjects(res.data.projects);
+      } catch (error) {
+        console.error("프로젝트를 불러오는데 실패했습니다.", error);
+      }
+    };
 
-  // -------------------------------------------- axios 통신
-  // 클라이언트 측에서 프로젝트 조회수 업데이트를 위한 axios POST 요청
-  const handleClick = async (index) => {
-    const HotViews = [...views];
-    HotViews[index] += 1;
-    setViews(HotViews);
+    fetchProjects();
+  }, []);
+
+  // 조회수를 업데이트하는 함수
+  // POST 요청
+  const updateViews = async (index) => {
+    const updatedViews = [...views];
+    updatedViews[index] += 1;
+    setViews(updatedViews);
 
     try {
-      await axios.post("/boardVsiews/", {
+      console.log("POST 요청 전송:", {
         projectId: projects[index].id,
-        views: HotViews[index],
+        views: updatedViews[index],
       });
+      await axios.post("/boards", {
+        projectId: projects[index].id,
+        views: updatedViews[index],
+      });
+      console.log("POST 요청 완료");
     } catch (error) {
       console.error("조회수를 업데이트하는데 실패했습니다.", error);
     }
+  };
 
+  // 프로젝트 클릭 이벤트 핸들러
+  const handleClick = async (index) => {
+    await updateViews(index); // 조회수 업데이트
     navigate(`/boards/${projects[index].id}`, {
       state: { project: projects[index] },
     });
