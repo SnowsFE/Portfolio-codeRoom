@@ -57,7 +57,7 @@ const Search = async (searchWord)=>{
 };
 
 // 게시글 작성
-const write = async (postData, languages, categories) => {
+const postwrite = async (postData, languages, categories) => {
     const { title, content, startdate, enddate, recruittype, progress, recruitmember, plan, duration, contact, user_uid } = postData;
     const sql = `INSERT INTO board (title, content, views, startdate, enddate, recruittype, progress, recruitmember, plan, duration, contact, user_uid) VALUES (?, ?, 0, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
@@ -78,9 +78,8 @@ const write = async (postData, languages, categories) => {
 
     return result;
 }
-
 // 게시글 수정
-const modify = async (boardUid, postData, languages, categories) => {
+const postmodify = async (boardUid, postData, languages, categories) => {
     const { title, content, startdate, enddate, recruittype, progress, recruitmember, plan, duration, contact, user_uid } = postData;
     const sql = `UPDATE board SET title = ?, content = ?, startdate = ?, enddate = ?, recruittype = ?, progress = ?, recruitmember = ?, plan = ?, duration = ?, contact = ?, user_uid = ? WHERE board_uid = ?`;
 
@@ -101,9 +100,8 @@ const modify = async (boardUid, postData, languages, categories) => {
 
     return { affectedRows: 1 }; // 예시 반환 값
 }
-
 // 게시글 삭제
-const del = async (boardUid) => {
+const postdel = async (boardUid) => {
     await query("DELETE FROM useLanguage WHERE board_uid = ?", [boardUid]);
   await query("DELETE FROM category WHERE board_uid = ?", [boardUid]);
     const sql = `DELETE FROM board WHERE board_uid = ?`;
@@ -112,4 +110,4 @@ const del = async (boardUid) => {
 }
 
 module.exports = { postList,views,detailview,popularList,recruitfieldSerch,BoardUIDSerch,Search,
-    write, modify, del };
+    postwrite, postmodify, postdel };
