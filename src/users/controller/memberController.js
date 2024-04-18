@@ -31,7 +31,7 @@ const checkDuplicate = async (req,res)=>{
         const result = await memberService.checkDuplicate(username);
         res.status(201).json({message: result});
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(400).json({ message: error.message });
     }
 };
 // 회원 정보 조회 기능
