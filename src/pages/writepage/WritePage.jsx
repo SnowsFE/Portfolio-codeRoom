@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React, { useState } from "react";
 
 import {
   WriteBasicInfo1,
@@ -12,38 +13,40 @@ import UpScroll from "../../components/ui/UpScroll.jsx";
 import axios from "axios";
 
 const WritePage = () => {
-  // -------------------------------------------- axios 통신
   const navigate = useNavigate();
 
-  const handleWriteComplete = async () => {
-    const recruitment = document.getElementById("recruitment").value; // 모집 구분
-    const recruit = document.getElementById("recruit").value; // 모집 인원
-    const Progress = document.getElementById("Progress").value; // 진행 방식
-    const Duration = document.getElementById("Duration").value; // 진행 기간
-    const techStack = WriteBasicInfo3.selectedOptions; //  기술 스택
-    const deadline = WriteBasicInfo3.selectedDate; // 모집 마감일
-    const positions = WriteBasicInfo4.selectedOptions; // 모집 포지션
-    const contactMethod = document.getElementById("contactMethod").value; // 연락 방법
+  const [recruitType, setRecruitType] = useState(""); // 모집 구분
+  const [recruitMember, setRecruitMember] = useState(""); // 모집 인원
+  const [progress, setProgress] = useState(""); // 진행 방식
+  const [duration, setDuration] = useState(""); // 진행 기간
+  const [categories, setCategories] = useState([]); // 기술 스택
+  const [endDate, setEndDate] = useState(""); // 모집 마감일
+  const [languages, setLanguages] = useState([]); // 모집 포지션
+  const [contact, setContact] = useState(""); // 연락 방법
+  const [title, setTitle] = useState(""); // 제목
+  const [content, setContent] = useState(""); // 내용
 
+  const handleWriteComplete = async () => {
     const postData = {
-      recruitment,
-      recruit,
-      Progress,
-      Duration,
-      techStack,
-      deadline,
-      positions,
-      contactMethod,
+      recruittype: recruitType,
+      recruitmember: recruitMember,
+      progress,
+      duration,
+      categories,
+      enddate: endDate,
+      languages,
+      contact,
+      title,
+      content,
     };
 
+    console.log("전송될 데이터:", postData); // 데이터를 콘솔에 출력
+
     try {
-      // 데이터를 백엔드로 전송
-      const response = await axios.post("/write", postData);
-      // 성공적으로 등록되었을 때의 처리
+      const response = await axios.post("/boards/boardswrite", postData);
       alert("글이 성공적으로 등록되었습니다!");
       navigate("/");
     } catch (error) {
-      // 등록 실패 시의 처리
       console.error("글 등록 중 오류 발생:", error);
       alert("글 등록 중 오류가 발생했습니다. 다시 시도해주세요.");
     }
@@ -58,6 +61,17 @@ const WritePage = () => {
   };
   // -------------------------------------------- axios 통신
 
+  // 제목과 내용을 업데이트하는 함수
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+    console.log("제목:", e.target.value); // 입력된 제목을 콘솔에 출력
+  };
+
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
+    console.log("본문 내용:", e.target.value); // 입력된 본문 내용을 콘솔에 출력
+  };
+
   return (
     <>
       <LoginNav />
@@ -65,10 +79,22 @@ const WritePage = () => {
       <BasicInfoContainer>
         <h2>모집 정보</h2>
         <hr />
-        <WriteBasicInfo1 />
-        <WriteBasicInfo2 />
-        <WriteBasicInfo3 />
-        <WriteBasicInfo4 />
+        <WriteBasicInfo1
+          onRecruitTypeChange={setRecruitType}
+          onRecruitMemberChange={setRecruitMember}
+        />
+        <WriteBasicInfo2
+          onProgressChange={setProgress}
+          onDurationChange={setDuration}
+        />
+        <WriteBasicInfo3
+          onCategoryChange={setCategories}
+          onEndDateChange={setEndDate}
+        />
+        <WriteBasicInfo4
+          onLanguagesChange={setLanguages}
+          onContactChange={setContact}
+        />
         <h2>글작성</h2>
         <hr />
         <BodyInfoContainer>
@@ -77,6 +103,8 @@ const WritePage = () => {
             type="text"
             placeholder="제목을 입력해주세요!"
             id="title-input"
+            value={title}
+            onChange={handleTitleChange}
           />
           <textarea
             name=""
@@ -84,6 +112,8 @@ const WritePage = () => {
             cols="30"
             rows="20"
             placeholder="프로젝트를 소개해주세요"
+            value={content}
+            onChange={handleContentChange}
           ></textarea>
           <div className="button-area">
             <CancelButton
@@ -113,7 +143,6 @@ const BasicInfoContainer = styled.section`
   width: 53%;
   min-width: 1280px;
   min-width: 1000px;
-  /* border: solid 1px black; */
   margin: 0 auto;
 
   h2 {
