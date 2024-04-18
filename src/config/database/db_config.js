@@ -14,7 +14,7 @@ const dbInfo = mysql.createPool({
     user: 'root',
 
     // password: 데이터베이스 사용자의 비밀번호입니다.
-    password: 'akdlakdl12!',
+    password: '1234',
 
     // database: 연결하려는 데이터베이스(schemas)의 이름입니다.
     database: 'aaa'
