@@ -4,10 +4,10 @@ import styled from "styled-components";
 import Skill from "./Skill.jsx";
 import { useNavigate } from "react-router-dom";
 import {
-  PROJECT_STATUS,
-  STUDY_STATUS,
+  // recruitType1,
+  // recruitType2,
   DEADLINE_STATUS,
-  SUB_END_TEXT_PREFIX,
+  SUB_END_TEXT,
 } from "../../constants/HotBoardsConstants.jsx";
 
 const HotBoards = ({}) => {
@@ -26,8 +26,8 @@ const HotBoards = ({}) => {
       try {
         console.log("GET 요청 전송");
         const res = await axios.get("/boards");
-        console.log("GET 요청 응답:", res.data);
-        setProjects(res.data);
+        console.log("GET 요청 응답:", res.data.projects);
+        setProjects(res.data.projects);
       } catch (error) {
         console.error("프로젝트를 불러오는데 실패했습니다.", error);
       }
@@ -71,7 +71,7 @@ const HotBoards = ({}) => {
     const project = projects[index];
     // 마감일까지 남은 일수 계산
     const today = new Date();
-    const endDate = new Date(project.subEndText);
+    const endDate = new Date(project.enddate);
     const remainingDays = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
 
     // DEADLINE_STATUS 상수를 사용하여 마감일 문자열을 생성
@@ -83,15 +83,13 @@ const HotBoards = ({}) => {
     return (
       <HotBox key={index} onClick={() => handleClick(index)}>
         <HotBoxContent>
-          <ProjectStatus>
-            {project.projectStatus || project.StudyStatus}
-          </ProjectStatus>
+          <ProjectStatus>{`${project.recruitType1} || ${project.recruitType2}`}</ProjectStatus>
           <DeadlineStatus>{deadlineStatusText}</DeadlineStatus>
           <HotSubEnd>
-            <strong>{`${SUB_END_TEXT_PREFIX} ${project.subEndText}`}</strong>
+            <strong>{`${SUB_END_TEXT} ${project.enddate}`}</strong>
           </HotSubEnd>
           <HotSubMain>
-            <strong>{project.subMainText}</strong>
+            <strong>{project.title}</strong>
           </HotSubMain>
         </HotBoxContent>
         <HotView>

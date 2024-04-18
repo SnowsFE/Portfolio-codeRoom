@@ -27,6 +27,22 @@ const WritePage = () => {
   const [content, setContent] = useState(""); // 내용
 
   const handleWriteComplete = async () => {
+    // 모든 항목이 작성되었는지 확인
+    if (
+      recruitType === "" ||
+      recruitMember === "" ||
+      progress === "" ||
+      duration === "" ||
+      categories.length === 0 ||
+      endDate === "" ||
+      languages.length === 0 ||
+      contact === "" ||
+      title === "" ||
+      content === ""
+    ) {
+      alert("모든 항목을 작성해주세요!");
+      return; // 함수 종료
+    }
     const postData = {
       recruittype: recruitType,
       recruitmember: recruitMember,
