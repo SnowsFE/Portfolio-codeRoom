@@ -1,18 +1,77 @@
 import styled from "styled-components";
+import React, { useState } from "react";
 
 import {
   WriteBasicInfo1,
   WriteBasicInfo2,
   WriteBasicInfo3,
   WriteBasicInfo4,
-} from "../../components/ui/WriteBasicInfoUpdate.jsx";
+} from "../../components/ui/WriteBasicInfo";
 import LoginNav from "../../components/ui/LoginNav.jsx";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import UpScroll from "../../components/ui/UpScroll.jsx";
+import axios from "axios";
 
-const UpdatePage = () => {
+const WritePage = () => {
   const navigate = useNavigate();
-  let param = useParams(); //게시판 아이디는 param.id 로 접근
+  // let param = useParams(); //게시판 아이디는 param.id 로 접근
+
+  const [recruitType, setRecruitType] = useState(""); // 모집 구분
+  const [recruitMember, setRecruitMember] = useState(""); // 모집 인원
+  const [progress, setProgress] = useState(""); // 진행 방식
+  const [duration, setDuration] = useState(""); // 진행 기간
+  const [categories, setCategories] = useState([]); // 기술 스택
+  const [endDate, setEndDate] = useState(""); // 모집 마감일
+  const [languages, setLanguages] = useState([]); // 모집 포지션
+  const [contact, setContact] = useState(""); // 연락 방법
+  const [title, setTitle] = useState(""); // 제목
+  const [content, setContent] = useState(""); // 내용
+
+  const handleWriteComplete = async () => {
+    const postData = {
+      recruittype: recruitType,
+      recruitmember: recruitMember,
+      progress,
+      duration,
+      categories,
+      enddate: endDate,
+      languages,
+      contact,
+      title,
+      content,
+    };
+
+    console.log("전송될 데이터:", postData); // 데이터를 콘솔에 출력
+
+    try {
+      const response = await axios.post("/boards/boardswrite", postData);
+      alert("글이 성공적으로 등록되었습니다!");
+      navigate("/");
+    } catch (error) {
+      console.error("글 등록 중 오류 발생:", error);
+      alert("글 등록 중 오류가 발생했습니다. 다시 시도해주세요.");
+    }
+  };
+
+  // 취소 버튼 클릭 시 확인 메시지 띄우고 취소 여부에 따라 동작하는 함수
+  const handleCancel = () => {
+    const isConfirmed = window.confirm("작성을 취소하시겠습니까?");
+    if (isConfirmed) {
+      navigate("/");
+    }
+  };
+  // -------------------------------------------- axios 통신
+
+  // 제목과 내용을 업데이트하는 함수
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+    console.log("제목:", e.target.value); // 입력된 제목을 콘솔에 출력
+  };
+
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
+    console.log("본문 내용:", e.target.value); // 입력된 본문 내용을 콘솔에 출력
+  };
 
   return (
     <>
@@ -21,10 +80,22 @@ const UpdatePage = () => {
       <BasicInfoContainer>
         <h2>모집 정보</h2>
         <hr />
-        <WriteBasicInfo1 />
-        <WriteBasicInfo2 />
-        <WriteBasicInfo3 />
-        <WriteBasicInfo4 />
+        <WriteBasicInfo1
+          onRecruitTypeChange={setRecruitType}
+          onRecruitMemberChange={setRecruitMember}
+        />
+        <WriteBasicInfo2
+          onProgressChange={setProgress}
+          onDurationChange={setDuration}
+        />
+        <WriteBasicInfo3
+          onCategoryChange={setCategories}
+          onEndDateChange={setEndDate}
+        />
+        <WriteBasicInfo4
+          onLanguagesChange={setLanguages}
+          onContactChange={setContact}
+        />
         <h2>글작성</h2>
         <hr />
         <BodyInfoContainer>
@@ -33,6 +104,8 @@ const UpdatePage = () => {
             type="text"
             placeholder="제목을 입력해주세요!"
             id="title-input"
+            value={title}
+            onChange={handleTitleChange}
           />
           <textarea
             name=""
@@ -40,12 +113,22 @@ const UpdatePage = () => {
             cols="30"
             rows="20"
             placeholder="프로젝트를 소개해주세요"
+            value={content}
+            onChange={handleContentChange}
           ></textarea>
           <div className="button-area">
-            <CancelButton id="cancel-btn" className="body-btn">
+            <CancelButton
+              id="cancel-btn"
+              className="body-btn"
+              onClick={handleCancel}
+            >
               취소
             </CancelButton>
-            <WriteButton id="write-btn" className="body-btn">
+            <WriteButton
+              id="write-btn"
+              className="body-btn"
+              onClick={handleWriteComplete}
+            >
               글등록
             </WriteButton>
           </div>
@@ -61,7 +144,6 @@ const BasicInfoContainer = styled.section`
   width: 53%;
   min-width: 1280px;
   min-width: 1000px;
-  /* border: solid 1px black; */
   margin: 0 auto;
 
   h2 {
@@ -159,4 +241,4 @@ const WriteButton = styled.button`
   }
 `;
 
-export default UpdatePage;
+export default WritePage;
