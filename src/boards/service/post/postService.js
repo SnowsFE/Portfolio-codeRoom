@@ -2,13 +2,59 @@ const postRep = require("../../repository/post/postRepository");
 
 // 메인페이지 데이터 조회 기능
 const postList = async () =>{
+    let integratedData = [];
     const result = await postRep.postList();
-    return result;
+    for(let i = 0 ; i < result.length ; i++){
+        if(result[i].recruitType == '프로젝트'){
+            integratedData[i] ={
+                "recruitType1": "🎥 "+result[i].recruitType,
+                "recruitType2": null,
+                "enddate": result[i].enddate,
+                "title": result[i].title,
+                "views": result[i].views,
+                "board_uid": result[i].board_uid
+               }
+        }else{
+            integratedData[i] ={
+                "recruitType1": null,
+                "recruitType2": "✏ "+result[i].recruitType,
+                "enddate": result[i].enddate,
+                "title": result[i].title,
+                "views": result[i].views,
+                "board_uid": result[i].board_uid
+               }
+        }
+        
+    };
+    return integratedData;
 };
 // 메인페이지 인기글 조회 기능
 const popularList = async () =>{
+    let integratedData = [];
     const result = await postRep.popularList();
-    return result;
+    for(let i = 0 ; i < result.length ; i++){
+        if(result[i].recruitType == '프로젝트'){
+            integratedData[i] ={
+                "recruitType1": "🎥 "+result[i].recruitType,
+                "recruitType2": null,
+                "enddate": result[i].enddate,
+                "title": result[i].title,
+                "views": result[i].views,
+                "board_uid": result[i].board_uid
+               }
+        }else{
+            integratedData[i] ={
+                "recruitType1": null,
+                "recruitType2": "✏ "+result[i].recruitType,
+                "enddate": result[i].enddate,
+                "title": result[i].title,
+                "views": result[i].views,
+                "board_uid": result[i].board_uid
+               }
+        }
+        
+    };
+    return integratedData;
 };
 // 상세 페이지 조회 기능
 const detailview = async (board_uid) =>{
@@ -25,7 +71,6 @@ const detailview = async (board_uid) =>{
             recruittype: row.recruittype,
             progress: row.progress,
             recruitmember: row.recruitmember,
-            plan: row.plan,
             contact: row.contact,
             duration: row.duration,
             recruitFields: result.rows2.map(r2 => r2.recruitfield), // 'rows2'에서 모든 'recruitfield'를 추출하여 배열로 저장
