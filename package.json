@@ -2,8 +2,6 @@
   "name": "peer-match-platform",
   "version": "0.1.0",
   "private": true,
-  "_comment": "proxy 설정 추가 (이줄은 주석임)",
-  "proxy": "http://127.0.0.1:8080",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.2",
     "@testing-library/jest-dom": "^5.17.0",
@@ -44,5 +42,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://127.0.0.1:8080"
 }

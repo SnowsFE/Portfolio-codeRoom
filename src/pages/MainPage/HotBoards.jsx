@@ -12,45 +12,8 @@ import {
 
 const HotBoards = ({}) => {
   // 조회수와 프로젝트 상태를 관리하는 상태 변수 설정
-  const [views, setViews] = useState([0, 0, 0, 0]);
-  const [projects, setProjects] = useState([
-    {
-      id: 0,
-      projectStatus: "🎥 프로젝트",
-      StudyStatusStatus: "✏️ 스터디",
-      deadlineStatus: "",
-      subEndText: "2024.7.30",
-      subMainText: "[FrontEnd, BackEnd] 웹페이지 개발자 구인합니다!",
-      views: 0,
-    },
-    {
-      id: 2,
-      projectStatus: "🎥 프로젝트",
-      StudyStatusStatus: "✏️ 스터디",
-      deadlineStatus: "",
-      subEndText: "2024.7.25",
-      subMainText: "[FrontEnd, BackEnd] 웹페이지 개발자 구인합니다!",
-      views: 0,
-    },
-    {
-      id: 3,
-      projectStatus: "🎥 프로젝트",
-      StudyStatusStatus: "✏️ 스터디",
-      deadlineStatus: "",
-      subEndText: "2024.7.25",
-      subMainText: "[FrontEnd, BackEnd] 웹페이지 개발자 구인합니다!",
-      views: 0,
-    },
-    {
-      id: 4,
-      projectStatus: "🎥 프로젝트",
-      StudyStatusStatus: "✏️ 스터디",
-      deadlineStatus: "",
-      subEndText: "2024.7.25",
-      subMainText: "[FrontEnd, BackEnd] 웹페이지 개발자 구인합니다!",
-      views: 0,
-    },
-  ]);
+  const [views, setViews] = useState([]);
+  const [projects, setProjects] = useState([]);
 
   const navigate = useNavigate();
 
@@ -59,12 +22,12 @@ const HotBoards = ({}) => {
   // 프로젝트 데이터를 서버에서 가져오는 함수
   // GET 요청
   useEffect(() => {
-    console.log("GET 요청 전송");
     const fetchProjects = async () => {
       try {
+        console.log("GET 요청 전송");
         const res = await axios.get("/boards");
         console.log("GET 요청 응답:", res.data);
-        setProjects(res.data.projects);
+        setProjects(res.data);
       } catch (error) {
         console.error("프로젝트를 불러오는데 실패했습니다.", error);
       }
