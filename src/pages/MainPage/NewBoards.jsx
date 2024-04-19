@@ -420,7 +420,7 @@ const PaginationItem = styled.div`
   color: black; /* 글자 색상 설정 */
   font-weight: bold; /* 글꼴 두껍게 */
   background: ${({ isActive }) =>
-    isActive ? "#e7e7e7" : "white"}; /* 현재 페이지 여부에 따라 배경색 변경 */
+    isActive ? "#ffffff" : "white"}; /* 현재 페이지 여부에 따라 배경색 변경 */
 
   &:hover {
     background: #d5ffd5; /* 호버 시 배경색 변경 */
