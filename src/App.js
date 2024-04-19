@@ -18,7 +18,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<MainPage />}></Route>
+        {/* <Route path="/" element={<MainPage />}></Route> */}
+        <Route path="/" element={<div>메인임</div>}></Route>
         <Route path="/info" element={<InfoPage />}></Route>
         <Route path="/users/login" element={<LoginPage />}></Route>
         <Route path="/users/join" element={<JoinPage />}></Route>

@@ -29,7 +29,7 @@ const LoginPage = () => {
       console.log("로그인 데이터: " + response.data);
       //로그인 성공시
       sessionStorage.setItem("username", response.data.username);
-      // navigator("/");
+      navigator("/");
     } catch (e) {
       if (e.response && e.response.status === 400) {
         alert("인증 실패! 아이디와 비밀번호를 다시 확인해주세요.");
@@ -55,7 +55,7 @@ const LoginPage = () => {
             }}
           />
           <LoginInput
-            type="text"
+            type="password"
             placeholder="password"
             onChange={(e) => {
               setPassword(e.target.value);

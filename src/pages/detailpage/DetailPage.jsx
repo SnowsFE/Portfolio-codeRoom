@@ -49,7 +49,8 @@ const DetailPage = () => {
         setRecruitField(res.data.postresult[0].recruitFields);
         setLanguage(res.data.postresult[0].languages);
         setEndDate(res.data.postresult[0].enddate); //Todo
-        setContent(res.data.cmtresult[0].content);
+        setContent(res.data.postresult[0].content);
+        setComments(res.data.cmtresult);
       } catch (error) {}
     };
     getBoardData();
@@ -72,7 +73,7 @@ const DetailPage = () => {
         endDate={endDate}
       ></DetailTitle>
       <DetailContentBody content={content}></DetailContentBody>
-      <DetailComment></DetailComment>
+      <DetailComment comments={comments}></DetailComment>
     </div>
   );
 };
