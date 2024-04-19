@@ -41,7 +41,7 @@ const WriteBasicInfo1 = ({ onRecruitTypeChange, onRecruitMemberChange }) => {
             onChange={(e) => MemberChange(e.target.value)}
           >
             <option value="" disabled selected>
-              인원 미정 ~ 10명 이상
+              1명 ~ 10명 이상
             </option>
             <option value="1">1명</option>
             <option value="2">2명</option>
