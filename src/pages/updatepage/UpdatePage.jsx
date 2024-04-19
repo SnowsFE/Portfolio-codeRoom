@@ -12,13 +12,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import UpScroll from "../../components/ui/UpScroll.jsx";
 import axios from "axios";
 
-const WritePage = () => {
+const UpdatePage = () => {
   const navigate = useNavigate();
   let param = useParams(); //게시판 아이디는 param.id 로 접근
 
   const [title, setTitle] = useState(""); //제목
   const [writer, setWriter] = useState(""); //작성자
-  const [writeDt, setWriteDt] = useState(""); //작성 일자
 
   const [recruitType, setRecruitType] = useState([]); //모집구분
   const [progress, setProgress] = useState(""); //진행방식
@@ -28,17 +27,15 @@ const WritePage = () => {
   const [duration, setDuration] = useState(""); //예상 기간
   const [recruitField, setRecruitField] = useState([]); //모집 분야
   const [language, setLanguage] = useState([]); //사용 언어 ex) spring
-  const [comments, setComments] = useState([]); //댓글
   const [content, setContent] = useState(""); //본문 내용
 
   // Todo update시 수정하고자 하는 게시판의 기존 데이터 가져오기 (서버 통신)
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get(`/boards/${param.id}`);
-      console.log("update data: " + res.data);
+      console.log("update data: " + res.data.postresult[0].languages);
       setTitle(res.data.postresult[0].title);
       setWriter(res.data.postresult[0].username);
-      setWriteDt(res.data.postresult[0].createdate);
       setRecruitType(res.data.postresult[0].recruittype);
       setProgress(res.data.postresult[0].progress);
       setRecruitMember(res.data.postresult[0].recruitmember);
@@ -52,6 +49,7 @@ const WritePage = () => {
       //Todo 받은 데이터로 useState 설정
       setRecruitMember(res.data.recruitMember);
     };
+    getData();
   }, []);
 
   const handleWriteComplete = async () => {
@@ -71,10 +69,7 @@ const WritePage = () => {
     console.log("전송될 데이터:", postData); // 데이터를 콘솔에 출력
 
     try {
-      const response = await axios.put(
-        `/boards/postmodify/${param.id}`,
-        postData
-      );
+      const res = await axios.put(`/boards/postmodify/${param.id}`, postData);
       alert("글이 성공적으로 등록되었습니다!");
       navigate("/");
     } catch (error) {
@@ -112,14 +107,20 @@ const WritePage = () => {
         <WriteBasicInfo1
           onRecruitTypeChange={setRecruitType}
           onRecruitMemberChange={setRecruitMember}
+          selectedRecruitmentType={recruitType}
+          selectedRecruitmentCount={recruitMember}
         />
         <WriteBasicInfo2
           onProgressChange={setProgress}
           onDurationChange={setDuration}
+          selectedProcessType={progress}
+          selectedProcessDuration={duration}
         />
         <WriteBasicInfo3
           onCategoryChange={setRecruitField}
           onEndDateChange={setEndDate}
+          language={language}
+          endDate={endDate}
         />
         <WriteBasicInfo4
           onLanguagesChange={setLanguage}
@@ -270,4 +271,4 @@ const WriteButton = styled.button`
   }
 `;
 
-export default WritePage;
+export default UpdatePage;

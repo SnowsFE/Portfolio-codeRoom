@@ -26,8 +26,9 @@ const HotBoards = ({}) => {
       try {
         console.log("GET 요청 전송");
         const res = await axios.get("/boards");
-        console.log("GET 요청 응답:", res.data.projects);
-        setProjects(res.data.projects);
+        console.log("GET 요청 응답:", res.data);
+        console.log("res.data.projects:", res.data.projects);
+        setProjects(res.data.mainResult);
       } catch (error) {
         console.error("프로젝트를 불러오는데 실패했습니다.", error);
       }
