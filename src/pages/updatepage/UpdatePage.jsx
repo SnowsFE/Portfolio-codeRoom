@@ -119,6 +119,7 @@ const UpdatePage = () => {
         <WriteBasicInfo3
           onCategoryChange={setRecruitField}
           onEndDateChange={setEndDate}
+          onLanguagesChange={setLanguage}
           language={language}
           endDate={endDate}
         />

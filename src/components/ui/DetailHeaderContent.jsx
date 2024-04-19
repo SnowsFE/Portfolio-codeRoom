@@ -28,8 +28,8 @@ const DetailTitle = ({
     language.forEach((lang) => {
       langIndex.push(fileNames.indexOf(lang));
     });
-    // console.log("lang index: " + langIndex);
-    // console.log("lang 확인: " + svgFiles[langIndex[0]]);
+    console.log("lang index: " + langIndex);
+    console.log("lang 확인: " + svgFiles[langIndex[0]]);
   };
   findFileNames();
 

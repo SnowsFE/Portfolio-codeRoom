@@ -193,16 +193,21 @@ const WriteBasicInfo2 = ({
 const WriteBasicInfo3 = ({
   onCategoryChange,
   onEndDateChange,
+  onLanguagesChange,
   language,
   endDate,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState(["spring"]);
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [selectedDate, setSelectedDate] = useState("2024-04-20");
   console.log("언어: " + language);
+  console.log("언어 데이터 타입 배열인가?  " + Array.isArray(language));
+  console.log("날짜: " + endDate);
+  console.log("selectedOptions: " + selectedOptions);
 
   useEffect(() => {
-    console.log("기술 스택 변경:", selectedOptions);
+    // console.log("기술 스택 변경:", selectedOptions);
+    setSelectedOptions(language);
   }, [selectedOptions]);
 
   const options = [
