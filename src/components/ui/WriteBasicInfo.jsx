@@ -201,7 +201,7 @@ const WriteBasicInfo3 = ({ onCategoryChange, onEndDateChange }) => {
       <div className="basic-info-box">
         <span className="info-title">기술 스택</span>
         <div className="select-box">
-          <div className="left-bar" onClick={toggleDropdown}>
+          <div class="left-bar" tabIndex="0" onClick={toggleDropdown}>
             {selectedOptions.length > 0 ? (
               <p>
                 {selectedOptions.map((option, index) => (
@@ -296,7 +296,7 @@ const WriteBasicInfo4 = ({ onLanguagesChange, onContactChange }) => {
       <div className="basic-info-box">
         <span className="info-title">모집 포지션</span>
         <div className="select-box">
-          <div className="left-bar" onClick={toggleDropdown}>
+          <div className="left-bar" tabIndex="0" onClick={toggleDropdown}>
             {selectedOptions.length > 0 ? (
               <p>
                 {" "}
@@ -367,6 +367,7 @@ const SelectedOptionBox = styled.span`
   padding: 7px;
   align-items: center;
   border: 1px solid #14cc14;
+  margin-left: 1%;
 
   span {
     margin-left: 3px;
@@ -379,7 +380,6 @@ const SelectArea = styled.div`
   margin-bottom: 5%;
   margin-top: 5%;
   gap: 5%;
-
   .basic-info-box {
     text-align: center;
   }
@@ -417,7 +417,11 @@ const SelectArea = styled.div`
     margin-bottom: 10px;
     background-color: #fff; /* 흰색 배경 추가 */
     &:hover {
-      background-color: #d5ffd5;
+      background-color: #d5ffd5; /* 마우스 호버 시 연한 초록색 */
+    }
+    &:focus-within {
+      outline: none;
+      border-color: #14cc14; /* 포커스된 상태의 테두리 색상 */
     }
   }
 

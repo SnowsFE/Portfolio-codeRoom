@@ -160,21 +160,29 @@ const NewBoards = ({}) => {
   // -------------------------------------------- axios 통신
   // 사용자의 검색어에 따라 서버에서 프로젝트 데이터를 가져와서 화면에 표시하는 역할
   const AddProjects = async () => {
+    if (!seachWord) {
+      // 검색어가 없는 경우, 빈 배열을 설정
+      setProjects([]);
+      return; // 함수 종료
+    }
+
     try {
-      const response = await axios.get(
-        seachWord ? `/boards/search/${seachWord}` : null
-      );
+      const res = await axios.get(`/boards/search/${seachWord}`);
+
       // 응답 데이터가 비어있는 경우 특별한 메시지를 포함하는 객체를 배열에 넣습니다.
-      if (response.data.length === 0) {
+      if (!res.data.mainResult || res.data.length === 0) {
+        // 데이터가 없거나 길이가 0인 경우
         setProjects([{ isEmpty: true }]);
       } else {
-        setProjects(response.data);
+        setProjects(res.data.mainResult);
       }
     } catch (error) {
       console.error("검색된 프로젝트가 없습니다!", error);
+      // 오류 발생 시 빈 배열 대신 특별한 메시지를 포함하는 객체를 배열에 넣습니다.
       setProjects([{ isEmpty: true }]);
     }
   };
+
   // -------------------------------------------- axios 통신
 
   return (
@@ -420,7 +428,7 @@ const PaginationItem = styled.div`
   color: black; /* 글자 색상 설정 */
   font-weight: bold; /* 글꼴 두껍게 */
   background: ${({ isActive }) =>
-    isActive ? "#e7e7e7" : "white"}; /* 현재 페이지 여부에 따라 배경색 변경 */
+    isActive ? "#ffffff" : "white"}; /* 현재 페이지 여부에 따라 배경색 변경 */
 
   &:hover {
     background: #d5ffd5; /* 호버 시 배경색 변경 */
