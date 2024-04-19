@@ -17,7 +17,7 @@ const dbInfo = mysql.createPool({
     password: 'akdlakdl12!',
 
     // database: 연결하려는 데이터베이스(schemas)의 이름입니다.
-    database: 'aaa'
+    database: 'coderoom'
 });
 
 // 생성된 커넥션 풀을 모듈로 내보냅니다. 이를 통해 다른 파일에서 이 커넥션 풀을 불러와 데이터베이스 작업을 수행할 수 있습니다.
