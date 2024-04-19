@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const router = require("./src/router/router");
-const bodyParser = require("body-parser");
 
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session); // MySQL 세션 저장소
