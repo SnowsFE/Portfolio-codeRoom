@@ -4,123 +4,15 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import {
-  PROJECT_STATUS,
-  STUDY_STATUS,
-  NEW_STATUS,
-  SUB_END_TEXT_PREFIX,
+  // recruitType1,
+  // recruitType2,
+  Newbread,
+  SUB_END_TEXT,
 } from "../../constants/NewBoardsConstants.jsx";
 
 const NewBoards = ({}) => {
-  const [views, setViews] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-  const [projects, setProjects] = useState([
-    {
-      id: 5,
-      projectStatus: "🎥 프로젝트",
-      StudyStatusStatus: "✏️ 스터디",
-      NewStatus: "",
-      subEndText: "2024.07.27",
-      subMainText: "[FrontEnd, BackEnd] 웹페이지 개발자 구인합니다!",
-      views: 0,
-    },
-    {
-      id: 6,
-      projectStatus: "🎥 프로젝트",
-      NewStatus: "",
-      subEndText: "2024.04.26",
-      subMainText: "이번 주 종로 KG ITBANK에서 함께 공부하실 학우분 구합니다!",
-      views: 0,
-    },
-    {
-      id: 7,
-      projectStatus: "🎥 프로젝트",
-      NewStatus: "",
-      subEndText: "2024.04.26",
-      subMainText:
-        "완료된 프로젝트 배포 도와주실 분 구합니다!! [사례금 100만원!!]",
-      views: 0,
-    },
-    {
-      id: 8,
-      projectStatus: "🎥 프로젝트",
-      NewStatus: "",
-      subEndText: "2024.04.26",
-      subMainText:
-        "코딩룸 웹사이트가 신규 오픈했대요!! 같이 개발 공부하실 분 구합니다!!",
-      views: 0,
-    },
-    {
-      id: 9,
-      projectStatus: "🎥 프로젝트",
-      NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "2024.04.26",
-      subMainText: "[iOS, Android] 앱 개발자를 모집합니다!",
-      views: 0,
-    },
-    {
-      id: 10,
-      projectStatus: "✏️ 스터디",
-      NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "2024.04.26",
-      subMainText: "인턴 개발자를 찾습니다. 기초 지식 필수!",
-      views: 0,
-    },
-    {
-      id: 11,
-      projectStatus: "🎥 프로젝트",
-      NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "2024.04.26",
-      subMainText: "[UI/UX] 디자이너를 구합니다. 창의력과 열정 필수!",
-      views: 0,
-    },
-    {
-      id: 12,
-      projectStatus: "✏️ 스터디",
-      NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "2024.04.26",
-      subMainText: "문서 작성자를 모집합니다. 글쓰기 능력 중요!",
-      views: 0,
-    },
-    {
-      id: 13,
-      projectStatus: "🎥 프로젝트",
-      NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "2024.04.26",
-      subMainText: "[FullStack] 웹 개발자를 찾습니다. 경력 우대!",
-      views: 0,
-    },
-    {
-      id: 14,
-      projectStatus: "✏️ 스터디",
-      NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "2024.04.26",
-      subMainText: "[Unity, Unreal] 게임 개발자를 모집합니다!",
-      views: 0,
-    },
-    {
-      id: 15,
-      projectStatus: "🎥 프로젝트",
-      NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "2024.04.26",
-      subMainText: "[Python, R] 데이터 분석가를 찾습니다. 통계학 지식 필요!",
-    },
-    {
-      id: 16,
-      projectStatus: "✏️ 스터디",
-      NewStatus: "🍞 따끈따끈 새 글",
-      subEndText: "2024.04.26",
-      subMainText:
-        "품질 보증(QA) 테스터를 모집합니다. 테스트 자동화 경험 우대!",
-      views: 0,
-    },
-    {
-      id: 17,
-      projectStatus: "🍱 점심 메뉴",
-      NewStatus: "🍖 배고파",
-      subEndText: "2024.04.31",
-      subMainText: "종로 3가 최고의 맛집 리스트를 소개합니다!!",
-      views: 0,
-    },
-  ]);
+  const [views, setViews] = useState([]);
+  const [projects, setProjects] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
   const projectsPerPage = 12; // 페이지당 보여줄 프로젝트 수
@@ -150,11 +42,11 @@ const NewBoards = ({}) => {
   // 프로젝트 데이터를 서버에서 가져오는 함수
   // GET 요청
   useEffect(() => {
-    console.log("GET 요청 전송");
     const fetchProjects = async () => {
       try {
+        console.log("GET 요청 전송");
         const res = await axios.get("/boards");
-        console.log("GET 요청 응답:", res.data);
+        console.log("GET 요청 응답:", res.data.projects);
         setProjects(res.data.projects);
       } catch (error) {
         console.error("프로젝트를 불러오는데 실패했습니다.", error);
@@ -232,18 +124,13 @@ const NewBoards = ({}) => {
         onClick={() => handleClick(index)}
       >
         <NewBoxContent>
-          {project.projectStatus && (
-            <ProjectStatus>{`${PROJECT_STATUS}`}</ProjectStatus>
-          )}
-          {project.StudyStatus && (
-            <ProjectStatus>{`${STUDY_STATUS}`}</ProjectStatus>
-          )}
-          <NewStatus>{`${NEW_STATUS}`}</NewStatus>
+          <ProjectStatus>{`${project.recruitType1} || ${project.recruitType2}`}</ProjectStatus>
+          <NewStatus>{`${project.Newbread}`}</NewStatus>
           <NewSubEnd>
-            <strong>{`${SUB_END_TEXT_PREFIX} ${project.subEndText}`}</strong>
+            <strong>{`${SUB_END_TEXT} ${project.enddate}`}</strong>
           </NewSubEnd>
           <NewSubMain>
-            <strong>{project.subMainText}</strong>
+            <strong>{project.title}</strong>
           </NewSubMain>
         </NewBoxContent>
         <NewView>
@@ -541,7 +428,7 @@ const PaginationItem = styled.div`
     isActive ? "#e7e7e7" : "white"}; /* 현재 페이지 여부에 따라 배경색 변경 */
 
   &:hover {
-    background: #e7e7e7; /* 호버 시 배경색 변경 */
+    background: #d5ffd5; /* 호버 시 배경색 변경 */
   }
 `;
 
@@ -559,7 +446,7 @@ const PaginationArrow = styled.div`
   z-index: 1; /* 층 위치 설정 */
 
   &:hover {
-    background: #e7e7e7; /* 호버 시 배경색 변경 */
+    background: #d5ffd5; /* 호버 시 배경색 변경 */
   }
 `;
 

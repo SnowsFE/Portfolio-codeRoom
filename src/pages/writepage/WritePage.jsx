@@ -27,6 +27,22 @@ const WritePage = () => {
   const [content, setContent] = useState(""); // 내용
 
   const handleWriteComplete = async () => {
+    // 모든 항목이 작성되었는지 확인
+    if (
+      recruitType === "" ||
+      recruitMember === "" ||
+      progress === "" ||
+      duration === "" ||
+      categories.length === 0 ||
+      endDate === "" ||
+      languages.length === 0 ||
+      contact === "" ||
+      title === "" ||
+      content === ""
+    ) {
+      alert("모든 항목을 작성해주세요!");
+      return; // 함수 종료
+    }
     const postData = {
       recruittype: recruitType,
       recruitmember: recruitMember,
@@ -43,7 +59,8 @@ const WritePage = () => {
     console.log("전송될 데이터:", postData); // 데이터를 콘솔에 출력
 
     try {
-      const response = await axios.post("/boards/boardswrite", postData);
+      const response = await axios.post("/boards/postWrite", postData);
+      console.log("서버 응답 데이터:", response.data); // 서버 응답 데이터를 콘솔에 출력
       alert("글이 성공적으로 등록되었습니다!");
       navigate("/");
     } catch (error) {
