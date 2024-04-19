@@ -8,7 +8,7 @@ const query = util.promisify(dbConfig.query).bind(dbConfig);
 const register = async (username, password)=>{
     const rows = await query('INSERT INTO user (username, pwd) VALUES (?, ?)', [username, password]);
     return rows;
-}
+};
 // 아이디로 정보 찾기
 const findUsername = async (username) => {
     const rows = await query('SELECT * FROM user WHERE username = ?', [username]);
