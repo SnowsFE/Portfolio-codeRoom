@@ -60,6 +60,7 @@ const info = async (req, res) => {
 const pwdChange = async (req, res) => {
     try {
         const user_uid = req.session.user_uid;
+        console.log(user_uid);
         if (!user_uid) {
             return res.status(401).json({ message: '로그인이 필요합니다.' });
         }

@@ -23,6 +23,12 @@ app.use(session({
   }
 }));
 
+// 세션 정보 출력 미들웨어 추가
+app.use((req, res, next) => {
+  console.log('세션 정보:', req.session);
+  next();
+});
+
 
 // 요청 본문 파싱을 위한 미들웨어 추가
 app.use(express.json()); // JSON 형태의 요청 본문을 파싱
