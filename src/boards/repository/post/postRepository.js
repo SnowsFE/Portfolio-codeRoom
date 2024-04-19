@@ -23,7 +23,8 @@ const views = async (board_uid)=>{
 };
 // 게시글 상세 조회
 const detailview = async (board_uid)=>{
-    const rows = await query(`select title,content,user_uid,DATE_FORMAT(createdate,'%Y.%m.%d') AS createdate,
+    const rows = await query(`select title,content,user_uid,
+    DATE_FORMAT(enddate,'%Y.%m.%d') AS enddate,DATE_FORMAT(createdate,'%Y.%m.%d') AS createdate,
     views,recruittype,progress,recruitmember,
     contact,duration from board where board_uid = ?`,board_uid);
     const rows2 = await query(`select recruitfield from category where board_uid = ?`,board_uid);

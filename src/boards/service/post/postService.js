@@ -9,6 +9,7 @@ const postList = async () =>{
             integratedData[i] ={
                 "recruitType1": "🎥 "+result[i].recruitType,
                 "recruitType2": null,
+                "Newbread": "🍞 따끈따끈 새 글",
                 "enddate": result[i].enddate,
                 "title": result[i].title,
                 "views": result[i].views,
@@ -18,6 +19,7 @@ const postList = async () =>{
             integratedData[i] ={
                 "recruitType1": null,
                 "recruitType2": "✏ "+result[i].recruitType,
+                "Newbread": "🍞 따끈따끈 새 글",
                 "enddate": result[i].enddate,
                 "title": result[i].title,
                 "views": result[i].views,
@@ -66,6 +68,7 @@ const detailview = async (board_uid) =>{
             title: row.title,
             content: row.content,
             createdate: row.createdate,
+            enddate: row.enddate,
             username: result.rows4[0].username,
             views: row.views,
             recruittype: row.recruittype,
