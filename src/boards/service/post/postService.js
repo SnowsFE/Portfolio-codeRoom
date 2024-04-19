@@ -93,8 +93,29 @@ const recruitfieldSerch = async (recruitfield)=>{
 };
 // 검색 기능 로직
 const Search = async (searchWord)=>{
+    let integratedData = [];
     const result = await postRep.Search(searchWord);
-    return result;
+    for(let i = 0 ; i < result.length ; i++){
+        if(result[i].recruitType == '프로젝트'){
+            integratedData[i] ={
+                "recruitType": "🎥 "+result[i].recruitType,
+                "enddate": result[i].enddate,
+                "title": result[i].title,
+                "views": result[i].views,
+                "board_uid": result[i].board_uid
+               }
+        }else{
+            integratedData[i] ={
+                "recruitType": "✏ "+result[i].recruitType,
+                "enddate": result[i].enddate,
+                "title": result[i].title,
+                "views": result[i].views,
+                "board_uid": result[i].board_uid
+               }
+        }
+        
+    };
+    return integratedData;
 };
 
 // 게시글 작성
