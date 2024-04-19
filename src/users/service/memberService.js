@@ -29,6 +29,7 @@ const login = async (username, password, req) => {
 
     // 로그인 성공 시 세션에 사용자 ID 저장
     req.session.user_uid = user.user_uid;
+    console.log("session",req.session);
     req.session.save(); // 세션 정보 업데이트
 
     return user; // 로그인 성공
@@ -72,9 +73,10 @@ const userdel = async (user_uid) => {
 }
 
 // 마이페이지 기능 (사용자의 게시글과 댓글 정보 조회)
-const myPage = async (user_uid) => {
+const myPage = async (user_uid,req) => {
     console.log("memser : ",user_uid);
     let commentsInfo = [];
+    if(req.session.user_uid){
     const result = await memberRep.userInfo(user_uid);
     console.log("memser result : ",result[0].username);
     const result2 = await memberRep.myPostsCount(user_uid);
@@ -98,6 +100,7 @@ const myPage = async (user_uid) => {
         postsIofo,commentsInfo
     };
     return integratedData2;
+    }
 };
 
 module.exports = { register, login, info, pwdChange, userdel, myPage,checkDuplicate };
