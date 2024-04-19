@@ -44,12 +44,7 @@ const checkDuplicate = async (username) => {
 
 
 // 회원 정보 조회 기능
-const info = async (user_uid, req) => {
-    // 세션을 통해 로그인 상태 확인
-    if (!checkLogin(req)) {
-        throw new Error('로그인이 필요합니다.');
-    }
-
+const info = async (user_uid) => {
     const user = await memberRep.info(user_uid);
     if (!user) {
         throw new Error('사용자를 찾을 수 없습니다.');
