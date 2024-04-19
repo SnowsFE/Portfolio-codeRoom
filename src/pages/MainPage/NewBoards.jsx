@@ -3,12 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import {
-  // recruitType1,
-  // recruitType2,
-  Newbread,
-  SUB_END_TEXT,
-} from "../../constants/NewBoardsConstants.jsx";
+import { Newbread, SUB_END_TEXT } from "../../constants/NewBoardsConstants.jsx";
 
 const NewBoards = ({}) => {
   const [views, setViews] = useState([]);
@@ -46,8 +41,8 @@ const NewBoards = ({}) => {
       try {
         console.log("GET 요청 전송");
         const res = await axios.get("/boards");
-        console.log("GET 요청 응답:", res.data.projects);
-        setProjects(res.data.projects);
+        console.log("GET 요청 응답:", res.data.mainResult);
+        setProjects(res.data.mainResult);
       } catch (error) {
         console.error("프로젝트를 불러오는데 실패했습니다.", error);
       }
@@ -124,7 +119,7 @@ const NewBoards = ({}) => {
         onClick={() => handleClick(index)}
       >
         <NewBoxContent>
-          <ProjectStatus>{`${project.recruitType1} || ${project.recruitType2}`}</ProjectStatus>
+          <ProjectStatus>{`${project.recruitType}`}</ProjectStatus>
           <NewStatus>{`${project.Newbread}`}</NewStatus>
           <NewSubEnd>
             <strong>{`${SUB_END_TEXT} ${project.enddate}`}</strong>
