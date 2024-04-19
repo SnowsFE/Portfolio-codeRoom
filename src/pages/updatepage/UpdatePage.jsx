@@ -1,31 +1,56 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   WriteBasicInfo1,
   WriteBasicInfo2,
   WriteBasicInfo3,
   WriteBasicInfo4,
-} from "../../components/ui/WriteBasicInfo";
+} from "../../components/ui/WriteBasicInfoUpdate.jsx";
 import LoginNav from "../../components/ui/LoginNav.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import UpScroll from "../../components/ui/UpScroll.jsx";
 import axios from "axios";
 
-const WritePage = () => {
+const UpdatePage = () => {
   const navigate = useNavigate();
-  // let param = useParams(); //게시판 아이디는 param.id 로 접근
+  let param = useParams(); //게시판 아이디는 param.id 로 접근
 
-  const [recruitType, setRecruitType] = useState(""); // 모집 구분
-  const [recruitMember, setRecruitMember] = useState(""); // 모집 인원
-  const [progress, setProgress] = useState(""); // 진행 방식
-  const [duration, setDuration] = useState(""); // 진행 기간
-  const [categories, setCategories] = useState([]); // 기술 스택
-  const [endDate, setEndDate] = useState(""); // 모집 마감일
-  const [languages, setLanguages] = useState([]); // 모집 포지션
-  const [contact, setContact] = useState(""); // 연락 방법
-  const [title, setTitle] = useState(""); // 제목
-  const [content, setContent] = useState(""); // 내용
+  const [title, setTitle] = useState(""); //제목
+  const [writer, setWriter] = useState(""); //작성자
+
+  const [recruitType, setRecruitType] = useState([]); //모집구분
+  const [progress, setProgress] = useState(""); //진행방식
+  const [recruitMember, setRecruitMember] = useState(""); //모집인원
+  const [endDate, setEndDate] = useState(""); //모집 마감일
+  const [contact, setContact] = useState(""); //연락방법
+  const [duration, setDuration] = useState(""); //예상 기간
+  const [recruitField, setRecruitField] = useState([]); //모집 분야
+  const [language, setLanguage] = useState([]); //사용 언어 ex) spring
+  const [content, setContent] = useState(""); //본문 내용
+
+  // Todo update시 수정하고자 하는 게시판의 기존 데이터 가져오기 (서버 통신)
+  useEffect(() => {
+    const getData = async () => {
+      const res = await axios.get(`/boards/${param.id}`);
+      console.log("update data: " + res.data.postresult[0].languages);
+      setTitle(res.data.postresult[0].title);
+      setWriter(res.data.postresult[0].username);
+      setRecruitType(res.data.postresult[0].recruittype);
+      setProgress(res.data.postresult[0].progress);
+      setRecruitMember(res.data.postresult[0].recruitmember);
+      setContact(res.data.postresult[0].contact);
+      setDuration(res.data.postresult[0].duration);
+      setRecruitField(res.data.postresult[0].recruitFields);
+      setLanguage(res.data.postresult[0].languages);
+      setEndDate(res.data.postresult[0].enddate); //Todo
+      setContent(res.data.postresult[0].content);
+
+      //Todo 받은 데이터로 useState 설정
+      setRecruitMember(res.data.recruitMember);
+    };
+    getData();
+  }, []);
 
   const handleWriteComplete = async () => {
     const postData = {
@@ -33,9 +58,9 @@ const WritePage = () => {
       recruitmember: recruitMember,
       progress,
       duration,
-      categories,
+      recruitField,
       enddate: endDate,
-      languages,
+      language,
       contact,
       title,
       content,
@@ -44,7 +69,7 @@ const WritePage = () => {
     console.log("전송될 데이터:", postData); // 데이터를 콘솔에 출력
 
     try {
-      const response = await axios.post("/boards/boardswrite", postData);
+      const res = await axios.put(`/boards/postmodify/${param.id}`, postData);
       alert("글이 성공적으로 등록되었습니다!");
       navigate("/");
     } catch (error) {
@@ -60,7 +85,6 @@ const WritePage = () => {
       navigate("/");
     }
   };
-  // -------------------------------------------- axios 통신
 
   // 제목과 내용을 업데이트하는 함수
   const handleTitleChange = (e) => {
@@ -83,17 +107,23 @@ const WritePage = () => {
         <WriteBasicInfo1
           onRecruitTypeChange={setRecruitType}
           onRecruitMemberChange={setRecruitMember}
+          selectedRecruitmentType={recruitType}
+          selectedRecruitmentCount={recruitMember}
         />
         <WriteBasicInfo2
           onProgressChange={setProgress}
           onDurationChange={setDuration}
+          selectedProcessType={progress}
+          selectedProcessDuration={duration}
         />
         <WriteBasicInfo3
-          onCategoryChange={setCategories}
+          onCategoryChange={setRecruitField}
           onEndDateChange={setEndDate}
+          language={language}
+          endDate={endDate}
         />
         <WriteBasicInfo4
-          onLanguagesChange={setLanguages}
+          onLanguagesChange={setLanguage}
           onContactChange={setContact}
         />
         <h2>글작성</h2>
@@ -241,4 +271,4 @@ const WriteButton = styled.button`
   }
 `;
 
-export default WritePage;
+export default UpdatePage;

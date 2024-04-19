@@ -1,11 +1,26 @@
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 
-const WriteBasicInfo1 = () => {
+const WriteBasicInfo1 = ({
+  onRecruitTypeChange,
+  onRecruitMemberChange,
+  selectedRecruitmentType,
+  selectedRecruitmentCount,
+}) => {
   // WriteBasicInfo1 사용자가 어떠한 모집 구분 (프로젝트 / 스터디) , 모집 인원 (1, 2, 3 명...) 을 사전에 설정했는지 표시
   // 아래 변수는 각각 모집 구분, 모집 인원임
-  let selectedRecruitmentType = "project";
-  let selectedRecruitmentCount = "3";
+  // let selectedRecruitmentType = "project";
+  // let selectedRecruitmentCount = "3";
+
+  const RecruitTypeChange = (value) => {
+    onRecruitTypeChange(value);
+    console.log("모집 구분 변경:", value); // 모집 구분이 변경될 때 로그 출력
+  };
+
+  const MemberChange = (value) => {
+    onRecruitMemberChange(value);
+    console.log("모집 인원 변경:", value); // 모집 인원이 변경될 때 로그 출력
+  };
 
   return (
     <SelectArea>
@@ -16,6 +31,7 @@ const WriteBasicInfo1 = () => {
             name="recruitmentType"
             id="recruitmentType"
             className="select-bar"
+            onChange={(e) => RecruitTypeChange(e.target.value)}
           >
             <option value="" disabled>
               프로젝트 / 스터디
@@ -42,6 +58,7 @@ const WriteBasicInfo1 = () => {
             name="recruitmentCount"
             id="recruitmentCount"
             className="select-bar"
+            onChange={(e) => MemberChange(e.target.value)}
           >
             <option value="" disabled>
               인원 미정 ~ 10명 이상
@@ -83,11 +100,26 @@ const WriteBasicInfo1 = () => {
   );
 };
 
-const WriteBasicInfo2 = () => {
+const WriteBasicInfo2 = ({
+  onProgressChange,
+  onDurationChange,
+  selectedProcessType,
+  selectedProcessDuration,
+}) => {
   // WriteBasicInfo2는 사용자가 사전에 선택한 진행방식(온라인, 오프라인) 과 진행 기간 정보를 가져와서 보여준다.
   // 아래는 각각 진행방식과 진행 기간 정보임
-  let selectedProcessType = "online";
-  let selectedProcessDuration = "3";
+  // let selectedProcessType = "online";
+  // let selectedProcessDuration = "3";
+
+  const ProgressChange = (value) => {
+    onProgressChange(value);
+    console.log("진행 방식 변경:", value); // 진행 방식이 변경될 때 로그 출력
+  };
+
+  const DurationChange = (value) => {
+    onDurationChange(value);
+    console.log("진행 기간 변경:", value); // 진행 기간이 변경될 때 로그 출력
+  };
 
   return (
     <SelectArea>
@@ -98,16 +130,17 @@ const WriteBasicInfo2 = () => {
             name="processType"
             id="processType"
             className="select-bar"
+            onChange={(e) => ProgressChange(e.target.value)}
           >
             <option value="" disabled>
               온라인 / 오프라인
             </option>
-            <option value="online" selected={selectedProcessType === "online"}>
+            <option value="online" selected={selectedProcessType === "온라인"}>
               온라인
             </option>
             <option
               value="offline"
-              selected={selectedProcessType === "offline"}
+              selected={selectedProcessType === "오프라인"}
             >
               오프라인
             </option>
@@ -121,32 +154,33 @@ const WriteBasicInfo2 = () => {
             name="processDuration"
             id="processDuration"
             className="select-bar"
+            onChange={(e) => DurationChange(e.target.value)}
           >
             <option value="" disabled>
               기간 미정 ~ 6개월 이상
             </option>
             <option
               value="undecided"
-              selected={selectedProcessDuration === "undecided"}
+              selected={selectedProcessDuration === "기간 미정"}
             >
               기간 미정
             </option>
-            <option value="1" selected={selectedProcessDuration === "1"}>
+            <option value="1" selected={selectedProcessDuration === "1개월"}>
               1개월
             </option>
-            <option value="2" selected={selectedProcessDuration === "2"}>
+            <option value="2" selected={selectedProcessDuration === "2개월"}>
               2개월
             </option>
-            <option value="3" selected={selectedProcessDuration === "3"}>
+            <option value="3" selected={selectedProcessDuration === "3개월"}>
               3개월
             </option>
-            <option value="4" selected={selectedProcessDuration === "4"}>
+            <option value="4" selected={selectedProcessDuration === "4개월"}>
               4개월
             </option>
-            <option value="5" selected={selectedProcessDuration === "5"}>
+            <option value="5" selected={selectedProcessDuration === "5개월"}>
               5개월
             </option>
-            <option value="6" selected={selectedProcessDuration === "6"}>
+            <option value="6" selected={selectedProcessDuration === "6개월"}>
               6개월
             </option>
           </StyledSelect>
@@ -156,14 +190,20 @@ const WriteBasicInfo2 = () => {
   );
 };
 
-const WriteBasicInfo3 = () => {
+const WriteBasicInfo3 = ({
+  onCategoryChange,
+  onEndDateChange,
+  language,
+  endDate,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState([
-    "React",
-    "TypeScript",
-    "Node.js",
-  ]);
+  const [selectedOptions, setSelectedOptions] = useState(["spring"]);
   const [selectedDate, setSelectedDate] = useState("2024-04-20");
+  console.log("언어: " + language);
+
+  useEffect(() => {
+    console.log("기술 스택 변경:", selectedOptions);
+  }, [selectedOptions]);
 
   const options = [
     "JavaScript",
@@ -286,7 +326,7 @@ const WriteBasicInfo3 = () => {
   );
 };
 
-const WriteBasicInfo4 = () => {
+const WriteBasicInfo4 = ({ onLanguagesChange, onContactChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([
     "프론트엔드",
@@ -325,6 +365,12 @@ const WriteBasicInfo4 = () => {
   const handleContactMethodChange = (event) => {
     setContactMethod(event.target.value);
   };
+
+  // 선택된 옵션이 변경될 때마다 onLanguagesChange 호출
+  useEffect(() => {
+    onLanguagesChange(selectedOptions);
+    console.log("모집 포지션 변경:", selectedOptions); // 모집 포지션 변경 시 로그 출력
+  }, [selectedOptions]);
 
   return (
     <SelectArea>

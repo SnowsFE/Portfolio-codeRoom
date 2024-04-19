@@ -1,64 +1,67 @@
-import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { LoginLogo, LoginBelowImg } from "../../components/ui/LoginLogo";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import Nav from "../../components/ui/Nav.jsx";
+import { LoginLogo, LoginBelowImg } from "../../components/ui/LoginLogo";
 
-const JoinPage = () => {
-  const navigate = useNavigate();
-
-  const [username, setUsername] = useState("");
+const TestJoinPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-
-  // 중복 여부 및 비밀번호 상태
-  // 3가지 상태에 대해서 모두 true 이여야지만 서버에 post 요청
+  const [username, setUsername] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
   const [isUsernameChecked, setIsUsernameChecked] = useState(false);
-  const [isPasswordValid, setIsPasswordValid] = useState(false);
-  const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState(false);
 
-  // 비밀번호 유효성 검사
-  const passwordCheck = async (e) => {
-    if (e.target.value.length < 8) {
-      setErrorMessage("비밀번호는 8자리 이상이어야 합니다");
-      return;
+  const navigate = useNavigate();
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+    setIsUsernameChecked(false);
+    if (e.target.value.length < 6) {
+      setErrorMessage("아이디는 6자리 이상이어야 합니다.");
+    } else {
+      setErrorMessage(null);
     }
-    setIsPasswordValid(true);
-    setErrorMessage("");
   };
-
-  // confirm 비밀번호 유효성 검사
-  const confirmPasswordCheck = async (e) => {
-    if (password.length < 8) {
-      setErrorMessage("비밀번호는 8자리 이상이어야 합니다");
-      return;
-    } else if (e.target.value !== password) {
-      setErrorMessage("비밀번호가 일치하지 않습니다");
-      return;
-    }
-    setIsConfirmPasswordValid(true);
-    setErrorMessage("");
-  };
-
-  // username 중복 확인 (서버와 통신)
-  const validCheckHandler = async (e) => {
+  const handleUsernameCheck = async () => {
     try {
-      const response = await axios.post("/join/isDuplicated", {
-        username,
+      const response = await axios.post("/users/checkDuplicate", {
+        username: username,
       });
-      console.log(response.data);
-      setIsUsernameChecked(true);
+
+      if (response.data) {
+        setErrorMessage("사용 가능한 아이디입니다.");
+        setIsUsernameChecked(true);
+      }
     } catch (e) {
-      if (e.response && e.response.status === 401) {
-        setErrorMessage("중복된 아이디 입니다");
-        setIsUsernameChecked(false);
+      if (e.response.status === 400) {
+        setErrorMessage("이미 사용중인 아이디입니다.");
       }
     }
   };
 
-  // 회원 가입 (서버와 통신)
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    if (e.target.value.length < 8) {
+      setErrorMessage("비밀번호는 8자리 이상이어야 합니다.");
+    } else if (confirmPassword !== "" && e.target.value !== confirmPassword) {
+      setErrorMessage("비밀번호가 일치하지 않습니다.");
+    } else {
+      setErrorMessage(null);
+    }
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+    if (password.length < 8) {
+      setErrorMessage("비밀번호는 8자리 이상이어야 합니다.");
+    } else if (e.target.value !== password) {
+      setErrorMessage("비밀번호가 일치하지 않습니다.");
+    } else {
+      setErrorMessage(null);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isUsernameChecked) {
@@ -66,81 +69,74 @@ const JoinPage = () => {
       return;
     }
 
-    if (!isPasswordValid) {
+    if (username.length < 6) {
+      setErrorMessage("아이디는 6자리 이상이어야 합니다.");
+      return;
+    }
+
+    if (password.length < 8) {
       setErrorMessage("비밀번호는 8자리 이상이어야 합니다.");
       return;
     }
 
-    if (!isConfirmPasswordValid) {
+    if (password !== confirmPassword) {
       setErrorMessage("비밀번호가 일치하지 않습니다.");
       return;
     }
-    try {
-      const response = await axios.post("/join", {
-        username: username,
-        password: password,
-      });
-      console.log("회원가입 데이터: " + response.data); //확인용
-      navigate("/users/login"); //회원가입 성공시 로그인 화면으로 이동
-    } catch (e) {
-      if (e.response.status === 401) {
-        alert("사용자 입력 오류");
-      } else if (e.response.status === 500) {
-        alert("서버측 오류 발생");
-      }
-    }
+
+    const response = await axios.post("/users/join", {
+      username: username,
+      password: password,
+    });
+    navigate("/users/login");
   };
 
   return (
     <>
       <Nav />
-      <JoinContentsCotainer>
-        <LoginForm>
+      <ContentsCotainer>
+        <LoginForm onSubmit={handleSubmit}>
           <LoginLogo></LoginLogo>
           <InputContainer>
-            <JoinInput
+            <Input
               type="text"
               placeholder="Username"
-              onChange={(e) => setUsername(e.target.value)}
+              value={username}
+              onChange={handleUsernameChange}
             />
-            <CheckButton onClick={() => validCheckHandler()}>
-              중복확인
-            </CheckButton>
+            <CheckButton onClick={handleUsernameCheck}>중복확인</CheckButton>
           </InputContainer>
-          <JoinInput
+          <Input
             type="password"
             placeholder="Password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-              passwordCheck(e);
-            }}
+            value={password}
+            onChange={handlePasswordChange}
           />
-
-          <JoinInput
+          <Input
             type="password"
             placeholder="Confirm Password"
-            onChange={(e) => {
-              setConfirmPassword(e.target.value);
-              confirmPasswordCheck(e);
-            }}
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
           />
           {errorMessage && <Message>{errorMessage}</Message>}
           <ButtonContainer>
-            <SignUpButton type="submit" onClick={(e) => handleSubmit(e)}>
-              회원 가입
-            </SignUpButton>
-            <LoginButton onClick={() => navigate("/users/login")}>
+            <SignUpButton type="submit">회원 가입</SignUpButton>
+            <LoginButton
+              onClick={() => {
+                navigate("/users/login");
+              }}
+            >
               로그인
             </LoginButton>
           </ButtonContainer>
         </LoginForm>
         <LoginBelowImg></LoginBelowImg>
-      </JoinContentsCotainer>
+      </ContentsCotainer>
     </>
   );
 };
 
-const JoinContentsCotainer = styled.div`
+const ContentsCotainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -162,41 +158,53 @@ const LoginForm = styled.form`
   background-color: white;
 `;
 
-const JoinInput = styled.input`
+const Title = styled.h1`
+  margin-bottom: 40px;
+  font-size: 28px;
+  text-align: center;
+`;
+
+const Input = styled.input`
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ddd;
 `;
 
+const Label = styled.label`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+const Checkbox = styled.input`
+  margin-right: 10px;
+`;
+
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
 `;
 
-const JoinButton = styled.button`
+const Button = styled.button`
   padding: 10px;
   border-radius: 5px;
   border: none;
   color: white;
   cursor: pointer;
   width: 45%;
-  font-weight: 700;
 `;
 
-const LoginButton = styled(JoinButton)`
+const LoginButton = styled(Button)`
   background-color: #007bff;
-  font-weight: 700;
 
   &:hover {
     background-color: #0056b3;
   }
 `;
 
-const SignUpButton = styled(JoinButton)`
+const SignUpButton = styled(Button)`
   background-color: #28a745;
-  font-weight: 700;
 
   &:hover {
     background-color: #218838;
@@ -209,7 +217,7 @@ const InputContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-const CheckButton = styled(JoinButton)`
+const CheckButton = styled(Button)`
   width: 30%;
   background-color: #6c757d;
 
@@ -220,7 +228,7 @@ const CheckButton = styled(JoinButton)`
 
 const Message = styled.div`
   color: red;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
-export default JoinPage;
+export default TestJoinPage;

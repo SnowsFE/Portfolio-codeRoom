@@ -4,8 +4,8 @@ import styled from "styled-components";
 import axios from "axios";
 import CodeRoomIcon from "../../img/CodeRoomIcon.png";
 
-const DetailComment = () => {
-  const [comments, setComments] = useState([]); //댓글 (댓글 작성자 + 댓글 작성 일자)
+const DetailComment = ({ comments }) => {
+  // const [comments, setComments] = useState([]); //댓글 (댓글 작성자 + 댓글 작성 일자)
   const [comment, setComment] = useState(""); //사용자가 작성하는 댓글
   const navigator = useNavigate();
 
@@ -44,15 +44,15 @@ const DetailComment = () => {
       </CommentContainer>
 
       {/* 댓글 보여주기 */}
-      {sampleComments.map((comment, index) => {
+      {comments.map((comment, index) => {
         return (
           <Comments>
             <div className="writer-area">
               <img src={CodeRoomIcon} alt="" />
-              <li className="writer">{comment.writer}</li>
+              <li className="writer">{comment.username}</li>
             </div>
-            <li className="write-dt">{comment.writeDt} </li>
-            <li className="comment">{comment.comment} </li>
+            <li className="write-dt">{comment.createdate} </li>
+            <li className="comment">{comment.content} </li>
             <div>
               <Underline />
             </div>
