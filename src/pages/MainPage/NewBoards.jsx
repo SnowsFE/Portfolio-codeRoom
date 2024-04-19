@@ -428,7 +428,7 @@ const PaginationItem = styled.div`
     isActive ? "#e7e7e7" : "white"}; /* 현재 페이지 여부에 따라 배경색 변경 */
 
   &:hover {
-    background: #e7e7e7; /* 호버 시 배경색 변경 */
+    background: #d5ffd5; /* 호버 시 배경색 변경 */
   }
 `;
 
@@ -446,7 +446,7 @@ const PaginationArrow = styled.div`
   z-index: 1; /* 층 위치 설정 */
 
   &:hover {
-    background: #e7e7e7; /* 호버 시 배경색 변경 */
+    background: #d5ffd5; /* 호버 시 배경색 변경 */
   }
 `;
 

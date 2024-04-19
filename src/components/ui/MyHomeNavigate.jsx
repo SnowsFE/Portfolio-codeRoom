@@ -1,6 +1,37 @@
 import React from "react";
 import styled, { keyframes, createGlobalStyle } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+// 배경색 변경 및 모달 컴포넌트
+const MyHomeNavigate = () => {
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 관리
+
+  // 모달 토글 함수
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  // 마이페이지 이동 함수
+  const navigateToMyPage = () => {
+    navigate("/MyPage");
+  };
+
+  return (
+    <>
+      <GlobalStyle />
+      <Button onClick={toggleModal}>🏡</Button>
+      {isModalOpen && (
+        <UserInfoModal>
+          <p style={{ cursor: "pointer" }} onClick={navigateToMyPage}>
+            내정보
+          </p>
+        </UserInfoModal>
+      )}
+    </>
+  );
+};
 
 // 버튼 반짝 애니메이션
 const glow = keyframes`
@@ -48,21 +79,24 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-// 배경색 변경 컴포넌트
-const MyHomeNavigate = () => {
-  const navigate = useNavigate(); // useNavigate 훅 사용
+// 모달 스타일 정의
+const UserInfoModal = styled.div`
+  position: absolute;
+  top: 57px; // 버튼 위치 바로 아래에 나타나도록 설정
+  right: 0px;
+  width: 100px;
+  height: 30px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px #646464;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 101; // 버튼보다 높은 z-index 설정
 
-  // 버튼 클릭 시 "/MyPage"로 이동하는 함수
-  const handleButtonClick = () => {
-    navigate("/MyPage");
-  };
-
-  return (
-    <>
-      <GlobalStyle />
-      <Button onClick={handleButtonClick}>🏡</Button>
-    </>
-  );
-};
+  :hover {
+    color: #14cc14;
+  }
+`;
 
 export default MyHomeNavigate;

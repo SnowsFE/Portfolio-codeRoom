@@ -159,7 +159,7 @@ const SkillJobButton = styled.button`
   cursor: pointer; /* 커서 설정 */
 
   &:hover {
-    background-color: #e7e7e7; /* 호버시 배경색 변경 */
+    background-color: #d5ffd5; /* 호버시 배경색 변경 */
   }
 `;
 
