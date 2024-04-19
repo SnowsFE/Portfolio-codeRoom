@@ -48,6 +48,14 @@ const Search = async (req, res)=>{
 // 게시글 작성
 const postwrite = async (req, res) => {
     try {
+        // 세션에서 사용자 ID 가져오기
+        const user_uid = req.session.user_uid;
+
+        // 세션에 사용자 ID가 없으면 로그인 페이지로 리다이렉트
+        if (!user_uid) {
+            return res.status(401).json({ message: "로그인이 필요합니다." });
+        }
+
         const postData = req.body;
         const languages = Array.isArray(req.body.languages) ? req.body.languages : []; // 클라이언트로부터 받은 언어 배열
         const categories = Array.isArray(req.body.categories) ? req.body.categories : []; // 클라이언트로부터 받은 분야 배열
@@ -58,6 +66,9 @@ const postwrite = async (req, res) => {
                 return res.status(400).json({ message: `${field}공백입니다` });
             }
         }
+        // 사용자 ID 추가
+        postData.user_uid = user_uid;
+
         const result = await postService.postwrite(postData, languages, categories);
         res.status(201).json({ message: "게시글이 성공적으로 생성되었습니다.", postId: result.insertId });
     } catch (error) {
@@ -68,6 +79,11 @@ const postwrite = async (req, res) => {
 const postmodify = async (req, res) => {
     try {
         const boardUid = req.params.board_uid;
+        const user_uid = req.session.user_uid;
+
+        if (!user_uid) {
+            return res.status(401).json({ message: "로그인이 필요합니다." });
+        }
         const postData = req.body;
         const languages = Array.isArray(req.body.languages) ? req.body.languages : [];
         const categories = Array.isArray(req.body.categories) ? req.body.categories : [];
@@ -79,6 +95,7 @@ const postmodify = async (req, res) => {
                 return res.status(400).json({ message: `${field} 공백입니다` });
             }
         }
+        postData.user_uid = user_uid; // 세션에서 가져온 사용자 ID를 postData에 추가
         const result = await postService.postmodify(boardUid, postData, languages, categories);
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: "게시글을 찾을 수 없습니다." });

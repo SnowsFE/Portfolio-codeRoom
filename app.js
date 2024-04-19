@@ -1,21 +1,32 @@
 const express = require('express');
 const app = express();
 const router = require("./src/router/router");
-const exp = require("constants");
-const bodyParser = require("body-parser");
 
 const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session); // MySQL 세션 저장소
+const dbConfig = require("./src/config/database/db_config");
+
+// 세션 저장소 설정
+const sessionStore = new MySQLStore(dbConfig);
 
 app.use(session({
-  secret: '비밀키', // 세션을 암호화하기 위한 비밀키
-  resave: false, // 세션을 항상 저장할 지 여부
-  saveUninitialized: true, // 초기화되지 않은 세션을 저장소에 저장
+  secret: '비밀키',
+  resave: false,
+  saveUninitialized: true,
+  store: sessionStore, // 세션 저장소 설정
   cookie: {
-    secure: false, // https에서만 세션 정보를 주고받도록 설정
-    maxAge: 1000 * 60 * 60, // 쿠키 유효시간 1시간
-    httpOnly: true, // 클라이언트에서 쿠키를 확인하지 못하도록 설정
+    secure: false, // HTTPS가 아닌 경우 false로 설정
+    // maxAge: 1000 * 60 * 60,
+    // maxAge: null,
+    httpOnly: true,
   }
 }));
+
+// 세션 정보 출력 미들웨어 추가
+app.use((req, res, next) => {
+  console.log('세션 정보:', req.session);
+  next();
+});
 
 
 // 요청 본문 파싱을 위한 미들웨어 추가
