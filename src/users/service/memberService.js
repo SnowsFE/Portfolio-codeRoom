@@ -15,10 +15,6 @@ const register = async (username, password) => {
     const hashedPassword = await bcrypt.hash(password, 8);
     await memberRep.register(username, hashedPassword);
 };
-// 세션을 통해 로그인 상태를 확인하는 함수
-const checkLogin = (req) => {
-    return req.session.user_uid; // 세션에 저장된 사용자 ID를 반환
-};
 // 로그인 기능
 const login = async (username, password, req) => {
     const user = await memberRep.findUsername(username);
@@ -45,12 +41,7 @@ const checkDuplicate = async (username) => {
 
 
 // 회원 정보 조회 기능
-const info = async (user_uid, req) => {
-    // 세션을 통해 로그인 상태 확인
-    if (!checkLogin(req)) {
-        throw new Error('로그인이 필요합니다.');
-    }
-
+const info = async (user_uid) => {
     const user = await memberRep.info(user_uid);
     if (!user) {
         throw new Error('사용자를 찾을 수 없습니다.');

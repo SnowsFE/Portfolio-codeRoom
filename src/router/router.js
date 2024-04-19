@@ -7,13 +7,13 @@ function isAuthenticated(req, res, next) {
   res.status(401).send('로그인이 필요합니다.');
 }
 const memberCtrl = require("../users/controller/memberController");
-router.post("/users/join", memberCtrl.register);            // 회원가입
-router.post("/users/login", memberCtrl.login);              // 로그인
-router.get("/users/:user_uid", memberCtrl.info);            // 회원정보 조회
-router.get("/users/info", memberCtrl.info);                 // (session)회원정보 조회
-router.put("/users/:user_uid", memberCtrl.pwdChange);       // 비밀번호 변경
-router.delete("/users/:user_uid", memberCtrl.userdel);      // 회원 탈퇴
-router.get('/users/:user_uid/mypage', memberCtrl.myPage);   // 마이페이지 접근
+router.post("/users/join", memberCtrl.register);                // 회원가입
+router.post("/users/login", memberCtrl.login);                  // 로그인
+router.delete("/users/logout", memberCtrl.logout);              // 로그아웃
+router.get("/users/info", memberCtrl.info);                     // 회원정보 조회
+router.put("/users/update", memberCtrl.pwdChange);              // 비밀번호 변경
+router.delete("/users/delete", memberCtrl.userdel);             // 회원 탈퇴
+router.get('/users/mypage', memberCtrl.myPage);                 // 마이페이지 접근
 router.post("/users/checkDuplicate",memberCtrl.checkDuplicate); // 중복검사 
 
 
