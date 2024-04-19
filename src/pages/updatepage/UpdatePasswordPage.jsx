@@ -19,7 +19,7 @@ const TestJoinPage = () => {
 
   const handleConfirmPasswordChange = (e) => {
     setModifiyPassword(e.target.value);
-    if (modifiyPassword.length < 8) {
+    if (e.target.value.length < 8) {
       setErrorMessage("수정할 비밀번호는 8자리 이상이어야 합니다.");
     } else {
       setErrorMessage(null);
@@ -38,20 +38,24 @@ const TestJoinPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password.length < 8) {
-      setErrorMessage("비밀번호는 8자리 이상이어야 합니다.");
+    if (modifiyPassword.length < 8) {
+      setErrorMessage("수정할 비밀번호는 8자리 이상이어야 합니다.");
       return;
     }
 
     if (modifiyPassword !== confirmModifiyPassword) {
-      setErrorMessage("비밀번호가 일치하지 않습니다.");
+      setErrorMessage("수정할 비밀번호가 일치하지 않습니다.");
       return;
     }
 
-    const response = await axios.post("/users/join", {
-      password: password,
-    });
-    navigate("/users/login");
+    try {
+      const res = await axios.put("/users/join", {
+        password,
+        modifiyPassword,
+      });
+      console.log("회원정보 수정: " + res.data);
+      navigate("/users/login");
+    } catch (e) {}
   };
 
   return (
@@ -81,13 +85,13 @@ const TestJoinPage = () => {
           />
           {errorMessage && <Message>{errorMessage}</Message>}
           <ButtonContainer>
-            <SignUpButton type="submit">회원 가입</SignUpButton>
+            <SignUpButton type="submit">비밀번호 수정</SignUpButton>
             <LoginButton
               onClick={() => {
-                navigate("/users/login");
+                navigate(-1);
               }}
             >
-              로그인
+              돌아가기
             </LoginButton>
           </ButtonContainer>
         </LoginForm>
