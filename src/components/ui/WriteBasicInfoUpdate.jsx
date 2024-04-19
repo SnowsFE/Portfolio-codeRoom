@@ -7,11 +7,6 @@ const WriteBasicInfo1 = ({
   selectedRecruitmentType,
   selectedRecruitmentCount,
 }) => {
-  // WriteBasicInfo1 사용자가 어떠한 모집 구분 (프로젝트 / 스터디) , 모집 인원 (1, 2, 3 명...) 을 사전에 설정했는지 표시
-  // 아래 변수는 각각 모집 구분, 모집 인원임
-  // let selectedRecruitmentType = "project";
-  // let selectedRecruitmentCount = "3";
-
   const RecruitTypeChange = (value) => {
     onRecruitTypeChange(value);
     console.log("모집 구분 변경:", value); // 모집 구분이 변경될 때 로그 출력
@@ -37,14 +32,14 @@ const WriteBasicInfo1 = ({
               프로젝트 / 스터디
             </option>
             <option
-              value="project"
-              selected={selectedRecruitmentType === "project"}
+              value="프로젝트"
+              selected={selectedRecruitmentType === "프로젝트"}
             >
               프로젝트
             </option>
             <option
-              value="study"
-              selected={selectedRecruitmentType === "study"}
+              value="스터디"
+              selected={selectedRecruitmentType === "스터디"}
             >
               스터디
             </option>
@@ -106,11 +101,6 @@ const WriteBasicInfo2 = ({
   selectedProcessType,
   selectedProcessDuration,
 }) => {
-  // WriteBasicInfo2는 사용자가 사전에 선택한 진행방식(온라인, 오프라인) 과 진행 기간 정보를 가져와서 보여준다.
-  // 아래는 각각 진행방식과 진행 기간 정보임
-  // let selectedProcessType = "online";
-  // let selectedProcessDuration = "3";
-
   const ProgressChange = (value) => {
     onProgressChange(value);
     console.log("진행 방식 변경:", value); // 진행 방식이 변경될 때 로그 출력
@@ -165,22 +155,40 @@ const WriteBasicInfo2 = ({
             >
               기간 미정
             </option>
-            <option value="1" selected={selectedProcessDuration === "1개월"}>
+            <option
+              value="1개월"
+              selected={selectedProcessDuration === "1개월"}
+            >
               1개월
             </option>
-            <option value="2" selected={selectedProcessDuration === "2개월"}>
+            <option
+              value="2개월"
+              selected={selectedProcessDuration === "2개월"}
+            >
               2개월
             </option>
-            <option value="3" selected={selectedProcessDuration === "3개월"}>
+            <option
+              value="3개월"
+              selected={selectedProcessDuration === "3개월"}
+            >
               3개월
             </option>
-            <option value="4" selected={selectedProcessDuration === "4개월"}>
+            <option
+              value="4개월"
+              selected={selectedProcessDuration === "4개월"}
+            >
               4개월
             </option>
-            <option value="5" selected={selectedProcessDuration === "5개월"}>
+            <option
+              value="5개월"
+              selected={selectedProcessDuration === "5개월"}
+            >
               5개월
             </option>
-            <option value="6" selected={selectedProcessDuration === "6개월"}>
+            <option
+              value="6개월"
+              selected={selectedProcessDuration === "6개월"}
+            >
               6개월
             </option>
           </StyledSelect>
@@ -190,25 +198,13 @@ const WriteBasicInfo2 = ({
   );
 };
 
-const WriteBasicInfo3 = ({
-  onCategoryChange,
-  onEndDateChange,
-  onLanguagesChange,
-  language,
-  endDate,
-}) => {
+const WriteBasicInfo3 = ({ onLanguagesChange, language, endDate }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [selectedDate, setSelectedDate] = useState("2024-04-20");
-  console.log("언어: " + language);
-  console.log("언어 데이터 타입 배열인가?  " + Array.isArray(language));
-  console.log("날짜: " + endDate);
-  console.log("selectedOptions: " + selectedOptions);
+  const [selectedDate, setSelectedDate] = useState("");
 
   useEffect(() => {
-    // console.log("기술 스택 변경:", selectedOptions);
-    setSelectedOptions(language);
-  }, [selectedOptions]);
+    setSelectedDate(endDate.replace(/\./g, "-"));
+  }, []);
 
   const options = [
     "JavaScript",
@@ -250,24 +246,24 @@ const WriteBasicInfo3 = ({
   };
 
   const handleOptionClick = (option) => {
-    if (selectedOptions.includes(option)) {
-      const filteredOptions = selectedOptions.filter(
+    if (language.includes(option)) {
+      const filteredOptions = language.filter(
         (selectedOption) => selectedOption !== option
       );
-      setSelectedOptions(filteredOptions);
+      onLanguagesChange(filteredOptions);
     } else {
-      if (selectedOptions.length < 3) {
-        setSelectedOptions([...selectedOptions, option]);
+      if (language.length < 3) {
+        onLanguagesChange([...language, option]);
       } else {
         alert("최대 3개까지만 선택할 수 있습니다.");
       }
     }
   };
   const handleRemoveOption = (option) => {
-    const filteredOptions = selectedOptions.filter(
+    const filteredOptions = language.filter(
       (selectedOption) => selectedOption !== option
     );
-    setSelectedOptions(filteredOptions);
+    onLanguagesChange(filteredOptions);
   };
 
   const handleDateChange = (event) => {
@@ -280,9 +276,9 @@ const WriteBasicInfo3 = ({
         <span className="info-title">기술 스택</span>
         <div className="select-box">
           <div className="left-bar" onClick={toggleDropdown}>
-            {selectedOptions.length > 0 ? (
+            {language.length > 0 ? (
               <p>
-                {selectedOptions.map((option, index) => (
+                {language.map((option, index) => (
                   <SelectedOptionBox key={index}>
                     <code>{option}</code>
                     <span
@@ -304,7 +300,7 @@ const WriteBasicInfo3 = ({
                   <div
                     key={index}
                     className={`custom-option ${
-                      selectedOptions.includes(option) ? "selected" : ""
+                      language.includes(option) ? "selected" : ""
                     }`}
                     onClick={() => handleOptionClick(option)}
                   >
@@ -331,13 +327,14 @@ const WriteBasicInfo3 = ({
   );
 };
 
-const WriteBasicInfo4 = ({ onLanguagesChange, onContactChange }) => {
+const WriteBasicInfo4 = ({
+  onContactChange,
+  recruitField,
+  onRecruitTypeChange,
+  contact,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState([
-    "프론트엔드",
-    "백엔드",
-  ]);
-  const [contactMethod, setContactMethod] = useState("오픈톡");
+  const [contactMethod, setContactMethod] = useState("");
 
   const options = ["프론트엔드", "백엔드", "디자이너", "기획자", "기타"];
 
@@ -345,15 +342,19 @@ const WriteBasicInfo4 = ({ onLanguagesChange, onContactChange }) => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    setContactMethod(contact);
+  });
+
   const handleOptionClick = (option) => {
-    if (selectedOptions.includes(option)) {
-      const filteredOptions = selectedOptions.filter(
+    if (recruitField.includes(option)) {
+      const filteredOptions = recruitField.filter(
         (selectedOption) => selectedOption !== option
       );
-      setSelectedOptions(filteredOptions);
+      onRecruitTypeChange(filteredOptions);
     } else {
-      if (selectedOptions.length < 3) {
-        setSelectedOptions([...selectedOptions, option]);
+      if (recruitField.length < 3) {
+        onRecruitTypeChange([...recruitField, option]);
       } else {
         alert("최대 3개까지만 선택할 수 있습니다.");
       }
@@ -361,10 +362,10 @@ const WriteBasicInfo4 = ({ onLanguagesChange, onContactChange }) => {
   };
 
   const handleRemoveOption = (option) => {
-    const filteredOptions = selectedOptions.filter(
+    const filteredOptions = recruitField.filter(
       (selectedOption) => selectedOption !== option
     );
-    setSelectedOptions(filteredOptions);
+    onRecruitTypeChange(filteredOptions);
   };
 
   const handleContactMethodChange = (event) => {
@@ -373,9 +374,9 @@ const WriteBasicInfo4 = ({ onLanguagesChange, onContactChange }) => {
 
   // 선택된 옵션이 변경될 때마다 onLanguagesChange 호출
   useEffect(() => {
-    onLanguagesChange(selectedOptions);
-    console.log("모집 포지션 변경:", selectedOptions); // 모집 포지션 변경 시 로그 출력
-  }, [selectedOptions]);
+    onRecruitTypeChange(recruitField);
+    console.log("모집 포지션 변경:", recruitField); // 모집 포지션 변경 시 로그 출력
+  }, [recruitField]);
 
   return (
     <SelectArea>
@@ -383,9 +384,9 @@ const WriteBasicInfo4 = ({ onLanguagesChange, onContactChange }) => {
         <span className="info-title">모집 포지션</span>
         <div className="select-box">
           <div className="left-bar" onClick={toggleDropdown}>
-            {selectedOptions.length > 0 ? (
+            {recruitField.length > 0 ? (
               <p>
-                {selectedOptions.map((option, index) => (
+                {recruitField.map((option, index) => (
                   <SelectedOptionBox key={index}>
                     <code>{option}</code>
                     <span
@@ -408,7 +409,7 @@ const WriteBasicInfo4 = ({ onLanguagesChange, onContactChange }) => {
                 <div
                   key={index}
                   className={`custom-option ${
-                    selectedOptions.includes(option) ? "selected" : ""
+                    recruitField.includes(option) ? "selected" : ""
                   }`}
                   onClick={() => handleOptionClick(option)}
                 >
@@ -432,9 +433,16 @@ const WriteBasicInfo4 = ({ onLanguagesChange, onContactChange }) => {
             <option value="" disabled>
               카카오톡 오픈채팅..
             </option>
-            <option value="opentalk">오픈톡</option>
-            <option value="email">이메일</option>
-            <option value="googleform">구글 폼</option>
+            {/* <option value="4" selected={selectedProcessDuration === "4개월"}> */}
+            <option value="오픈톡" selected={contact === "오픈톡"}>
+              오픈톡
+            </option>
+            <option value="이메일" selected={contact === "이메일"}>
+              이메일
+            </option>
+            <option value="구글 폼" selected={contact === "구글 폼"}>
+              구글 폼
+            </option>
           </StyledSelect>
         </div>
       </div>

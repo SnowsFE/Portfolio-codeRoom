@@ -54,8 +54,8 @@ const UpdatePage = () => {
 
   const handleWriteComplete = async () => {
     const postData = {
-      recruittype: recruitType,
-      recruitmember: recruitMember,
+      recruitType,
+      recruitMember,
       progress,
       duration,
       recruitField,
@@ -117,15 +117,16 @@ const UpdatePage = () => {
           selectedProcessDuration={duration}
         />
         <WriteBasicInfo3
-          onCategoryChange={setRecruitField}
           onEndDateChange={setEndDate}
           onLanguagesChange={setLanguage}
           language={language}
           endDate={endDate}
         />
         <WriteBasicInfo4
-          onLanguagesChange={setLanguage}
+          recruitField={recruitField}
+          contact={contact}
           onContactChange={setContact}
+          onRecruitTypeChange={setRecruitType}
         />
         <h2>글작성</h2>
         <hr />
