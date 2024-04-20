@@ -26,6 +26,7 @@ const login = async (username, password, req) => {
     // 로그인 성공 시 세션에 사용자 ID 저장
     req.session.user_uid = user.user_uid;
     console.log("session",req.session);
+    await req.session.save(); // 세션 정보 업데이트
 
     return user; // 로그인 성공
 };
