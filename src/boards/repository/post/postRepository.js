@@ -135,6 +135,12 @@ const postdel = async (boardUid) => {
     const result = await query(sql, [boardUid]);
     return result;
 }
+// 게시글 작성자 정보 조회 기능 추가
+const getPostOwner = async (boardUid) => {
+    const sql = `SELECT user_uid FROM board WHERE board_uid = ?`;
+    const result = await query(sql, [boardUid]);
+    return result.length > 0 ? result[0].user_uid : null;
+}
 
 module.exports = { postList,views,detailview,popularList,recruitfieldSerch,BoardUIDSerch,Search,
-    postwrite, postmodify, postdel,postwriteuidsearch,postwritelanguages, postwritecategories };
+    postwrite, postmodify, postdel,postwriteuidsearch,postwritelanguages, postwritecategories,getPostOwner };
