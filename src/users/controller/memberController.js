@@ -23,6 +23,7 @@ const login = async (req, res) => {
 };
 // 로그아웃 기능
 const logout = (req, res) => {
+    console.log("로그아웃 실행");
     req.session.destroy((err) => {
         if (err) {
             return res.status(500).json({ message: '로그아웃 실패' });
