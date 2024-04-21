@@ -56,7 +56,7 @@ const Search = async (searchWord)=>{
         ORDER BY createdate DESC`, [likePattern, likePattern]);
     return rows;
 };
-// 게시글 작성
+// 게시글 작성(board 데이블 insert)
 const postwrite = async (postData, user_uid) => {
     const result = await query(`insert into board (title,content,views,enddate,recruittype,progress,recruitmember,duration,contact,user_uid) 
     values(?,?,0,?,?,?,?,?,?,?)`,
@@ -64,6 +64,7 @@ const postwrite = async (postData, user_uid) => {
     postData.progress,postData.recruitmember,postData.duration,postData.contact,user_uid]);
     return result;
 };
+// category, uselanguage 데이블 board_uid를 찾기위한 함수
 const postwriteuidsearch = async (postData,user_uid) => {
     const result = await query(`select board_uid from board where title =? and content =? and 
     enddate =? and recruittype =? and progress =? and 
@@ -72,16 +73,18 @@ const postwriteuidsearch = async (postData,user_uid) => {
         postData.progress,postData.recruitmember,postData.duration,postData.contact,user_uid]);
     return result;
 };
+// 게시글 작성(category 데이블 insert)
 const postwritecategories = async (postData,board_uid) =>{
     const result = await query(`insert into category (recruitfield,board_uid) values (?,?)`,
     [postData,board_uid]);
     return result;
-}
+};
+// 게시글 작성(uselanguage 데이블 insert)
 const postwritelanguages = async (postData,board_uid) =>{
     const result = await query(`insert into uselanguage (language,board_uid) values (?,?)`,
     [postData,board_uid]);
     return result;
-}
+};
 // 게시글 작성
 // const postwrite = async (postData, languages, categories) => {
 //     const { title, content, startdate, enddate, recruittype, progress, recruitmember, plan, duration, contact, user_uid } = postData;

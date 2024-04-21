@@ -135,6 +135,7 @@ const postwrite = async (postData, user_uid) => {
 //     const result = await postRep.postwrite(postData, languages, categories);
 //     return result;
 // }
+
 // 게시글 수정
 const postmodify = async (boardUid, postData, languages, categories) => {
     const result = await postRep.postmodify(boardUid, postData, languages, categories);
