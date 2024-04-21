@@ -70,7 +70,6 @@ const postwriteuidsearch = async (postData,user_uid) => {
     recruitmember =? and duration =? and contact =? and user_uid =?`,
     [postData.title,postData.content,postData.enddate,postData.recruittype,
         postData.progress,postData.recruitmember,postData.duration,postData.contact,user_uid]);
-    console.log("uidsearch : ",result);
     return result;
 };
 const postwritecategories = async (postData,board_uid) =>{
