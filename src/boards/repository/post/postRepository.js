@@ -56,29 +56,55 @@ const Search = async (searchWord)=>{
         ORDER BY createdate DESC`, [likePattern, likePattern]);
     return rows;
 };
-
 // 게시글 작성
-const postwrite = async (postData, languages, categories) => {
-    const { title, content, startdate, enddate, recruittype, progress, recruitmember, plan, duration, contact, user_uid } = postData;
-    const sql = `INSERT INTO board (title, content, views, startdate, enddate, recruittype, progress, recruitmember, plan, duration, contact, user_uid) VALUES (?, ?, 0, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-
-
-    // 변환된 query 함수를 사용하여 데이터베이스에 쿼리를 실행합니다.
-    const result = await query(sql, [title, content, startdate, enddate, recruittype, progress, recruitmember, plan, duration, contact, user_uid]);
-    const boardUid = result.insertId;
-
-    // useLanguage와 category 테이블에 데이터 저장
-    const languageSql = `INSERT INTO useLanguage (language, board_uid) VALUES ?`;
-    const categorySql = `INSERT INTO category (recruitfield, board_uid) VALUES ?`;
-
-    const languageValues = languages.map(language => [language, boardUid]);
-    const categoryValues = categories.map(category => [category, boardUid]);
-
-    await query(languageSql, [languageValues]);
-    await query(categorySql, [categoryValues]);
-
+const postwrite = async (postData, user_uid) => {
+    const result = await query(`insert into board (title,content,views,enddate,recruittype,progress,recruitmember,duration,contact,user_uid) 
+    values(?,?,0,?,?,?,?,?,?,?)`,
+    [postData.title,postData.content,postData.enddate,postData.recruittype,
+    postData.progress,postData.recruitmember,postData.duration,postData.contact,user_uid]);
+    return result;
+};
+const postwriteuidsearch = async (postData,user_uid) => {
+    const result = await query(`select board_uid from board where title =? and content =? and 
+    enddate =? and recruittype =? and progress =? and 
+    recruitmember =? and duration =? and contact =? and user_uid =?`,
+    [postData.title,postData.content,postData.enddate,postData.recruittype,
+        postData.progress,postData.recruitmember,postData.duration,postData.contact,user_uid]);
+    console.log("uidsearch : ",result);
+    return result;
+};
+const postwritecategories = async (postData,board_uid) =>{
+    const result = await query(`insert into category (recruitfield,board_uid) values (?,?)`,
+    [postData,board_uid]);
     return result;
 }
+const postwritelanguages = async (postData,board_uid) =>{
+    const result = await query(`insert into uselanguage (language,board_uid) values (?,?)`,
+    [postData,board_uid]);
+    return result;
+}
+// 게시글 작성
+// const postwrite = async (postData, languages, categories) => {
+//     const { title, content, startdate, enddate, recruittype, progress, recruitmember, plan, duration, contact, user_uid } = postData;
+//     const sql = `INSERT INTO board (title, content, views, startdate, enddate, recruittype, progress, recruitmember, plan, duration, contact, user_uid) VALUES (?, ?, 0, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+
+//     // 변환된 query 함수를 사용하여 데이터베이스에 쿼리를 실행합니다.
+//     const result = await query(sql, [title, content, startdate, enddate, recruittype, progress, recruitmember, plan, duration, contact, user_uid]);
+//     const boardUid = result.insertId;
+
+//     // useLanguage와 category 테이블에 데이터 저장
+//     const languageSql = `INSERT INTO useLanguage (language, board_uid) VALUES ?`;
+//     const categorySql = `INSERT INTO category (recruitfield, board_uid) VALUES ?`;
+
+//     const languageValues = languages.map(language => [language, boardUid]);
+//     const categoryValues = categories.map(category => [category, boardUid]);
+
+//     await query(languageSql, [languageValues]);
+//     await query(categorySql, [categoryValues]);
+
+//     return result;
+// }
 // 게시글 수정
 const postmodify = async (boardUid, postData, languages, categories) => {
     const { title, content, startdate, enddate, recruittype, progress, recruitmember, plan, duration, contact, user_uid } = postData;
@@ -111,4 +137,4 @@ const postdel = async (boardUid) => {
 }
 
 module.exports = { postList,views,detailview,popularList,recruitfieldSerch,BoardUIDSerch,Search,
-    postwrite, postmodify, postdel };
+    postwrite, postmodify, postdel,postwriteuidsearch,postwritelanguages, postwritecategories };

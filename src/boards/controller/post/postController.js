@@ -43,38 +43,52 @@ const Search = async (req, res)=>{
         res.status(500).json({ message: error.message });
     }
 };
-
-
 // 게시글 작성
 const postwrite = async (req, res) => {
     try {
-        // 세션에서 사용자 ID 가져오기
         const user_uid = req.session.user_uid;
-
-        // 세션에 사용자 ID가 없으면 로그인 페이지로 리다이렉트
-        if (!user_uid) {
-            return res.status(401).json({ message: "로그인이 필요합니다." });
-        }
-
+        console.log("user_uid : ",user_uid);
         const postData = req.body;
-        const languages = Array.isArray(req.body.languages) ? req.body.languages : []; // 클라이언트로부터 받은 언어 배열
-        const categories = Array.isArray(req.body.categories) ? req.body.categories : []; // 클라이언트로부터 받은 분야 배열
-        // 필수 항목 검사
-        const requiredFields = ['title', 'content', 'startdate', 'enddate', 'recruittype', 'progress', 'recruitmember', 'plan', 'duration', 'contact', 'user_uid'];
-        for (const field of requiredFields) {
-            if (!postData[field]) {
-                return res.status(400).json({ message: `${field}공백입니다` });
-            }
-        }
-        // 사용자 ID 추가
-        postData.user_uid = user_uid;
-
-        const result = await postService.postwrite(postData, languages, categories);
-        res.status(201).json({ message: "게시글이 성공적으로 생성되었습니다.", postId: result.insertId });
+        console.log("postData : ",postData);
+        console.log("postData : ",postData.categories[0]);
+        const result = await postService.postwrite(postData, user_uid);
+        res.status(201).json({ message: "게시글이 성공적으로 생성되었습니다."});
     } catch (error) {
         res.status(500).json({ message: "서버 오류로 게시글 작성에 실패했습니다.", error: error.message });
     }
-}
+};
+
+// 게시글 작성
+// const postwrite = async (req, res) => {
+//     try {
+//         // 세션에서 사용자 ID 가져오기
+//         const user_uid = req.session.user_uid;
+
+//         // 세션에 사용자 ID가 없으면 로그인 페이지로 리다이렉트
+//         if (!user_uid) {
+//             return res.status(401).json({ message: "로그인이 필요합니다." });
+//         }
+
+//         const postData = req.body;
+
+//         const languages = Array.isArray(req.body.languages) ? req.body.languages : []; // 클라이언트로부터 받은 언어 배열
+//         const categories = Array.isArray(req.body.categories) ? req.body.categories : []; // 클라이언트로부터 받은 분야 배열
+//         // 필수 항목 검사
+//         const requiredFields = ['title', 'content', 'startdate', 'enddate', 'recruittype', 'progress', 'recruitmember', 'plan', 'duration', 'contact', 'user_uid'];
+//         for (const field of requiredFields) {
+//             if (!postData[field]) {
+//                 return res.status(400).json({ message: `${field}공백입니다` });
+//             }
+//         }
+//         // 사용자 ID 추가
+//         postData.user_uid = user_uid;
+
+//         const result = await postService.postwrite(postData, languages, categories);
+//         res.status(201).json({ message: "게시글이 성공적으로 생성되었습니다.", postId: result.insertId });
+//     } catch (error) {
+//         res.status(500).json({ message: "서버 오류로 게시글 작성에 실패했습니다.", error: error.message });
+//     }
+// }
 // 게시글 수정
 const postmodify = async (req, res) => {
     try {

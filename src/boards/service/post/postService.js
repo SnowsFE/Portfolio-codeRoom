@@ -117,12 +117,28 @@ const Search = async (searchWord)=>{
     };
     return integratedData;
 };
-
 // 게시글 작성
-const postwrite = async (postData, languages, categories) => {
-    const result = await postRep.postwrite(postData, languages, categories);
+const postwrite = async (postData, user_uid) => {
+    console.log("user_uid",user_uid);
+    const result = await postRep.postwrite(postData, user_uid);
+    const result2 = await postRep.postwriteuidsearch(postData, user_uid);
+    console.log("result2 : ",result2[0].board_uid);
+    console.log("postData.categories.length : ",postData.categories.length);
+    for(let i = 0 ; i < postData.categories.length ; i++){
+        console.log("postData.categories[i] : ",postData.categories[i]);
+        const result = await postRep.postwritecategories(postData.categories[i],result2[0].board_uid);
+    }
+    for(let i = 0 ; i < postData.languages.length ; i++){
+        const result = await postRep.postwritelanguages(postData.languages[i],result2[0].board_uid);
+    }
     return result;
 }
+// 게시글 작성
+// const postwrite = async (postData, languages, categories) => {
+//     console.log("user_uid",user_uid);
+//     const result = await postRep.postwrite(postData, languages, categories);
+//     return result;
+// }
 // 게시글 수정
 const postmodify = async (boardUid, postData, languages, categories) => {
     const result = await postRep.postmodify(boardUid, postData, languages, categories);

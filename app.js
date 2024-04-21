@@ -10,7 +10,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: {
     secure: false, // https에서만 세션 정보를 주고받도록 설정
-    maxAge: 1000 * 60 * 60, // 쿠키 유효시간 1시간
+    maxAge: 1000 * 60 * 60, //쿠키 유효시간 1시간
     httpOnly: true, // 클라이언트에서 쿠키를 확인하지 못하도록 설정
     secure: false, // HTTPS가 아닌 경우 false로 설정
     // maxAge: 1000 * 60 * 60,

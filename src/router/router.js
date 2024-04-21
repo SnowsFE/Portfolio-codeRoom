@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-// const isAuthenticated(req, res, next) {
-//   if (req.session.user) {
-//     console.log("세션 확인 로그",req.session.user);
-//     return next();
-//   }
-//   res.status(401).send('로그인이 필요합니다.');
-// }
+const isAuthenticated = (req, res, next) =>{
+  if (req.session.user_uid) {
+    console.log("세션 확인 로그",req.session.user_uid);
+    return next();
+  }
+  res.status(301).json({ message:'로그인이 필요합니다.'});
+};
 const memberCtrl = require("../users/controller/memberController");
 router.post("/users/join", memberCtrl.register);                // 회원가입
 router.post("/users/login", memberCtrl.login);                  // 로그인
@@ -19,7 +19,7 @@ router.post("/users/checkDuplicate",memberCtrl.checkDuplicate); // 중복검사
 
 
 const postCtrl = require("../boards/controller/post/postController");
-router.post("/boards/write", postCtrl.postwrite);                           // 게시글 작성
+router.post("/boards/postWrite",isAuthenticated, postCtrl.postwrite);                           // 게시글 작성
 router.put("/boards/postmodify/:board_uid", postCtrl.postmodify);               // 게시글 수정
 router.delete("/boards/postDel/:board_uid", postCtrl.postdel);                  // 게시글 삭제
 
