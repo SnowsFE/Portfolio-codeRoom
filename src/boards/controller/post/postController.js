@@ -93,9 +93,6 @@ const postmodify = async (req, res) => {
     try {
         const boardUid = req.params.board_uid;
         const user_uid = req.session.user_uid;      // 세션에서 사용자 ID 가져오기
-        if (!user_uid) {
-            return res.status(401).json({ message: "로그인이 필요합니다." });
-        }
         if (!await checkPermission(boardUid, user_uid)) {
             return res.status(403).json({ message: "수정 권한이 없습니다." });
         }
