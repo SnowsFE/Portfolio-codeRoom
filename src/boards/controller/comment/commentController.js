@@ -22,7 +22,9 @@ const cmtwrite = async (req, res) => {
         console.log("boardUid : ", boardUid)
         const userUid = req.session.user_uid; // 세션에서 로그인한 사용자의 UID 사용
         const result = await commentService.cmtwrite(boardUid, userUid, comment);
-        res.status(201).json({ message: "댓글이 성공적으로 작성되었습니다.", commentId: result.insertId });
+        console.log("result.insertId : ", result.insertId)  // commentId
+        console.log("boardUid : ", boardUid);
+        res.status(201).json({ message: "댓글이 성공적으로 작성되었습니다.", boardUid });
     } catch (error) {
         res.status(500).json({ message: "서버 오류로 댓글 작성에 실패했습니다.", error: error.message });
     }
