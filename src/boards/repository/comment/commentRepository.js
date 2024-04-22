@@ -19,9 +19,9 @@ const usernameSerch = async (board_uid)=>{
 };
 
 // 댓글 작성
-const cmtwrite = async (boardUid, userUid, content) => {
+const cmtwrite = async (boardUid, userUid, comment) => {
     const sql = `INSERT INTO comment (board_uid, user_uid, content) VALUES (?, ?, ?)`;
-    const result = await query(sql, [boardUid, userUid, content]);
+    const result = await query(sql, [boardUid, userUid, comment]);
     return result;
 }
 // 댓글 수정

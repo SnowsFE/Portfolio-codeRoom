@@ -2,23 +2,29 @@ const commentService = require("../../service/comment/commentService");
 
 // 댓글 작성
 const cmtwrite = async (req, res) => {
-    // console.log(req.body);
+    console.log("req.body 111 : ",req.body);
     // 로그인 상태 확인
     if (!req.session.user_uid) {
+        console.log("req.session.user_uid : ",req.session.user_uid)
         return res.status(401).json({ message: "로그인이 필요합니다." });
     }
 
     // 빈칸 제출 확인
-    const { content } = req.body;
-    if (!content) {
+    console.log("req.body 222 : ",req.body);
+    const { comment } = req.body;
+    console.log("comment 111 : ",comment);
+    if (!comment) {
         return res.status(400).json({ message: "공백입니다" });
     }
     try {
+        console.log("comment 222 : ",comment);
         const boardUid = req.params.board_uid;
-        // const userUid = req.params.user_uid; // URL 경로에서 사용자 UID를 받아옴
+        console.log("boardUid : ", boardUid)
         const userUid = req.session.user_uid; // 세션에서 로그인한 사용자의 UID 사용
-        const result = await commentService.cmtwrite(boardUid, userUid, content);
-        res.status(201).json({ message: "댓글이 성공적으로 작성되었습니다.", commentId: result.insertId });
+        const result = await commentService.cmtwrite(boardUid, userUid, comment);
+        console.log("result.insertId : ", result.insertId)  // commentId
+        console.log("boardUid : ", boardUid);
+        res.status(201).json({ message: "댓글이 성공적으로 작성되었습니다.", boardUid });
     } catch (error) {
         res.status(500).json({ message: "서버 오류로 댓글 작성에 실패했습니다.", error: error.message });
     }

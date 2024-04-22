@@ -12,8 +12,8 @@ const detailview = async (board_uid) =>{
 }
 
 // 댓글 작성
-const cmtwrite = async (boardUid, userUid, content) => {
-    const result = await commentRep.cmtwrite(boardUid, userUid, content);
+const cmtwrite = async (boardUid, userUid, comment) => {
+    const result = await commentRep.cmtwrite(boardUid, userUid, comment);
     return result;
 }
 // 댓글 수정
