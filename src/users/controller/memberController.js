@@ -117,9 +117,7 @@ const userdel = async (req, res) => {
 const myPage = async (req, res) => {
     try {
         const user_uid = req.session.user_uid;
-        if (!user_uid) {
-            return res.status(401).json({ message: '로그인이 필요합니다.' });
-        }
+        console.log("user_uid : ",user_uid)
         const data = await memberService.myPage(user_uid);
         res.status(200).json({ data });
     } catch (error) {
