@@ -253,7 +253,7 @@ const WriteBasicInfo3 = ({ onCategoryChange, onEndDateChange }) => {
   );
 };
 
-const WriteBasicInfo4 = ({ onLanguagesChange, onContactChange }) => {
+const WriteBasicInfo4 = ({ onCategoryChange, onContactChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -285,9 +285,9 @@ const WriteBasicInfo4 = ({ onLanguagesChange, onContactChange }) => {
     setSelectedOptions(filteredOptions);
   };
 
-  // 선택된 옵션이 변경될 때마다 onLanguagesChange 호출
+  // 선택된 옵션이 변경될 때마다 onCategoryChange 호출
   useEffect(() => {
-    onLanguagesChange(selectedOptions);
+    onCategoryChange(selectedOptions);
     console.log("모집 포지션 변경:", selectedOptions); // 모집 포지션 변경 시 로그 출력
   }, [selectedOptions]);
 
