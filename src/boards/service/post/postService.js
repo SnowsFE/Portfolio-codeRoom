@@ -121,7 +121,9 @@ const Search = async (searchWord)=>{
 const postwrite = async (postData, user_uid) => {
     const result = await postRep.postwrite(postData, user_uid);
     const result2 = await postRep.postwriteuidsearch(postData, user_uid);
+    console.log("postData.categories.length : ",postData.categories.length);
     for(let i = 0 ; i < postData.categories.length ; i++){
+
         await postRep.postwritecategories(postData.categories[i],result2[0].board_uid);
     }
     for(let i = 0 ; i < postData.languages.length ; i++){
@@ -130,7 +132,7 @@ const postwrite = async (postData, user_uid) => {
     console.log("result : ", result)
     console.log("result2 : ", result2)
     return result;
-}
+};
 // 게시글 작성
 // const postwrite = async (postData, languages, categories) => {
 //     console.log("user_uid",user_uid);
