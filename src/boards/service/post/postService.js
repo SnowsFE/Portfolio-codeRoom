@@ -170,6 +170,5 @@ async function checkPermission(boardUid, user_uid) {
     return user_uid === postOwner;
 }
 
-
 module.exports = { postList,detailview,popularList,recruitfieldSerch,Search,
     postwrite, postmodify, postdel, checkPermission };
