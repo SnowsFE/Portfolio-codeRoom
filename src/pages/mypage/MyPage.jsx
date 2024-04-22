@@ -19,7 +19,7 @@ const MyPage = () => {
   // 나의 게시판 가져오기 (서버와 통신)
   useEffect(() => {
     const getMyData = async () => {
-      const res = await axios.get("/mypage");
+      const res = await axios.get("/users/mypage");
       console.log("mypage: " + res.data);
       // Todo
       // setMyBoards(res.data);
@@ -29,7 +29,7 @@ const MyPage = () => {
       // setBoardCount(res.data);
       // setCommentCount(res.data);
     };
-    // getMyData();
+    getMyData();
   }, []);
 
   // MyBoards 컴포넌트 전달 데이터 예시

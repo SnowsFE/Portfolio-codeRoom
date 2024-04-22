@@ -16,6 +16,7 @@ const UserDeletePage = () => {
 
     // 서버와 로그인 통신
     try {
+      // alert("보낼 데이터: " + password);
       const response = await axios.delete("/users/delete", {
         password,
       });
