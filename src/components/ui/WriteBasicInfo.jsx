@@ -26,8 +26,8 @@ const WriteBasicInfo1 = ({ onRecruitTypeChange, onRecruitMemberChange }) => {
             <option value="" disabled selected>
               프로젝트 / 스터디
             </option>
-            <option value="project">프로젝트</option>
-            <option value="study">스터디</option>
+            <option value="🎥 프로젝트">프로젝트</option>
+            <option value="✏ 스터디">스터디</option>
           </StyledSelect>
         </div>
       </div>

@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import InfoPage from "./pages/infopage/InfoPage";
 import LoginPage from "./pages/loginpage/LoginPage";
 import JoinPage from "./pages/loginpage/JoinPage";
-// import TestJoinPage from "./pages/loginpage/TestJoinPage.jsx";
 import DetailPage from "./pages/detailpage/DetailPage";
 import WritePage from "./pages/writepage/WritePage.jsx";
 import UpdatePage from "./pages/updatepage/UpdatePage.jsx";
@@ -19,7 +18,6 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<MainPage />}></Route>
-        {/* <Route path="/" element={<div>메인임</div>}></Route> */}
         <Route path="/info" element={<InfoPage />}></Route>
         <Route path="/users/login" element={<LoginPage />}></Route>
         <Route path="/users/join" element={<JoinPage />}></Route>
