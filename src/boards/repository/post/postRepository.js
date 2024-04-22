@@ -109,10 +109,10 @@ const postwritelanguages = async (postData, board_uid) => {
 // }
 // 게시글 수정
 const postmodify = async (boardUid, postData, languages, categories) => {
-    const { title, content, startdate, enddate, recruittype, progress, recruitmember, plan, duration, contact, user_uid } = postData;
-    const sql = `UPDATE board SET title = ?, content = ?, startdate = ?, enddate = ?, recruittype = ?, progress = ?, recruitmember = ?, plan = ?, duration = ?, contact = ?, user_uid = ? WHERE board_uid = ?`;
+    const { title, content, enddate, recruittype, progress, recruitmember, duration, contact, user_uid } = postData;
+    const sql = `UPDATE board SET title = ?, content = ?, enddate = ?, recruittype = ?, progress = ?, recruitmember = ?, duration = ?, contact = ?, user_uid = ? WHERE board_uid = ?`;
 
-    await query(sql, [title, content, startdate, enddate, recruittype, progress, recruitmember, plan, duration, contact, user_uid, boardUid]);
+    await query(sql, [title, content, enddate, recruittype, progress, recruitmember, duration, contact, user_uid, boardUid]);
 
     // useLanguage와 category 테이블 데이터 업데이트 로직 추가
     const deleteLanguageSql = `DELETE FROM useLanguage WHERE board_uid = ?`;

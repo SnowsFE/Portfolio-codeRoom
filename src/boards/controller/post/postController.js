@@ -96,7 +96,7 @@ const postmodify = async (req, res) => {
         if (!user_uid) {
             return res.status(401).json({ message: "로그인이 필요합니다." });
         }
-        if (!await checkPermission(boardUid, user_uid)) {
+        if (!await postService.checkPermission(boardUid, user_uid)) {
             return res.status(403).json({ message: "수정 권한이 없습니다." });
         }
         const postData = req.body;
@@ -104,7 +104,7 @@ const postmodify = async (req, res) => {
         const categories = Array.isArray(req.body.categories) ? req.body.categories : [];
 
         // 필수 항목 검사
-        const requiredFields = ['title', 'content', 'startdate', 'enddate', 'recruittype'];
+        const requiredFields = ['title', 'content', 'enddate', 'recruittype'];
         for (const field of requiredFields) {
             if (!postData[field]) {
                 return res.status(400).json({ message: `${field} 공백입니다` });
