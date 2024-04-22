@@ -16,7 +16,7 @@ const postList = async () =>{
                }
         }else{
             integratedData[i] ={
-                "recruitType": "✏ "+result[i].recruitType,
+                "recruitType": "✏️ "+result[i].recruitType,
                 "Newbread": "🍞 따끈따끈 새 글",
                 "enddate": result[i].enddate,
                 "title": result[i].title,
@@ -43,7 +43,7 @@ const popularList = async () =>{
                }
         }else{
             integratedData[i] ={
-                "recruitType": "✏ "+result[i].recruitType,
+                "recruitType": "✏️ "+result[i].recruitType,
                 "enddate": result[i].enddate,
                 "title": result[i].title,
                 "views": result[i].views,
@@ -99,6 +99,7 @@ const Search = async (searchWord)=>{
         if(result[i].recruitType == '프로젝트'){
             integratedData[i] ={
                 "recruitType": "🎥 "+result[i].recruitType,
+                "Newbread": "🍞 따끈따끈 새 글",
                 "enddate": result[i].enddate,
                 "title": result[i].title,
                 "views": result[i].views,
@@ -106,7 +107,8 @@ const Search = async (searchWord)=>{
                }
         }else{
             integratedData[i] ={
-                "recruitType": "✏ "+result[i].recruitType,
+                "recruitType": "✏️ "+result[i].recruitType,
+                "Newbread": "🍞 따끈따끈 새 글",
                 "enddate": result[i].enddate,
                 "title": result[i].title,
                 "views": result[i].views,
