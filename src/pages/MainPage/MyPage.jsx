@@ -26,7 +26,7 @@ function MyPage() {
 // 마이페이지 컨테이너 스타일드 컴포넌트 정의
 const MyPageContainer = styled.div`
   padding: 20px;
-  background-color: #d5ffd5; /* 또는 #14cc14를 사용하세요 */
+  background-color: #d5ffd5;
 `;
 
 // 프로필 업데이트 섹션 스타일드 컴포넌트 정의

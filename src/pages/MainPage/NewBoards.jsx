@@ -164,7 +164,7 @@ const NewBoards = ({}) => {
     if (!searchWord) {
       // 검색어가 없는 경우, 빈 배열을 설정
       setProjects([]);
-      return; // 함수 종료
+      return;
     }
 
     try {

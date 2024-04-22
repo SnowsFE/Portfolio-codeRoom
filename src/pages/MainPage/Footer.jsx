@@ -28,7 +28,6 @@ const Footer = () => {
   );
 };
 
-// Footer 컴포넌트의 스타일 정의
 const FooterStyle = styled.div`
   display: flex;
   justify-content: center; /* 수평 정렬 */
