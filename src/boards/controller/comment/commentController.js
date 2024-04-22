@@ -1,13 +1,12 @@
 const commentService = require("../../service/comment/commentService");
 
-
-
 // 댓글 작성
 const cmtwrite = async (req, res) => {
-    // // 로그인 상태 확인
-    // if (!req.session.user) {
-    //     return res.status(401).json({ message: "로그인이 필요합니다." });
-    // }
+    // console.log(req.body);
+    // 로그인 상태 확인
+    if (!req.session.user_uid) {
+        return res.status(401).json({ message: "로그인이 필요합니다." });
+    }
 
     // 빈칸 제출 확인
     const { content } = req.body;
@@ -16,8 +15,8 @@ const cmtwrite = async (req, res) => {
     }
     try {
         const boardUid = req.params.board_uid;
-        const userUid = req.params.user_uid; // URL 경로에서 사용자 UID를 받아옴
-        //const userUid = req.session.user.uid; // 로그인한 사용자의 UID
+        // const userUid = req.params.user_uid; // URL 경로에서 사용자 UID를 받아옴
+        const userUid = req.session.user_uid; // 세션에서 로그인한 사용자의 UID 사용
         const result = await commentService.cmtwrite(boardUid, userUid, content);
         res.status(201).json({ message: "댓글이 성공적으로 작성되었습니다.", commentId: result.insertId });
     } catch (error) {
@@ -26,6 +25,10 @@ const cmtwrite = async (req, res) => {
 }
 // 댓글 수정
 const cmtmodify = async (req, res) => {
+    // 로그인 상태 확인
+    if (!req.session.user_uid) {
+        return res.status(401).json({ message: "로그인이 필요합니다." });
+    }
     const { content } = req.body;
     const commentUid = req.params.comment_uid;
 
@@ -47,9 +50,20 @@ const cmtmodify = async (req, res) => {
 }
 // 댓글 삭제
 const cmtdel = async (req, res) => {
-    const { comment_uid, user_uid } = req.params; // URL에서 user_uid와 comment_uid를 추출
+    // 로그인 상태 확인
+    if (!req.session.user_uid) {
+        return res.status(401).json({ message: "로그인이 필요합니다." });
+    }
+    // const { comment_uid, user_uid } = req.params; // URL에서 user_uid와 comment_uid를 추출
+    const comment_uid = req.params.comment_uid; // URL에서 comment_uid를 추출
     try {
-        const result = await commentService.cmtdel(comment_uid, user_uid);
+        // 댓글 작성자 확인
+        const comment = await commentService.getCommentById(commentUid); // 댓글 정보 가져오기
+        if (comment.user_uid !== req.session.user_uid) {
+            return res.status(403).json({ message: "작성자만 삭제할 수 있습니다." });
+        }
+
+        const result = await commentService.cmtdel(comment_uid, req.session.user_uid);
         if (result.affectedRows > 0) {
             res.status(200).json({ message: "댓글이 성공적으로 삭제되었습니다." });
         } else {
@@ -59,7 +73,6 @@ const cmtdel = async (req, res) => {
         res.status(500).json({ message: "서버 오류로 인해 삭제에 실패했습니다.", error: error.message });
     }
 }
-
 
 module.exports = { cmtwrite, cmtmodify, cmtdel };
 
