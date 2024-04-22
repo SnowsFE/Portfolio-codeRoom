@@ -85,9 +85,15 @@ const recruitfieldSerch = async (recruitfield)=>{
     let integratedData = [];
     for(let i = 0 ; i < result.length ; i++){
         const boardResult = await postRep.BoardUIDSerch(result[i].board_uid);
-        integratedData[i] = {"recruitType": boardResult[0].recruitType,"enddate": boardResult[0].enddate,
-        "title": boardResult[0].title,"views": boardResult[0].views,
-        "board_uid": boardResult[0].board_uid};
+        if(result[i].recruitType == '프로젝트'){
+            integratedData[i] = {"recruitType": "🎥 "+boardResult[0].recruitType,"enddate": boardResult[0].enddate,
+            "title": boardResult[0].title,"views": boardResult[0].views,
+            "board_uid": boardResult[0].board_uid};
+        }else{
+            integratedData[i] = {"recruitType": "✏ "+boardResult[0].recruitType,"enddate": boardResult[0].enddate,
+            "title": boardResult[0].title,"views": boardResult[0].views,
+            "board_uid": boardResult[0].board_uid};
+        }
     }
     return integratedData;
 };
@@ -122,10 +128,10 @@ const postwrite = async (postData, user_uid) => {
     const result = await postRep.postwrite(postData, user_uid);
     const result2 = await postRep.postwriteuidsearch(postData, user_uid);
     for(let i = 0 ; i < postData.categories.length ; i++){
-        const result = await postRep.postwritecategories(postData.categories[i],result2[0].board_uid);
+        const result3 = await postRep.postwritecategories(postData.categories[i],result2[0].board_uid);
     }
     for(let i = 0 ; i < postData.languages.length ; i++){
-        const result = await postRep.postwritelanguages(postData.languages[i],result2[0].board_uid);
+        const result4 = await postRep.postwritelanguages(postData.languages[i],result2[0].board_uid);
     }
     return result;
 }
