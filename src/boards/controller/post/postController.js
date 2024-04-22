@@ -49,7 +49,7 @@ const postwrite = async (req, res) => {
         const user_uid = req.session.user_uid;
         const postData = req.body;
         console.log(postData);
-        const result = await postService.postwrite(postData, user_uid);
+        await postService.postwrite(postData, user_uid);
         res.status(201).json({ message: "게시글이 성공적으로 생성되었습니다."});
     } catch (error) {
         res.status(500).json({ message: "서버 오류로 게시글 작성에 실패했습니다.", error: error.message });
