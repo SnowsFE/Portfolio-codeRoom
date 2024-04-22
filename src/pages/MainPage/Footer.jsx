@@ -65,13 +65,16 @@ const FooterText = styled.p`
   color: #333; /* 글자색 설정 */
   font-weight: 600; /* 폰트 굵기 설정 */
   flex: 2; /* 비율 2:1로 설정 */
-  text-align: center; /* 가운데 정렬 */
+  text-align: left;
+  position: absolute;
+  margin-top: 7%;
+  margin-right: 10%;
 `;
 
 // 링크 컨테이너 스타일 정의
 const FooterLinkContainer = styled.div`
   display: flex; /* 플렉스 컨테이너 */
-  flex: 3; /* 비율 3:1로 설정 */
+  flex: 1; /* 비율 1:1로 설정 */
   justify-content: center; /* 가운데 정렬 */
   font-size: 12px; /* 폰트 크기 12px */
 

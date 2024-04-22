@@ -19,9 +19,9 @@ const WritePage = () => {
   const [recruitMember, setRecruitMember] = useState(""); // 모집 인원
   const [progress, setProgress] = useState(""); // 진행 방식
   const [duration, setDuration] = useState(""); // 진행 기간
-  const [categories, setCategories] = useState([]); // 기술 스택
+  const [categories, setCategories] = useState([]); // 모집 포지션
   const [endDate, setEndDate] = useState(""); // 모집 마감일
-  const [languages, setLanguages] = useState([]); // 모집 포지션
+  const [languages, setLanguages] = useState([]); // 기술 스택
   const [contact, setContact] = useState(""); // 연락 방법
   const [title, setTitle] = useState(""); // 제목
   const [content, setContent] = useState(""); // 내용
@@ -105,11 +105,11 @@ const WritePage = () => {
           onDurationChange={setDuration}
         />
         <WriteBasicInfo3
-          onCategoryChange={setCategories}
+          onCategoryChange={setLanguages}
           onEndDateChange={setEndDate}
         />
         <WriteBasicInfo4
-          onLanguagesChange={setLanguages}
+          onLanguagesChange={setCategories}
           onContactChange={setContact}
         />
         <h2>글작성</h2>
