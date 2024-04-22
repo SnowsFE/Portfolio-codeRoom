@@ -8,8 +8,12 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const MyPage = () => {
-  const [myBoards, setMyBoards] = useState([]);
-  const [myComments, setMyComments] = useState([]);
+  const [myBoards, setMyBoards] = useState([]); //내가 작성한 게시판
+  const [myComments, setMyComments] = useState([]); //내가 작성한 댓글
+  const [username, setUsername] = useState(""); //나의 회원 이름
+  const [joinDate, setJoinDate] = useState(""); //회원 가입 일자
+  const [boardCount, setBoardCount] = useState(""); //작성 게시판 수
+  const [commentCount, setCommentCount] = useState(""); //작성 댓글 수
   const navigator = useNavigate();
 
   // 나의 게시판 가져오기 (서버와 통신)
@@ -17,7 +21,13 @@ const MyPage = () => {
     const getMyData = async () => {
       const res = await axios.get("/mypage");
       console.log("mypage: " + res.data);
-      //   setMyBoards(res.data);
+      // Todo
+      // setMyBoards(res.data);
+      // setMyComments(res.data);
+      // setUsername(res.data);
+      // setJoinDate(res.data);
+      // setBoardCount(res.data);
+      // setCommentCount(res.data);
     };
     // getMyData();
   }, []);

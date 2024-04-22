@@ -73,7 +73,7 @@ const TestJoinPage = () => {
           />
           <Input
             type="password"
-            placeholder="수정할 비밀번호"
+            placeholder="수정 비밀번호"
             value={modifiyPassword}
             onChange={handleConfirmPasswordChange}
           />

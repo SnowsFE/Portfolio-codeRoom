@@ -33,7 +33,7 @@ const UpdatePage = () => {
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get(`/boards/${param.id}`);
-      console.log("update data: " + res.data.postresult[0].languages);
+      console.log("update data: " + res.data.postresult[0].recruitmember);
       setTitle(res.data.postresult[0].title);
       setWriter(res.data.postresult[0].username);
       setRecruitType(res.data.postresult[0].recruittype);
@@ -45,9 +45,6 @@ const UpdatePage = () => {
       setLanguage(res.data.postresult[0].languages);
       setEndDate(res.data.postresult[0].enddate); //Todo
       setContent(res.data.postresult[0].content);
-
-      //Todo 받은 데이터로 useState 설정
-      setRecruitMember(res.data.recruitMember);
     };
     getData();
   }, []);
