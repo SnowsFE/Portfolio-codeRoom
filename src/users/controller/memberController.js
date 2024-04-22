@@ -69,7 +69,7 @@ const pwdChange = async (req, res) => {
         if (newPassword !== confirmPassword) {
             return res.status(400).json({ message: '새로 입력한 두 비밀번호가 일치하지 않습니다.' });
         }
-        const result = await memberService.modify(user_uid, currentPassword, newPassword);
+        const result = await memberService.pwdChange(user_uid, currentPassword, newPassword);
         res.json({ message: '비밀번호 변경 완료', result });
     } catch (error) {
         res.status(500).json({ message: error.message });

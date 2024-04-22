@@ -50,7 +50,7 @@ const info = async (user_uid) => {
 }
 // 비밀번호 변경 기능
 const pwdChange = async(user_uid, currentPassword, newPassword) =>{
-    const user = await memberRep.pwdChange(user_uid);
+    const user = await memberRep.info(user_uid);
     if(!user) {
         throw new Error('사용자를 찾을 수 없습니다.');
     }
@@ -61,7 +61,7 @@ const pwdChange = async(user_uid, currentPassword, newPassword) =>{
         throw new Error('비밀번호는 최소 8자 이상이어야 합니다.');
     }
     const hashedPassword = await bcrypt.hash(newPassword, 8);
-    await memberRep.modify(user_uid, hashedPassword);
+    await memberRep.pwdChange(user_uid, hashedPassword);
 }
 // 회원 탈퇴 기능
 const userdel = async (user_uid) => {

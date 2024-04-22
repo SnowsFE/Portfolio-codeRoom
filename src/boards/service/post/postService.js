@@ -122,11 +122,13 @@ const postwrite = async (postData, user_uid) => {
     const result = await postRep.postwrite(postData, user_uid);
     const result2 = await postRep.postwriteuidsearch(postData, user_uid);
     for(let i = 0 ; i < postData.categories.length ; i++){
-        const result = await postRep.postwritecategories(postData.categories[i],result2[0].board_uid);
+        await postRep.postwritecategories(postData.categories[i],result2[0].board_uid);
     }
     for(let i = 0 ; i < postData.languages.length ; i++){
-        const result = await postRep.postwritelanguages(postData.languages[i],result2[0].board_uid);
+        await postRep.postwritelanguages(postData.languages[i],result2[0].board_uid);
     }
+    console.log("result : ", result)
+    console.log("result2 : ", result2)
     return result;
 }
 // 게시글 작성
