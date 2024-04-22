@@ -68,9 +68,7 @@ const myCommentsAdd = async (board_uid) => {
         FROM board
         WHERE board_uid = ?
     ) AND board_uid = ?`,[board_uid,board_uid]);
-    console.log("rep result : ",result);
     const result2 = await query(`select title from board where board_uid = ?`, board_uid);
-    console.log("rep result2 : ",result2);
     return {result,result2};
 };
 
