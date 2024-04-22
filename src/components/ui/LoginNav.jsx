@@ -11,7 +11,7 @@ const LoginNav = () => {
     try {
       const res = await axios.post("/users/logout", {});
       // 로그아웃 성공하면 세션스토리지 데이터 삭제 Todo
-      // sessionStorage.removeItem("username");
+      sessionStorage.removeItem("username");
     } catch (error) {
       if (e.res.data.status === 500) {
         alert("서버측 오류 발생");
@@ -35,7 +35,9 @@ const LoginNav = () => {
         </Right1>
         {/*axios 요청을 위해 a 태그 대신 span 태그 사용 */}
         <Right2>
-          <span onClick={() => logoutHandler()}>로그아웃</span>
+          <a href="/">
+            <span onClick={() => logoutHandler()}>로그아웃</span>
+          </a>
         </Right2>
         <Separator />
         <BackGroundColorChanger />
