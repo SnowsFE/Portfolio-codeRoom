@@ -27,8 +27,8 @@ const detailview = async (req, res) => {
 const recruitfieldSerch = async (req, res) =>{
     try {
         console.log("모집분야별 실행");
-        const result = await postService.recruitfieldSerch(req.params.recruitfield);      
-        res.status(200).json({result});
+        const mainResult = await postService.recruitfieldSerch(req.params.recruitfield);      
+        res.status(200).json({mainResult});
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -37,8 +37,9 @@ const recruitfieldSerch = async (req, res) =>{
 const Search = async (req, res)=>{ 
     try {
         console.log("검색기능 실행");
-        const result = await postService.Search(req.params.searchWord);      
-        res.status(200).json({result});
+        const mainResult = await postService.Search(req.params.searchWord);
+        console.log("result : ",mainResult);      
+        res.status(200).json({mainResult});
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
