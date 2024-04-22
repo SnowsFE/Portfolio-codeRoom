@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { SUB_END_TEXT } from "../../constants/NewBoardsConstants.jsx";
+import Missingimg from "../../img/Missing.png";
 
 const NewBoards = ({}) => {
   const [views, setViews] = useState([]);
@@ -101,7 +102,7 @@ const NewBoards = ({}) => {
               marginTop: "800px",
             }}
           >
-            <p>검색된 프로젝트가 없습니다!</p>
+            <img src={Missingimg} alt="검색된 프로젝트가 없습니다." />
           </div>
         );
       } else {

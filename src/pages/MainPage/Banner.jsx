@@ -100,7 +100,6 @@ const BannerPageNumber = styled.div`
   background-color: #ffffff;
   padding: 5px 40px;
   border-radius: 20px;
-  color: #00d33f;
+  color: #14cc14;
 `;
-
 export default Banner;
