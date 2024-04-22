@@ -45,7 +45,7 @@ const MyPage = () => {
       title: "제목 111111111111111111111111111111111111111",
       writerDt: "2024.01.01",
       views: "12",
-      boardId: "0",
+      boardUid: "0",
     },
   ];
 

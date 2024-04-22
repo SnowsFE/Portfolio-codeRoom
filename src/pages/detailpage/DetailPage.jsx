@@ -73,7 +73,10 @@ const DetailPage = () => {
         endDate={endDate}
       ></DetailTitle>
       <DetailContentBody content={content}></DetailContentBody>
-      <DetailComment comments={comments}></DetailComment>
+      <DetailComment
+        comments={comments}
+        setComments={setComments}
+      ></DetailComment>
     </div>
   );
 };

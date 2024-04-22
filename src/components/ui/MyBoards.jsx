@@ -3,8 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const MyBoards = ({ sampleBoards }) => {
-  const [myBoards, setMyBoards] = useState([]);
+const MyBoards = ({ sampleBoards, setMyBoards }) => {
+  // const [myBoards, setMyBoards] = useState([]);
 
   const navigator = useNavigate();
 
@@ -25,6 +25,19 @@ const MyBoards = ({ sampleBoards }) => {
   }
   titleCheck(sampleBoards);
 
+  // myBoards state 상태 변경 함수 (삭제시 state 값 변경)
+  const delBoard = (boardId) => {
+    let copy = [...sampleBoards];
+    copy.forEach((board, index) => {
+      if (boardId === board.board_uid) {
+        console.log("삭제 하는 거: " + board.title);
+        copy.splice(index, 1);
+        setMyBoards(copy);
+        return;
+      }
+    });
+  };
+
   // 수정 클릭시 해당 게시판으로 이동
   const inquery = (boardId) => {
     navigator(`/boards/${boardId}/update`);
@@ -33,9 +46,7 @@ const MyBoards = ({ sampleBoards }) => {
   // 삭제 클릭시 해당 게시판 삭제 (서버 통신)
   const deleteBoard = async (boardId) => {
     const res = await axios.delete(`/boards/postDel/${boardId}`);
-    console.log("데이터 삭제: " + res.data);
-    // navigator("/MyPage");
-    // window.location.reload();
+    delBoard(boardId);
   };
 
   if (sampleBoards.length !== 0) {

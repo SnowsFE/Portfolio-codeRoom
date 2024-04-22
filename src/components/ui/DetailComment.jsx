@@ -4,26 +4,34 @@ import styled from "styled-components";
 import axios from "axios";
 import CodeRoomIcon from "../../img/CodeRoomIcon.png";
 
-const DetailComment = ({ comments }) => {
+const DetailComment = ({ comments, setComments }) => {
   // const [comments, setComments] = useState([]); //댓글 (댓글 작성자 + 댓글 작성 일자)
   const [comment, setComment] = useState(""); //사용자가 작성하는 댓글
   let param = useParams(); //게시판 아이디는 param.id 로 접근
   const navigator = useNavigate();
 
+  // 댓글 추가 함수
+  const addComment = (c) => {
+    console.log("addComment: " + c);
+    let copy = [...comments];
+    copy.push(c);
+    setComments(copy);
+  };
+
   // 댓글 작성 (서버와 통신)
   const commentHandler = async (e) => {
-    // console.log(comment);
-    // console.log(param.id);
     try {
       const res = await axios.post(`/boards/${param.id}`, {
         comment,
       });
       // 댓글 작성 성공시 해당 게시판으로 리다이랙트
-      console.log("댓글: " + res.data.boardUid);
-      // console.log("보낼 데이터: " + comment);
-      // navigator(`/boards/${res.data.boardUid}`);
+      addComment(comment);
       window.location.reload();
-    } catch (error) {}
+    } catch (e) {
+      if (e.response && e.response.status === 401) {
+        alert("로그인을 한 회원만 댓글을 작성할 수 있습니다!");
+      }
+    }
   };
 
   let sampleComments = [
