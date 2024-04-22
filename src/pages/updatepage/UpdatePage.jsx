@@ -51,13 +51,13 @@ const UpdatePage = () => {
 
   const handleWriteComplete = async () => {
     const postData = {
-      recruitType,
-      recruitMember,
+      recruittype: recruitType,
+      recruitmember: recruitMember,
       progress,
       duration,
-      recruitField,
+      categories: recruitField,
       enddate: endDate,
-      language,
+      languages: language,
       contact,
       title,
       content,

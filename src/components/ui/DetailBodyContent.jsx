@@ -33,8 +33,10 @@ const DetailBodyContainer = styled.pre`
 
   .body-area {
     text-align: left;
-    font-size: 18px;
+    font-size: 23px;
     margin: 40px 0 40px 0;
+    font-family: inherit;
+    white-space: pre-wrap;
   }
 `;
 

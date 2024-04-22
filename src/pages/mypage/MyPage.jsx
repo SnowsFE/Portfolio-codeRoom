@@ -21,7 +21,7 @@ const MyPage = () => {
     const getMyData = async () => {
       try {
         const res = await axios.get("/users/mypage");
-        console.log("mypage: " + res.data.data.commentsInfo[0].title);
+        console.log("mypage axios");
         // Todo
         setMyBoards(res.data.data.postsIofo);
         setMyComments(res.data.data.commentsInfo);
@@ -66,9 +66,9 @@ const MyPage = () => {
     <>
       <LoginNav />
       <SummaryContainer>
-        <div class="item">
+        <div className="item">
           {/* Todo */}
-          <div class="number">{username}</div>
+          <div className="number">{username}</div>
           <div>
             <span
               id="member-info-modify"
@@ -80,24 +80,24 @@ const MyPage = () => {
             <span onClick={() => navigator(`/users/delete`)}>회원 탈퇴</span>
           </div>
         </div>
-        <div class="item">
-          <div class="number">{joinDate}</div>
+        <div className="item">
+          <div className="number">{joinDate}</div>
           <div>회원가입 일자</div>
         </div>
-        <div class="item">
+        <div className="item">
           {/* Todo */}
-          <div class="number">{boardCount}</div>
+          <div className="number">{boardCount}</div>
           <div>작성한 게시판 수</div>
         </div>
-        <div class="item">
+        <div className="item">
           {/* Todo */}
-          <div class="number">{commentCount}</div>
+          <div className="number">{commentCount}</div>
           <div>작성한 댓글 수</div>
         </div>
       </SummaryContainer>
       <SummaryUnderline />
       {/* Todo props로 데이터 전달 */}
-      <MyBoards sampleBoards={myBoards}></MyBoards>
+      <MyBoards sampleBoards={myBoards} setMyBoards={setMyBoards}></MyBoards>
       <MyComments sampleComments={myComments}></MyComments>
       <Footer style={{ position: "fixed", bottom: 0, zIndex: 100 }}></Footer>
     </>

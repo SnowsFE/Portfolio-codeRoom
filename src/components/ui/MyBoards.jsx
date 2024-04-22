@@ -32,9 +32,10 @@ const MyBoards = ({ sampleBoards }) => {
 
   // 삭제 클릭시 해당 게시판 삭제 (서버 통신)
   const deleteBoard = async (boardId) => {
-    const res = await axios.delete(`/boards/${boardId}`);
+    const res = await axios.delete(`/boards/postDel/${boardId}`);
     console.log("데이터 삭제: " + res.data);
-    navigator("/MyPage");
+    // navigator("/MyPage");
+    // window.location.reload();
   };
 
   if (sampleBoards.length !== 0) {
