@@ -130,10 +130,13 @@ const postdel = async (req, res) => {
     try {
         const boardUid = req.params.board_uid;
         const user_uid = req.session.user_uid;
-        if (!await checkPermission(boardUid, user_uid)) {
+        if (!user_uid) {
+            return res.status(401).json({ message: "로그인이 필요합니다." });
+        }
+        if (!await postService.checkPermission(boardUid, user_uid)) {
             return res.status(403).json({ message: "삭제 권한이 없습니다." });
         }
-        const result = await postService.del(boardUid);
+        const result = await postService.postdel(boardUid);
         
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: "게시글을 찾을 수 없습니다." });
@@ -143,13 +146,8 @@ const postdel = async (req, res) => {
         res.status(500).json({ message: "서버 오류로 게시글 삭제에 실패했습니다.", error: error.message });
     }
 }
-// 권한 확인 함수
-async function checkPermission(boardUid, user_uid) {
-    const postOwner = await postRep.getPostOwner(boardUid);
-    return user_uid === postOwner;
-}
 
 
 
 module.exports = { postList,detailview,recruitfieldSerch,Search,
-    postwrite, postmodify, postdel, checkPermission }
+    postwrite, postmodify, postdel }

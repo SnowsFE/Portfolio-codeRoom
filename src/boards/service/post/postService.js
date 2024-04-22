@@ -150,6 +150,12 @@ const postdel = async (boardUid) => {
     const result = await postRep.postdel(boardUid);
     return result;
 }
+// 권한 확인 함수
+async function checkPermission(boardUid, user_uid) {
+    const postOwner = await postRep.getPostOwner(boardUid);
+    return user_uid === postOwner;
+}
+
 
 module.exports = { postList,detailview,popularList,recruitfieldSerch,Search,
-    postwrite, postmodify, postdel };
+    postwrite, postmodify, postdel, checkPermission };
