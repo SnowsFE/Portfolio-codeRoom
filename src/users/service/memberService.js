@@ -39,7 +39,6 @@ const checkDuplicate = async (username) => {
     }
 };
 
-
 // 회원 정보 조회 기능
 const info = async (user_uid) => {
     const user = await memberRep.info(user_uid);
@@ -87,7 +86,6 @@ const myPage = async (user_uid) => {
         postsIofo,commentsInfo
     };
     return integratedData2;
-    
 };
 
 module.exports = { register, login, info, pwdChange, userdel, myPage,checkDuplicate };

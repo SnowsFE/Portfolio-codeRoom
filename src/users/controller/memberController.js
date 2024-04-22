@@ -116,7 +116,5 @@ const myPage = async (req, res) => {
     }
 };
 
-
-
 module.exports = { register, login, logout, info, pwdChange, userdel, myPage, checkDuplicate };
 
