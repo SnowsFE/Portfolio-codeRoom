@@ -169,7 +169,6 @@ const NewBoards = ({}) => {
 
     try {
       const res = await axios.get(`/boards/search/${searchWord}`);
-
       // 응답 데이터가 비어있는 경우 특별한 메시지를 포함하는 객체를 배열에 넣습니다.
       if (!res.data.mainResult || res.data.length === 0) {
         // 데이터가 없거나 길이가 0인 경우
@@ -183,7 +182,6 @@ const NewBoards = ({}) => {
       setProjects([{ isEmpty: true }]);
     }
   };
-
   // -------------------------------------------- axios 통신
 
   return (
