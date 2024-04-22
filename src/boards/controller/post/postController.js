@@ -116,7 +116,13 @@ const postmodify = async (req, res) => {
         }
         res.status(200).json({ message: "수정 되었습니다" });
     } catch (error) {
-        res.status(500).json({ message: "서버 오류로 게시글 수정에 실패했습니다.", error: error.message });
+        if (error.message === 'Post not found') {
+            return res.status(404).json({ message: '게시글을 찾을 수 없습니다.' });
+          } else if (error.message === 'Unauthorized') {
+            return res.status(403).json({ message: '수정 권한이 없습니다.' });
+          } else {
+            return res.status(500).json({ message: '서버 오류로 게시글 수정에 실패했습니다.', error: error.message });
+          }
     }
 }
 // 게시글 삭제

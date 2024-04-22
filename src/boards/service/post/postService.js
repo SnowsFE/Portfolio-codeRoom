@@ -16,7 +16,7 @@ const postList = async () =>{
                }
         }else{
             integratedData[i] ={
-                "recruitType": "✏️ "+result[i].recruitType,
+                "recruitType": "✏ "+result[i].recruitType,
                 "Newbread": "🍞 따끈따끈 새 글",
                 "enddate": result[i].enddate,
                 "title": result[i].title,
@@ -43,7 +43,7 @@ const popularList = async () =>{
                }
         }else{
             integratedData[i] ={
-                "recruitType": "✏️ "+result[i].recruitType,
+                "recruitType": "✏ "+result[i].recruitType,
                 "enddate": result[i].enddate,
                 "title": result[i].title,
                 "views": result[i].views,
@@ -85,15 +85,9 @@ const recruitfieldSerch = async (recruitfield)=>{
     let integratedData = [];
     for(let i = 0 ; i < result.length ; i++){
         const boardResult = await postRep.BoardUIDSerch(result[i].board_uid);
-        if(result[i].recruitType == '프로젝트'){
-            integratedData[i] = {"recruitType": "🎥 "+boardResult[0].recruitType,"enddate": boardResult[0].enddate,
-            "title": boardResult[0].title,"views": boardResult[0].views,
-            "board_uid": boardResult[0].board_uid};
-        }else{
-            integratedData[i] = {"recruitType": "✏️ "+boardResult[0].recruitType,"enddate": boardResult[0].enddate,
-            "title": boardResult[0].title,"views": boardResult[0].views,
-            "board_uid": boardResult[0].board_uid};
-        }
+        integratedData[i] = {"recruitType": boardResult[0].recruitType,"enddate": boardResult[0].enddate,
+        "title": boardResult[0].title,"views": boardResult[0].views,
+        "board_uid": boardResult[0].board_uid};
     }
     return integratedData;
 };
@@ -112,7 +106,7 @@ const Search = async (searchWord)=>{
                }
         }else{
             integratedData[i] ={
-                "recruitType": "✏️ "+result[i].recruitType,
+                "recruitType": "✏ "+result[i].recruitType,
                 "enddate": result[i].enddate,
                 "title": result[i].title,
                 "views": result[i].views,
@@ -129,10 +123,11 @@ const postwrite = async (postData, user_uid) => {
     const result2 = await postRep.postwriteuidsearch(postData, user_uid);
     console.log("postData.categories.length : ",postData.categories.length);
     for(let i = 0 ; i < postData.categories.length ; i++){
-        const result3 = await postRep.postwritecategories(postData.categories[i],result2[0].board_uid);
+
+        await postRep.postwritecategories(postData.categories[i],result2[0].board_uid);
     }
     for(let i = 0 ; i < postData.languages.length ; i++){
-        const result4 = await postRep.postwritelanguages(postData.languages[i],result2[0].board_uid);
+        await postRep.postwritelanguages(postData.languages[i],result2[0].board_uid);
     }
     console.log("result : ", result)
     console.log("result2 : ", result2)
