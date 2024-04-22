@@ -15,8 +15,8 @@ const Nav = () => {
           </a>
         </Left>
         <Right1>
-          <a href="/boards/write">
-            <span> 글쓰기</span>
+          <a href="/users/login">
+            <span onClick={() => alert("로그인이 필요합니다!")}>글쓰기</span>
           </a>
         </Right1>
         <Right2>

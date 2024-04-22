@@ -77,7 +77,7 @@ const NewBoards = ({}) => {
   // 프로젝트 클릭 이벤트 핸들러
   const handleClick = async (index) => {
     await updateViews(index); // 조회수 업데이트
-    navigate(`/boards/${projects[index].id}`, {
+    navigate(`/boards/${projects[index].board_uid}`, {
       state: { project: projects[index] },
     });
   };
@@ -102,7 +102,7 @@ const NewBoards = ({}) => {
               marginTop: "800px",
             }}
           >
-            <img src={Missingimg} alt="검색된 프로젝트가 없습니다." />
+            <img src={Missingimg} />
           </div>
         );
       } else {
@@ -159,9 +159,14 @@ const NewBoards = ({}) => {
   };
 
   // -------------------------------------------- axios 통신
-  // 사용자의 검색어에 따라 서버에서 프로젝트 데이터를 가져와서 화면에 표시하는 역할
   const AddProjects = async () => {
-    if (!searchWord) {
+    // let trimmedSearchWord = searchWord.trim();
+
+    // 공백 검색어를 허용하지 않으려면 아래 조건을 사용
+    // if (!trimmedSearchWord) {
+
+    // 공백 검색어도 허용하려면 아래 조건을 사용
+    if (searchWord === undefined) {
       // 검색어가 없는 경우, 빈 배열을 설정
       setProjects([]);
       return;

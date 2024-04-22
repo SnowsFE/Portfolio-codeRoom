@@ -59,7 +59,7 @@ const HotBoards = ({}) => {
   // 프로젝트 클릭 이벤트 핸들러
   const handleClick = async (index) => {
     await updateViews(index); // 조회수 업데이트
-    navigate(`/boards/${projects[index].id}`, {
+    navigate(`/boards/${projects[index].board_uid}`, {
       state: { project: projects[index] },
     });
   };
