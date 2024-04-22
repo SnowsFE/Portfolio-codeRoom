@@ -25,8 +25,6 @@ const pwdChange = async(user_uid, hashedPassword) =>{
 }
 // 회원 탈퇴 기능
 const userdel = async (user_uid) => {
-    // board 정보 먼저 삭제
-    await query('DELETE FROM board WHERE user_uid = ?', [user_uid]);
     // user 정보 삭제
     await query('DELETE FROM user WHERE user_uid = ?', [user_uid]);
     return true;

@@ -65,7 +65,8 @@ const pwdChange = async(user_uid, currentPassword, newPassword) =>{
 }
 // 회원 탈퇴 기능
 const userdel = async (user_uid) => {
-    await memberRep.userdel(user_uid);
+    const result = await memberRep.userdel(user_uid);
+    return result;
 }
 
 // 마이페이지 기능 (사용자의 게시글과 댓글 정보 조회)
