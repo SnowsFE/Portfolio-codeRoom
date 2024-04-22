@@ -38,8 +38,13 @@ const Search = async (req, res)=>{
     try {
         console.log("검색기능 실행");
         const mainResult = await postService.Search(req.params.searchWord);
-        console.log("result : ",mainResult);      
-        res.status(200).json({mainResult});
+        console.log("result : ",mainResult[0]);
+        if(mainResult[0]){
+            res.status(200).json({mainResult});
+        }else{
+            res.status(500).json({ message: error.message });
+        }
+        
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
