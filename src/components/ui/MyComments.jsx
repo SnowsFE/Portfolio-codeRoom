@@ -56,15 +56,18 @@ const MyComments = ({ sampleComments }) => {
                   <td>
                     <a href={`/boards/${board.board_uid}`}>{board.title}</a>
                   </td>
-                  <td>{board.commentNum}</td>
-                  <td>{board.writeDt}</td>
+                  <td>{board.Count}</td>
+                  <td>{board.createdate}</td>
                   <td>
-                    <button class="view" onClick={() => inquery(board.boardId)}>
+                    <button
+                      class="view"
+                      onClick={() => inquery(board.board_uid)}
+                    >
                       조회
                     </button>
                     <button
                       class="delete"
-                      onClick={() => deleteBoard(board.boardId)}
+                      onClick={() => deleteBoard(board.board_uid)}
                     >
                       삭제
                     </button>

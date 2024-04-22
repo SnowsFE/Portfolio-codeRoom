@@ -19,9 +19,10 @@ const DetailComment = ({ comments }) => {
         comment,
       });
       // 댓글 작성 성공시 해당 게시판으로 리다이랙트
-      // 서버로부터 게시판 아이디 받으면 좋을 것 같음
-      // navigator("/boards/0");
-      console.log("댓글: " + res.data);
+      console.log("댓글: " + res.data.boardUid);
+      // console.log("보낼 데이터: " + comment);
+      // navigator(`/boards/${res.data.boardUid}`);
+      window.location.reload();
     } catch (error) {}
   };
 

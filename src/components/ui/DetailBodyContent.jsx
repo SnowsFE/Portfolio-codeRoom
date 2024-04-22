@@ -12,9 +12,12 @@ const DetailContentBody = ({ content }) => {
   );
 };
 
-const DetailBodyContainer = styled.section`
+// section -> pre 로 수정
+const DetailBodyContainer = styled.pre`
+  font: 1.2rem "Fira Sans", sans-serif;
   margin: 0 auto;
   width: 65%;
+  font-size: 35px;
 
   h1 {
     text-align: left;
