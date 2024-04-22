@@ -116,7 +116,7 @@ const WriteBasicInfo2 = ({ onProgressChange, onDurationChange }) => {
   );
 };
 
-const WriteBasicInfo3 = ({ onCategoryChange, onEndDateChange }) => {
+const WriteBasicInfo3 = ({ onLanguagesChange, onEndDateChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
@@ -193,7 +193,7 @@ const WriteBasicInfo3 = ({ onCategoryChange, onEndDateChange }) => {
   };
 
   useEffect(() => {
-    onCategoryChange(selectedOptions); // 선택된 카테고리를 부모 컴포넌트로 전달
+    onLanguagesChange(selectedOptions); // 선택된 카테고리를 부모 컴포넌트로 전달
   }, [selectedOptions]);
 
   return (
