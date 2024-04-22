@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { SUB_END_TEXT } from "../../constants/NewBoardsConstants.jsx";
+import Missingimg from "../../img/Missing.png";
 
 const NewBoards = ({}) => {
   const [views, setViews] = useState([]);
@@ -101,7 +102,7 @@ const NewBoards = ({}) => {
               marginTop: "800px",
             }}
           >
-            <p>검색된 프로젝트가 없습니다!</p>
+            <img src={Missingimg} alt="검색된 프로젝트가 없습니다." />
           </div>
         );
       } else {
@@ -135,10 +136,10 @@ const NewBoards = ({}) => {
     );
   };
 
-  const [seachWord, setseachWord] = useState(""); // 검색어 상태
+  const [searchWord, setsearchWord] = useState(""); // 검색어 상태
 
   const handleSearchChange = (e) => {
-    setseachWord(e.target.value); // 검색어 업데이트
+    setsearchWord(e.target.value); // 검색어 업데이트
   };
 
   const handleSearch = async () => {
@@ -146,7 +147,7 @@ const NewBoards = ({}) => {
   };
 
   const handleClearSearch = async () => {
-    setseachWord(""); // 검색어 비우기
+    setsearchWord(""); // 검색어 비우기
     console.log("검색어가 비워졌습니다."); // 확인을 위한 콘솔 로그
   };
 
@@ -160,14 +161,14 @@ const NewBoards = ({}) => {
   // -------------------------------------------- axios 통신
   // 사용자의 검색어에 따라 서버에서 프로젝트 데이터를 가져와서 화면에 표시하는 역할
   const AddProjects = async () => {
-    if (!seachWord) {
+    if (!searchWord) {
       // 검색어가 없는 경우, 빈 배열을 설정
       setProjects([]);
-      return; // 함수 종료
+      return;
     }
 
     try {
-      const res = await axios.get(`/boards/search/${seachWord}`);
+      const res = await axios.get(`/boards/search/${searchWord}`);
 
       // 응답 데이터가 비어있는 경우 특별한 메시지를 포함하는 객체를 배열에 넣습니다.
       if (!res.data.mainResult || res.data.length === 0) {
@@ -195,11 +196,11 @@ const NewBoards = ({}) => {
           <NewSearchBox className="NewSearchBox">
             <input
               placeholder="🔍   제목, 글 내용을 검색해보세요."
-              value={seachWord} // 검색어 입력값으로 설정
+              value={searchWord} // 검색어 입력값으로 설정
               onChange={handleSearchChange} // 검색어 입력시 이벤트 핸들러
               onKeyPress={handleKeyPress} // 엔터 키 감지 이벤트 핸들러 추가
             />
-            {seachWord && ( // 검색어가 있을 때만 X 아이콘 표시
+            {searchWord && ( // 검색어가 있을 때만 X 아이콘 표시
               <ClearButton onClick={handleClearSearch}>✖️</ClearButton>
             )}
           </NewSearchBox>

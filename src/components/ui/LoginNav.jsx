@@ -7,13 +7,15 @@ import BackGroundColorChanger from "./MyHomeNavigate";
 // 네비게이션 컴포넌트 정의
 const LoginNav = () => {
   // 로그아웃 (서버와 통신)
-  const logoutHandler = async (e) => {
+  const logoutHandler = async () => {
     try {
       const res = await axios.post("/users/logout", {});
-      // 로그아웃 성공하면 세션스토리지 데이터 삭제 Todo
+      // 로그아웃 성공하면 세션스토리지 데이터 삭제
       sessionStorage.removeItem("username");
+      // 페이지를 메인 페이지로 리다이렉트
+      window.location.href = "/";
     } catch (error) {
-      if (e.res.data.status === 500) {
+      if (error.response.status === 500) {
         alert("서버측 오류 발생");
       }
     }
@@ -33,11 +35,9 @@ const LoginNav = () => {
             <span> 글쓰기</span>
           </a>
         </Right1>
-        {/*axios 요청을 위해 a 태그 대신 span 태그 사용 */}
+        {/* axios 요청을 위해 a 태그 대신 span 태그 사용 */}
         <Right2>
-          <a href="/">
-            <span onClick={() => logoutHandler()}>로그아웃</span>
-          </a>
+          <span onClick={logoutHandler}>로그아웃</span>
         </Right2>
         <Separator />
         <BackGroundColorChanger />

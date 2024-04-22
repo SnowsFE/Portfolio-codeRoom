@@ -25,7 +25,7 @@ const Banner = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide(); // 5초마다 nextSlide 함수를 실행
-    }, 5000); // 5000 밀리초는 5초를 의미합니다.
+    }, 5000);
 
     // 컴포넌트가 언마운트 되거나 업데이트될 때 이전 타이머를 정리
     return () => clearInterval(timer);
@@ -100,7 +100,6 @@ const BannerPageNumber = styled.div`
   background-color: #ffffff;
   padding: 5px 40px;
   border-radius: 20px;
-  color: #00d33f;
+  color: #14cc14;
 `;
-
 export default Banner;
