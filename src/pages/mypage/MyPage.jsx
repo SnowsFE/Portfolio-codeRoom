@@ -19,15 +19,22 @@ const MyPage = () => {
   // 나의 게시판 가져오기 (서버와 통신)
   useEffect(() => {
     const getMyData = async () => {
-      const res = await axios.get("/users/mypage");
-      console.log("mypage: " + res.data.data.postsIofo);
-      // Todo
-      setMyBoards(res.data.data.postsIofo);
-      setMyComments(res.data.data.commentsInfo);
-      setUsername(res.data.data.userInfo[0].username);
-      setJoinDate(res.data.data.userInfo[0].joindate);
-      setBoardCount(res.data.data.userInfo[0].PostsCount);
-      setCommentCount(res.data.data.userInfo[0].commentsCount);
+      try {
+        const res = await axios.get("/users/mypage");
+        console.log("mypage: " + res.data.data.postsIofo);
+        // Todo
+        setMyBoards(res.data.data.postsIofo);
+        setMyComments(res.data.data.commentsInfo);
+        setUsername(res.data.data.userInfo[0].username);
+        setJoinDate(res.data.data.userInfo[0].joindate);
+        setBoardCount(res.data.data.userInfo[0].PostsCount);
+        setCommentCount(res.data.data.userInfo[0].commentsCount);
+      } catch (e) {
+        if (e.response && e.response.status === 401) {
+          alert("로그인을 해주세요!");
+          navigator("/users/login");
+        }
+      }
     };
     getMyData();
   }, []);
@@ -92,7 +99,7 @@ const MyPage = () => {
       {/* Todo props로 데이터 전달 */}
       <MyBoards sampleBoards={myBoards}></MyBoards>
       <MyComments sampleComments={myComments}></MyComments>
-      <Footer style={{ position: "fixed", bottom: 0 }}></Footer>
+      <Footer style={{ position: "fixed", bottom: 0, zIndex: 100 }}></Footer>
     </>
   );
 };
