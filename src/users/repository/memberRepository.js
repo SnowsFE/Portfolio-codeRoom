@@ -47,7 +47,7 @@ const myCommentsCount = async (user_uid) => {
 };
 // 마이페이지 기능  - 사용자가 작성한 게시글 조회
 const myPosts = async (user_uid) => {
-    const result = await query(`select title, views,DATE_FORMAT(createdate,'%Y.%m.%d') AS createdate from board where user_uid = ?`, user_uid);
+    const result = await query(`select title, views,DATE_FORMAT(createdate,'%Y.%m.%d') AS createdate, board_uid from board where user_uid = ?`, user_uid);
     return result;
 };
 

@@ -80,7 +80,7 @@ const myPage = async (user_uid) => {
     const result5 = await memberRep.myComments(user_uid);
     for(let i = 0 ; i < result5.length ; i++){
         const result6 = await memberRep.myCommentsAdd(result5[i].board_uid);
-        commentsInfo[i] = {"title": result6.result2[0].title, "Count": result6.result[0].Count, "createdate": result5[i].createdate};
+        commentsInfo[i] = {"title": result6.result2[0].title, "Count": result6.result[0].Count, "createdate": result5[i].createdate,"board_uid": result5[i].board_uid};
     }
     const integratedData2 = {
         "userInfo":[{"username": result[0].username, "joindate": result[0].joindate, "PostsCount": result2[0].Count, "commentsCount": result3[0].Count}],
