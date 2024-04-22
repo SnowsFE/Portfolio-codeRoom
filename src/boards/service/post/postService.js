@@ -85,9 +85,24 @@ const recruitfieldSerch = async (recruitfield)=>{
     let integratedData = [];
     for(let i = 0 ; i < result.length ; i++){
         const boardResult = await postRep.BoardUIDSerch(result[i].board_uid);
-        integratedData[i] = {"recruitType": boardResult[0].recruitType,"enddate": boardResult[0].enddate,
-        "title": boardResult[0].title,"views": boardResult[0].views,
-        "board_uid": boardResult[0].board_uid};
+        if(boardResult[0].recruitType == '프로젝트'){
+            integratedData[i] = {
+            "recruitType": "🎥 "+boardResult[0].recruitType,
+            "Newbread": "🍞 따끈따끈 새 글",
+            "enddate": boardResult[0].enddate,
+            "title": boardResult[0].title,
+            "views": boardResult[0].views,
+            "board_uid": boardResult[0].board_uid};
+        }else{
+            integratedData[i] = {
+            "recruitType": "✏️ "+boardResult[0].recruitType,
+            "Newbread": "🍞 따끈따끈 새 글",
+            "enddate": boardResult[0].enddate,
+            "title": boardResult[0].title,
+            "views": boardResult[0].views,
+            "board_uid": boardResult[0].board_uid};
+        }
+        
     }
     return integratedData;
 };
