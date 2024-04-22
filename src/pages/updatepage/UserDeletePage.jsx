@@ -16,7 +16,7 @@ const UserDeletePage = () => {
 
     // 서버와 로그인 통신
     try {
-      const response = await axios.delete("/users", {
+      const response = await axios.delete("/users/delete", {
         password,
       });
       console.log("회원 삭제 데이터: " + response.data);
@@ -41,7 +41,7 @@ const UserDeletePage = () => {
         <LoginForm>
           <LoginLogo></LoginLogo>
           <LoginInput
-            type="text"
+            type="password"
             placeholder="비밀번호"
             onChange={(e) => {
               setPassword(e.target.value);

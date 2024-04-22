@@ -49,9 +49,10 @@ const TestJoinPage = () => {
     }
 
     try {
-      const res = await axios.put("/users/join", {
-        password,
-        modifiyPassword,
+      const res = await axios.put("/users/update", {
+        currentPassword: password,
+        newPassword: modifiyPassword,
+        confirmPassword: confirmModifiyPassword,
       });
       console.log("회원정보 수정: " + res.data);
       navigate("/users/login");
