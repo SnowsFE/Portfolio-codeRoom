@@ -18,7 +18,9 @@ const UserDeletePage = () => {
     try {
       // alert("보낼 데이터: " + password);
       const response = await axios.delete("/users/delete", {
-        password,
+        data: {
+          password,
+        },
       });
       console.log("회원 삭제 데이터: " + response.data);
       // 세션 스토리지 데이터 삭제
