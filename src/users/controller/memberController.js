@@ -49,9 +49,6 @@ const info = async (req, res) => {
     try {
         // 세션에서 user_uid 추출
         const user_uid = req.session.user_uid;
-        if (!user_uid) {
-            return res.status(401).json({ message: '로그인이 필요합니다.' });
-        }
         const user = await memberService.info(user_uid);
         res.json(user);
     } catch (error) {
@@ -63,9 +60,6 @@ const pwdChange = async (req, res) => {
     try {
         const user_uid = req.session.user_uid;
         console.log(user_uid);
-        if (!user_uid) {
-            return res.status(401).json({ message: '로그인이 필요합니다.' });
-        }
         const { currentPassword, newPassword, confirmPassword } = req.body;
         if (newPassword !== confirmPassword) {
             return res.status(400).json({ message: '새로 입력한 두 비밀번호가 일치하지 않습니다.' });
@@ -82,9 +76,6 @@ const userdel = async (req, res) => {
         const user_uid = req.session.user_uid;
         const { password } = req.body; // 프론트엔드에서 전송된 비밀번호
         
-        if (!user_uid) {
-            return res.status(401).json({ message: '로그인이 필요합니다.' });
-        }
         
         // 사용자 정보 조회
         const user = await memberService.info(user_uid);

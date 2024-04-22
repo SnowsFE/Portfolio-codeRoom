@@ -4,10 +4,7 @@ const commentService = require("../../service/comment/commentService");
 const cmtwrite = async (req, res) => {
     console.log("req.body 111 : ",req.body);
     // 로그인 상태 확인
-    if (!req.session.user_uid) {
-        console.log("req.session.user_uid : ",req.session.user_uid)
-        return res.status(401).json({ message: "로그인이 필요합니다." });
-    }
+    
 
     // 빈칸 제출 확인
     console.log("req.body 222 : ",req.body);
@@ -32,9 +29,7 @@ const cmtwrite = async (req, res) => {
 // 댓글 수정
 const cmtmodify = async (req, res) => {
     // 로그인 상태 확인
-    if (!req.session.user_uid) {
-        return res.status(401).json({ message: "로그인이 필요합니다." });
-    }
+    
     const { content } = req.body;
     const commentUid = req.params.comment_uid;
 
@@ -57,9 +52,7 @@ const cmtmodify = async (req, res) => {
 // 댓글 삭제
 const cmtdel = async (req, res) => {
     // 로그인 상태 확인
-    if (!req.session.user_uid) {
-        return res.status(401).json({ message: "로그인이 필요합니다." });
-    }
+    
     // const { comment_uid, user_uid } = req.params; // URL에서 user_uid와 comment_uid를 추출
     const comment_uid = req.params.comment_uid; // URL에서 comment_uid를 추출
     try {
