@@ -12,7 +12,7 @@ const MyBoards = ({ sampleBoards }) => {
   const titleCheck = (boards) => {
     boards.forEach((board) => {
       let sliceTitle = truncateString(board.title, 20);
-      console.log("길이 조정" + sliceTitle);
+      // console.log("길이 조정" + sliceTitle);
       board.title = sliceTitle;
     });
   };

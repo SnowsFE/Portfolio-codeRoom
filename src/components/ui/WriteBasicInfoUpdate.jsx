@@ -7,6 +7,8 @@ const WriteBasicInfo1 = ({
   selectedRecruitmentType,
   selectedRecruitmentCount,
 }) => {
+  const [recruitCount, setRecruitCount] = useState("");
+
   const RecruitTypeChange = (value) => {
     onRecruitTypeChange(value);
     console.log("모집 구분 변경:", value); // 모집 구분이 변경될 때 로그 출력
@@ -16,6 +18,13 @@ const WriteBasicInfo1 = ({
     onRecruitMemberChange(value);
     console.log("모집 인원 변경:", value); // 모집 인원이 변경될 때 로그 출력
   };
+
+  useEffect(() => {
+    setRecruitCount(selectedRecruitmentCount);
+  }, [recruitCount]);
+
+  console.log("selectedRecruitmentCount: " + selectedRecruitmentCount);
+  console.log("selectedRecruitmentType: " + selectedRecruitmentType);
 
   return (
     <SelectArea>
@@ -56,9 +65,9 @@ const WriteBasicInfo1 = ({
             onChange={(e) => MemberChange(e.target.value)}
           >
             <option value="" disabled>
-              인원 미정 ~ 10명 이상
+              1명 ~ 10명 이상
             </option>
-            <option value="1" selected={selectedRecruitmentCount === "1"}>
+            <option value="1" selected={selectedRecruitmentCount === 1}>
               1명
             </option>
             <option value="2" selected={selectedRecruitmentCount === "2"}>
@@ -125,11 +134,11 @@ const WriteBasicInfo2 = ({
             <option value="" disabled>
               온라인 / 오프라인
             </option>
-            <option value="online" selected={selectedProcessType === "온라인"}>
+            <option value="온라인" selected={selectedProcessType === "온라인"}>
               온라인
             </option>
             <option
-              value="offline"
+              value="오프라인"
               selected={selectedProcessType === "오프라인"}
             >
               오프라인
@@ -198,13 +207,21 @@ const WriteBasicInfo2 = ({
   );
 };
 
-const WriteBasicInfo3 = ({ onLanguagesChange, language, endDate }) => {
+const WriteBasicInfo3 = ({
+  onEndDateChange,
+  onLanguagesChange,
+  language,
+  endDate,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
+  // console.log("endDate: " + endDate);
 
   useEffect(() => {
     setSelectedDate(endDate.replace(/\./g, "-"));
-  }, []);
+    // console.log("in useEffect selectedDate: " + selectedDate);
+    // console.log("in useEffect endDate: " + endDate);
+  }, [endDate]);
 
   const options = [
     "JavaScript",
@@ -268,6 +285,7 @@ const WriteBasicInfo3 = ({ onLanguagesChange, language, endDate }) => {
 
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
+    onEndDateChange(event.target.value);
   };
 
   return (
@@ -344,7 +362,7 @@ const WriteBasicInfo4 = ({
 
   useEffect(() => {
     setContactMethod(contact);
-  });
+  }, []);
 
   const handleOptionClick = (option) => {
     if (recruitField.includes(option)) {
@@ -368,15 +386,16 @@ const WriteBasicInfo4 = ({
     onRecruitTypeChange(filteredOptions);
   };
 
-  const handleContactMethodChange = (event) => {
-    setContactMethod(event.target.value);
+  const handleContactMethodChange = (value) => {
+    setContactMethod(value);
+    onContactChange(value);
   };
 
-  // 선택된 옵션이 변경될 때마다 onLanguagesChange 호출
-  useEffect(() => {
-    onRecruitTypeChange(recruitField);
-    console.log("모집 포지션 변경:", recruitField); // 모집 포지션 변경 시 로그 출력
-  }, [recruitField]);
+  // 선택된 옵션이 변경될 때마다 onRecruitTypeChange 호출
+  // useEffect(() => {
+  //   onRecruitTypeChange(recruitField);
+  //   console.log("모집 포지션 변경:", recruitField); // 모집 포지션 변경 시 로그 출력
+  // }, [recruitField]);
 
   return (
     <SelectArea>
@@ -427,13 +446,12 @@ const WriteBasicInfo4 = ({
             name="contactMethod"
             id="contactMethod"
             className="select-bar"
-            value={contactMethod}
-            onChange={handleContactMethodChange}
+            value={contact}
+            onChange={(e) => handleContactMethodChange(e.target.value)}
           >
             <option value="" disabled>
               카카오톡 오픈채팅..
             </option>
-            {/* <option value="4" selected={selectedProcessDuration === "4개월"}> */}
             <option value="오픈톡" selected={contact === "오픈톡"}>
               오픈톡
             </option>
