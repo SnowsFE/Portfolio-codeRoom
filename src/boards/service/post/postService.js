@@ -16,7 +16,7 @@ const postList = async () =>{
                }
         }else{
             integratedData[i] ={
-                "recruitType": "✏ "+result[i].recruitType,
+                "recruitType": "✏️ "+result[i].recruitType,
                 "Newbread": "🍞 따끈따끈 새 글",
                 "enddate": result[i].enddate,
                 "title": result[i].title,
@@ -43,7 +43,7 @@ const popularList = async () =>{
                }
         }else{
             integratedData[i] ={
-                "recruitType": "✏ "+result[i].recruitType,
+                "recruitType": "✏️ "+result[i].recruitType,
                 "enddate": result[i].enddate,
                 "title": result[i].title,
                 "views": result[i].views,
@@ -90,7 +90,7 @@ const recruitfieldSerch = async (recruitfield)=>{
             "title": boardResult[0].title,"views": boardResult[0].views,
             "board_uid": boardResult[0].board_uid};
         }else{
-            integratedData[i] = {"recruitType": "✏ "+boardResult[0].recruitType,"enddate": boardResult[0].enddate,
+            integratedData[i] = {"recruitType": "✏️ "+boardResult[0].recruitType,"enddate": boardResult[0].enddate,
             "title": boardResult[0].title,"views": boardResult[0].views,
             "board_uid": boardResult[0].board_uid};
         }
@@ -112,7 +112,7 @@ const Search = async (searchWord)=>{
                }
         }else{
             integratedData[i] ={
-                "recruitType": "✏ "+result[i].recruitType,
+                "recruitType": "✏️ "+result[i].recruitType,
                 "enddate": result[i].enddate,
                 "title": result[i].title,
                 "views": result[i].views,
