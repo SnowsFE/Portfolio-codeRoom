@@ -5,7 +5,7 @@ const isAuthenticated = (req, res, next) =>{
     console.log("세션 확인 로그",req.session.user_uid);
     return next();
   }
-  res.status(301).json({ message:'로그인이 필요합니다.'});
+  res.status(401).json({ message:'로그인이 필요합니다.'});
 };
 const memberCtrl = require("../users/controller/memberController");
 router.post("/users/join", memberCtrl.register);                // 회원가입
