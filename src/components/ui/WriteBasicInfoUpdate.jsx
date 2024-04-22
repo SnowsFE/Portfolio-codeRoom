@@ -32,13 +32,13 @@ const WriteBasicInfo1 = ({
               프로젝트 / 스터디
             </option>
             <option
-              value="프로젝트"
+              value="🎥 프로젝트"
               selected={selectedRecruitmentType === "프로젝트"}
             >
               프로젝트
             </option>
             <option
-              value="스터디"
+              value="✏ 스터디"
               selected={selectedRecruitmentType === "스터디"}
             >
               스터디

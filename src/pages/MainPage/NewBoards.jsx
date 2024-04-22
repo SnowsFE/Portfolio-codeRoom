@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import { Newbread, SUB_END_TEXT } from "../../constants/NewBoardsConstants.jsx";
+import { SUB_END_TEXT } from "../../constants/NewBoardsConstants.jsx";
 
 const NewBoards = ({}) => {
   const [views, setViews] = useState([]);
