@@ -20,14 +20,14 @@ const MyPage = () => {
   useEffect(() => {
     const getMyData = async () => {
       const res = await axios.get("/users/mypage");
-      console.log("mypage: " + res.data);
+      console.log("mypage: " + res.data.data.postsIofo);
       // Todo
-      // setMyBoards(res.data);
-      // setMyComments(res.data);
-      // setUsername(res.data);
-      // setJoinDate(res.data);
-      // setBoardCount(res.data);
-      // setCommentCount(res.data);
+      setMyBoards(res.data.data.postsIofo);
+      setMyComments(res.data.data.commentsInfo);
+      setUsername(res.data.data.userInfo[0].username);
+      setJoinDate(res.data.data.userInfo[0].joindate);
+      setBoardCount(res.data.data.userInfo[0].PostsCount);
+      setCommentCount(res.data.data.userInfo[0].commentsCount);
     };
     getMyData();
   }, []);
@@ -61,9 +61,8 @@ const MyPage = () => {
       <SummaryContainer>
         <div class="item">
           {/* Todo */}
-          <div class="number">jae-jang</div>
+          <div class="number">{username}</div>
           <div>
-            {/* "/users/:id/update" 멤버 아이디 동적인 수정 필요 */}
             <span
               id="member-info-modify"
               onClick={() => navigator(`/users/update`)}
@@ -75,25 +74,24 @@ const MyPage = () => {
           </div>
         </div>
         <div class="item">
-          {/* Todo */}
-          <div class="number">2024.01.01</div>
+          <div class="number">{joinDate}</div>
           <div>회원가입 일자</div>
         </div>
         <div class="item">
           {/* Todo */}
-          <div class="number">354</div>
+          <div class="number">{boardCount}</div>
           <div>작성한 게시판 수</div>
         </div>
         <div class="item">
           {/* Todo */}
-          <div class="number">354</div>
+          <div class="number">{commentCount}</div>
           <div>작성한 댓글 수</div>
         </div>
       </SummaryContainer>
       <SummaryUnderline />
       {/* Todo props로 데이터 전달 */}
-      <MyBoards sampleBoards={sampleBoards}></MyBoards>
-      <MyComments sampleComments={sampleComments}></MyComments>
+      <MyBoards sampleBoards={myBoards}></MyBoards>
+      <MyComments sampleComments={myComments}></MyComments>
       <Footer></Footer>
     </>
   );

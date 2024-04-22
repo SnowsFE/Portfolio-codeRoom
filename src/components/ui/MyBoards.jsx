@@ -55,10 +55,10 @@ const MyBoards = ({ sampleBoards }) => {
               return (
                 <tr>
                   <td>
-                    <a href={`/boards/${board.boardId}`}>{board.title}</a>
+                    <a href={`/boards/${board.board_uid}`}>{board.title}</a>
                   </td>
                   <td>{board.views}</td>
-                  <td>{board.writerDt}</td>
+                  <td>{board.createdate}</td>
                   <td>
                     <button class="view" onClick={() => inquery(board.boardId)}>
                       수정
