@@ -1,4 +1,5 @@
 const memberService = require("../service/memberService");
+const bcrypt = require("bcrypt");
 
 // 회원가입 기능
 const register = async (req, res) => {
@@ -69,7 +70,7 @@ const pwdChange = async (req, res) => {
         if (newPassword !== confirmPassword) {
             return res.status(400).json({ message: '새로 입력한 두 비밀번호가 일치하지 않습니다.' });
         }
-        const result = await memberService.modify(user_uid, currentPassword, newPassword);
+        const result = await memberService.pwdChange(user_uid, currentPassword, newPassword);
         res.json({ message: '비밀번호 변경 완료', result });
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -79,11 +80,30 @@ const pwdChange = async (req, res) => {
 const userdel = async (req, res) => {
     try {
         const user_uid = req.session.user_uid;
+        const { password } = req.body; // 프론트엔드에서 전송된 비밀번호
+
         if (!user_uid) {
             return res.status(401).json({ message: '로그인이 필요합니다.' });
         }
+
+        // 사용자 정보 조회
+        const user = await memberService.info(user_uid);
+        console.log("user.pwd : ",user.pwd)
+        if (!user) {
+            return res.status(404).json({ message: '사용자를 찾을 수 없습니다.' });
+        }
+
+        // 비밀번호 확인
+        const isMatch = await bcrypt.compare(password, user.pwd);
+        if (!isMatch) {
+            return res.status(400).json({ message: '비밀번호가 일치하지 않습니다.' });
+        }
+
+        // 회원 탈퇴 처리
         const result = await memberService.userdel(user_uid);
         if (result) {
+            // 세션 종료
+            req.session.destroy();
             res.json({ message: '회원 탈퇴가 완료되었습니다.' });
         } else {
             res.status(400).json({ message: '회원 탈퇴에 실패했습니다.' });
