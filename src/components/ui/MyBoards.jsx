@@ -60,12 +60,15 @@ const MyBoards = ({ sampleBoards }) => {
                   <td>{board.views}</td>
                   <td>{board.createdate}</td>
                   <td>
-                    <button class="view" onClick={() => inquery(board.boardId)}>
+                    <button
+                      class="view"
+                      onClick={() => inquery(board.board_uid)}
+                    >
                       수정
                     </button>
                     <button
                       class="delete"
-                      onClick={() => deleteBoard(board.boardId)}
+                      onClick={() => deleteBoard(board.board_uid)}
                     >
                       삭제
                     </button>

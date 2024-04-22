@@ -54,7 +54,7 @@ const MyComments = ({ sampleComments }) => {
               return (
                 <tr>
                   <td>
-                    <a href={`/boards/${board.boardId}`}>{board.title}</a>
+                    <a href={`/boards/${board.board_uid}`}>{board.title}</a>
                   </td>
                   <td>{board.commentNum}</td>
                   <td>{board.writeDt}</td>

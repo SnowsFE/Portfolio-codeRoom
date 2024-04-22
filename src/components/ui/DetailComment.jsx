@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import CodeRoomIcon from "../../img/CodeRoomIcon.png";
@@ -7,17 +7,21 @@ import CodeRoomIcon from "../../img/CodeRoomIcon.png";
 const DetailComment = ({ comments }) => {
   // const [comments, setComments] = useState([]); //댓글 (댓글 작성자 + 댓글 작성 일자)
   const [comment, setComment] = useState(""); //사용자가 작성하는 댓글
+  let param = useParams(); //게시판 아이디는 param.id 로 접근
   const navigator = useNavigate();
 
   // 댓글 작성 (서버와 통신)
   const commentHandler = async (e) => {
+    // console.log(comment);
+    // console.log(param.id);
     try {
-      const res = await axios.post("/comment", {
+      const res = await axios.post(`/boards/${param.id}`, {
         comment,
       });
       // 댓글 작성 성공시 해당 게시판으로 리다이랙트
       // 서버로부터 게시판 아이디 받으면 좋을 것 같음
-      navigator("/boards/0");
+      // navigator("/boards/0");
+      console.log("댓글: " + res.data);
     } catch (error) {}
   };
 

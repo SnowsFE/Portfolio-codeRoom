@@ -92,7 +92,7 @@ const MyPage = () => {
       {/* Todo props로 데이터 전달 */}
       <MyBoards sampleBoards={myBoards}></MyBoards>
       <MyComments sampleComments={myComments}></MyComments>
-      <Footer></Footer>
+      <Footer style={{ position: "fixed", bottom: 0 }}></Footer>
     </>
   );
 };
