@@ -219,7 +219,7 @@ const WriteBasicInfo3 = ({ onLanguagesChange, onEndDateChange }) => {
             ) : (
               <p>프로젝트 사용기술</p>
             )}
-            <span className="dropdown-icon">🧶</span>{" "}
+            <span className="dropdown-icon">✨</span>{" "}
             {isOpen && (
               <div className="custom-dropdown">
                 {options.map((option, index) => (
@@ -315,7 +315,7 @@ const WriteBasicInfo4 = ({ onCategoryChange, onContactChange }) => {
             ) : (
               <p>포지션을 선택하세요</p>
             )}
-            <span className="dropdown-icon">🧶</span>{" "}
+            <span className="dropdown-icon">✨</span>{" "}
             {isOpen && (
               <div className="custom-dropdown">
                 {options.map((option, index) => (

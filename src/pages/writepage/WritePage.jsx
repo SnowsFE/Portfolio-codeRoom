@@ -175,22 +175,23 @@ const BasicInfoContainer = styled.section`
   }
 `;
 
-// 본문 내용 관련 css-
 const BodyInfoContainer = styled.section`
   h6 {
     text-align: left;
     font-size: 20px;
   }
+
   #title-input {
     width: 100%;
     height: 52px;
     margin-bottom: 30px;
     border-radius: 15px;
     outline: none;
-    border: 2px solid grey;
-    font-style: italic;
+    border: 2px solid #ccc; /* 회색 테두리 */
+    background-color: #f5f5f5; /* 회색 배경 */
     font-size: 15px;
-    opacity: 0.5;
+    padding: 10px; /* 내부 여백 추가 */
+    font-family: "Noto Sans KR", sans-serif;
   }
 
   textarea {
@@ -198,15 +199,17 @@ const BodyInfoContainer = styled.section`
     height: 430px;
     border-radius: 15px;
     outline: none;
-    border: 2px solid grey;
-    font-size: 20px;
-    opacity: 0.5;
+    border: 2px solid #ccc; /* 회색 테두리 */
+    background-color: #f5f5f5; /* 회색 배경 */
+    font-size: 16px;
+    padding: 10px; /* 내부 여백 추가 */
+
+    font-family: "Noto Sans KR", sans-serif;
 
     &::placeholder {
       /* placeholder 스타일링 */
       color: #aaa;
-      font-size: 20px;
-      font-style: italic;
+      font-size: 16px;
     }
   }
 
@@ -226,12 +229,11 @@ const BodyInfoContainer = styled.section`
   }
 `;
 
-// 버튼에 호버 효과와 색상 적용
 const CancelButton = styled.button`
-  background-color: rgb(233, 236, 239);
+  background-color: #e9ecef; /* 회색 배경 */
   border-radius: 5px;
   &:hover {
-    background-color: #c4c4c4;
+    background-color: #c4c4c4; /* 호버 시 밝은 회색 */
   }
 `;
 
@@ -242,18 +244,6 @@ const WriteButton = styled.button`
   margin-left: 15px;
   &:hover {
     background-color: #333;
-  }
-
-  #cancel-btn {
-    background-color: rgb(233, 236, 239);
-    border-radius: 5px;
-  }
-
-  #write-btn {
-    background-color: black;
-    color: #fff;
-    border-radius: 5px;
-    margin-left: 15px;
   }
 `;
 
