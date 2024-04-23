@@ -427,15 +427,16 @@ const PaginationItem = styled.div`
   padding: 5px 10px; /* 내부 여백 설정 */
   margin: 0 5px; /* 여백 설정 */
   border-radius: 5px; /* 테두리 반경 설정 */
-  border: 1px solid black; /* 테두리 설정 */
+  border: none; /* 테두리 설정 */
+  border-radius: 30px; /* 모서리를 반지름 30px의 원으로 만듦 */
   background: white; /* 배경색 설정 */
   color: black; /* 글자 색상 설정 */
   font-weight: bold; /* 글꼴 두껍게 */
   background: ${({ isActive }) =>
-    isActive ? "#ffffff" : "white"}; /* 현재 페이지 여부에 따라 배경색 변경 */
+    isActive ? "#d5ffd5" : "white"}; /* 현재 페이지 여부에 따라 배경색 변경 */
 
   &:hover {
-    background: #d5ffd5; /* 호버 시 배경색 변경 */
+    background: #ebebeb; /* 호버 시 배경색 변경 */
   }
 `;
 
@@ -444,7 +445,8 @@ const PaginationArrow = styled.div`
   cursor: pointer; /* 포인터 커서 */
   padding: 5px; /* 내부 여백 설정 */
   margin: 0 5px; /* 여백 설정 */
-  border-radius: 5px; /* 테두리 반경 설정 */
+  border: none;
+  border-radius: 30px; /* 모서리를 반지름 30px의 원으로 만듦 */
   background: white; /* 배경색 설정 */
   color: black; /* 글자 색상 설정 */
   font-weight: bold; /* 글꼴 두껍게 */
@@ -453,7 +455,7 @@ const PaginationArrow = styled.div`
   z-index: 1; /* 층 위치 설정 */
 
   &:hover {
-    background: #d5ffd5; /* 호버 시 배경색 변경 */
+    background: #ebebeb; /* 호버 시 배경색 변경 */
   }
 `;
 

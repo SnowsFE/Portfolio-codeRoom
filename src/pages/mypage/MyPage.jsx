@@ -115,9 +115,10 @@ const SummaryUnderline = styled.hr`
 const SummaryContainer = styled.div`
   background-color: white;
   display: flex;
-  /* padding: 21px 16px; */
-  height: 90px;
-  /* margin-bottom: 10px; */
+  min-height: 80px;
+  height: 80px;
+  min-width: 100%;
+  width: 1920px;
 
   span {
     cursor: pointer;
@@ -129,7 +130,7 @@ const SummaryContainer = styled.div`
   .number {
     font-size: 19px;
     font-weight: bold;
-    color: #24855b;
+    color: #14cc14;
   }
   .item > div:nth-child(2) {
     font-size: 13px;
