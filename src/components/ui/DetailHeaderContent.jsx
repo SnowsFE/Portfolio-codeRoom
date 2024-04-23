@@ -3,7 +3,7 @@ import BackArrow from "../../img/BackArrow.png";
 import viewImg from "../../img/view.png";
 import { svgFiles, fileNames } from "../../constants/fileNames";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import Nav from "../../components/ui/Nav.jsx";
 
 // 제목, 작성자, 작성 일자
 const DetailTitle = ({
@@ -34,38 +34,41 @@ const DetailTitle = ({
   findFileNames();
 
   return (
-    <StudyContentContainer>
-      <DetailBackArrowImgArea onClick={() => navigator(-1)}>
-        <img src={BackArrow} alt="" />
-      </DetailBackArrowImgArea>
-      <h1 className="study-title">{title}</h1>
-      <DetailUserInfo>
-        <div className="username">{writer}</div>
-        <div className="user-info-partition">|</div>
-        <div className="date">{writeDt}</div>
-        <div className="view-area">
-          <img src={viewImg} alt="" />
-          <span>{view}</span>
-        </div>
-      </DetailUserInfo>
-      <DetailSubContent
-        langIndex={langIndex}
-        recruitType={recruitType}
-        progressMethod={progressMethod}
-        recruitMember={recruitMember}
-        contact={contact}
-        duration={duration}
-        recruitField={recruitField}
-        endDate={endDate}
-      ></DetailSubContent>
-      <hr
-        style={{
-          height: "2px",
-          backgroundColor: "rgb(113, 113, 113)",
-          border: "none",
-        }}
-      />
-    </StudyContentContainer>
+    <>
+      <Nav />
+      <StudyContentContainer>
+        <DetailBackArrowImgArea onClick={() => navigator(-1)}>
+          <img src={BackArrow} alt="" />
+        </DetailBackArrowImgArea>
+        <h1 className="study-title">{title}</h1>
+        <DetailUserInfo>
+          <div className="username">{writer}</div>
+          <div className="user-info-partition">|</div>
+          <div className="date">{writeDt}</div>
+          <div className="view-area">
+            <img src={viewImg} alt="" />
+            <span>{view}</span>
+          </div>
+        </DetailUserInfo>
+        <DetailSubContent
+          langIndex={langIndex}
+          recruitType={recruitType}
+          progressMethod={progressMethod}
+          recruitMember={recruitMember}
+          contact={contact}
+          duration={duration}
+          recruitField={recruitField}
+          endDate={endDate}
+        ></DetailSubContent>
+        <hr
+          style={{
+            height: "2px",
+            backgroundColor: "rgb(113, 113, 113)",
+            border: "none",
+          }}
+        />
+      </StudyContentContainer>
+    </>
   );
 };
 
@@ -147,19 +150,25 @@ export { DetailTitle, DetailSubContent };
 const DetailSubContentContainer = styled.section`
   display: flex;
   flex-direction: row;
-  /* border: 1px solid black; */
   width: 100%;
   margin: 30px auto;
+  border-top: 2px solid rgb(113, 113, 113);
+  padding-top: 3%;
+  justify-content: flex-start; /* 왼쪽 정렬을 설정합니다. */
 
   span {
     font-size: 20px;
   }
+  ul {
+    padding-left: 0; /* 기본적인 패딩을 제거합니다. */
+  }
+
   li {
     display: inline-block; /* li 요소를 인라인 블록 요소로 표시하여 한 줄에 두 개씩 나타나도록 함 */
     width: 48%; /* 부모 요소의 너비의 절반 크기로 설정하여 두 개씩 나란히 위치하도록 함 */
     margin-right: 2%; /* 각 li 요소 사이의 우측 여백 설정 */
-    margin-bottom: 30px;
-    text-align: center;
+    margin: 20px auto;
+    text-align: left;
     box-sizing: border-box;
   }
   .sub-title {
@@ -189,8 +198,8 @@ const DetailSubContentContainer = styled.section`
 const StudyContentContainer = styled.div`
   /* height: 530px; */
   /* border: 1px solid black; */
-  width: 65%;
-  margin: 80px auto;
+  width: 50%;
+  margin: 40px auto;
   display: flex;
   flex-direction: column;
 
@@ -217,7 +226,7 @@ const DetailUserInfo = styled.div`
     font-weight: 700;
     font-size: 24px;
     margin-right: 18px;
-    padding-left: 10px;
+    padding-left: 15px;
   }
   .date {
     font-weight: 400;
