@@ -43,15 +43,15 @@ const WriteBasicInfo1 = ({ onRecruitTypeChange, onRecruitMemberChange }) => {
             <option value="" disabled selected>
               1명 ~ 10명 이상
             </option>
-            <option value="1">1명</option>
-            <option value="2">2명</option>
-            <option value="3">3명</option>
-            <option value="4">4명</option>
-            <option value="5">5명</option>
-            <option value="6">6명</option>
-            <option value="7">7명</option>
-            <option value="8">8명</option>
-            <option value="9">9명</option>
+            <option value="1명">1명</option>
+            <option value="2명">2명</option>
+            <option value="3명">3명</option>
+            <option value="4명">4명</option>
+            <option value="5명">5명</option>
+            <option value="6명">6명</option>
+            <option value="7명">7명</option>
+            <option value="8명">8명</option>
+            <option value="9명">9명</option>
             <option value="10+">10명 이상</option>
           </StyledSelect>
         </div>
@@ -85,8 +85,8 @@ const WriteBasicInfo2 = ({ onProgressChange, onDurationChange }) => {
             <option value="" disabled selected>
               온라인 / 오프라인
             </option>
-            <option value="online">온라인</option>
-            <option value="offline">오프라인</option>
+            <option value="온라인">온라인</option>
+            <option value="오프라인">오프라인</option>
           </StyledSelect>
         </div>
       </div>
@@ -102,13 +102,13 @@ const WriteBasicInfo2 = ({ onProgressChange, onDurationChange }) => {
             <option value="" disabled selected>
               기간 미정 ~ 6개월 이상
             </option>
-            <option value="undecided">기간 미정</option>
-            <option value="1">1개월</option>
-            <option value="2">2개월</option>
-            <option value="3">3개월</option>
-            <option value="4">4개월</option>
-            <option value="5">5개월</option>
-            <option value="6">6개월</option>
+            <option value="기간 미정">기간 미정</option>
+            <option value="1개월">1개월</option>
+            <option value="2개월">2개월</option>
+            <option value="3개월">3개월</option>
+            <option value="4개월">4개월</option>
+            <option value="5개월">5개월</option>
+            <option value="6개월">6개월</option>
           </StyledSelect>
         </div>
       </div>
@@ -349,9 +349,9 @@ const WriteBasicInfo4 = ({ onCategoryChange, onContactChange }) => {
             <option value="" disabled selected>
               카카오톡 오픈채팅..
             </option>
-            <option value="opentalk">오픈톡</option>
-            <option value="email">이메일</option>
-            <option value="googleform">구글 폼</option>
+            <option value="오픈톡">오픈톡</option>
+            <option value="이메일">이메일</option>
+            <option value="구글폼">구글폼</option>
           </StyledSelect>
         </div>
       </div>
