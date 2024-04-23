@@ -92,13 +92,13 @@ const CommentContainer = styled.div`
     color: #fff;
     font-weight: 700;
     border-radius: 15px;
-    margin-left: 50%;
+    margin-left: 45.2%;
   }
 `;
 
 const CommentStyledTextArea = styled.textarea`
-  min-width: 827px;
-  width: 55%;
+  min-width: 600px;
+  width: 50%;
   height: 130px;
   border-radius: 15px;
   outline: none;
