@@ -138,10 +138,10 @@ const Skill = () => {
 // SkillContainer 스타일드 컴포넌트: 위치 및 크기 설정
 const SkillContainer = styled.div`
   position: absolute; /* 위치 설정 */
-  width: 30%; /* 너비 설정 */
+  width: 31%; /* 너비 설정 */
   height: 10%; /* 높이 설정 */
   margin-bottom: 20.6%; /* 하단 여백 */
-  margin-left: 69.6%; /* 왼쪽 여백 */
+  margin-left: 68.6%; /* 왼쪽 여백 */
   z-index: 3; /* z-index 설정 */
 `;
 
@@ -153,13 +153,13 @@ const SkillJobButton = styled.button`
   margin: 5px; /* 마진 설정 */
   padding: 10px; /* 안쪽 여백 설정 */
   background-color: #ffffff; /* 배경색 설정 */
-  box-shadow: 0px 2px 4px #14cc14; /* 그림자 설정 */
-  border: none; /* 테두리 제거 */
-  border-radius: 4px; /* 테두리 반경 설정 */
+  border: 1px solid #8f8f8f; /* 테두리 스타일과 색상 설정 */
+  border-radius: 10px;
   cursor: pointer; /* 커서 설정 */
 
   &:hover {
-    background-color: #d5ffd5; /* 호버시 배경색 변경 */
+    background-color: #ebebeb; /* 약간 회색 톤으로 변경 */
+    transform: scale(1.08);
   }
 `;
 
