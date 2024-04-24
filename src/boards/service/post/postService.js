@@ -136,6 +136,17 @@ const Search = async (searchWord)=>{
 };
 // 게시글 작성
 const postwrite = async (postData, user_uid) => {
+    const enddate = new Date(postData.enddate);
+    const today = new Date();
+
+    // 시간을 무시하고 날짜만 비교하기 위해
+    enddate.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
+
+    // 입력받은 날짜가 현재 날짜보다 이전인지 확인
+    if (enddate < today) {
+        throw new Error('마감일 날짜는 현재 날짜보다 이전일 수 없습니다.');
+    }
     const result = await postRep.postwrite(postData, user_uid);
     const result2 = await postRep.postwriteuidsearch(postData, user_uid);
     const board_uid = result2;
