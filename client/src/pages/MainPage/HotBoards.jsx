@@ -142,6 +142,10 @@ const HotBox = styled.div`
   border: 1px solid #8f8f8f; /* 테두리 스타일과 색상 설정 */
   border-radius: 20px; /* 테두리 반경 설정 */
   cursor: pointer; /* 마우스 커서 모양 설정 */
+  &:hover {
+    transform: scale(1.04); /* 호버시 확대 */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* 그림자 설정 */
+  }
 `;
 
 // HotBoxContent 컴포넌트 스타일: 핫 박스 내용 영역 스타일 설정

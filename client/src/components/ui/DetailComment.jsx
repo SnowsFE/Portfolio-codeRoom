@@ -25,6 +25,7 @@ const DetailComment = ({ comments, setComments }) => {
         comment,
       });
       // 댓글 작성 성공시 해당 게시판으로 리다이랙트
+      alert("댓글이 성공적으로 등록되었습니다!"); // 댓글 등록 추가
       addComment(comment);
       window.location.reload();
     } catch (e) {

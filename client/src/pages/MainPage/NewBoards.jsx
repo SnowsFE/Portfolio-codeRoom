@@ -341,6 +341,10 @@ const NewBox = styled.div`
   border: 1px solid #8f8f8f; /* 테두리 설정 */
   border-radius: 20px; /* 테두리 반경 설정 */
   cursor: pointer; /* 포인터 커서 */
+  &:hover {
+    transform: scale(1.04); /* 호버시 확대 */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* 그림자 설정 */
+  }
 `;
 
 // NewBoxContent 스타일드 컴포넌트: 개별 프로젝트 내용 영역 스타일
