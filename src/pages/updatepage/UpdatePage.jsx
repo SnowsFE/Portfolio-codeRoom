@@ -200,10 +200,11 @@ const BodyInfoContainer = styled.section`
     margin-bottom: 30px;
     border-radius: 15px;
     outline: none;
-    border: 2px solid grey;
-    font-style: italic;
+    border: 2px solid #ccc; /* 회색 테두리 */
+    background-color: #f5f5f5; /* 회색 배경 */
     font-size: 15px;
-    opacity: 0.5;
+    padding: 10px; /* 내부 여백 추가 */
+    font-family: "Noto Sans KR", sans-serif;
   }
 
   textarea {
@@ -211,15 +212,17 @@ const BodyInfoContainer = styled.section`
     height: 430px;
     border-radius: 15px;
     outline: none;
-    border: 2px solid grey;
-    font-size: 20px;
-    opacity: 0.5;
+    border: 2px solid #ccc; /* 회색 테두리 */
+    background-color: #f5f5f5; /* 회색 배경 */
+    font-size: 16px;
+    padding: 10px; /* 내부 여백 추가 */
+
+    font-family: "Noto Sans KR", sans-serif;
 
     &::placeholder {
       /* placeholder 스타일링 */
       color: #aaa;
-      font-size: 20px;
-      font-style: italic;
+      font-size: 16px;
     }
   }
 

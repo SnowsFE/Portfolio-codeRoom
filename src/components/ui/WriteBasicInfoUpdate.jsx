@@ -293,7 +293,7 @@ const WriteBasicInfo3 = ({
       <div className="basic-info-box">
         <span className="info-title">기술 스택</span>
         <div className="select-box">
-          <div className="left-bar" onClick={toggleDropdown}>
+          <div class="left-bar" tabIndex="0" onClick={toggleDropdown}>
             {language.length > 0 ? (
               <p>
                 {language.map((option, index) => (
@@ -311,7 +311,7 @@ const WriteBasicInfo3 = ({
             ) : (
               <p>프로젝트 사용기술</p>
             )}
-            <span className="dropdown-icon">🧶</span>{" "}
+            <span className="dropdown-icon">✨</span>{" "}
             {isOpen && (
               <div className="custom-dropdown">
                 {options.map((option, index) => (
@@ -402,7 +402,7 @@ const WriteBasicInfo4 = ({
       <div className="basic-info-box">
         <span className="info-title">모집 포지션</span>
         <div className="select-box">
-          <div className="left-bar" onClick={toggleDropdown}>
+          <div class="left-bar" tabIndex="0" onClick={toggleDropdown}>
             {recruitField.length > 0 ? (
               <p>
                 {recruitField.map((option, index) => (
@@ -420,7 +420,7 @@ const WriteBasicInfo4 = ({
             ) : (
               <p>포지션을 선택하세요</p>
             )}
-            <span className="dropdown-icon">🧶</span>
+            <span className="dropdown-icon">✨</span>{" "}
           </div>
           {isOpen && (
             <div className="custom-dropdown">
@@ -472,11 +472,11 @@ export { WriteBasicInfo1, WriteBasicInfo2, WriteBasicInfo3, WriteBasicInfo4 };
 
 const SelectedOptionBox = styled.span`
   background-color: #d5ffd5; /* 연한 초록색 배경 */
-  margin-right: 10px; /* 우측 마진 */
   border-radius: 5px; /* 모서리 둥글게 */
   padding: 7px;
   align-items: center;
   border: 1px solid #14cc14;
+  margin-left: 1%;
 
   span {
     margin-left: 3px;
@@ -488,9 +488,8 @@ const SelectArea = styled.div`
   justify-content: center;
   margin-bottom: 5%;
   margin-top: 5%;
-
+  gap: 5%;
   .basic-info-box {
-    margin-right: 20px;
     text-align: center;
   }
 
@@ -527,7 +526,11 @@ const SelectArea = styled.div`
     margin-bottom: 10px;
     background-color: #fff; /* 흰색 배경 추가 */
     &:hover {
-      background-color: #d5ffd5;
+      background-color: #d5ffd5; /* 마우스 호버 시 연한 초록색 */
+    }
+    &:focus-within {
+      outline: none;
+      border-color: #14cc14; /* 포커스된 상태의 테두리 색상 */
     }
   }
 
