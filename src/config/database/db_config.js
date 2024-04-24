@@ -1,3 +1,4 @@
+require('dotenv').config();
 const mysql = require('mysql');
 // mysql 모듈의 createPool 함수를 사용하여 데이터베이스 연결 풀을 생성합니다.
 const dbInfo = mysql.createPool({
