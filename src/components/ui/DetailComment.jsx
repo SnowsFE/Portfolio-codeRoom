@@ -92,21 +92,26 @@ const CommentContainer = styled.div`
     color: #fff;
     font-weight: 700;
     border-radius: 15px;
+    margin-left: 45.2%;
   }
 `;
 
 const CommentStyledTextArea = styled.textarea`
-  width: 55%;
+  min-width: 600px;
+  width: 50%;
   height: 130px;
   border-radius: 15px;
   outline: none;
   border: 2px solid grey;
-  font-size: 20px; /*작성 댓글 크기*/
-  opacity: 0.3;
+  font-size: 16px; /*작성 댓글 크기*/
+
+  font-family: "Noto Sans KR", sans-serif;
+  border: 2px solid #ccc; /* 회색 테두리 */
+  background-color: #f5f5f5; /* 회색 배경 */
   &::placeholder {
     /* placeholder 스타일링 */
     color: #aaa; /* 원하는 색상으로 설정 */
-    font-size: 20px;
+    font-size: 16px;
   }
 `;
 

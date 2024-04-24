@@ -141,7 +141,7 @@ const SkillContainer = styled.div`
   width: 31%; /* 너비 설정 */
   height: 10%; /* 높이 설정 */
   margin-bottom: 20.6%; /* 하단 여백 */
-  margin-left: 68.6%; /* 왼쪽 여백 */
+  margin-left: 68.8%; /* 왼쪽 여백 */
   z-index: 3; /* z-index 설정 */
 `;
 

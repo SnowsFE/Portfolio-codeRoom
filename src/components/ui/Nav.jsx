@@ -94,7 +94,6 @@ const Right2 = styled.div`
   }
 `;
 
-// 네비게이션 바와 컬러 변경 버튼 사이의 분리선 스타일
 const Separator = styled.div`
   width: 100%; /* 가로 폭 100% */
   height: 1px; /* 높이 1px */
