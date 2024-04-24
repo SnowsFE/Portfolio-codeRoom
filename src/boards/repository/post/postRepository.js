@@ -71,7 +71,7 @@ const postwriteuidsearch = async (postData, user_uid) => {
     recruitmember =? and duration =? and contact =? and user_uid =?`,
         [postData.title, postData.content, postData.enddate, postData.recruittype,
         postData.progress, postData.recruitmember, postData.duration, postData.contact, user_uid]);
-    return result;
+    return result[0].board_uid;
 };
 // 게시글 작성(category 데이블 insert)
 const postwritecategories = async (postData, board_uid) => {
