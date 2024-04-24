@@ -62,7 +62,6 @@ const WritePage = () => {
     try {
       const res = await axios.post("/boards/postWrite", postData);
       console.log("서버 응답 데이터:", res.data); // 서버 응답 데이터를 콘솔에 출력
-      // console.log("서버 응답 데이터:", res.data.board_uid); // 서버 응답 데이터를 콘솔에 출력
       alert("글이 성공적으로 등록되었습니다!");
       navigate(`/boards/${res.data.board_uid}`);
     } catch (error) {

@@ -25,6 +25,7 @@ const UserDeletePage = () => {
       console.log("회원 삭제 데이터: " + response.data);
       // 세션 스토리지 데이터 삭제
       sessionStorage.clear();
+      alert("회원이 탈퇴되었습니다 😢");
       navigator("/");
     } catch (e) {
       if (
