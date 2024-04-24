@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-// 로그인 상태 확인~
+// 로그인 상태 확인
 const isAuthenticated = (req, res, next) => {
   if (req.session.user_uid) {
     console.log("세션 확인 로그", req.session.user_uid);
