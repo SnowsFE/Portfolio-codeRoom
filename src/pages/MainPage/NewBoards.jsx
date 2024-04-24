@@ -147,8 +147,16 @@ const NewBoards = ({}) => {
   };
 
   const handleClearSearch = async () => {
-    setsearchWord(""); // 검색어 비우기
-    console.log("검색어가 비워졌습니다."); // 확인을 위한 콘솔 로그
+    try {
+      // 검색어를 비우기 전에 원래의 프로젝트를 다시 불러오기
+      const res = await axios.get("/boards");
+      setProjects(res.data.mainResult);
+
+      setsearchWord(""); // 검색어 비우기
+      console.log("검색어가 비워졌습니다."); // 확인을 위한 콘솔 로그
+    } catch (error) {
+      console.error("프로젝트를 다시 불러오는데 실패했습니다.", error);
+    }
   };
 
   const handleKeyPress = (event) => {
