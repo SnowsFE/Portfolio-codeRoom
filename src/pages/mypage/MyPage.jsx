@@ -117,8 +117,8 @@ const SummaryContainer = styled.div`
   display: flex;
   min-height: 80px;
   height: 80px;
-  min-width: 100%;
-  width: 1920px;
+  min-width: 1280px;
+  width: 100%;
 
   span {
     cursor: pointer;
