@@ -35,7 +35,7 @@ const DetailTitle = ({
 
   return (
     <StudyContentContainer>
-      <DetailBackArrowImgArea onClick={() => navigator(-1)}>
+      <DetailBackArrowImgArea onClick={() => navigator("/")}>
         <img src={BackArrow} alt="" />
       </DetailBackArrowImgArea>
       <h1 className="study-title">{title}</h1>

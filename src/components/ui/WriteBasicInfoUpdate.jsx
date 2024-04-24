@@ -67,31 +67,31 @@ const WriteBasicInfo1 = ({
             <option value="" disabled>
               1명 ~ 10명 이상
             </option>
-            <option value="1" selected={selectedRecruitmentCount === 1}>
+            <option value="1명" selected={selectedRecruitmentCount === "1명"}>
               1명
             </option>
-            <option value="2" selected={selectedRecruitmentCount === "2"}>
+            <option value="2명" selected={selectedRecruitmentCount === "2명"}>
               2명
             </option>
-            <option value="3" selected={selectedRecruitmentCount === "3"}>
+            <option value="3명" selected={selectedRecruitmentCount === "3명"}>
               3명
             </option>
-            <option value="4" selected={selectedRecruitmentCount === "4"}>
+            <option value="4명" selected={selectedRecruitmentCount === "4명"}>
               4명
             </option>
-            <option value="5" selected={selectedRecruitmentCount === "5"}>
+            <option value="5명" selected={selectedRecruitmentCount === "5명"}>
               5명
             </option>
-            <option value="6" selected={selectedRecruitmentCount === "6"}>
+            <option value="6명" selected={selectedRecruitmentCount === "6명"}>
               6명
             </option>
-            <option value="7" selected={selectedRecruitmentCount === "7"}>
+            <option value="7명" selected={selectedRecruitmentCount === "7명"}>
               7명
             </option>
-            <option value="8" selected={selectedRecruitmentCount === "8"}>
+            <option value="8명" selected={selectedRecruitmentCount === "8명"}>
               8명
             </option>
-            <option value="9" selected={selectedRecruitmentCount === "9"}>
+            <option value="9명" selected={selectedRecruitmentCount === "9명"}>
               9명
             </option>
             <option value="10+" selected={selectedRecruitmentCount === "10+"}>
@@ -159,7 +159,7 @@ const WriteBasicInfo2 = ({
               기간 미정 ~ 6개월 이상
             </option>
             <option
-              value="undecided"
+              value="기간 미정"
               selected={selectedProcessDuration === "기간 미정"}
             >
               기간 미정
@@ -458,8 +458,8 @@ const WriteBasicInfo4 = ({
             <option value="이메일" selected={contact === "이메일"}>
               이메일
             </option>
-            <option value="구글 폼" selected={contact === "구글 폼"}>
-              구글 폼
+            <option value="구글폼" selected={contact === "구글폼"}>
+              구글폼
             </option>
           </StyledSelect>
         </div>
