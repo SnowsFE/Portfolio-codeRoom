@@ -21,7 +21,7 @@ const MyPage = () => {
     const getMyData = async () => {
       try {
         const res = await axios.get("/users/mypage");
-        console.log("mypage axios");
+        console.log("mypage data: " + res.data.data.userInfo[0].commentsCount);
         // Todo
         setMyBoards(res.data.data.postsIofo);
         setMyComments(res.data.data.commentsInfo);

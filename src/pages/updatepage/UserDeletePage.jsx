@@ -27,7 +27,12 @@ const UserDeletePage = () => {
       sessionStorage.clear();
       navigator("/");
     } catch (e) {
-      if (e.response && e.response.status === 404) {
+      if (
+        e.response &&
+        e.response.status === 404 &&
+        e.response.status === 401 &&
+        e.response.status === 400
+      ) {
         alert("인증 실패! 비밀번호를 확인해주세요");
       } else if (e.response && e.response.status === 500) {
         alert("서버 오류가 발생했습니다. 나중에 다시 시도해주세요.");

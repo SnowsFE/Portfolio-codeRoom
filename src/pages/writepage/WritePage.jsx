@@ -58,11 +58,13 @@ const WritePage = () => {
 
     console.log("전송될 데이터:", postData); // 데이터를 콘솔에 출력
 
+    // 글 작성 완료 후 해당 detail page로 이동
     try {
       const res = await axios.post("/boards/postWrite", postData);
       console.log("서버 응답 데이터:", res.data); // 서버 응답 데이터를 콘솔에 출력
+      // console.log("서버 응답 데이터:", res.data.board_uid); // 서버 응답 데이터를 콘솔에 출력
       alert("글이 성공적으로 등록되었습니다!");
-      navigate("/");
+      navigate(`/boards/${res.data.board_uid}`);
     } catch (error) {
       console.error("글 등록 중 오류 발생:", error);
       alert("글 등록 중 오류가 발생했습니다. 다시 시도해주세요.");

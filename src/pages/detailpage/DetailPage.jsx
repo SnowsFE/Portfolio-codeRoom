@@ -6,6 +6,9 @@ import {
 import DetailContentBody from "../../components/ui/DetailBodyContent";
 import DetailComment from "../../components/ui/DetailComment";
 import { svgFiles, fileNames } from "../../constants/fileNames";
+import { isLogin } from "../../common/IsLogin";
+import Nav from "../../components/ui/Nav";
+import LoginNav from "../../components/ui/LoginNav";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
@@ -58,6 +61,7 @@ const DetailPage = () => {
 
   return (
     <div>
+      {isLogin() === true ? <LoginNav /> : <Nav />}
       <DetailTitle
         title={title}
         writer={writer}
