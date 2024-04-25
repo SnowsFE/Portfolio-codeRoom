@@ -124,14 +124,12 @@ const DetailSubContent = ({
         </li>
         <li>
           <span className="sub-title">사용 언어</span>
-
-          {/* 배열에 따른 반복문 처리 Todo*/}
           {langIndex.map((index) => {
             // console.log("반복문 확인: " + index);
             return (
-              <span>
-                <img src={svgFiles[index]} alt="" />
-              </span>
+              <span style={{ display: 'inline-block', marginRight: '42px' }}>
+              <img src={svgFiles[index]} alt="" style={{ width: '36px', height: '36px' }} />
+            </span>
             );
           })}
         </li>
@@ -161,6 +159,7 @@ const DetailSubContentContainer = styled.section`
   }
 
   li {
+    position: relative;
     display: inline-block; /* li 요소를 인라인 블록 요소로 표시하여 한 줄에 두 개씩 나타나도록 함 */
     width: 48%; /* 부모 요소의 너비의 절반 크기로 설정하여 두 개씩 나란히 위치하도록 함 */
     margin-right: 2%; /* 각 li 요소 사이의 우측 여백 설정 */
@@ -168,6 +167,13 @@ const DetailSubContentContainer = styled.section`
     text-align: left;
     box-sizing: border-box;
   }
+
+  img {
+  position: absolute; /* 이미지를 절대적으로 위치시킵니다. */
+  top: 50%; /* 상위 요소의 중앙에 배치합니다. */
+  transform: translateY(-50%); /* 세로 방향으로 50%만큼 이동하여 요소의 중앙에 배치합니다. */
+}
+
   .sub-title {
     color: rgb(113, 113, 113);
     font-weight: 700;
@@ -183,11 +189,6 @@ const DetailSubContentContainer = styled.section`
     border-radius: 5px;
     font-weight: 700;
     margin-right: 15px;
-  }
-  img {
-    width: 36px;
-    height: 36px;
-    margin-right: 10px;
   }
 `;
 

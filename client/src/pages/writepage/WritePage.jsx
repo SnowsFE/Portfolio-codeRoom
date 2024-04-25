@@ -236,6 +236,8 @@ const CancelButton = styled.button`
   &:hover {
     background-color: #c4c4c4; /* 호버 시 밝은 회색 */
   }
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight:700;
 `;
 
 const WriteButton = styled.button`
@@ -246,6 +248,8 @@ const WriteButton = styled.button`
   &:hover {
     background-color: #333;
   }
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight:700;
 `;
 
 export default WritePage;

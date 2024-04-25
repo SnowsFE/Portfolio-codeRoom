@@ -85,6 +85,7 @@ const CommentContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 80px;
+  
   button {
     width: 100px;
     height: 50px;
@@ -94,6 +95,7 @@ const CommentContainer = styled.div`
     font-weight: 700;
     border-radius: 15px;
     margin-left: 45.2%;
+    font-family: "Noto Sans KR", sans-serif;
   }
 `;
 

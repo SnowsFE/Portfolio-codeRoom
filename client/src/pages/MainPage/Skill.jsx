@@ -156,6 +156,8 @@ const SkillJobButton = styled.button`
   border: 1px solid #8f8f8f; /* 테두리 스타일과 색상 설정 */
   border-radius: 10px;
   cursor: pointer; /* 커서 설정 */
+  font-family: "Noto Sans KR", sans-serif; /* 폰트 패밀리 설정 */
+  font-weight:700;
 
   &:hover {
     background-color: #ebebeb; /* 약간 회색 톤으로 변경 */

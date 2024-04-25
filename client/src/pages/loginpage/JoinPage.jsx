@@ -105,7 +105,7 @@ const TestJoinPage = () => {
               value={username}
               onChange={handleUsernameChange}
             />
-            <CheckButton onClick={handleUsernameCheck}>중복확인</CheckButton>
+            <CheckButton onClick={handleUsernameCheck}><b>중복확인</b></CheckButton>
           </InputContainer>
           <Input
             type="password"
@@ -121,7 +121,7 @@ const TestJoinPage = () => {
           />
           {errorMessage && <Message>{errorMessage}</Message>}
           <ButtonContainer>
-            <SignUpButton type="submit">회원 가입</SignUpButton>
+            <SignUpButton type="submit"><b>계정 생성</b></SignUpButton>
           </ButtonContainer>
         </LoginForm>
         <LoginBelowImg></LoginBelowImg>
@@ -203,6 +203,8 @@ background-color: #14cc14;
 &:hover {
   background-color: #11ad11;
 }
+
+font-family: "Noto Sans KR", sans-serif;
 `;
 
 const InputContainer = styled.div`
@@ -218,6 +220,7 @@ const CheckButton = styled(Button)`
   &:hover {
     background-color: #5a6268;
   }
+  font-family: "Noto Sans KR", sans-serif;
 `;
 
 const Message = styled.div`

@@ -130,6 +130,7 @@ const LoginButton = styled(LoginButtonComp)`
   &:hover {
     background-color: #0056b3;
   }
+  font-family: "Noto Sans KR", sans-serif;
 `;
 
 const SignUpButton = styled(LoginButtonComp)`
@@ -138,6 +139,7 @@ const SignUpButton = styled(LoginButtonComp)`
   &:hover {
     background-color: #11ad11;
   }
+  font-family: "Noto Sans KR", sans-serif;
 `;
 
 export default LoginPage;
