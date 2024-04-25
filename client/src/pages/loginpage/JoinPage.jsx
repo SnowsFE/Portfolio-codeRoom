@@ -121,13 +121,6 @@ const TestJoinPage = () => {
           />
           {errorMessage && <Message>{errorMessage}</Message>}
           <ButtonContainer>
-          <LoginButton
-              onClick={() => {
-                navigate("/users/login");
-              }}
-            >
-              로그인
-            </LoginButton>
             <SignUpButton type="submit">회원 가입</SignUpButton>
           </ButtonContainer>
         </LoginForm>
@@ -193,7 +186,7 @@ const Button = styled.button`
   border: none;
   color: white;
   cursor: pointer;
-  width: 45%;
+  width: 100%;
 `;
 
 const LoginButton = styled(Button)`
