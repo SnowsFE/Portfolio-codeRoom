@@ -7,19 +7,19 @@ const dbInfo = mysql.createPool({
   connectionLimit: 10,
 
   // port: 데이터베이스 포트 번호
-  port: process.env.DB_PORT,
+  port: "3306",
 
   // host: 데이터베이스 서버의 호스트명 또는 IP 주소입니다. 여기서는 로컬호스트(즉, 같은 컴퓨터)에 설치된 데이터베이스를 사용합니다.
-  host: process.env.DB_HOST,
+  host: "localhost",
 
   // user: 데이터베이스에 접근할 때 사용할 사용자 이름입니다. 여기서는 'root' 사용자를 사용합니다.
-  user: process.env.DB_USER,
+  user: "root",
 
   // password: 데이터베이스 사용자의 비밀번호입니다.
-  password: process.env.DB_PASS,
+  password: "1124",
 
   // database: 연결하려는 데이터베이스(schemas)의 이름입니다.
-  database: process.env.DB_NAME,
+  database: "aaa",
 
   // 이모티콘 글 쓰기 삽입 시 정상 출력을 위한 코드
   charset: "utf8mb4",

@@ -101,7 +101,7 @@ const TestJoinPage = () => {
           <InputContainer>
             <Input
               type="text"
-              placeholder="Username"
+              placeholder="아이디"
               value={username}
               onChange={handleUsernameChange}
             />
@@ -109,26 +109,26 @@ const TestJoinPage = () => {
           </InputContainer>
           <Input
             type="password"
-            placeholder="Password"
+            placeholder="비밀번호"
             value={password}
             onChange={handlePasswordChange}
           />
           <Input
             type="password"
-            placeholder="Confirm Password"
+            placeholder="비밀번호 확인"
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
           />
           {errorMessage && <Message>{errorMessage}</Message>}
           <ButtonContainer>
-            <SignUpButton type="submit">회원 가입</SignUpButton>
-            <LoginButton
+          <LoginButton
               onClick={() => {
                 navigate("/users/login");
               }}
             >
               로그인
             </LoginButton>
+            <SignUpButton type="submit">회원 가입</SignUpButton>
           </ButtonContainer>
         </LoginForm>
         <LoginBelowImg></LoginBelowImg>
@@ -205,11 +205,11 @@ const LoginButton = styled(Button)`
 `;
 
 const SignUpButton = styled(Button)`
-  background-color: #28a745;
+background-color: #14cc14;
 
-  &:hover {
-    background-color: #218838;
-  }
+&:hover {
+  background-color: #11ad11;
+}
 `;
 
 const InputContainer = styled.div`

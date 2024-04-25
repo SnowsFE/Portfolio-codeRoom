@@ -49,14 +49,14 @@ const LoginPage = () => {
           <LoginLogo></LoginLogo>
           <LoginInput
             type="text"
-            placeholder="username"
+            placeholder="아이디"
             onChange={(e) => {
               setUsername(e.target.value);
             }}
           />
           <LoginInput
             type="password"
-            placeholder="password"
+            placeholder="비밀번호"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
@@ -133,10 +133,10 @@ const LoginButton = styled(LoginButtonComp)`
 `;
 
 const SignUpButton = styled(LoginButtonComp)`
-  background-color: #28a745;
+  background-color: #14cc14;
 
   &:hover {
-    background-color: #218838;
+    background-color: #11ad11;
   }
 `;
 
