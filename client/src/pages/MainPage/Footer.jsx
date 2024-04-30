@@ -30,14 +30,14 @@ const Footer = () => {
 
 const FooterStyle = styled.div`
   display: flex;
-  justify-content: center; /* 수평 정렬 */
-  align-items: center; /* 수직 정렬 */
-  width: 100%; /* 가로 폭 100% */
-  min-width: 1280px; /* 최소 가로 폭 1280px */
-  min-height: 15vh; /* 최소 높이 15vh */
-  background-color: #f5f5f5; /* 배경색 설정 */
-  padding: 20px 0; /* 상단과 하단에 20px의 패딩 추가 */
-  margin-top: 6%; /* 상단 여백 6% 설정 */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-width: 1280px;
+  min-height: 15vh;
+  background-color: #f5f5f5;
+  padding: 20px 0;
+  margin-top: 6%;
 `;
 
 // 컨텐츠 영역의 스타일 정의
