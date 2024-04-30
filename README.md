@@ -1,10 +1,9 @@
-
-https://github.com/SnowsFE/Portfolio-codeRoom/assets/165915760/c2f4e559-d585-4b0c-810b-6cfb242b5d37
 Front-End
-[<a href = "https://github.com/won-jae-jang">won-jae-jang<a/> , <a href = "https://github.com/SnowsFE">SnowsFE<a/>]
+<a href = "https://github.com/won-jae-jang">won-jae-jang<a/> , <a href = "https://github.com/SnowsFE">SnowsFE<a/>
 <br>
+
 Back-End
-[yoonyeongkwan, <a href = "https://github.com/MaengJuyoung">MaengJuyoung<a/>]
+yoonyeongkwan, <a href = "https://github.com/MaengJuyoung">MaengJuyoung<a/>
 
 https://github.com/SnowsFE/Portfolio-codeRoom/assets/165915760/452a4b56-a4d6-40e6-b067-ac3c146eea25
 
