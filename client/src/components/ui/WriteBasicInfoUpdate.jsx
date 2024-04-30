@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 
 const WriteBasicInfo1 = ({
-  onRecruitTypeChange,
+  onCategoryChange,
   onRecruitMemberChange,
   selectedRecruitmentType,
   selectedRecruitmentCount,
@@ -10,7 +10,7 @@ const WriteBasicInfo1 = ({
   const [recruitCount, setRecruitCount] = useState("");
 
   const RecruitTypeChange = (value) => {
-    onRecruitTypeChange(value);
+    onCategoryChange(value);
     console.log("모집 구분 변경:", value); // 모집 구분이 변경될 때 로그 출력
   };
 
@@ -347,8 +347,8 @@ const WriteBasicInfo3 = ({
 
 const WriteBasicInfo4 = ({
   onContactChange,
-  recruitField,
-  onRecruitTypeChange,
+  categories = [],
+  onCategoryChange,
   contact,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -365,14 +365,14 @@ const WriteBasicInfo4 = ({
   }, []);
 
   const handleOptionClick = (option) => {
-    if (recruitField.includes(option)) {
-      const filteredOptions = recruitField.filter(
+    if (categories.includes(option)) {
+      const filteredOptions = categories.filter(
         (selectedOption) => selectedOption !== option
       );
-      onRecruitTypeChange(filteredOptions);
+      onCategoryChange(filteredOptions);
     } else {
-      if (recruitField.length < 3) {
-        onRecruitTypeChange([...recruitField, option]);
+      if (categories.length < 3) {
+        onCategoryChange([...categories, option]);
       } else {
         alert("최대 3개까지만 선택할 수 있습니다.");
       }
@@ -380,10 +380,10 @@ const WriteBasicInfo4 = ({
   };
 
   const handleRemoveOption = (option) => {
-    const filteredOptions = recruitField.filter(
+    const filteredOptions = categories.filter(
       (selectedOption) => selectedOption !== option
     );
-    onRecruitTypeChange(filteredOptions);
+    onCategoryChange(filteredOptions);
   };
 
   const handleContactMethodChange = (value) => {
@@ -391,11 +391,11 @@ const WriteBasicInfo4 = ({
     onContactChange(value);
   };
 
-  // 선택된 옵션이 변경될 때마다 onRecruitTypeChange 호출
-  // useEffect(() => {
-  //   onRecruitTypeChange(recruitField);
-  //   console.log("모집 포지션 변경:", recruitField); // 모집 포지션 변경 시 로그 출력
-  // }, [recruitField]);
+  // 선택된 옵션이 변경될 때마다 onCategoryChange 호출
+  useEffect(() => {
+    onCategoryChange(categories);
+    console.log("모집 포지션 변경:", categories); // 모집 포지션 변경 시 로그 출력
+  }, [categories]);
 
   return (
     <SelectArea>
@@ -403,9 +403,9 @@ const WriteBasicInfo4 = ({
         <span className="info-title">모집 포지션</span>
         <div className="select-box">
           <div class="left-bar" tabIndex="0" onClick={toggleDropdown}>
-            {recruitField.length > 0 ? (
+            {categories.length > 0 ? (
               <p>
-                {recruitField.map((option, index) => (
+                {categories.map((option, index) => (
                   <SelectedOptionBox key={index}>
                     <code>{option}</code>
                     <span
@@ -428,7 +428,7 @@ const WriteBasicInfo4 = ({
                 <div
                   key={index}
                   className={`custom-option ${
-                    recruitField.includes(option) ? "selected" : ""
+                    categories.includes(option) ? "selected" : ""
                   }`}
                   onClick={() => handleOptionClick(option)}
                 >

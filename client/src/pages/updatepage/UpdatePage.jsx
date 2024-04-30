@@ -25,7 +25,7 @@ const UpdatePage = () => {
   const [endDate, setEndDate] = useState(""); //모집 마감일
   const [contact, setContact] = useState(""); //연락방법
   const [duration, setDuration] = useState(""); //예상 기간
-  const [recruitField, setRecruitField] = useState([]); //모집 분야
+  const [categories, setcategories] = useState([]); //모집 분야
   const [language, setLanguage] = useState([]); //사용 언어 ex) spring
   const [content, setContent] = useState(""); //본문 내용
 
@@ -41,7 +41,7 @@ const UpdatePage = () => {
       setRecruitMember(res.data.postresult[0].recruitmember);
       setContact(res.data.postresult[0].contact);
       setDuration(res.data.postresult[0].duration);
-      setRecruitField(res.data.postresult[0].recruitFields);
+      setcategories(res.data.postresult[0].recruitFields);
       setLanguage(res.data.postresult[0].languages);
       setEndDate(res.data.postresult[0].enddate); //Todo
       setContent(res.data.postresult[0].content);
@@ -55,7 +55,7 @@ const UpdatePage = () => {
       recruitmember: recruitMember,
       progress,
       duration,
-      categories: recruitField,
+      categories: categories,
       enddate: endDate,
       languages: language,
       contact,
@@ -120,10 +120,10 @@ const UpdatePage = () => {
           endDate={endDate}
         />
         <WriteBasicInfo4
-          recruitField={recruitField}
+          categories={categories}
           contact={contact}
           onContactChange={setContact}
-          onRecruitTypeChange={setRecruitType}
+          onCategoryChange={setcategories}
         />
         <h2>글작성</h2>
         <hr />
